@@ -1118,6 +1118,14 @@ class SerializacaoXML(Serializacao):
     def _serializar_imposto_pis(
         self, produto_servico, modelo, tag_raiz="imposto", retorna_string=True
     ):
+        # Para NFC-e (65), o grupo de tributação do PIS/COFINS são opcionais.
+        if (modelo != 55) and \
+           ((produto_servico.pis_valor_base_calculo == 0) and
+            (produto_servico.pis_aliquota_percentual == 0) and
+            (produto_servico.pis_valor == 0) and
+            (produto_servico.pis_modalidade not in ("04", "05", "06", "07", "08", "09", "49", "99"))):
+            return
+
         pisnt = ("04", "05", "06", "07", "08", "09")
         pis = etree.SubElement(tag_raiz, "PIS")
         if produto_servico.pis_modalidade in pisnt:
@@ -1183,6 +1191,14 @@ class SerializacaoXML(Serializacao):
     def _serializar_imposto_cofins(
         self, produto_servico, modelo, tag_raiz="imposto", retorna_string=True
     ):
+        # Para NFC-e (65), o grupo de tributação do PIS/COFINS são opcionais.
+        if (modelo != 55) and \
+           ((produto_servico.cofins_valor_base_calculo == 0) and
+            (produto_servico.cofins_aliquota_percentual == 0) and
+            (produto_servico.cofins_valor == 0) and
+            (produto_servico.cofins_modalidade not in ("04", "05", "06", "07", "08", "09", "49", "99"))):
+            return
+
         cofinsnt = ("04", "05", "06", "07", "08", "09")
         cofins = etree.SubElement(tag_raiz, "COFINS")
         if produto_servico.cofins_modalidade in cofinsnt:
@@ -1771,6 +1787,34 @@ class SerializacaoXML(Serializacao):
                                 etree.SubElement(
                                     lacres, "nLacre"
                                 ).text = lacre.numero_lacre
+
+        # Cobrança
+        if (nota_fiscal.fatura_numero) or (nota_fiscal.duplicatas and len(nota_fiscal.duplicatas) > 0):
+            cobr = etree.SubElement(raiz, "cobr")
+
+            # Fatura 0-1
+            if nota_fiscal.fatura_numero:
+                fat = etree.SubElement(cobr, "fat")
+                etree.SubElement(fat, "nFat").text = nota_fiscal.fatura_numero
+                etree.SubElement(fat, "vOrig").text = "{:.2f}".format(
+                    nota_fiscal.fatura_valor_original
+                )
+                etree.SubElement(fat, "vDesc").text = "{:.2f}".format(
+                    nota_fiscal.fatura_valor_desconto
+                )
+                etree.SubElement(fat, "vLiq").text = "{:.2f}".format(
+                    nota_fiscal.fatura_valor_liquido
+                )
+
+            # Duplicata 0-N
+            if nota_fiscal.duplicatas and len(nota_fiscal.duplicatas) > 0:
+                for num, item in enumerate(nota_fiscal.duplicatas):
+                    dup = etree.SubElement(cobr, "dup")
+                    etree.SubElement(dup, "nDup").text = item.numero
+                    etree.SubElement(dup, "dVenc").text = item.data_vencimento.strftime(
+                        "%Y-%m-%d"
+                    )
+                    etree.SubElement(dup, "vDup").text = "{:.2f}".format(item.valor)
 
         # Pagamento
         """ Obrigatório o preenchimento do Grupo Informações de Pagamento para NF-e e NFC-e.

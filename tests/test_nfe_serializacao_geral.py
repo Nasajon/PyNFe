@@ -3,6 +3,7 @@
 
 import unittest
 
+from pynfe import get_version
 from pynfe.entidades.cliente import Cliente
 from pynfe.entidades.emitente import Emitente
 from pynfe.entidades.notafiscal import NotaFiscal
@@ -113,6 +114,10 @@ class SerializacaoNFeTestCase(unittest.TestCase):
             transporte_modalidade_frete=1,
             informacoes_adicionais_interesse_fisco="Mensagem complementar",
             totais_tributos_aproximado=Decimal("21.06"),
+            fatura_numero="12345",
+            fatura_valor_original=Decimal("117.00"),
+            fatura_valor_desconto=Decimal("0.00"),
+            fatura_valor_liquido=Decimal("117.00"),
         )
 
         self.notafiscal.adicionar_produto_servico(
@@ -163,7 +168,25 @@ class SerializacaoNFeTestCase(unittest.TestCase):
             email="pynfe@pynfe.io",
             fone="11912341234",
         )
-        
+
+        self.notafiscal.adicionar_duplicata(
+            numero='1',
+            data_vencimento=datetime.datetime(2025, 1, 27, 12, 0, 0, tzinfo=utc),
+            valor=Decimal("39.00"),
+        )
+
+        self.notafiscal.adicionar_duplicata(
+            numero='1',
+            data_vencimento=datetime.datetime(2025, 1, 28, 12, 0, 0, tzinfo=utc),
+            valor=Decimal("39.00"),
+        )
+
+        self.notafiscal.adicionar_duplicata(
+            numero='1',
+            data_vencimento=datetime.datetime(2025, 1, 29, 12, 0, 0, tzinfo=utc),
+            valor=Decimal("39.00"),
+        )
+
         self.notafiscal.adicionar_pagamento(
             t_pag="03",
             x_pag="Cartao Credito",
@@ -241,6 +264,9 @@ class SerializacaoNFeTestCase(unittest.TestCase):
         processo_emissao = self.xml_assinado.xpath(
             "//ns:ide/ns:procEmi", namespaces=self.ns
         )[0].text
+        versao_processo_emissao = self.xml_assinado.xpath(
+            "//ns:ide/ns:verProc", namespaces=self.ns
+        )[0].text
 
         self.assertEqual(uf, "41")
         self.assertEqual(natureza_operacao, "VENDA")
@@ -259,6 +285,7 @@ class SerializacaoNFeTestCase(unittest.TestCase):
         self.assertEqual(cliente_final, "1")
         self.assertEqual(indicador_presencial, "1")
         self.assertEqual(processo_emissao, "0")
+        self.assertEqual(versao_processo_emissao, f'PyNFe {get_version()}')
 
     def dados_emitente_test(self):
         razao_social = self.xml_assinado.xpath(
@@ -396,6 +423,68 @@ class SerializacaoNFeTestCase(unittest.TestCase):
         self.assertEqual(chave_1, "12345678901234567890123456789012345678900001")
         self.assertEqual(chave_2, "12345678901234567890123456789012345678900002")
 
+    def fatura_test(self):
+        numero_fatura = self.xml_assinado.xpath("//ns:cobr/ns:fat/ns:nFat", namespaces=self.ns)[
+            0
+        ].text
+        valor_original = self.xml_assinado.xpath("//ns:cobr/ns:fat/ns:vOrig", namespaces=self.ns)[
+            0
+        ].text
+        valor_desconto = self.xml_assinado.xpath("//ns:cobr/ns:fat/ns:vDesc", namespaces=self.ns)[
+            0
+        ].text
+        valor_liquido = self.xml_assinado.xpath("//ns:cobr/ns:fat/ns:vLiq", namespaces=self.ns)[
+            0
+        ].text
+
+        self.assertEqual(numero_fatura, "12345")
+        self.assertEqual(valor_original, "117.00")
+        self.assertEqual(valor_desconto, "0.00")
+        self.assertEqual(valor_liquido, "117.00")
+
+    def duplicatas_test(self):
+        numero_duplicata_1 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:nDup", namespaces=self.ns
+        )[0].text
+        data_vencimento_1 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:dVenc", namespaces=self.ns
+        )[0].text
+        valor_duplicata_1 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:vDup", namespaces=self.ns
+        )[0].text
+
+        numero_duplicata_2 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:nDup", namespaces=self.ns
+        )[1].text
+        data_vencimento_2 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:dVenc", namespaces=self.ns
+        )[1].text
+        valor_duplicata_2 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:vDup", namespaces=self.ns
+        )[1].text
+
+        numero_duplicata_3 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:nDup", namespaces=self.ns
+        )[2].text
+        data_vencimento_3 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:dVenc", namespaces=self.ns
+        )[2].text
+        valor_duplicata_3 = self.xml_assinado.xpath(
+            "//ns:cobr/ns:dup/ns:vDup", namespaces=self.ns
+        )[2].text
+
+        self.assertEqual(numero_duplicata_1, "1")
+        self.assertEqual(data_vencimento_1, "2025-01-27")
+        self.assertEqual(valor_duplicata_1, "39.00")
+
+        self.assertEqual(numero_duplicata_2, "1")
+        self.assertEqual(data_vencimento_2, "2025-01-28")
+        self.assertEqual(valor_duplicata_2, "39.00")
+
+        self.assertEqual(numero_duplicata_3, "1")
+        self.assertEqual(data_vencimento_3, "2025-01-29")
+        self.assertEqual(valor_duplicata_3, "39.00")
+
     def responsavel_tecnico_test(self):
         cnpj = self.xml_assinado.xpath("//ns:infRespTec/ns:CNPJ", namespaces=self.ns)[
             0
@@ -437,6 +526,8 @@ class SerializacaoNFeTestCase(unittest.TestCase):
         self.dados_emitente_test()
         self.dados_destinatario_test()
         self.notas_referenciadas_test()
+        self.fatura_test()
+        self.duplicatas_test()
         self.responsavel_tecnico_test()
         self.digestvalue_da_assinatura_test()
 
