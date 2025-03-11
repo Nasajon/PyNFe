@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import base64
 import datetime
+import gzip
 import re
 
 import requests
@@ -1181,6 +1183,76 @@ class ComunicacaoCTe(Comunicacao):
     _namespace_xsd = NAMESPACE_XSD
     _soap_version = "soap"
 
+    def autorizacao(
+        self, cte, contingencia=False
+    ):
+        """
+        Método para realizar autorização da nota de acordo com o modelo
+        :param modelo: Modelo
+        :param nota_fiscal: XML assinado
+        :param id_lote: Id do lote - numero autoincremental gerado pelo sistema
+        :param ind_sinc: Indicador de sincrono e assincrono, 0 para assincrono, 1 para sincrono
+        :param contingencia: Indica se o envio é em contingência ou não
+        :return:  Uma tupla que em caso de sucesso, retorna xml com nfe e protocolo de autorização.
+        Caso contrário, envia todo o soap de resposta da Sefaz para decisão do usuário.
+        """
+        # url do serviço
+        url = self._get_url(consulta="AUTORIZACAO", contingencia=contingencia)
+
+        # Monta XML do corpo da requisição
+        # raiz = etree.Element("enviCTe", xmlns=NAMESPACE_CTE, versao=VERSAO_CTE)
+        # raiz.append(cte)
+
+        # Monta XML para envio da requisição
+        xml = self._construir_xml_soap("CTeRecepcaoSincV4", base64.b64encode(gzip.compress(etree.tostring(cte))).decode("utf-8"))
+        # xml = self._construir_xml_soap("CTeRecepcaoSincV4", cte)
+        # Faz request no Servidor da Sefaz
+        retorno = self._post(url, xml)
+
+        # Em caso de sucesso, retorna xml com nfe e protocolo de autorização.
+        # Caso contrário, envia todo o soap de resposta da Sefaz para decisão do usuário.
+        if retorno.status_code == 200:
+            # namespace
+            ns = {"ns": NAMESPACE_CTE}
+            # Procuta status no xml
+            try:
+                prot = etree.fromstring(retorno.text)
+            except ValueError:
+                # em SP retorno.text apresenta erro
+                prot = etree.fromstring(retorno.content)
+            try:
+                # Protocolo com envio OK
+                try:
+                    inf_prot = prot[0][0]  # root protNFe
+                except IndexError:
+                    # Estados como GO vem com a tag header
+                    inf_prot = prot[1][0]
+
+                lote_status = inf_prot.xpath(
+                    "ns:retCTe/ns:cStat", namespaces=ns
+                )[0].text
+                # Lote processado
+                if lote_status == "100":
+                    prot_nfe = inf_prot.xpath(
+                        "ns:retCTe/ns:protCTe", namespaces=ns
+                    )[0]
+                    status = prot_nfe.xpath("ns:infProt/ns:cStat", namespaces=ns)[
+                        0
+                    ].text
+                    # autorizado usa da NF-e
+                    # retorna xml final (protNFe+NFe)
+                    if status  == "100":
+                        raiz = etree.Element(
+                            "cteProc", xmlns=NAMESPACE_NFE, versao=VERSAO_PADRAO
+                        )
+                        raiz.append(cte)
+                        raiz.append(prot_nfe)
+                        return 0, raiz
+            except IndexError:
+                # Protocolo com algum erro no Envio
+                return 1, retorno, cte
+        return 1, retorno, cte
+
     def status_servico(self):
         """
         Verifica status do servidor da receita.
@@ -1260,14 +1332,14 @@ class ComunicacaoCTe(Comunicacao):
 
         raiz = etree.Element(self._header, xmlns=self._namespace_metodo + metodo)
         etree.SubElement(raiz, "cUF").text = CODIGOS_ESTADOS[self.uf.upper()]
-        etree.SubElement(raiz, "versaoDados").text = "3.00"
+        etree.SubElement(raiz, "versaoDados").text = "4.00"
         return raiz
 
-    def _get_url(self, consulta):
+    def _get_url(self, consulta, contingencia=False):
         """Retorna a url para comunicação com o webservice"""
 
         # Estados que implementam webservices proprios
-        lista = ["MT", "MS", "MG", "PR", "RS", "SP"]
+        lista = ["MT", "MS", "MG", "PR"]
         if self.uf.upper() in lista:
             if self._ambiente == 1:
                 ambiente = "HTTPS"
@@ -1293,11 +1365,13 @@ class ComunicacaoCTe(Comunicacao):
                 "RJ",
                 "RN",
                 "RO",
+                "RS",
                 "SC",
                 "SE",
                 "TO",
+                
             ]
-            lista_svsp = ["AP", "PE", "RR"]
+            lista_svsp = ["AP", "PE", "RR","SP"]
 
             # SVRS
             if self.uf.upper() in lista_svrs:
@@ -1321,8 +1395,8 @@ class ComunicacaoCTe(Comunicacao):
         """Monta o XML para o envio via SOAP"""
 
         raiz = etree.Element(
-            "{%s}Envelope" % NAMESPACE_SOAP,
-            nsmap={"xsi": NAMESPACE_XSI, "xsd": NAMESPACE_XSD, "soap": NAMESPACE_SOAP},
+            "{%s}Envelope" % self._namespace_soap,
+            nsmap={"xsi": NAMESPACE_XSI, "xsd": NAMESPACE_XSD, "soap12": NAMESPACE_SOAP},
         )
 
         if self._header:
@@ -1330,7 +1404,7 @@ class ComunicacaoCTe(Comunicacao):
             c = etree.SubElement(raiz, "{%s}Header" % self._namespace_soap)
             c.append(cabecalho)
 
-        body = etree.SubElement(raiz, "{%s}Body" % NAMESPACE_SOAP)
+        body = etree.SubElement(raiz, "{%s}Body" % self._namespace_soap)
         # distribuição tem um corpo de xml diferente
         if metodo == "CTeDistribuicaoDFe":
             x = etree.SubElement(
@@ -1341,7 +1415,11 @@ class ComunicacaoCTe(Comunicacao):
             a = etree.SubElement(
                 body, "cteDadosMsg", xmlns=NAMESPACE_CTE_METODO + metodo
             )
-        a.append(dados)
+
+        if metodo=='CTeRecepcaoSincV4':
+            a.text = dados
+        else:
+            a.append(dados)
         return raiz
 
     def _post_header(self):
@@ -1365,7 +1443,7 @@ class ComunicacaoCTe(Comunicacao):
 
             # limpa xml com caracteres bugados para infNFeSupl em NFC-e
             xml = re.sub(
-                "<qrCode>(.*?)</qrCode>",
+                "<qrCodCTe>(.*?)</qrCodCTe>",
                 lambda x: x.group(0)
                 .replace("&lt;", "<")
                 .replace("&gt;", ">")

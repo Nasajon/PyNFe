@@ -17,6 +17,7 @@ from pynfe.utils import (
 )
 from pynfe.utils.flags import (
     CODIGOS_ESTADOS,
+    NAMESPACE_CTE,
     NAMESPACE_MDFE,
     NAMESPACE_NFE,
     NAMESPACE_SIG,
@@ -24,7 +25,7 @@ from pynfe.utils.flags import (
     VERSAO_PADRAO,
     VERSAO_QRCODE,
 )
-from pynfe.utils.webservices import MDFE, NFCE
+from pynfe.utils.webservices import CTE, MDFE, NFCE
 
 
 class Serializacao(object):
@@ -2017,7 +2018,7 @@ class SerializacaoXML(Serializacao):
 class SerializacaoQrcode(object):
     """Classe que gera e serializa o qrcode de NFC-e no xml"""
 
-    def gerar_qrcode(self, token, csc, xml, return_qr=False, online=True):
+    def gerar_qrcode_nfce(self, token, csc, xml, return_qr=False, online=True):
         """Classe para gerar url do qrcode da NFC-e"""
         # Procura atributos no xml
         ns = {"ns": NAMESPACE_NFE}
@@ -2121,6 +2122,45 @@ class SerializacaoQrcode(object):
         # retorna apenas nfe com o qrcode incluido NT2015/002
         else:
             return nfe
+        
+    def gerar_qrcode_cte(self, xml, return_qr=False):
+        """Classe para gerar url do qrcode da NFC-e"""
+        # Procura atributos no xml
+        ns = {"ns": NAMESPACE_CTE}
+        cte = xml
+        chave = cte[0].attrib["Id"].replace("CTe", "")
+        tpamb = cte.xpath("ns:infCte/ns:ide/ns:tpAmb/text()", namespaces=ns)[0]
+        cuf = cte.xpath("ns:infCte/ns:ide/ns:cUF/text()", namespaces=ns)[0]
+        uf = [key for key, value in CODIGOS_ESTADOS.items() if value == cuf][0].upper()
+
+        url = f"chCTe={chave}&tpAmb={tpamb}"
+
+        lista_svsp = ["AP", "PE", "RR", "SP"]
+        if uf in lista_svsp:
+            if tpamb == "1":
+                qrcode = CTE["SVSP"]["HTTPS"] + CTE["SVSP"]["QR"] + url
+            else:
+                qrcode = CTE["SVSP"]["HOMOLOGACAO"] + CTE["SVSP"]["QR"] + url
+        elif uf == "MT":
+            if tpamb == "1":
+                qrcode = CTE[uf]["WWW"] + CTE[uf]["QR"] + url
+            else:
+                qrcode = CTE[uf]["HOMOLOGACAO"] + CTE[uf]["QR"] + url
+        elif uf == "MG" or uf == "MS" or uf == "PR":
+            qrcode = CTE[uf]["QR"] + url
+        else:
+            qrcode = CTE["SVRS"]["QR"] + url
+        # adiciona tag infCTeSupl com qrcode
+        info = etree.Element("infCTeSupl")
+        etree.SubElement(info, "qrCodCTe").text = qrcode.strip()
+        cte.insert(1, info)
+
+        # retorna cte com o qrcode incluido NT2015/002 e qrcode
+        if return_qr:
+            return cte, qrcode.strip()
+        # retorna apenas cte com o qrcode incluido NT2015/002
+        else:
+            return cte
 
 
 class SerializacaoNfse(object):
