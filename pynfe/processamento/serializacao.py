@@ -6,6 +6,7 @@ import warnings
 
 from datetime import datetime
 
+from pynfe.entidades.cte import CTe
 import pynfe.utils.xml_writer as xmlw
 from pynfe.entidades import Manifesto, NotaFiscal
 from pynfe.utils import (
@@ -21,6 +22,7 @@ from pynfe.utils.flags import (
     NAMESPACE_MDFE,
     NAMESPACE_NFE,
     NAMESPACE_SIG,
+    VERSAO_CTE,
     VERSAO_MDFE,
     VERSAO_PADRAO,
     VERSAO_QRCODE,
@@ -1395,7 +1397,7 @@ class SerializacaoXML(Serializacao):
             # etree.SubElement(pag, 'vTroco').text = str('')
         return pag
 
-    def _serializar_pagamentos(self, pagamentos: list(), finalidade_emissao='', valor_troco = 0.00, retorna_string=True):
+    def _serializar_pagamentos(self, pagamentos: list, finalidade_emissao='', valor_troco = 0.00, retorna_string=True):
         pag = etree.Element('pag')
         if (finalidade_emissao in [3, 4]):
             detpag = etree.SubElement(pag, "detPag")
@@ -2751,6 +2753,418 @@ class SerializacaoMDFe(Serializacao):
                     manifesto.responsavel_tecnico[0], retorna_string=False
                 )
             )
+
+        if retorna_string:
+            return etree.tostring(raiz, encoding="unicode", pretty_print=True)
+        else:
+            return raiz
+
+class SerializacaoCTE(Serializacao):
+    """Classe de serialização do arquivo xml"""
+
+    _versao = VERSAO_CTE
+
+    def exportar(self, destino=None, retorna_string=False, limpar=True, **kwargs):
+        """Gera o(s) arquivo(s) de Nota Fiscal eletronica no padrao oficial da SEFAZ
+        e Receita Federal, para ser(em) enviado(s) para o webservice ou para ser(em)
+        armazenado(s) em cache local.
+        @param destino -
+        @param retorna_string - Retorna uma string para debug.
+        @param limpar - Limpa a fonte de dados para não gerar xml com dados duplicados.
+        """
+        try:
+            # No raiz do XML de saida
+            raiz = etree.Element("CTe", xmlns=NAMESPACE_CTE)
+
+            # Carrega lista de Notas Fiscais
+            cte = [cte for cte in self._fonte_dados.obter_lista(_classe=CTe, **kwargs)][0]
+
+            raiz.append(self._serializar_cte(cte, retorna_string=False))
+
+            if retorna_string:
+                return etree.tostring(raiz, encoding="unicode", pretty_print=False)
+            else:
+                return raiz
+        except Exception as e:
+            raise e
+        finally:
+            if limpar:
+                self._fonte_dados.limpar_dados()
+
+    def _serializar_cte(self, cte: CTe, tag_raiz="infCte", retorna_string=True):
+        raiz = etree.Element(tag_raiz, versao=self._versao)
+
+        raiz.attrib["Id"] = cte.identificador_unico
+
+        tz = cte.data_emissao.strftime("%z")
+        if not tz:
+            tz = datetime.now().astimezone().strftime("%z")
+        tz = "{}:{}".format(tz[:-2], tz[-2:])
+
+        # Dados da Nota Fiscal
+        ide = etree.SubElement(raiz, "ide")
+        etree.SubElement(ide, "cUF").text = CODIGOS_ESTADOS[cte.emitente.endereco_uf]
+        etree.SubElement(ide, "cCT").text = cte.codigo_numerico_aleatorio
+        etree.SubElement(ide, "CFOP").text = cte.cfop
+        etree.SubElement(ide, "natOp").text = cte.natureza_operacao
+        etree.SubElement(ide, "mod").text = str(cte.modelo)
+        etree.SubElement(ide, "serie").text = cte.serie
+        etree.SubElement(ide, "nCT").text = str(cte.numero)
+        etree.SubElement(ide, "dhEmi").text = cte.data_emissao.strftime("%Y-%m-%dT%H:%M:%S") + tz
+
+        etree.SubElement(ide, "tpImp").text = str(cte.tipo_impressao_dacte)
+        etree.SubElement(ide, "tpEmis").text = str(cte.forma_emissao)
+        etree.SubElement(ide, "cDV").text = cte.dv_codigo_numerico_aleatorio
+        etree.SubElement(ide, "tpAmb").text = str(self._ambiente)
+        etree.SubElement(ide, "tpCTe").text = str(cte.tipo_cte)
+        etree.SubElement(ide, "procEmi").text = str(cte.processo_emissao)
+        etree.SubElement(ide, "verProc").text = "%s %s" % (
+            self._nome_aplicacao,
+            cte.versao_processo_emissao,
+        )
+
+        etree.SubElement(ide, "cMunEnv").text = obter_codigo_por_municipio(
+            cte.municipio_envio, cte.uf_envio
+        )
+        etree.SubElement(ide, "xMunEnv").text = cte.municipio_envio
+        etree.SubElement(ide, "UFEnv").text = cte.uf_envio
+        etree.SubElement(ide, "modal").text = cte.modal.zfill(2)
+        etree.SubElement(ide, "tpServ").text = str(cte.tipo_servico)
+        etree.SubElement(ide, "cMunIni").text = obter_codigo_por_municipio(
+            cte.municipio_inicio, cte.uf_inicio
+        )
+        etree.SubElement(ide, "xMunIni").text = cte.municipio_inicio
+        etree.SubElement(ide, "UFIni").text = cte.uf_inicio
+        etree.SubElement(ide, "cMunFim").text = obter_codigo_por_municipio(
+            cte.municipio_fim, cte.uf_fim
+        )
+        etree.SubElement(ide, "xMunFim").text = cte.municipio_fim
+        etree.SubElement(ide, "UFFim").text = cte.uf_fim
+        etree.SubElement(ide, "retira").text = str(cte.retira)
+        etree.SubElement(ide, "indIEToma").text = str(cte.indicador_ie)
+
+        if cte.tipo_tomador != 4:
+            tomador = etree.SubElement(ide, "toma3")
+            etree.SubElement(tomador, "toma").text = str(cte.tipo_tomador)
+        else:
+            tomador = self._serializar_pessoa_generico(
+                cte.tomador, 'toma4', 'enderToma', retorna_string=False
+            )
+            etree.SubElement(tomador, "toma").text = '4'
+
+        if cte.observacao:
+            complemento = etree.SubElement(raiz, "compl")
+            etree.SubElement(complemento, "xObs").text = cte.observacao
+        
+        # Emitente
+        raiz.append(
+            self._serializar_emitente(cte.emitente, retorna_string=False)
+        )
+
+        if cte.remetente:
+            # remetente
+            raiz.append(
+                self._serializar_pessoa_generico(cte.remetente, "rem", "enderReme", retorna_string=False)
+            )
+
+        if cte.expedidor:
+            # remetente
+            raiz.append(
+                self._serializar_pessoa_generico(cte.expedidor, "exped", "enderExped", retorna_string=False)
+            )
+
+        if cte.recebidor:
+            # remetente
+            raiz.append(
+                self._serializar_pessoa_generico(cte.recebidor, "receb", "enderReceb", retorna_string=False)
+            )
+
+        # Destinatário
+        raiz.append(
+            self._serializar_cliente(
+                cte.cliente, retorna_string=False
+            )
+        )
+        prestacao = etree.SubElement(raiz,'vPrest')
+        etree.SubElement(prestacao, "vTPrest").text = "{:.2f}".format(cte.valor_total_prestacao)
+        etree.SubElement(prestacao, "vRec").text = "{:.2f}".format(cte.valor_receber_prestacao)
+
+        for componente in cte.componentes:
+            comp = etree.SubElement(prestacao, "Comp")
+            etree.SubElement(comp, "xNome").text = componente.nome
+            etree.SubElement(comp, "vComp").text = "{:.2f}".format(componente.valor)
+
+        raiz.append(
+            self._serializar_imposto_icms(
+                cte, retorna_string=False
+            )
+        )
+
+        raiz.append(
+            self._serializar_informacoes_cte(
+                cte, retorna_string=False
+            )
+        )
+        
+        if retorna_string:
+            return etree.tostring(raiz, encoding="unicode", pretty_print=True)
+        else:
+            return raiz
+
+    def _serializar_emitente(self, emitente, tag_raiz="emit", retorna_string=True):
+        raiz = etree.Element(tag_raiz)
+
+        # Dados do emitente
+        if len(so_numeros(emitente.cnpj)) == 11:
+            etree.SubElement(raiz, "CPF").text = so_numeros(emitente.cnpj)
+        else:
+            etree.SubElement(raiz, "CNPJ").text = so_numeros(emitente.cnpj)
+        etree.SubElement(raiz, "IE").text = emitente.inscricao_estadual
+        etree.SubElement(raiz, "xNome").text = emitente.razao_social        
+        # Endereço
+        endereco = etree.SubElement(raiz, "enderEmit")
+        etree.SubElement(endereco, "xLgr").text = emitente.endereco_logradouro
+        etree.SubElement(endereco, "nro").text = emitente.endereco_numero
+        if emitente.endereco_complemento:
+            etree.SubElement(endereco, "xCpl").text = emitente.endereco_complemento
+        etree.SubElement(endereco, "xBairro").text = emitente.endereco_bairro
+        etree.SubElement(endereco, "cMun").text = obter_codigo_por_municipio(
+            emitente.endereco_municipio, emitente.endereco_uf
+        )
+        etree.SubElement(endereco, "xMun").text = emitente.endereco_municipio
+        etree.SubElement(endereco, "CEP").text = so_numeros(emitente.endereco_cep)
+        etree.SubElement(endereco, "UF").text = emitente.endereco_uf
+        
+        if emitente.endereco_telefone:
+            etree.SubElement(endereco, "fone").text = emitente.endereco_telefone
+        if emitente.inscricao_estadual_subst_tributaria:
+            etree.SubElement(
+                raiz, "IEST"
+            ).text = emitente.inscricao_estadual_subst_tributaria
+        etree.SubElement(raiz, "CRT").text = emitente.codigo_de_regime_tributario
+        if retorna_string:
+            return etree.tostring(raiz, encoding="unicode", pretty_print=True)
+        else:
+            return raiz
+        
+    def _serializar_pessoa_generico(self, pessoa, tag_raiz, tag_endereco, retorna_string=True):
+        raiz = etree.Element(tag_raiz)
+
+        # Dados do emitente
+        if len(so_numeros(pessoa.documento)) == 11:
+            etree.SubElement(raiz, "CPF").text = so_numeros(pessoa.documento)
+        else:
+            etree.SubElement(raiz, "CNPJ").text = so_numeros(pessoa.documento)
+        if pessoa.inscricao_estadual:
+            etree.SubElement(raiz, "IE").text = pessoa.inscricao_estadual
+        etree.SubElement(raiz, "xNome").text = pessoa.razao_social
+        
+        # Endereço
+        endereco = etree.SubElement(raiz, tag_endereco)
+        etree.SubElement(endereco, "xLgr").text = pessoa.endereco_logradouro
+        etree.SubElement(endereco, "nro").text = pessoa.endereco_numero
+        if pessoa.endereco_complemento:
+            etree.SubElement(endereco, "xCpl").text = pessoa.endereco_complemento
+        etree.SubElement(endereco, "xBairro").text = pessoa.endereco_bairro
+        etree.SubElement(endereco, "cMun").text = obter_codigo_por_municipio(
+            pessoa.endereco_municipio, pessoa.endereco_uf
+        )
+        etree.SubElement(endereco, "xMun").text = pessoa.endereco_municipio
+        etree.SubElement(endereco, "CEP").text = so_numeros(pessoa.endereco_cep)
+        etree.SubElement(endereco, "UF").text = pessoa.endereco_uf
+        etree.SubElement(endereco, "cPais").text = pessoa.endereco_pais
+        etree.SubElement(endereco, "xPais").text = obter_pais_por_codigo(
+                pessoa.endereco_pais
+            )
+        
+        
+        if retorna_string:
+            return etree.tostring(raiz, encoding="unicode", pretty_print=True)
+        else:
+            return raiz
+
+    def _serializar_cliente(
+        self, cliente, tag_raiz="dest", retorna_string=True
+    ):
+        raiz = etree.Element(tag_raiz)
+
+        # Dados do cliente (destinatário)
+        if len(so_numeros(cliente.numero_documento)) == 11:
+            etree.SubElement(raiz, "CPF").text = so_numeros(cliente.numero_documento)
+        else:
+            etree.SubElement(raiz, "CNPJ").text = so_numeros(cliente.numero_documento)
+        if cliente.inscricao_estadual:
+            etree.SubElement(raiz, "IE").text = cliente.inscricao_estadual
+        etree.SubElement(raiz, "xNome").text = cliente.razao_social
+        
+        endereco = etree.SubElement(raiz, "enderDest")
+        etree.SubElement(endereco, "xLgr").text = cliente.endereco_logradouro
+        etree.SubElement(endereco, "nro").text = cliente.endereco_numero
+        if cliente.endereco_complemento:
+            etree.SubElement(endereco, "xCpl").text = cliente.endereco_complemento
+        etree.SubElement(endereco, "xBairro").text = cliente.endereco_bairro
+        etree.SubElement(endereco, "cMun").text = obter_codigo_por_municipio(
+            cliente.endereco_municipio, cliente.endereco_uf
+        )
+        etree.SubElement(endereco, "xMun").text = cliente.endereco_municipio
+        if cliente.endereco_cep:
+            etree.SubElement(endereco, "CEP").text = so_numeros(
+                cliente.endereco_cep
+            )
+        etree.SubElement(endereco, "UF").text = cliente.endereco_uf
+        etree.SubElement(endereco, "cPais").text = cliente.endereco_pais
+        etree.SubElement(endereco, "xPais").text = obter_pais_por_codigo(
+            cliente.endereco_pais
+        )
+        if cliente.endereco_telefone:
+            etree.SubElement(endereco, "fone").text = cliente.endereco_telefone
+        # Suframa
+        if cliente.inscricao_suframa:
+            etree.SubElement(raiz, "ISUF").text = cliente.inscricao_suframa
+        # E-mail
+        if cliente.email:
+            etree.SubElement(raiz, "email").text = cliente.email
+        if retorna_string:
+            return etree.tostring(raiz, encoding="unicode", pretty_print=True)
+        else:
+            return raiz
+        
+    def _serializar_imposto_icms(
+        self, cte, tag_raiz="imp", retorna_string=True
+    ):
+        raiz = etree.Element(tag_raiz)
+        icms = etree.SubElement(raiz, "ICMS")
+
+        # 00=Tributada integralmente
+        if cte.icms_modalidade == "00":
+            icms_item = etree.SubElement(icms, "ICMS" + cte.icms_modalidade)           
+            etree.SubElement(icms_item, "CST").text = cte.icms_modalidade
+            etree.SubElement(icms_item, "vBC").text = "{:.2f}".format(
+                cte.icms_valor_base_calculo
+            )  # Valor da BC do ICMS
+            etree.SubElement(icms_item, "pICMS").text = "{:.2f}".format(
+                cte.icms_aliquota or 0
+            )  # Alíquota do imposto
+            etree.SubElement(icms_item, "vICMS").text = "{:.2f}".format(
+                cte.icms_valor or 0
+            )  # Valor do ICMS
+
+        # 20=Com redução de base de cálculo
+        elif cte.icms_modalidade == "20":
+            icms_item = etree.SubElement(icms, "ICMS" + cte.icms_modalidade)
+            etree.SubElement(icms_item, "CST").text = cte.icms_modalidade
+            etree.SubElement(icms_item, "pRedBC").text = "{:.2f}".format(
+                cte.icms_percentual_reducao_bc or 0
+            )  # Percentual da Redução de BC
+            etree.SubElement(icms_item, "vBC").text = "{:.2f}".format(
+                cte.icms_valor_base_calculo or 0
+            )  # Valor da BC do ICMS
+            etree.SubElement(icms_item, "pICMS").text = "{:.2f}".format(
+                cte.icms_aliquota or 0
+            )  # Alíquota do imposto
+            etree.SubElement(icms_item, "vICMS").text = "{:.2f}".format(
+                cte.icms_valor or 0
+            )  # Valor do ICMS
+
+        # 40=Isenta / 41=Não tributada / 50=Com suspensão
+        elif cte.icms_modalidade in ["40", "41", "50"]:
+            icms_item = etree.SubElement(icms, "ICMS45")
+            etree.SubElement(icms_item, "CST").text = str(
+                cte.icms_modalidade
+            )
+
+        # 60=ICMS cobrado anteriormente por substituição tributária
+        elif cte.icms_modalidade in ["ST", "60"]:
+            icms_item = etree.SubElement(icms, "ICMS60")
+            etree.SubElement(icms_item, "CST").text = "60"
+            etree.SubElement(icms_item, "vBCSTRet").text = "{:.2f}".format(cte.icms_valor_base_calculo or 0)
+            etree.SubElement(
+                icms_item, "vICMSSTRet"
+            ).text = "{:.2f}".format(cte.icms_valor or 0)
+            etree.SubElement(
+                icms_item, "pICMSSTRet"
+            ).text = "{:.2f}".format(cte.icms_aliquota or 0)
+
+        # 90=Outras
+        elif cte.icms_modalidade == "90":
+            icms_item = etree.SubElement(icms, "ICMS" + cte.icms_modalidade)
+            etree.SubElement(icms_item, "CST").text = "90"
+
+            if (cte.icms_valor_base_calculo > 0) and (
+                cte.icms_valor > 0
+            ):
+                etree.SubElement(icms_item, "vBC").text = "{:.2f}".format(
+                    cte.icms_valor_base_calculo or 0
+                )  # Valor da BC do ICMS
+                etree.SubElement(icms_item, "pRedBC").text = "{:.2f}".format(
+                    cte.icms_percentual_reducao_bc or 0
+                )  # Percentual da Redução de BC
+                etree.SubElement(icms_item, "pICMS").text = "{:.2f}".format(
+                    cte.icms_aliquota or 0
+                )  # Alíquota do imposto
+                etree.SubElement(icms_item, "vICMS").text = "{:.2f}".format(
+                    cte.icms_valor or 0
+                )  # Valor do ICMS
+
+        # Grupo do Simples Nacional
+
+        # 101=Tributada pelo Simples Nacional com permissão de crédito
+        elif cte.icms_modalidade in ("101","102", "103", "300", "400", "201", "202", "203","500","900"):
+            icms_item = etree.SubElement(
+                icms, "ICMSSN"
+            )
+            etree.SubElement(icms_item, "CST").text = "01"
+            etree.SubElement(icms_item, "indSN").text = "1"
+            etree.SubElement(icms_item, "vTotTrib").text = "{:.2f}".format(
+                    cte.icms_valor or 0
+                )
+
+        else:
+            raise NotImplementedError
+        
+        if retorna_string:
+            return etree.tostring(raiz, encoding="unicode", pretty_print=True)
+        else:
+            return raiz
+        
+    def _serializar_informacoes_cte(
+        self, cte: CTe, tag_raiz="infCTeNorm", retorna_string=True
+    ):
+        raiz = etree.Element(tag_raiz)
+
+        informacao_carga = etree.SubElement(raiz, "infCarga")
+        etree.SubElement(informacao_carga, "vCarga").text = "{:.2f}".format(cte.valor_carga)
+        etree.SubElement(informacao_carga, "proPred").text = cte.carga_predominante
+        for carga in cte.cargas:
+            quantidade = etree.SubElement(informacao_carga, "infQ")
+            etree.SubElement(quantidade, "cUnid").text = carga.codigo_unidade.zfill(2)
+            etree.SubElement(quantidade, "tpMed").text = carga.tipo_medida
+            etree.SubElement(quantidade, "qCarga").text = "{:.4f}".format(carga.quantidade)
+
+        informacao_doc = etree.SubElement(raiz, "infDoc")
+        informacao_nfe = etree.SubElement(informacao_doc, "infNFe")
+        etree.SubElement(informacao_nfe, "chave").text = cte.chave_nfe
+
+        if cte.rodoviario_registro:
+            informacao_modal = etree.SubElement(raiz, "infModal", versaoModal=self._versao)
+            informacao_rodoviario = etree.SubElement(informacao_modal, "rodo")
+            etree.SubElement(informacao_rodoviario, "RNTRC").text = cte.rodoviario_registro
+
+        if cte.fatura_numero or cte.duplicatas:
+            cobranca = etree.SubElement(raiz, "cobr")
+
+            if cte.fatura_numero:
+                fatura = etree.SubElement(cobranca, "fat")
+                etree.SubElement(fatura, "nFat").text = cte.fatura_numero
+                etree.SubElement(fatura, "vOrig").text = "{:.2f}".format(cte.fatura_valor_original)
+                etree.SubElement(fatura, "vDesc").text = "{:.2f}".format(cte.fatura_valor_desconto)
+                etree.SubElement(fatura, "vLiq").text = "{:.2f}".format(cte.fatura_valor_liquido)
+
+            for duplicata in cte.duplicatas:
+                dup = etree.SubElement(cobranca, "dup")
+                etree.SubElement(dup, "nDup").text = duplicata.numero
+                etree.SubElement(dup, "dVenc").text = duplicata.vencimento.strftime("%Y-%m-%d")
+                etree.SubElement(dup, "vDup").text = "{:.2f}".format(duplicata.valor)
 
         if retorna_string:
             return etree.tostring(raiz, encoding="unicode", pretty_print=True)

@@ -176,6 +176,16 @@ NF_STATUS = (
     "Cancelada",
 )
 
+CTE_STATUS = (
+    "Em Digitacao",
+    "Validada",
+    "Assinada",
+    "Em processamento",
+    "Autorizada",
+    "Rejeitada",
+    "Cancelada",
+)
+
 MDFE_STATUS = (
     "Em Digitacao",
     "Validada",
