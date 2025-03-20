@@ -166,27 +166,28 @@ class SerializacaoXML(Serializacao):
         if not self._so_cpf:
             if cliente.razao_social:
                 etree.SubElement(raiz, "xNome").text = cliente.razao_social
-            endereco = etree.SubElement(raiz, "enderDest")
-            etree.SubElement(endereco, "xLgr").text = cliente.endereco_logradouro
-            etree.SubElement(endereco, "nro").text = cliente.endereco_numero
-            if cliente.endereco_complemento:
-                etree.SubElement(endereco, "xCpl").text = cliente.endereco_complemento
-            etree.SubElement(endereco, "xBairro").text = cliente.endereco_bairro
-            etree.SubElement(endereco, "cMun").text = obter_codigo_por_municipio(
-                cliente.endereco_municipio, cliente.endereco_uf
-            )
-            etree.SubElement(endereco, "xMun").text = cliente.endereco_municipio
-            etree.SubElement(endereco, "UF").text = cliente.endereco_uf
-            if cliente.endereco_cep:
-                etree.SubElement(endereco, "CEP").text = so_numeros(
-                    cliente.endereco_cep
+            if cliente.endereco_logradouro:
+                endereco = etree.SubElement(raiz, "enderDest")
+                etree.SubElement(endereco, "xLgr").text = cliente.endereco_logradouro
+                etree.SubElement(endereco, "nro").text = cliente.endereco_numero
+                if cliente.endereco_complemento:
+                    etree.SubElement(endereco, "xCpl").text = cliente.endereco_complemento
+                etree.SubElement(endereco, "xBairro").text = cliente.endereco_bairro
+                etree.SubElement(endereco, "cMun").text = obter_codigo_por_municipio(
+                    cliente.endereco_municipio, cliente.endereco_uf
                 )
-            etree.SubElement(endereco, "cPais").text = cliente.endereco_pais
-            etree.SubElement(endereco, "xPais").text = obter_pais_por_codigo(
-                cliente.endereco_pais
-            )
-            if cliente.endereco_telefone:
-                etree.SubElement(endereco, "fone").text = cliente.endereco_telefone
+                etree.SubElement(endereco, "xMun").text = cliente.endereco_municipio
+                etree.SubElement(endereco, "UF").text = cliente.endereco_uf
+                if cliente.endereco_cep:
+                    etree.SubElement(endereco, "CEP").text = so_numeros(
+                        cliente.endereco_cep
+                    )
+                etree.SubElement(endereco, "cPais").text = cliente.endereco_pais
+                etree.SubElement(endereco, "xPais").text = obter_pais_por_codigo(
+                    cliente.endereco_pais
+                )
+                if cliente.endereco_telefone:
+                    etree.SubElement(endereco, "fone").text = cliente.endereco_telefone
         # Indicador da IE do destinatário:
         # 1 – Contribuinte ICMSpagamento à vista;
         # 2 – Contribuinte isento de inscrição;
