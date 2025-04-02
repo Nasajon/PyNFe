@@ -1199,13 +1199,8 @@ class ComunicacaoCTe(Comunicacao):
         # url do serviço
         url = self._get_url(consulta="AUTORIZACAO", contingencia=contingencia)
 
-        # Monta XML do corpo da requisição
-        # raiz = etree.Element("enviCTe", xmlns=NAMESPACE_CTE, versao=VERSAO_CTE)
-        # raiz.append(cte)
-
         # Monta XML para envio da requisição
         xml = self._construir_xml_soap("CTeRecepcaoSincV4", base64.b64encode(gzip.compress(etree.tostring(cte))).decode("utf-8"))
-        # xml = self._construir_xml_soap("CTeRecepcaoSincV4", cte)
         # Faz request no Servidor da Sefaz
         retorno = self._post(url, xml)
 
@@ -1469,3 +1464,15 @@ class ComunicacaoCTe(Comunicacao):
             raise e
         finally:
             certificado_a1.excluir()
+
+    def evento(self, evento, id_lote=1):
+        """
+        Envia um evento de nota fiscal (cancelamento e carta de correção)
+        :param evento: Eventro
+        :param id_lote: Id do lote
+        :return:
+        """
+        url = self._get_url(consulta="EVENTOS")
+
+        xml = self._construir_xml_soap("CTeRecepcaoEventoV4", evento)
+        return self._post(url, xml)

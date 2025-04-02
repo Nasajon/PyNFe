@@ -5,6 +5,9 @@
 # http://nfce.encat.org/desenvolvedor/qrcode/
 # http://nfce.encat.org/consumidor/consulte-sua-nota/ 	url consulta por chave
 # Nfc-e
+from math import e
+
+
 NFCE = {
     "RO": {
         "STATUS": "",
@@ -526,41 +529,47 @@ CTE = {
         "HOMOLOGACAO": "https://homologacao.",
         "WWW": "https://www.",
         "QR": "sefaz.mt.gov.br/cte/qrcode?",
-        "AUTORIZACAO": "sefaz.mt.gov.br/ctews2/services/CTeRecepcaoSincV4"
+        "AUTORIZACAO": "sefaz.mt.gov.br/ctews2/services/CTeRecepcaoSincV4",
+        "EVENTOS": "sefaz.mt.gov.br/ctews2/services/CTeRecepcaoEventoV4",
     },
     "MS": {
         "STATUS": "cte.ms.gov.br/ws/CteStatusServico",
         "HTTPS": "https://producao.",
         "HOMOLOGACAO": "https://homologacao.",
         "QR": "http://www.dfe.ms.gov.br/cte/qrcode?",
-        "AUTORIZACAO": "cte.ms.gov.br/ws/CTeRecepcaoSincV4"
+        "AUTORIZACAO": "cte.ms.gov.br/ws/CTeRecepcaoSincV4",
+        "EVENTOS": "cte.ms.gov.br/ws/CTeRecepcaoEventoV4",
     },
     "MG": {
         "STATUS": "fazenda.mg.gov.br/cte/services/CteStatusServico",
         "HTTPS": "https://cte.",
         "HOMOLOGACAO": "https://hcte.",
         "QR": "https://cte.fazenda.mg.gov.br/portalcte/sistema/qrcode.xhtml?",
-        "AUTORIZACAO": "fazenda.mg.gov.br/cte/services/CTeRecepcaoSincV4"
+        "AUTORIZACAO": "fazenda.mg.gov.br/cte/services/CTeRecepcaoSincV4",
+        "EVENTOS": "fazenda.mg.gov.br/cte/services/CTeRecepcaoEventoV4",
     },
     "PR": {
         "STATUS": "fazenda.pr.gov.br/cte/CteStatusServico?wsdl",
         "HTTPS": "https://cte.",
-        "HOMOLOGACAO": "https://homologacao.",
+        "HOMOLOGACAO": "https://homologacao.cte.",
         "QR": "http://www.fazenda.pr.gov.br/cte/qrcode?",
-        "AUTORIZACAO": "cte.fazenda.pr.gov.br/cte4/CTeRecepcaoSincV4"
+        "AUTORIZACAO": "fazenda.pr.gov.br/cte4/CTeRecepcaoSincV4",
+        "EVENTOS": "fazenda.pr.gov.br/cte4/CTeRecepcaoEventoV4",
     },
     "SVRS": {
         "STATUS": "svrs.rs.gov.br/ws/ctestatusservico/CteStatusServico.asmx",
         "HTTPS": "https://cte.",
         "HOMOLOGACAO": "https://cte-homologacao.",
         "QR": "https://dfe-portal.svrs.rs.gov.br/cte/qrCode?",
-        "AUTORIZACAO": "svrs.rs.gov.br/ws/CTeRecepcaoSincV4/CTeRecepcaoSincV4.asmx"
+        "AUTORIZACAO": "svrs.rs.gov.br/ws/CTeRecepcaoSincV4/CTeRecepcaoSincV4.asmx",
+        "EVENTOS": "svrs.rs.gov.br/ws/CTeRecepcaoEventoV4/CTeRecepcaoEventoV4.asmx",
     },
     "SVSP": {
         "STATUS": "fazenda.sp.gov.br/cteWEB/services/CteStatusServico.asmx",
         "HTTPS": "https://nfe.",
         "HOMOLOGACAO": "https://homologacao.nfe.",
         "QR": "fazenda.sp.gov.br/CTeConsulta/qrCode?",
-        "AUTORIZACAO": "fazenda.sp.gov.br/CTeWS/WS/CTeRecepcaoSincV4.asmx"
+        "AUTORIZACAO": "fazenda.sp.gov.br/CTeWS/WS/CTeRecepcaoSincV4.asmx",
+        "EVENTOS": "fazenda.sp.gov.br/CTeWS/WS/CTeRecepcaoEventoV4.asmx",
     },
 }
