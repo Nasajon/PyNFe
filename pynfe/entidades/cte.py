@@ -107,7 +107,6 @@ class CTe(Entidade):
     icms_percentual_reducao_bc = Decimal(0)
     valor_carga = Decimal(0)
     carga_predominante = ""
-    chave_nfe = ""
 
     rodoviario_registro = ''
     fatura_numero = ''
@@ -119,6 +118,7 @@ class CTe(Entidade):
         self.componentes: list[CTeComponente] = []
         self.cargas: list[CTeCarga] = []
         self.duplicatas: list[CTeDuplicata] = []
+        self.nfes: list[CTeNFe] = []
         
 
         super(CTe, self).__init__(*args, **kwargs)
@@ -141,6 +141,12 @@ class CTe(Entidade):
     def adicionar_componente(self, **kwargs):
         """Adiciona uma instancia de Duplicata"""
         obj = CTeComponente(**kwargs)
+        self.componentes.append(obj)
+        return obj
+    
+    def adicionar_nfe(self, **kwargs):
+        """Adiciona uma instancia de Duplicata"""
+        obj = CTeNFe(**kwargs)
         self.componentes.append(obj)
         return obj
 
@@ -223,6 +229,14 @@ class CTeCarga(Entidade):
 class CTeComponente(Entidade):
     nome = ''
     valor = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+
+      super(CTeComponente, self).__init__(*args, **kwargs)
+
+class CTeNFe(Entidade):
+    chave = ''
+    unidade_rateada = Decimal(0)
 
     def __init__(self, *args, **kwargs):
 

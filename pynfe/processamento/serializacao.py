@@ -3144,8 +3144,11 @@ class SerializacaoCTE(Serializacao):
             etree.SubElement(quantidade, "qCarga").text = "{:.4f}".format(carga.quantidade)
 
         informacao_doc = etree.SubElement(raiz, "infDoc")
-        informacao_nfe = etree.SubElement(informacao_doc, "infNFe")
-        etree.SubElement(informacao_nfe, "chave").text = cte.chave_nfe
+        for nfe in cte.nfes:
+            informacao_nfe = etree.SubElement(informacao_doc, "infNFe")
+            etree.SubElement(informacao_nfe, "chave").text = nfe.chave
+            if nfe.unidade_rateada > 0:
+                etree.SubElement(informacao_nfe, "unidRat").text = "{:.2f}".format(nfe.unidade_rateada)
 
         if cte.rodoviario_registro:
             informacao_modal = etree.SubElement(raiz, "infModal", versaoModal=self._versao)
