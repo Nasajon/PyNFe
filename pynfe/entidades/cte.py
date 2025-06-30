@@ -236,7 +236,6 @@ class CTeComponente(Entidade):
 
 class CTeNFe(Entidade):
     chave = ''
-    unidade_rateada = Decimal(0)
 
     def __init__(self, *args, **kwargs):
 
