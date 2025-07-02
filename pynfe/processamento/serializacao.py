@@ -2891,7 +2891,7 @@ class SerializacaoCTE(Serializacao):
         etree.SubElement(prestacao, "vTPrest").text = "{:.2f}".format(cte.valor_total_prestacao)
         etree.SubElement(prestacao, "vRec").text = "{:.2f}".format(cte.valor_receber_prestacao)
 
-        for componente in cte.componentes:
+        for componente in cte.prestacao_componentes:
             comp = etree.SubElement(prestacao, "Comp")
             etree.SubElement(comp, "xNome").text = componente.nome
             etree.SubElement(comp, "vComp").text = "{:.2f}".format(componente.valor)
@@ -2901,6 +2901,7 @@ class SerializacaoCTE(Serializacao):
                 cte, retorna_string=False
             )
         )
+
 
         raiz.append(
             self._serializar_informacoes_cte(
@@ -3076,7 +3077,7 @@ class SerializacaoCTE(Serializacao):
             )
 
         # 60=ICMS cobrado anteriormente por substituição tributária
-        elif cte.icms_modalidade in ["ST", "60"]:
+        elif cte.icms_modalidade == "60":
             icms_item = etree.SubElement(icms, "ICMS60")
             etree.SubElement(icms_item, "CST").text = "60"
             etree.SubElement(icms_item, "vBCSTRet").text = "{:.2f}".format(cte.icms_valor_base_calculo or 0)
@@ -3111,18 +3112,18 @@ class SerializacaoCTE(Serializacao):
         # Grupo do Simples Nacional
 
         # 101=Tributada pelo Simples Nacional com permissão de crédito
-        elif cte.icms_modalidade in ("101","102", "103", "300", "400", "201", "202", "203","500","900"):
+        elif cte.icms_modalidade == "100":
             icms_item = etree.SubElement(
                 icms, "ICMSSN"
             )
             etree.SubElement(icms_item, "CST").text = "01"
             etree.SubElement(icms_item, "indSN").text = "1"
-            etree.SubElement(icms_item, "vTotTrib").text = "{:.2f}".format(
-                    cte.icms_valor or 0
-                )
 
         else:
             raise NotImplementedError
+        
+        if cte.valor_total_tributos is not None:
+            etree.SubElement(raiz, "vTotTrib").text = "{:.2f}".format(cte.valor_total_tributos)
         
         if retorna_string:
             return etree.tostring(raiz, encoding="unicode", pretty_print=True)

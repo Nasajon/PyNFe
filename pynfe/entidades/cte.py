@@ -98,6 +98,7 @@ class CTe(Entidade):
 
     valor_total_prestacao = Decimal(0)
     valor_receber_prestacao = Decimal(0)
+    valor_total_tributos = None
 
     icms_modalidade = ""
 
@@ -115,7 +116,7 @@ class CTe(Entidade):
     fatura_valor_liquido = Decimal(0)
 
     def __init__(self, *args, **kwargs):
-        self.componentes: list[CTeComponente] = []
+        self.prestacao_componentes: list[CTeComponente] = []
         self.cargas: list[CTeCarga] = []
         self.duplicatas: list[CTeDuplicata] = []
         self.nfes: list[CTeNFe] = []
@@ -138,16 +139,16 @@ class CTe(Entidade):
         self.cargas.append(obj)
         return obj
 
-    def adicionar_componente(self, **kwargs):
+    def adicionar_prestacao_componente(self, **kwargs):
         """Adiciona uma instancia de Duplicata"""
         obj = CTeComponente(**kwargs)
-        self.componentes.append(obj)
+        self.prestacao_componentes.append(obj)
         return obj
     
     def adicionar_nfe(self, **kwargs):
         """Adiciona uma instancia de Duplicata"""
         obj = CTeNFe(**kwargs)
-        self.componentes.append(obj)
+        self.nfes.append(obj)
         return obj
 
     def _codigo_numerico_aleatorio(self):
