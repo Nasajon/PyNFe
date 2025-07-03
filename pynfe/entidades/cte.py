@@ -240,4 +240,4 @@ class CTeNFe(Entidade):
 
     def __init__(self, *args, **kwargs):
 
-      super(CTeComponente, self).__init__(*args, **kwargs)
+      super(CTeNFe, self).__init__(*args, **kwargs)
