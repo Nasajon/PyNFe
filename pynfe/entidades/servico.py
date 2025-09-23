@@ -1,7 +1,6 @@
 """
     @author: Junior Tada, Leonardo Tada
 """
-
 from .base import Entidade
 from decimal import Decimal
 
@@ -29,6 +28,7 @@ class Servico(Entidade):
     codigo_municipio = str()
     municipio_incidencia = str()
     codigo_cnae = int()
+    codigo_tributacao_nacional = str()
     codigo_tributacao_municipio = str()
     # Dados opcionais
     valor_deducoes = Decimal()
@@ -45,6 +45,9 @@ class Servico(Entidade):
     aliquota = Decimal()
     desconto_incondicionado = Decimal()
     desconto_condicionado = Decimal()
+    total_tributos_federais = Decimal()
+    total_tributos_estaduais = Decimal()
+    total_tributos_municipais = Decimal()
 
     def __str__(self):
         return self.discriminacao

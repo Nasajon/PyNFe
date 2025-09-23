@@ -1,6 +1,9 @@
 from pyxb import BIND
 from importlib import import_module
-
+from pynfe.entidades.notafiscal import NotaFiscalServico
+from pynfe.entidades.servico import Servico
+from pynfe.utils import obter_codigo_por_municipio
+import utils.nfse.nacional.DPS_v1_00 as nfse_nacional_schema
 
 class InterfaceAutorizador:
     # TODO Colocar raise Exception Not Implemented nos metodos
@@ -535,3 +538,112 @@ class SerializacaoGinfes(InterfaceAutorizador):
         cabecalho.versao = "3"
         cabecalho.versaoDados = "3"
         return cabecalho.toxml(element_name="ns2:cabecalho")
+
+class SerializacaoNacional(InterfaceAutorizador):
+    def gerar(self, nfse: NotaFiscalServico):
+        """Retorna string de um XML gerado a partir do
+        XML Schema (XSD). Binding gerado pelo modulo PyXB."""
+
+        infdps = nfse_nacional_schema.TCInfDPS()
+        infdps.id = nfse.identificador_unico_dps
+        infdps.tpAmb = nfse.ambiente
+        infdps.dhEmi = nfse.data_emissao.isoformat()    
+        infdps.verAplic = '1.00'
+        infdps.serie = nfse.serie
+        infdps.nDPS = nfse.numero
+        infdps.dCompet = nfse.data_emissao.date().isoformat()
+        infdps.tpEmit = 1  # 1 - Emissão de NFS-e pelo próprio prestador do serviço
+        infdps.cLocEmi = obter_codigo_por_municipio(nfse.emitente.endereco_municipio, nfse.emitente.endereco_uf)
+
+        prestador = nfse_nacional_schema.TCInfoPrestador()
+        prestador.CNPJ = nfse.emitente.cnpj
+        prestador.xNome = nfse.emitente.razao_social
+
+        if nfse.emitente.inscricao_municipal:
+            prestador.IM = nfse.emitente.inscricao_municipal
+        if nfse.emitente.endereco_cep:
+            prestador_endereco = nfse_nacional_schema.TCEndereco()
+            end_nacional = nfse_nacional_schema.TCEnderNac()
+            end_nacional.CEP = nfse.emitente.endereco_cep
+            end_nacional.cMun = obter_codigo_por_municipio(nfse.emitente.endereco_municipio, nfse.emitente.endereco_uf)
+            prestador_endereco.endNac = end_nacional
+            prestador_endereco.xLgr = nfse.emitente.endereco_logradouro
+            prestador_endereco.nro = nfse.emitente.endereco_numero
+            if nfse.emitente.endereco_complemento:
+                prestador_endereco.xCpl = nfse.emitente.endereco_complemento
+            prestador_endereco.xBairro = nfse.emitente.endereco_bairro
+            prestador.end = prestador_endereco
+
+        regime_tributario = nfse_nacional_schema.TCRegTrib()
+        regime_tributario.opSimpNac = nfse.simples
+        regime_tributario.regEspTrib = 0 # Verificar se precisa ser passado
+        prestador.regTrib = regime_tributario
+
+        infdps.prest = prestador
+
+        if nfse.cliente:
+            tomador = nfse_nacional_schema.TCInfoPessoa()
+            if nfse.cliente.tipo_documento == "CPF":
+                tomador.CPF = nfse.cliente.numero_documento
+            else:
+                tomador.CNPJ = nfse.cliente.numero_documento
+            tomador.xNome = nfse.cliente.razao_social
+
+            if nfse.cliente.inscricao_municipal:
+                tomador.IM = nfse.cliente.inscricao_municipal
+            if nfse.cliente.endereco_cep:
+                tomador_endereco = nfse_nacional_schema.TCEndereco()
+                end_nacional = nfse_nacional_schema.TCEnderNac()
+                end_nacional.CEP = nfse.cliente.endereco_cep
+                end_nacional.cMun = obter_codigo_por_municipio(nfse.cliente.endereco_municipio, nfse.cliente.endereco_uf)
+                tomador_endereco.endNac = end_nacional
+                tomador_endereco.xLgr = nfse.cliente.endereco_logradouro
+                tomador_endereco.nro = nfse.cliente.endereco_numero
+                if nfse.cliente.endereco_complemento:
+                    tomador_endereco.xCpl = nfse.cliente.endereco_complemento
+                tomador_endereco.xBairro = nfse.cliente.endereco_bairro
+                tomador.end = tomador_endereco
+
+            infdps.toma = tomador
+
+        servico = nfse_nacional_schema.TCServ()
+
+        local_prestacao = nfse_nacional_schema.TCLocPrest()
+        local_prestacao.cLocPrestacao = nfse.servico.codigo_municipio
+        local_prestacao.cPaisPrestacao = "BR"  # Brasil
+        servico.locPrest = local_prestacao
+
+        codigo_servico = nfse_nacional_schema.TCCServ()
+        codigo_servico.cTribNac = nfse.servico.codigo_tributacao_nacional
+        codigo_servico.xDescServ = nfse.servico.discriminacao
+        if nfse.servico.codigo_tributacao_municipio:
+            codigo_servico.cTribMun = nfse.servico.codigo_tributacao_municipio
+
+        servico.cServ = codigo_servico
+        infdps.serv = servico
+
+        valores = nfse_nacional_schema.TCInfoValores()
+        valor_servico = nfse_nacional_schema.TCVServPrest()
+        valor_servico.vServ = "{:.2f}".format(nfse.servico.valor_servico)
+        valores.vServPrest = valor_servico
+
+        tributos = nfse_nacional_schema.TCInfoTributacao()
+        tributos_municipais = nfse_nacional_schema.TCTribMunicipal()
+        tributos_municipais.tribISSQN = 1
+        tributos_municipais.tpRetISSQN = 1
+        tributos.tribMun = tributos_municipais
+
+        tributos_totais = nfse_nacional_schema.TCTribTotal()
+        valores_tributos_totais = nfse_nacional_schema.TCTribTotalMonet()
+        valores_tributos_totais.vTotTribFed = nfse.servico.total_tributos_federais
+        valores_tributos_totais.vTotTribEst = nfse.servico.total_tributos_estaduais
+        valores_tributos_totais.vTotTribMun = nfse.servico.total_tributos_municipais
+
+        tributos_totais.vTotTrib = valores_tributos_totais
+        valores.trib = tributos
+        
+        infdps.valores = valores
+
+        dps = nfse_nacional_schema.TCDPS()
+        dps.infDPS = infdps
+        return dps.toxml()

@@ -498,6 +498,11 @@ NFSE = {
         "HTTPS": "https://producao.ginfes.com.br/ServiceGinfesImpl?wsdl",
         "HOMOLOGACAO": "https://homologacao.ginfes.com.br/ServiceGinfesImpl?wsdl",
     },
+    "NACIONAL": {
+        "AUTORIZACAO": "nfse.gov.br/sefinnacional/nfse",
+        "HTTPS": "https://sefin.",
+        "HOMOLOGACAO": "https://sefin.producaorestrita.",
+    },
 }
 
 # MDF-e

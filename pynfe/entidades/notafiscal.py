@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime
 import random
 from decimal import Decimal
-
 from pynfe import get_version
 
 # from pynfe.utils import so_numeros, memoize
-from pynfe.utils import so_numeros
+from pynfe.entidades.cliente import Cliente
+from pynfe.entidades.emitente import Emitente
+from pynfe.entidades.servico import Servico
+from pynfe.utils import obter_codigo_por_municipio, so_numeros
 from pynfe.utils.flags import CODIGOS_ESTADOS, NF_STATUS
 
 from .base import CampoDeprecated, Entidade
@@ -1193,15 +1196,15 @@ class NotaFiscalServico(Entidade):
     # id do rps
     identificador = str()
     # tag competencia
-    data_emissao = None
+    data_emissao: datetime = None
     # Serviço executado pelo prestador
-    servico = None
+    servico: Servico = None
     # Emitente da NFS-e
-    emitente = None
+    emitente: Emitente = None
     # Cliente para quem a NFS-e será emitida
-    cliente = None
+    cliente: Cliente = None
     # Optante Simples Nacional
-    simples = int()  # 1-Sim; 2-Não
+    simples = int()  # 1-Sim; 2-Não; Para Sistema Nacional 1 - não; 2 - sim, MEI; 3 - sim, ME ou EPP
     # Incentivo Fiscal
     incentivo = int()  # 1-Sim; 2-Não
     # Serie
@@ -1212,12 +1215,55 @@ class NotaFiscalServico(Entidade):
     natureza_operacao = int()
     # Regime especial de tributação
     regime_especial = int()
+    numero = int()
+
+    ambiente = 1  # 1-Produção; 2-Homologação
 
     def __init__(self, *args, **kwargs):
         super(NotaFiscalServico, self).__init__(*args, **kwargs)
 
     def __str__(self):
         return " ".join([str(self.identificador)])
+    
+    def _codigo_numerico_aleatorio(self):
+        if not self.codigo_numerico_aleatorio:
+            self.codigo_numerico_aleatorio = str(random.randint(0, 99999999)).zfill(8)
+        return self.codigo_numerico_aleatorio
+
+    def _dv_codigo_numerico(self, key):
+        if not len(key) == 43:
+            raise ValueError(
+                f"Chave de acesso deve ter 43 caracteres antes de calcular o DV, chave: {key}"
+            )
+
+        weights = [2, 3, 4, 5, 6, 7, 8, 9]
+        weights_size = len(weights)
+        key_numbers = [int(k) for k in key]
+        key_numbers.reverse()
+
+        key_sum = 0
+        for i, key_number in enumerate(key_numbers):
+            # cycle though weights
+            i = i % weights_size
+            key_sum += key_number * weights[i]
+
+        remainder = key_sum % 11
+        if remainder == 0 or remainder == 1:
+            self.dv_codigo_numerico_aleatorio = "0"
+            return "0"
+        self.dv_codigo_numerico_aleatorio = str(11 - remainder)
+        return str(self.dv_codigo_numerico_aleatorio)
+    
+    @property
+    # @memoize
+    def identificador_unico_dps(self):
+        return "DPS%(cMun)s%(tpIF)s%(cnpj)s%(serie)s%(nDPS)s" % {
+            "cMun": obter_codigo_por_municipio(self.emitente.endereco_municipio, self.emitente.endereco_uf),
+            "tpIF": 1 if self.emitente.tipo_documento == "CNPJ" else 2,
+            "cnpj": str(self.emitente.cnpj).zfill(14),
+            "serie": str(self.serie).zfill(5),
+            "nDPS": str(self.numero).zfill(15)
+        }
 
 
 class NotaFiscalResponsavelTecnico(Entidade):
