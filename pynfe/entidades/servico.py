@@ -29,7 +29,7 @@ class Servico(Entidade):
     municipio_incidencia = str()
     codigo_cnae = int()
     codigo_tributacao_nacional = str()
-    codigo_tributacao_municipio = str()
+    codigo_tributacao_municipal = str()
     # Dados opcionais
     valor_deducoes = Decimal()
     valor_pis = Decimal()

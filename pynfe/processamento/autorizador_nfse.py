@@ -1,9 +1,11 @@
+from datetime import datetime
 from pyxb import BIND
 from importlib import import_module
+import re
 from pynfe.entidades.notafiscal import NotaFiscalServico
-from pynfe.entidades.servico import Servico
 from pynfe.utils import obter_codigo_por_municipio
-import utils.nfse.nacional.DPS_v1_00 as nfse_nacional_schema
+from pynfe.utils.nfse.nacional import DPS_v1_00 as nfse_nacional_schema
+
 
 class InterfaceAutorizador:
     # TODO Colocar raise Exception Not Implemented nos metodos
@@ -62,7 +64,7 @@ class SerializacaoBetha(InterfaceAutorizador):
         tomador.Endereco = endereco_tomador
 
         id_rps = nfse_schema.tcIdentificacaoRps()
-        id_rps.Numero = nfse.identificador
+        id_rps.Numero = nfse.numero
         id_rps.Serie = nfse.serie
         id_rps.Tipo = nfse.tipo
 
@@ -78,7 +80,7 @@ class SerializacaoBetha(InterfaceAutorizador):
         inf_declaracao_servico.Tomador = tomador
         inf_declaracao_servico.OptanteSimplesNacional = nfse.simples
         inf_declaracao_servico.IncentivoFiscal = nfse.incentivo
-        inf_declaracao_servico.Id = nfse.identificador
+        inf_declaracao_servico.Id = nfse.numero
         inf_declaracao_servico.Rps = rps
 
         declaracao_servico = nfse_schema.tcDeclaracaoPrestacaoServico()
@@ -95,7 +97,7 @@ class SerializacaoBetha(InterfaceAutorizador):
 
         # Rps
         id_rps = nfse_schema.tcIdentificacaoRps()
-        id_rps.Numero = nfse.identificador
+        id_rps.Numero = nfse.numero
         id_rps.Serie = nfse.serie
         id_rps.Tipo = nfse.tipo
 
@@ -149,7 +151,7 @@ class SerializacaoBetha(InterfaceAutorizador):
 
         # id nfse
         id_nfse = nfse_schema.tcIdentificacaoNfse()
-        id_nfse.Numero = nfse.identificador
+        id_nfse.Numero = nfse.numero
         id_nfse.CpfCnpj = nfse.emitente.cnpj
         id_nfse.InscricaoMunicipal = nfse.emitente.inscricao_municipal
         id_nfse.CodigoMunicipio = nfse.emitente.endereco_cod_municipio
@@ -212,7 +214,7 @@ class SerializacaoBetha(InterfaceAutorizador):
         tomador.Endereco = endereco_tomador
 
         id_rps = nfse_schema.tcIdentificacaoRps()
-        id_rps.Numero = nfse.identificador
+        id_rps.Numero = nfse.numero
         id_rps.Serie = nfse.serie
         id_rps.Tipo = nfse.tipo
 
@@ -228,7 +230,7 @@ class SerializacaoBetha(InterfaceAutorizador):
         inf_declaracao_servico.Tomador = tomador
         inf_declaracao_servico.OptanteSimplesNacional = nfse.simples
         inf_declaracao_servico.IncentivoFiscal = nfse.incentivo
-        inf_declaracao_servico.Id = nfse.identificador
+        inf_declaracao_servico.Id = nfse.numero
         inf_declaracao_servico.Rps = rps
 
         declaracao_servico = nfse_schema.tcDeclaracaoPrestacaoServico()
@@ -340,9 +342,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
         id_prestador.Cnpj = emitente.cnpj
         id_prestador.InscricaoMunicipal = emitente.inscricao_municipal
 
-        consulta = (
-            servico_consultar_situacao_lote_rps_envio_v03.ConsultarSituacaoLoteRpsEnvio()
-        )
+        consulta = servico_consultar_situacao_lote_rps_envio_v03.ConsultarSituacaoLoteRpsEnvio()
         consulta.Prestador = id_prestador
         consulta.Protocolo = str(numero)
 
@@ -383,9 +383,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
         if nfse.servico.aliquota:
             valores_servico.Aliquota = nfse.servico.aliquota
         if nfse.servico.desconto_incondicionado:
-            valores_servico.DescontoIncondicionado = (
-                nfse.servico.desconto_incondicionado
-            )
+            valores_servico.DescontoIncondicionado = nfse.servico.desconto_incondicionado
         if nfse.servico.desconto_condicionado:
             valores_servico.DescontoCondicionado = nfse.servico.desconto_condicionado
 
@@ -394,8 +392,8 @@ class SerializacaoGinfes(InterfaceAutorizador):
         # opcionais
         if nfse.servico.codigo_cnae:
             servico.CodigoCnae = nfse.servico.codigo_cnae
-        if nfse.servico.codigo_tributacao_municipio:
-            servico.CodigoTributacaoMunicipio = nfse.servico.codigo_tributacao_municipio
+        if nfse.servico.codigo_tributacao_municipal:
+            servico.CodigoTributacaoMunicipio = nfse.servico.codigo_tributacao_municipal
         # obrigatórios
         servico.Discriminacao = nfse.servico.discriminacao
         servico.CodigoMunicipio = nfse.servico.codigo_municipio
@@ -436,7 +434,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
 
         # identificacao rps
         id_rps = _tipos.tcIdentificacaoRps()
-        id_rps.Numero = nfse.identificador
+        id_rps.Numero = nfse.numero
         id_rps.Serie = nfse.serie
         id_rps.Tipo = nfse.tipo
         # inf rps
@@ -471,7 +469,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
         inf_rps.Tomador = tomador
         inf_rps.IntermediarioServico = None  # opcional
         inf_rps.ConstrucaoCivil = None  # opcional
-        inf_rps.Id = nfse.identificador
+        inf_rps.Id = nfse.numero
 
         rps = _tipos.tcRps()
         rps.InfRps = inf_rps
@@ -494,7 +492,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
         XML Schema (XSD). Binding gerado pelo modulo PyXB."""
         # id nfse
         id_nfse = _tipos.tcIdentificacaoNfse()
-        id_nfse.Numero = nfse.identificador
+        id_nfse.Numero = nfse.numero
         id_nfse.Cnpj = nfse.emitente.cnpj
         id_nfse.InscricaoMunicipal = nfse.emitente.inscricao_municipal
         id_nfse.CodigoMunicipio = nfse.emitente.endereco_cod_municipio
@@ -521,15 +519,13 @@ class SerializacaoGinfes(InterfaceAutorizador):
 
         ns1 = "http://www.ginfes.com.br/servico_cancelar_nfse_envio"
         ns2 = "http://www.ginfes.com.br/tipos"
-        raiz = etree.Element(
-            "{%s}CancelarNfseEnvio" % ns1, nsmap={"ns1": ns1, "ns2": ns2}
-        )
+        raiz = etree.Element("{%s}CancelarNfseEnvio" % ns1, nsmap={"ns1": ns1, "ns2": ns2})
         prestador = etree.SubElement(raiz, "{%s}Prestador" % ns1)
         etree.SubElement(prestador, "{%s}Cnpj" % ns2).text = nfse.emitente.cnpj
         etree.SubElement(
             prestador, "{%s}InscricaoMunicipal" % ns2
         ).text = nfse.emitente.inscricao_municipal
-        etree.SubElement(raiz, "{%s}NumeroNfse" % ns1).text = nfse.identificador
+        etree.SubElement(raiz, "{%s}NumeroNfse" % ns1).text = nfse.numero
         return etree.tostring(raiz, encoding="unicode")
 
     def cabecalho(self):
@@ -539,44 +535,53 @@ class SerializacaoGinfes(InterfaceAutorizador):
         cabecalho.versaoDados = "3"
         return cabecalho.toxml(element_name="ns2:cabecalho")
 
+
 class SerializacaoNacional(InterfaceAutorizador):
     def gerar(self, nfse: NotaFiscalServico):
         """Retorna string de um XML gerado a partir do
         XML Schema (XSD). Binding gerado pelo modulo PyXB."""
-
+        tz = datetime.now().astimezone().strftime("%z")
+        tz = "{}:{}".format(tz[:-2], tz[-2:])
         infdps = nfse_nacional_schema.TCInfDPS()
-        infdps.id = nfse.identificador_unico_dps
+        infdps.Id = nfse.identificador_unico_dps
         infdps.tpAmb = nfse.ambiente
-        infdps.dhEmi = nfse.data_emissao.isoformat()    
-        infdps.verAplic = '1.00'
+        infdps.dhEmi = nfse.data_emissao.strftime("%Y-%m-%dT%H:%M:%S") + tz
+        infdps.verAplic = "1.00"
         infdps.serie = nfse.serie
         infdps.nDPS = nfse.numero
-        infdps.dCompet = nfse.data_emissao.date().isoformat()
-        infdps.tpEmit = 1  # 1 - Emissão de NFS-e pelo próprio prestador do serviço
-        infdps.cLocEmi = obter_codigo_por_municipio(nfse.emitente.endereco_municipio, nfse.emitente.endereco_uf)
+        infdps.dCompet = nfse.data_emissao.strftime("%Y-%m-%d")
+        infdps.tpEmit = "1"  # 1 - Emissão de NFS-e pelo próprio prestador do serviço
+        infdps.cLocEmi = obter_codigo_por_municipio(
+            nfse.emitente.endereco_municipio, nfse.emitente.endereco_uf
+        )
 
         prestador = nfse_nacional_schema.TCInfoPrestador()
         prestador.CNPJ = nfse.emitente.cnpj
-        prestador.xNome = nfse.emitente.razao_social
+        
 
         if nfse.emitente.inscricao_municipal:
             prestador.IM = nfse.emitente.inscricao_municipal
-        if nfse.emitente.endereco_cep:
-            prestador_endereco = nfse_nacional_schema.TCEndereco()
-            end_nacional = nfse_nacional_schema.TCEnderNac()
-            end_nacional.CEP = nfse.emitente.endereco_cep
-            end_nacional.cMun = obter_codigo_por_municipio(nfse.emitente.endereco_municipio, nfse.emitente.endereco_uf)
-            prestador_endereco.endNac = end_nacional
-            prestador_endereco.xLgr = nfse.emitente.endereco_logradouro
-            prestador_endereco.nro = nfse.emitente.endereco_numero
-            if nfse.emitente.endereco_complemento:
-                prestador_endereco.xCpl = nfse.emitente.endereco_complemento
-            prestador_endereco.xBairro = nfse.emitente.endereco_bairro
-            prestador.end = prestador_endereco
+        if infdps.tpEmit != "1":
+            prestador.xNome = nfse.emitente.razao_social
+            # Refazer o endereço se for possível o prestador não for o emitente
+            if nfse.emitente.endereco_cep:
+                prestador_endereco = nfse_nacional_schema.TCEndereco()
+                end_nacional = nfse_nacional_schema.TCEnderNac()
+                end_nacional.CEP = nfse.emitente.endereco_cep
+                end_nacional.cMun = obter_codigo_por_municipio(
+                    nfse.emitente.endereco_municipio, nfse.emitente.endereco_uf
+                )
+                prestador_endereco.endNac = end_nacional
+                prestador_endereco.xLgr = nfse.emitente.endereco_logradouro
+                prestador_endereco.nro = nfse.emitente.endereco_numero
+                if nfse.emitente.endereco_complemento:
+                    prestador_endereco.xCpl = nfse.emitente.endereco_complemento
+                prestador_endereco.xBairro = nfse.emitente.endereco_bairro
+                prestador.end = prestador_endereco
 
         regime_tributario = nfse_nacional_schema.TCRegTrib()
         regime_tributario.opSimpNac = nfse.simples
-        regime_tributario.regEspTrib = 0 # Verificar se precisa ser passado
+        regime_tributario.regEspTrib = "0"  # Verificar se precisa ser passado
         prestador.regTrib = regime_tributario
 
         infdps.prest = prestador
@@ -595,7 +600,9 @@ class SerializacaoNacional(InterfaceAutorizador):
                 tomador_endereco = nfse_nacional_schema.TCEndereco()
                 end_nacional = nfse_nacional_schema.TCEnderNac()
                 end_nacional.CEP = nfse.cliente.endereco_cep
-                end_nacional.cMun = obter_codigo_por_municipio(nfse.cliente.endereco_municipio, nfse.cliente.endereco_uf)
+                end_nacional.cMun = obter_codigo_por_municipio(
+                    nfse.cliente.endereco_municipio, nfse.cliente.endereco_uf
+                )
                 tomador_endereco.endNac = end_nacional
                 tomador_endereco.xLgr = nfse.cliente.endereco_logradouro
                 tomador_endereco.nro = nfse.cliente.endereco_numero
@@ -610,14 +617,13 @@ class SerializacaoNacional(InterfaceAutorizador):
 
         local_prestacao = nfse_nacional_schema.TCLocPrest()
         local_prestacao.cLocPrestacao = nfse.servico.codigo_municipio
-        local_prestacao.cPaisPrestacao = "BR"  # Brasil
         servico.locPrest = local_prestacao
 
         codigo_servico = nfse_nacional_schema.TCCServ()
         codigo_servico.cTribNac = nfse.servico.codigo_tributacao_nacional
         codigo_servico.xDescServ = nfse.servico.discriminacao
-        if nfse.servico.codigo_tributacao_municipio:
-            codigo_servico.cTribMun = nfse.servico.codigo_tributacao_municipio
+        if nfse.servico.codigo_tributacao_municipal:
+            codigo_servico.cTribMun = nfse.servico.codigo_tributacao_municipal
 
         servico.cServ = codigo_servico
         infdps.serv = servico
@@ -629,21 +635,32 @@ class SerializacaoNacional(InterfaceAutorizador):
 
         tributos = nfse_nacional_schema.TCInfoTributacao()
         tributos_municipais = nfse_nacional_schema.TCTribMunicipal()
-        tributos_municipais.tribISSQN = 1
-        tributos_municipais.tpRetISSQN = 1
+        tributos_municipais.tribISSQN = "1"
+        tributos_municipais.tpRetISSQN = "1"
         tributos.tribMun = tributos_municipais
 
         tributos_totais = nfse_nacional_schema.TCTribTotal()
         valores_tributos_totais = nfse_nacional_schema.TCTribTotalMonet()
-        valores_tributos_totais.vTotTribFed = nfse.servico.total_tributos_federais
-        valores_tributos_totais.vTotTribEst = nfse.servico.total_tributos_estaduais
-        valores_tributos_totais.vTotTribMun = nfse.servico.total_tributos_municipais
+        valores_tributos_totais.vTotTribFed = "{:.2f}".format(nfse.servico.total_tributos_federais)
+        valores_tributos_totais.vTotTribEst = "{:.2f}".format(nfse.servico.total_tributos_estaduais)
+        valores_tributos_totais.vTotTribMun = "{:.2f}".format(nfse.servico.total_tributos_municipais)
 
         tributos_totais.vTotTrib = valores_tributos_totais
+        tributos.totTrib = tributos_totais
         valores.trib = tributos
-        
+
         infdps.valores = valores
 
         dps = nfse_nacional_schema.TCDPS()
         dps.infDPS = infdps
-        return dps.toxml()
+        dps.versao = "1.00"
+        
+        # Gera o XML e remove as tags ns1 do PyXB
+        xml_content = dps.toxml(element_name="DPS")
+        # Remove prefixos de namespace ns1: das tags de abertura e fechamento
+        xml_content = re.sub(r'<ns1:', '<', xml_content)
+        xml_content = re.sub(r'</ns1:', '</', xml_content)
+        # Remove declarações de namespace desnecessárias
+        xml_content = re.sub(r':ns1', '', xml_content)
+        
+        return xml_content

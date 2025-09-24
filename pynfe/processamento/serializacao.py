@@ -2177,6 +2177,10 @@ class SerializacaoNfse(object):
             from pynfe.processamento.autorizador_nfse import SerializacaoBetha
 
             return SerializacaoBetha().gerar(nfse)
+        elif self.autorizador.lower() == "nacional":
+            from pynfe.processamento.autorizador_nfse import SerializacaoNacional
+
+            return SerializacaoNacional().gerar(nfse)
         else:
             raise Exception("Este método só esta implementado no autorizador Betha.")
 

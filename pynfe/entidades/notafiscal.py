@@ -1194,7 +1194,7 @@ class NotaFiscalEntregaRetirada(Entidade):
 
 class NotaFiscalServico(Entidade):
     # id do rps
-    identificador = str()
+    numero = str()
     # tag competencia
     data_emissao: datetime = None
     # Serviço executado pelo prestador
@@ -1215,7 +1215,6 @@ class NotaFiscalServico(Entidade):
     natureza_operacao = int()
     # Regime especial de tributação
     regime_especial = int()
-    numero = int()
 
     ambiente = 1  # 1-Produção; 2-Homologação
 
@@ -1255,11 +1254,10 @@ class NotaFiscalServico(Entidade):
         return str(self.dv_codigo_numerico_aleatorio)
     
     @property
-    # @memoize
     def identificador_unico_dps(self):
         return "DPS%(cMun)s%(tpIF)s%(cnpj)s%(serie)s%(nDPS)s" % {
             "cMun": obter_codigo_por_municipio(self.emitente.endereco_municipio, self.emitente.endereco_uf),
-            "tpIF": 1 if self.emitente.tipo_documento == "CNPJ" else 2,
+            "tpIF": 2 if len(self.emitente.cnpj) == 14 else 1,
             "cnpj": str(self.emitente.cnpj).zfill(14),
             "serie": str(self.serie).zfill(5),
             "nDPS": str(self.numero).zfill(15)
