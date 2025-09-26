@@ -500,6 +500,7 @@ NFSE = {
     },
     "NACIONAL": {
         "AUTORIZACAO": "nfse.gov.br/sefinnacional/nfse",
+        "EVENTOS": "nfse.gov.br/sefinnacional/nfse/chave/eventos",
         "HTTPS": "https://sefin.",
         "HOMOLOGACAO": "https://sefin.producaorestrita.",
     },

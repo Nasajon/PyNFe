@@ -4,6 +4,7 @@
     @author: Junior Tada, Leonardo Tada
 """
 
+import datetime
 from decimal import Decimal
 from .base import Entidade
 
@@ -235,3 +236,46 @@ class EventoInclusaoPagamento(Evento):
     codBanco = str()
     # - Código da Agência
     codAgencia = str()
+
+class EventoNFSe(Entidade):
+    # - Identificador da TAG a ser assinada, a regra de formação do Id é:
+    # “ID” + tpEvento + chave da NF-e + nSeqEvento
+    id = str()
+    # - CNPJ (obrigatorio)
+    cnpj = str()
+    # - Chave de Acesso da NFS-e vinculada ao Evento
+    chave = str()
+    # - Data e hora do evento no formato AAAA-MM-DDThh:mm:ssTZD
+    data_emissao: datetime.datetime = datetime.datetime.now()
+    tp_evento = str()
+    # - descEvento
+    descricao = str()
+    ambiente = "2" # 1-Produção; 2-Homologação
+    n_seq_evento = 1
+
+    @property
+    def identificador(self):
+        """
+        Gera o valor para o campo id
+        A regra de formação do Id é: “ID” + tpEvento + chave da NF-e + nSeqEvento
+        """
+        self.id = "PRE%(chave)s%(tp_evento)s%(n_seq_evento)s" % {
+            "tp_evento": self.tp_evento,
+            "chave": self.chave,
+            "n_seq_evento": str(self.n_seq_evento).zfill(3),
+        }
+        return self.id
+
+
+class EventoNFSeCancelarNota(EventoNFSe):
+    def __init__(self, *args, **kwargs):
+        super(EventoNFSeCancelarNota, self).__init__(*args, **kwargs)
+        # - Código do evento = 110101
+        self.tp_evento = "101101"
+        # - "Cancelamento"
+        self.descricao = "Cancelamento de NFS-e"
+
+    # - Informar o código da justificativa do cancelamento.
+    justificativa_codigo = str()
+    # - Informar a justificativa do cancelamento (min 15 max 255 caracteres)
+    justificativa = str()

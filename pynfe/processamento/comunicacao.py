@@ -731,6 +731,17 @@ class ComunicacaoNfse(Comunicacao):
         else:
             raise Exception("Autorizador não encontrado!")
 
+    def registrar_evento(self, xml, chave_acesso):
+        # url do serviço
+        url = self._get_url()
+        # Nacional
+        if self.autorizador == "NACIONAL":
+            xml = etree.tostring(xml, encoding="unicode", pretty_print=False)
+            # comunica via wsdl
+            return self._post_api(url, xml, "EVENTOS", chave_acesso=chave_acesso)
+        else:
+            raise Exception("Autorizador não encontrado!")
+
     def _cabecalho(self, retorna_string=True):
         """Monta o XML do cabeçalho da requisição wsdl
         Namespaces padrão homologação (Ginfes)"""
@@ -813,7 +824,7 @@ class ComunicacaoNfse(Comunicacao):
         except Exception as e:
             raise e
 
-    def _post_api(self, url, xml: str, metodo):
+    def _post_api(self, url, xml: str, metodo, chave_acesso=""):
         certificado_a1 = CertificadoA1(self.certificado)
         chave, cert = certificado_a1.separar_arquivo(self.certificado_senha, caminho=True)
         chave_cert = (cert, chave)
@@ -823,13 +834,18 @@ class ComunicacaoNfse(Comunicacao):
 
             xml = xml_declaration + xml
 
+            if metodo == "AUTORIZACAO":
+                zip_chave = "dpsXmlGZipB64"
+            elif metodo == "EVENTOS":
+                zip_chave = "pedidoRegistroEventoXmlGZipB64"
+            else:
+                raise Exception("Método não implementado no autorizador.")
+
             # Faz o request com o servidor
             result = requests.post(
-                url=url + NFSE["NACIONAL"][metodo],
+                url=url + NFSE["NACIONAL"][metodo].replace("chave", chave_acesso),
                 json={
-                    "dpsXmlGZipB64": base64.b64encode(gzip.compress(xml.encode("utf-8"))).decode(
-                        "utf-8"
-                    )
+                    zip_chave: base64.b64encode(gzip.compress(xml.encode("utf-8"))).decode("utf-8")
                 },
                 headers={
                     "content-type": "application/json",

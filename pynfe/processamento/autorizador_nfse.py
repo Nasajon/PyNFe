@@ -2,9 +2,13 @@ from datetime import datetime
 from pyxb import BIND
 from importlib import import_module
 import re
+from pynfe.entidades.evento import EventoNFSe, EventoNFSeCancelarNota
 from pynfe.entidades.notafiscal import NotaFiscalServico
 from pynfe.utils import obter_codigo_por_municipio
-from pynfe.utils.nfse.nacional import DPS_v1_00 as nfse_nacional_schema
+
+# Type imports for autocomplete - these won't cause runtime conflicts
+# since they're only used for type hints
+from typing import TYPE_CHECKING, Any, Optional
 
 
 class InterfaceAutorizador:
@@ -20,7 +24,11 @@ class SerializacaoBetha(InterfaceAutorizador):
     def __init__(self):
         # importa
         global nfse_schema
-        nfse_schema = import_module("pynfe.utils.nfse.betha.nfse_v202")
+        try:
+            import pynfe.utils.nfse.betha.nfse_v202
+            nfse_schema = pynfe.utils.nfse.betha.nfse_v202
+        except ImportError:
+            pass
 
     def gerar(self, nfse):
         """Retorna string de um XML gerado a partir do
@@ -537,9 +545,332 @@ class SerializacaoGinfes(InterfaceAutorizador):
 
 
 class SerializacaoNacional(InterfaceAutorizador):
+    
+    def __init__(self) -> None:
+        self._dps_schema: Optional[Any] = None
+        self._evento_schema: Optional[Any] = None
+    
+    def _get_dps_schema(self) -> Any:
+        """Get DPS schema with lazy loading and conflict resolution"""
+        if self._dps_schema is None:
+            self._dps_schema = self._safe_import_dps()
+        return self._dps_schema
+    
+    def _get_evento_schema(self) -> Any:
+        """Get evento schema with lazy loading and conflict resolution"""
+        if self._evento_schema is None:
+            self._evento_schema = self._safe_import_evento()
+        return self._evento_schema
+    
+    def _safe_import_dps(self):
+        """Safely import DPS schema handling PyXB conflicts"""
+        import pyxb.exceptions_
+        import pyxb.namespace
+        
+        # Strategy 1: Try direct import after basic namespace clearing
+        try:
+            self._clear_all_pyxb_namespaces()
+            from pynfe.utils.nfse.nacional import DPS_v1_00
+            return DPS_v1_00
+        except (pyxb.exceptions_.NamespaceUniquenessError, ImportError) as e:
+            error_msg = str(e)
+            if any(conflict in error_msg for conflict in ["TVerNFSe", "CryptoBinary", "NamespaceUniquenessError"]):
+                
+                # Strategy 2: Try more aggressive cleanup for both NFSe and XMLDSig conflicts
+                try:
+                    self._force_clear_all_namespaces()
+                    from pynfe.utils.nfse.nacional import DPS_v1_00
+                    return DPS_v1_00
+                except Exception as e2:
+                    
+                    # Strategy 3: Try importing with progressive module cleanup
+                    if "CryptoBinary" in str(e2):
+                        # This is the persistent XMLDSig conflict - try multiple approaches
+                        for attempt in range(3):
+                            try:
+                                # Clear everything and try again
+                                self._ultra_clear_xmldsig_namespace()
+                                module = self._import_module_fresh_isolated('pynfe.utils.nfse.nacional.DPS_v1_00')
+                                return module
+                            except Exception as e3:
+                                if attempt == 2:  # Last attempt
+                                    raise ImportError(f"FATAL: Cannot resolve CryptoBinary conflict in DPS module after {attempt+1} attempts. "
+                                                    f"This likely indicates the PyXB schemas need to be regenerated. "
+                                                    f"Original error: {e}, Final error: {e3}")
+                                # Wait a moment and try again with even more aggressive clearing
+                                import time
+                                time.sleep(0.1)
+                                continue
+                    else:
+                        # Last resort: import from fresh module with full cleanup
+                        return self._import_module_fresh_isolated('pynfe.utils.nfse.nacional.DPS_v1_00')
+            else:
+                raise
+    
+    def _safe_import_evento(self):
+        """Safely import evento schema handling PyXB conflicts"""
+        import pyxb.exceptions_
+        import pyxb.namespace
+        
+        try:
+            # First, clear any existing namespace conflicts
+            self._clear_all_pyxb_namespaces()
+            from pynfe.utils.nfse.nacional import pedRegEvento_v1_00
+            return pedRegEvento_v1_00
+        except (pyxb.exceptions_.NamespaceUniquenessError, ImportError) as e:
+            error_msg = str(e)
+            if any(conflict in error_msg for conflict in ["TVerNFSe", "CryptoBinary", "NamespaceUniquenessError"]):
+                # Try more aggressive cleanup for both NFSe and XMLDSig conflicts
+                self._force_clear_all_namespaces()
+                try:
+                    from pynfe.utils.nfse.nacional import pedRegEvento_v1_00
+                    return pedRegEvento_v1_00
+                except Exception:
+                    # Last resort: import from fresh module with full cleanup
+                    return self._import_module_fresh_isolated('pynfe.utils.nfse.nacional.pedRegEvento_v1_00')
+            else:
+                raise
+    def _clear_nacional_modules(self):
+        """Clear all nacional schema modules from cache"""
+        import sys
+        
+        modules_to_clear = [
+            'pynfe.utils.nfse.nacional.DPS_v1_00',
+            'pynfe.utils.nfse.nacional.pedRegEvento_v1_00',
+            'pynfe.utils.nfse.nacional.tiposSimples_v1_00',
+            'pynfe.utils.nfse.nacional.tiposEventos_v1_00',
+            'pynfe.utils.nfse.nacional.tiposComplexos_v1_00',
+            'pynfe.utils.nfse.nacional.tiposCnc_v1_00',
+            # Also clear XMLDSig related modules that might cause CryptoBinary conflicts
+            'pynfe.utils.nfse.nacional._ds'
+        ]
+        
+        for module_name in modules_to_clear:
+            if module_name in sys.modules:
+                del sys.modules[module_name]
+    
+    def _clear_all_pyxb_namespaces(self):
+        """Clear all problematic PyXB namespaces"""
+        import pyxb.namespace
+        
+        # List of known problematic namespaces
+        namespaces_to_clear = [
+            "http://www.sped.fazenda.gov.br/nfse",  # NFSe namespace
+            "http://www.w3.org/2000/09/xmldsig#"     # XML Digital Signature namespace
+        ]
+        
+        for namespace_uri in namespaces_to_clear:
+            try:
+                ns = pyxb.namespace.NamespaceForURI(namespace_uri, create_if_missing=False)
+                if ns is not None:
+                    # Clear conflicting types from the namespace
+                    if hasattr(ns, '_categoryMap'):
+                        type_bindings = ns._categoryMap.get('typeBinding', {})
+                        # Clear known conflicting types
+                        conflicting_types = ['TVerNFSe', 'CryptoBinary']
+                        for conflict_type in conflicting_types:
+                            if conflict_type in type_bindings:
+                                del type_bindings[conflict_type]
+            except Exception:
+                # If namespace clearing fails, continue
+                pass
+        
+        # Also clear module cache
+        self._clear_nacional_modules()
+    
+    def _force_clear_all_namespaces(self):
+        """Force clear all PyXB namespaces and reinitialize"""
+        import pyxb.namespace
+        import sys
+        
+        # More aggressive namespace clearing for multiple namespace conflicts
+        namespaces_to_clear = [
+            "http://www.sped.fazenda.gov.br/nfse",
+            "http://www.w3.org/2000/09/xmldsig#"
+        ]
+        
+        for namespace_uri in namespaces_to_clear:
+            try:
+                ns = pyxb.namespace.NamespaceForURI(namespace_uri, create_if_missing=False)
+                if ns is not None and hasattr(ns, '_reset'):
+                    ns._reset()
+            except Exception:
+                pass
+        
+        # Clear all related modules more aggressively
+        modules_to_clear = []
+        for module_name in list(sys.modules.keys()):
+            # Clear nacional modules and any XMLDSig related modules
+            if (('nacional' in module_name and 'pynfe' in module_name) or 
+                ('_ds' in module_name and 'pynfe' in module_name)):
+                modules_to_clear.append(module_name)
+        
+        for module_name in modules_to_clear:
+            del sys.modules[module_name]
+    
+    def _import_module_fresh_isolated(self, module_name):
+        """Import module with ultra-aggressive isolation from existing namespaces"""
+        import importlib.util
+        import sys
+        import pyxb.namespace
+        
+        # Ultra-aggressive namespace clearing - nuke everything PyXB related
+        try:
+            # Clear PyXB's internal registry completely
+            if hasattr(pyxb.namespace, '_NamespaceForURI'):
+                pyxb.namespace._NamespaceForURI.clear()
+            if hasattr(pyxb.namespace, '_AvailableForLoad'):
+                pyxb.namespace._AvailableForLoad.clear()
+            if hasattr(pyxb.namespace, '_NamespaceArchive'):
+                pyxb.namespace._NamespaceArchive.clear()
+                
+            # Nuke specific problematic namespaces completely
+            namespaces_to_destroy = [
+                "http://www.sped.fazenda.gov.br/nfse",
+                "http://www.w3.org/2000/09/xmldsig#",
+                "http://www.w3.org/2001/XMLSchema"
+            ]
+            
+            for namespace_uri in namespaces_to_destroy:
+                try:
+                    ns = pyxb.namespace.NamespaceForURI(namespace_uri, create_if_missing=False)
+                    if ns is not None:
+                        # Completely destroy all namespace content
+                        for attr in ['_categoryMap', '_typeDefinitions', '_elementDeclarations', '_attributeDeclarations']:
+                            if hasattr(ns, attr):
+                                getattr(ns, attr).clear()
+                        
+                        # Try different reset methods
+                        for reset_method in ['_reset', 'reset', 'clear']:
+                            if hasattr(ns, reset_method):
+                                try:
+                                    getattr(ns, reset_method)()
+                                except Exception:
+                                    pass
+                        
+                        # If we can access categoryMap directly, nuke CryptoBinary specifically
+                        if hasattr(ns, '_categoryMap') and 'typeBinding' in ns._categoryMap:
+                            if 'CryptoBinary' in ns._categoryMap['typeBinding']:
+                                del ns._categoryMap['typeBinding']['CryptoBinary']
+                            if 'TVerNFSe' in ns._categoryMap['typeBinding']:
+                                del ns._categoryMap['typeBinding']['TVerNFSe']
+                                
+                except Exception:
+                    # Even if individual namespace clearing fails, continue
+                    pass
+                    
+        except Exception:
+            # If ultra-aggressive clearing fails, continue anyway
+            pass
+            
+        # Also call our standard namespace clearing
+        self._force_clear_all_namespaces()
+        
+        # Nuclear option: Clear ALL modules related to PyXB and schemas
+        modules_to_nuke = []
+        for mod_name in list(sys.modules.keys()):
+            if any(pattern in mod_name.lower() for pattern in [
+                'pynfe.utils.nfse.nacional',
+                'pynfe.utils.nfse',
+                'pyxb',
+                '_ds',
+                'xmldsig',
+                'xml.ds'
+            ]):
+                modules_to_nuke.append(mod_name)
+        
+        for mod_name in modules_to_nuke:
+            try:
+                del sys.modules[mod_name]
+            except KeyError:
+                pass
+        
+        # Find the module spec
+        spec = importlib.util.find_spec(module_name)
+        if spec is None:
+            raise ImportError(f"Could not find module {module_name}")
+        
+        # Create a new module instance
+        module = importlib.util.module_from_spec(spec)
+        
+        # Execute the module in isolation
+        try:
+            # Execute the module
+            spec.loader.exec_module(module)
+            return module
+            
+        except Exception as e:
+            # Enhanced error reporting
+            error_msg = str(e)
+            if "NamespaceUniquenessError" in error_msg:
+                if "CryptoBinary" in error_msg:
+                    raise ImportError(f"PERSISTENT XMLDSig CryptoBinary conflict in {module_name}. "
+                                    f"This indicates multiple schema files are defining CryptoBinary. "
+                                    f"You may need to regenerate the PyXB schemas. Error: {e}")
+                elif "TVerNFSe" in error_msg:
+                    raise ImportError(f"PERSISTENT NFSe TVerNFSe conflict in {module_name}. "
+                                    f"Multiple schema files are defining TVerNFSe. Error: {e}")
+                else:
+                    raise ImportError(f"PERSISTENT PyXB namespace conflict in {module_name}: {e}")
+            else:
+                raise ImportError(f"Failed to import {module_name} even with ultra-aggressive isolation: {e}")
+    
+    def _ultra_clear_xmldsig_namespace(self):
+        """Ultra-aggressive clearing specifically targeting XMLDSig CryptoBinary conflicts"""
+        import pyxb.namespace
+        import sys
+        
+        # Target the XMLDSig namespace specifically
+        xmldsig_namespace = "http://www.w3.org/2000/09/xmldsig#"
+        
+        try:
+            ns = pyxb.namespace.NamespaceForURI(xmldsig_namespace, create_if_missing=False)
+            if ns is not None:
+                # Specifically target CryptoBinary
+                if hasattr(ns, '_categoryMap') and 'typeBinding' in ns._categoryMap:
+                    typeBinding = ns._categoryMap['typeBinding']
+                    
+                    # Remove all CryptoBinary variants
+                    crypto_keys_to_remove = []
+                    for key in typeBinding:
+                        if 'CryptoBinary' in str(key) or 'cryptobinary' in str(key).lower():
+                            crypto_keys_to_remove.append(key)
+                    
+                    for key in crypto_keys_to_remove:
+                        del typeBinding[key]
+                
+                # Also clear the entire namespace if we can
+                if hasattr(ns, '_categoryMap'):
+                    ns._categoryMap.clear()
+        except Exception:
+            pass
+        
+        # Clear ALL modules that might contain XMLDSig references
+        xmldsig_modules_to_clear = []
+        for module_name in list(sys.modules.keys()):
+            if any(pattern in module_name.lower() for pattern in [
+                '_ds', 'xmldsig', 'xml.ds', 'pynfe.utils', '_common'
+            ]):
+                xmldsig_modules_to_clear.append(module_name)
+        
+        for mod_name in xmldsig_modules_to_clear:
+            try:
+                del sys.modules[mod_name]
+            except KeyError:
+                pass
+    
     def gerar(self, nfse: NotaFiscalServico):
         """Retorna string de um XML gerado a partir do
         XML Schema (XSD). Binding gerado pelo modulo PyXB."""
+        # Use safe schema import with autocomplete-friendly casting
+        if TYPE_CHECKING:
+            # During type checking, provide the proper type for autocomplete
+            from pynfe.utils.nfse.nacional import DPS_v1_00 as _DPS
+            nfse_nacional_schema = _DPS  # This gives autocomplete
+        else:
+            # At runtime, use the safe import method
+            nfse_nacional_schema = self._get_dps_schema()
+        
         tz = datetime.now().astimezone().strftime("%z")
         tz = "{}:{}".format(tz[:-2], tz[-2:])
         infdps = nfse_nacional_schema.TCInfDPS()
@@ -557,7 +888,6 @@ class SerializacaoNacional(InterfaceAutorizador):
 
         prestador = nfse_nacional_schema.TCInfoPrestador()
         prestador.CNPJ = nfse.emitente.cnpj
-        
 
         if nfse.emitente.inscricao_municipal:
             prestador.IM = nfse.emitente.inscricao_municipal
@@ -643,7 +973,9 @@ class SerializacaoNacional(InterfaceAutorizador):
         valores_tributos_totais = nfse_nacional_schema.TCTribTotalMonet()
         valores_tributos_totais.vTotTribFed = "{:.2f}".format(nfse.servico.total_tributos_federais)
         valores_tributos_totais.vTotTribEst = "{:.2f}".format(nfse.servico.total_tributos_estaduais)
-        valores_tributos_totais.vTotTribMun = "{:.2f}".format(nfse.servico.total_tributos_municipais)
+        valores_tributos_totais.vTotTribMun = "{:.2f}".format(
+            nfse.servico.total_tributos_municipais
+        )
 
         tributos_totais.vTotTrib = valores_tributos_totais
         tributos.totTrib = tributos_totais
@@ -654,13 +986,58 @@ class SerializacaoNacional(InterfaceAutorizador):
         dps = nfse_nacional_schema.TCDPS()
         dps.infDPS = infdps
         dps.versao = "1.00"
-        
+
         # Gera o XML e remove as tags ns1 do PyXB
         xml_content = dps.toxml(element_name="DPS")
         # Remove prefixos de namespace ns1: das tags de abertura e fechamento
-        xml_content = re.sub(r'<ns1:', '<', xml_content)
-        xml_content = re.sub(r'</ns1:', '</', xml_content)
+        xml_content = re.sub(r"<ns1:", "<", xml_content)
+        xml_content = re.sub(r"</ns1:", "</", xml_content)
         # Remove declarações de namespace desnecessárias
-        xml_content = re.sub(r':ns1', '', xml_content)
+        xml_content = re.sub(r":ns1", "", xml_content)
+
+        return xml_content
+
+    def registrar_evento(self, evento: EventoNFSe):
+        """Retorna string de um XML gerado a partir do
+        XML Schema (XSD). Binding gerado pelo modulo PyXB."""
+        # Use safe schema import with autocomplete-friendly casting
+        if TYPE_CHECKING:
+            # During type checking, provide the proper type for autocomplete
+            from pynfe.utils.nfse.nacional import pedRegEvento_v1_00 as _Evento
+            nfse_nacional_evento_schema = _Evento  # This gives autocomplete
+        else:
+            # At runtime, use the safe import method
+            nfse_nacional_evento_schema = self._get_evento_schema()
         
+        tz = datetime.now().astimezone().strftime("%z")
+        tz = "{}:{}".format(tz[:-2], tz[-2:])
+
+        inf_ped_registro = nfse_nacional_evento_schema.TCInfPedReg()
+        inf_ped_registro.Id = evento.identificador
+        inf_ped_registro.chNFSe = evento.chave
+        inf_ped_registro.CNPJAutor = evento.cnpj
+        inf_ped_registro.dhEvento = evento.data_emissao.strftime("%Y-%m-%dT%H:%M:%S") + tz
+        inf_ped_registro.tpAmb = evento.ambiente
+        inf_ped_registro.verAplic = "1.00"
+        inf_ped_registro.nPedRegEvento = str(evento.n_seq_evento)
+
+        if isinstance(evento, EventoNFSeCancelarNota):  # Cancelamento
+            cancelamento = nfse_nacional_evento_schema.TE101101()
+            cancelamento.xDesc = evento.descricao
+            cancelamento.cMotivo = evento.justificativa_codigo
+            cancelamento.xMotivo = evento.justificativa
+            inf_ped_registro.e101101 = cancelamento
+
+        registro_evento = nfse_nacional_evento_schema.TCPedRegEvt()
+        registro_evento.infPedReg = inf_ped_registro
+        registro_evento.versao = "1.00"
+
+        # Gera o XML e remove as tags ns1 do PyXB
+        xml_content = registro_evento.toxml(element_name="pedRegEvento")
+        # Remove prefixos de namespace ns1: das tags de abertura e fechamento
+        xml_content = re.sub(r"<ns1:", "<", xml_content)
+        xml_content = re.sub(r"</ns1:", "</", xml_content)
+        # Remove declarações de namespace desnecessárias
+        xml_content = re.sub(r":ns1", "", xml_content)
+
         return xml_content

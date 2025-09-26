@@ -1216,7 +1216,7 @@ class NotaFiscalServico(Entidade):
     # Regime especial de tributação
     regime_especial = int()
 
-    ambiente = 1  # 1-Produção; 2-Homologação
+    ambiente = "2"  # 1-Produção; 2-Homologação
 
     def __init__(self, *args, **kwargs):
         super(NotaFiscalServico, self).__init__(*args, **kwargs)

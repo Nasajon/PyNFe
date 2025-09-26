@@ -2236,6 +2236,10 @@ class SerializacaoNfse(object):
             from pynfe.processamento.autorizador_nfse import SerializacaoBetha
 
             return SerializacaoBetha().cancelar(nfse)
+        elif self.autorizador.lower() == "nacional":
+            from pynfe.processamento.autorizador_nfse import SerializacaoNacional
+
+            return SerializacaoNacional().registrar_evento(nfse)
         else:
             raise Exception("Autorizador não suportado para cancelamento!")
 
