@@ -30,10 +30,14 @@ class Servico(Entidade):
     codigo_cnae = int()
     codigo_tributacao_nacional = str()
     codigo_tributacao_municipal = str()
+    tributacao_issqn = str()
+    tipo_retencao_issqn = str()
+    cst_pis_cofins = str()
+    tipo_retencao_pis_cofins = str()
     # Dados opcionais
     valor_deducoes = Decimal()
     valor_pis = Decimal()
-    valor_confins = Decimal()
+    valor_cofins = Decimal()
     valor_inss = Decimal()
     valor_ir = Decimal()
     valor_csll = Decimal()
@@ -48,6 +52,11 @@ class Servico(Entidade):
     total_tributos_federais = Decimal()
     total_tributos_estaduais = Decimal()
     total_tributos_municipais = Decimal()
+    base_calculo_pis_cofins = Decimal()
+    aliquota_pis = Decimal()
+    aliquota_cofins = Decimal()
+    valor_cp = Decimal()
+    valor_irrf = Decimal()
 
     def __str__(self):
         return self.discriminacao
