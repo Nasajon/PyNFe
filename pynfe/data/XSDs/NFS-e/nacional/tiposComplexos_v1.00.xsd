@@ -856,18 +856,18 @@
   </xs:complexType>
   <!--TIPO COMPLEXO PARA INFORMAÇÕES DO LOCAL DA PRESTAÇÃO DO SERVIÇO-->
   <xs:complexType name="TCLocPrest">
-    <xs:sequence>
-      <xs:element name="cLocPrestacao" type="TSCodMunIBGE" minOccurs="0">
+    <xs:choice minOccurs="1">
+      <xs:element name="cLocPrestacao" type="TSCodMunIBGE">
         <xs:annotation>
           <xs:documentation>Código do município onde o serviço foi prestado (tabela do IBGE)</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="cPaisPrestacao" type="TSCodPaisISO" minOccurs="0">
+      <xs:element name="cPaisPrestacao" type="TSCodPaisISO">
         <xs:annotation>
           <xs:documentation>Código do país onde o serviço foi prestado (Tabela de Países ISO)</xs:documentation>
         </xs:annotation>
       </xs:element>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
   <!--TIPO COMPLEXO PARA INFORMAÇÕES RELATIVAS AO CÓDIGO DO SERVIÇO PRESTADO-->
   <xs:complexType name="TCCServ">

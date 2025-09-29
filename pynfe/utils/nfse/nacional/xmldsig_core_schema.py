@@ -1,7 +1,7 @@
 # /app/output/xmldsig_core_schema.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:f1c343a882e7a65fb879f4ee813309f8231f28c8
-# Generated 2025-09-22 19:54:31.667393 by PyXB version 1.2.6 using Python 3.12.11.final.0
+# Generated 2025-09-29 12:21:53.164589 by PyXB version 1.2.6 using Python 3.12.11.final.0
 # Namespace http://www.w3.org/2000/09/xmldsig#
 
 from __future__ import unicode_literals
@@ -14,7 +14,7 @@ import pyxb.utils.domutils
 import sys
 import pyxb.utils.six as _six
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:502b9cb2-2387-4fb0-8829-8ace960e3a7d')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:4d6d8b21-daf4-4033-b063-844ba0a3ef51')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'

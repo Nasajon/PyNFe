@@ -1,7 +1,7 @@
 # /app/output/tiposSimples_v1_00.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:c27cf6a1980499753073c1afd72a5bfd80976ec9
-# Generated 2025-09-22 19:54:31.369935 by PyXB version 1.2.6 using Python 3.12.11.final.0
+# Generated 2025-09-29 12:21:52.821804 by PyXB version 1.2.6 using Python 3.12.11.final.0
 # Namespace http://www.sped.fazenda.gov.br/nfse
 
 from __future__ import unicode_literals
@@ -14,7 +14,7 @@ import pyxb.utils.domutils
 import sys
 import pyxb.utils.six as _six
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:d5c1ea7a-47e4-41f3-9b53-a4f568b545a4')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:da4da501-df49-409a-a572-573231a886ab')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'

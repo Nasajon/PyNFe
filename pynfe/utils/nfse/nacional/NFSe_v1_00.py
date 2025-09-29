@@ -1,7 +1,7 @@
 # /app/output/NFSe_v1_00.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:c27cf6a1980499753073c1afd72a5bfd80976ec9
-# Generated 2025-09-22 19:54:28.248129 by PyXB version 1.2.6 using Python 3.12.11.final.0
+# Generated 2025-09-29 12:21:48.616606 by PyXB version 1.2.6 using Python 3.12.11.final.0
 # Namespace http://www.sped.fazenda.gov.br/nfse
 
 from __future__ import unicode_literals
@@ -14,7 +14,7 @@ import pyxb.utils.domutils
 import sys
 import pyxb.utils.six as _six
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:d8566cd8-b955-4eed-a501-8a601f459e28')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:793de5dc-3d31-4d00-a809-f6d369b81d03')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
@@ -6728,32 +6728,20 @@ def _BuildAutomaton_14 ():
     import pyxb.utils.fac as fac
 
     counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.00.xsd', 860, 6))
-    counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.00.xsd', 865, 6))
-    counters.add(cc_1)
     states = []
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
     symbol = pyxb.binding.content.ElementUse(TCLocPrest._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cLocPrestacao')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.00.xsd', 860, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_1, False))
     symbol = pyxb.binding.content.ElementUse(TCLocPrest._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cPaisPrestacao')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.00.xsd', 865, 6))
     st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_1)
     transitions = []
-    transitions.append(fac.Transition(st_0, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_0, False) ]))
     st_0._set_transitionSet(transitions)
     transitions = []
-    transitions.append(fac.Transition(st_1, [
-        fac.UpdateInstruction(cc_1, True) ]))
     st_1._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, True, containing_state=None)
+    return fac.Automaton(states, counters, False, containing_state=None)
 TCLocPrest._Automaton = _BuildAutomaton_14()
 
 
