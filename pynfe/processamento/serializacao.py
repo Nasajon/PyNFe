@@ -1528,7 +1528,7 @@ class SerializacaoXML(Serializacao):
 
                     elif refNFe.tipo == "Nota Fiscal":
                         refNF = etree.SubElement(nfref, "refNF")
-                        etree.SubElement(refNF, "cUF").text = str(refNFe.uf)
+                        etree.SubElement(refNF, "cUF").text = CODIGOS_ESTADOS[refNFe.uf.upper()]
                         etree.SubElement(refNF, "AAMM").text = str(
                             refNFe.mes_ano_emissao
                         )
@@ -1541,7 +1541,7 @@ class SerializacaoXML(Serializacao):
 
                     elif refNFe.tipo == "Nota Fiscal produtor":
                         refNFP = etree.SubElement(nfref, "refNFP")
-                        etree.SubElement(refNFP, "cUF").text = str(refNFe.uf)
+                        etree.SubElement(refNFP, "cUF").text = CODIGOS_ESTADOS[refNFe.uf.upper()]
                         etree.SubElement(refNFP, "AAMM").text = str(
                             refNFe.mes_ano_emissao
                         )
