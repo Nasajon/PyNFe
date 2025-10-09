@@ -458,6 +458,17 @@ class SerializacaoXML(Serializacao):
             retorna_string=False,
         )
 
+        # IBSCBS
+        self._serializar_imposto_ibscbs(
+            produto_servico=produto_servico, 
+            tag_raiz=imposto, 
+            retorna_string=False
+        )
+        
+        etree.SubElement(raiz, "vItem").text = str("{:.2f}").format(
+            produto_servico.vitem or 0
+        )
+
         # tag impostoDevol
         if produto_servico.ipi_valor_ipi_dev:
             impostodevol = etree.SubElement(raiz, "impostoDevol")
@@ -1277,6 +1288,210 @@ class SerializacaoXML(Serializacao):
             #   .cofins_aliquota_percentual
             # etree.SubElement(cofins_item, 'vCOFINS').text = produto_servico.cofins_valor
 
+    def _serializar_imposto_ibscbs(
+        self, produto_servico, tag_raiz="imposto", retorna_string=True
+    ):
+        
+        ibscbs = etree.SubElement(tag_raiz, 'IBSCBS')
+        
+        # 000 = Tributação Integral
+        if produto_servico.ibscbs_cstibscbs == "000":
+            
+            etree.SubElement(ibscbs, "CST").text = str(produto_servico.ibscbs_cstibscbs)
+            etree.SubElement(ibscbs, "cClassTrib").text = str(produto_servico.ibscbs_cclasstribibscbs)
+            
+            g_ibscbs = etree.SubElement(ibscbs, 'gIBSCBS')
+            
+            etree.SubElement(g_ibscbs, "vBC").text = "{:.2f}".format(
+                produto_servico.ibscbs_vbcibscbs or 0
+            )
+            
+            g_ibsuf = etree.SubElement(g_ibscbs, 'gIBSUF')
+            
+            etree.SubElement(g_ibsuf, "pIBSUF").text = "{:.2f}".format(
+                produto_servico.ibscbs_pibsuf or 0
+            )
+            
+            etree.SubElement(g_ibsuf, "vIBSUF").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibsuf or 0
+            )
+            
+            g_ibsmun = etree.SubElement(g_ibscbs, 'gIBSMun')
+            
+            etree.SubElement(g_ibsmun, "pIBSMun").text = "{:.2f}".format(
+                produto_servico.ibscbs_pibsmun or 0
+            )
+            
+            etree.SubElement(g_ibsmun, "vIBSMun").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibsmun or 0
+            )
+            
+            etree.SubElement(g_ibscbs, "vIBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibs or 0
+            )
+            
+            g_cbs = etree.SubElement(g_ibscbs, 'gCBS')
+            
+            etree.SubElement(g_cbs, "pCBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_pcbs or 0
+            )
+            
+            etree.SubElement(g_cbs, "vCBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_vcbs or 0
+            )
+        
+        # 200 = Alíquota Reduzida
+        if produto_servico.ibscbs_cstibscbs == "200":
+            
+            etree.SubElement(ibscbs, "CST").text = str(produto_servico.ibscbs_cstibscbs)
+            etree.SubElement(ibscbs, "cClassTrib").text = str(produto_servico.ibscbs_cclasstribibscbs)
+            
+            g_ibscbs = etree.SubElement(ibscbs, 'gIBSCBS')
+            
+            etree.SubElement(g_ibscbs, "vBC").text = "{:.2f}".format(
+                produto_servico.ibscbs_vbcibscbs or 0
+            )
+            
+            g_ibsuf = etree.SubElement(g_ibscbs, 'gIBSUF')
+            
+            etree.SubElement(g_ibsuf, "pIBSUF").text = "{:.2f}".format(
+                produto_servico.ibscbs_pibsuf or 0
+            )
+            
+            g_red_uf = etree.SubElement(g_ibsuf, 'gRed')
+            
+            etree.SubElement(g_red_uf, "pRedAliq").text = "{:.2f}".format(
+                produto_servico.ibscbs_predaliqibsuf or 0
+            )
+            
+            etree.SubElement(g_red_uf, "pAliqEfet").text = "{:.2f}".format(
+                produto_servico.ibscbs_paliqefetibsuf  or 0
+            )
+            
+            etree.SubElement(g_ibsuf, "vIBSUF").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibsuf or 0
+            )
+            
+            g_ibsmun = etree.SubElement(g_ibscbs, 'gIBSMun')
+            
+            etree.SubElement(g_ibsmun, "pIBSMun").text = "{:.2f}".format(
+                produto_servico.ibscbs_pibsmun or 0
+            )
+            
+            g_red_mun = etree.SubElement(g_ibsmun, 'gRed')
+            
+            etree.SubElement(g_red_mun, "pRedAliq").text = "{:.2f}".format(
+                produto_servico.ibscbs_predaliqibsmun or 0
+            )
+            
+            etree.SubElement(g_red_mun, "pAliqEfet").text = "{:.2f}".format(
+                produto_servico.ibscbs_paliqefetibsmun or 0
+            )
+            
+            etree.SubElement(g_ibsmun, "vIBSMun").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibsmun or 0
+            )
+            
+            etree.SubElement(g_ibscbs, "vIBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibs or 0
+            )
+            
+            g_cbs = etree.SubElement(g_ibscbs, 'gCBS')
+            
+            etree.SubElement(g_cbs, "pCBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_pcbs or 0
+            )
+            
+            g_red_cbs = etree.SubElement(g_cbs, 'gRed')
+            
+            etree.SubElement(g_red_cbs, "pRedAliq").text = "{:.2f}".format(
+                produto_servico.ibscbs_predaliqcbs or 0
+            )
+            
+            etree.SubElement(g_red_cbs, "pAliqEfet").text = "{:.2f}".format(
+                produto_servico.ibscbs_paliqefetcbs or 0
+            )
+            
+            etree.SubElement(g_cbs, "vCBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_vcbs or 0
+            )
+        
+        # 510 = Diferimento
+        if produto_servico.ibscbs_cstibscbs == "510":
+            
+            etree.SubElement(ibscbs, "CST").text = str(produto_servico.ibscbs_cstibscbs)
+            etree.SubElement(ibscbs, "cClassTrib").text = str(produto_servico.ibscbs_cclasstribibscbs)
+            
+            g_ibscbs = etree.SubElement(ibscbs, 'gIBSCBS')
+            
+            etree.SubElement(g_ibscbs, "vBC").text = "{:.2f}".format(
+                produto_servico.ibscbs_vbcibscbs or 0
+            )
+            
+            g_ibsuf = etree.SubElement(g_ibscbs, 'gIBSUF')
+            
+            etree.SubElement(g_ibsuf, "pIBSUF").text = "{:.2f}".format(
+                produto_servico.ibscbs_pibsuf or 0
+            )
+            
+            g_dif_uf = etree.SubElement(g_ibsuf, 'gDif')
+            
+            etree.SubElement(g_dif_uf, "pDif").text = "{:.2f}".format(
+                produto_servico.ibscbs_pdifibsuf or 0
+            )
+            
+            etree.SubElement(g_dif_uf, "vDif").text = "{:.2f}".format(
+                produto_servico.ibscbs_vdifibsuf or 0
+            )
+            
+            etree.SubElement(g_ibsuf, "vIBSUF").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibsuf or 0
+            )
+            
+            g_ibsmun = etree.SubElement(g_ibscbs, 'gIBSMun')
+            
+            etree.SubElement(g_ibsmun, "pIBSMun").text = "{:.2f}".format(
+                produto_servico.ibscbs_pibsmun or 0
+            )
+            
+            g_dif_mun = etree.SubElement(g_ibsmun, 'gDif')
+            
+            etree.SubElement(g_dif_mun, "pDif").text = "{:.2f}".format(
+                produto_servico.ibscbs_pdifibsmun or 0
+            )
+            
+            etree.SubElement(g_dif_mun, "vDif").text = "{:.2f}".format(
+                produto_servico.ibscbs_vdifibsmun or 0
+            )
+            
+            etree.SubElement(g_ibsmun, "vIBSMun").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibsmun or 0
+            )
+            
+            etree.SubElement(g_ibscbs, "vIBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_vibs or 0
+            )
+            
+            g_cbs = etree.SubElement(g_ibscbs, 'gCBS')
+            
+            etree.SubElement(g_cbs, "pCBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_pcbs or 0
+            )
+            
+            g_dif_cbs = etree.SubElement(g_cbs, 'gDif')
+            
+            etree.SubElement(g_dif_cbs, "pDif").text = "{:.2f}".format(
+                produto_servico.ibscbs_pdifcbs or 0
+            )
+            
+            etree.SubElement(g_dif_cbs, "vDif").text = "{:.2f}".format(
+                produto_servico.ibscbs_vdifcbs or 0
+            )
+            
+            etree.SubElement(g_cbs, "vCBS").text = "{:.2f}".format(
+                produto_servico.ibscbs_vcbs or 0
+            )
+
     def _serializar_imposto_importacao(
         self, produto_servico, modelo, tag_raiz="imposto", retorna_string=True
     ):
@@ -1721,6 +1936,80 @@ class SerializacaoXML(Serializacao):
             etree.SubElement(icms_total, "vTotTrib").text = "{:.2f}".format(
                 nota_fiscal.totais_tributos_aproximado
             )
+            
+        ibscbs_total = etree.SubElement(total, "IBSCBSTot")  
+        
+        etree.SubElement(ibscbs_total, "vBCIBSCBS").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vbcibscbs
+        ) 
+            
+        ibscbs_total_g_ibs = etree.SubElement(ibscbs_total, "gIBS")   
+            
+        ibscbs_total_g_ibsuf = etree.SubElement(ibscbs_total_g_ibs, "gIBSUF")  
+        
+        etree.SubElement(ibscbs_total_g_ibsuf, "vDif").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdifibsuf
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibsuf, "vDevTrib").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdevtribibsuf
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibsuf, "vIBSUF").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vibsuf
+        ) 
+            
+        ibscbs_total_g_ibsmun = etree.SubElement(ibscbs_total_g_ibs, "gIBSMun")  
+        
+        etree.SubElement(ibscbs_total_g_ibsmun, "vDif").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdifibsmun
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibsmun, "vDevTrib").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdevtribibsmun
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibsmun, "vIBSMun").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vibsmun
+        )  
+        
+        etree.SubElement(ibscbs_total_g_ibs, "vIBS").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vibs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibs, "vCredPres").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcredpresibs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibs, "vCredPresCondSus").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcredprescondsusibs
+        ) 
+        
+        ibscbs_total_g_cbs = etree.SubElement(ibscbs_total, "gCBS")  
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vDif").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdifcbs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vDevTrib").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdevtribcbs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vCBS").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcbs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vCredPres").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcredprescbs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vCredPresCondSus").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcredprescondsuscbs
+        )                 
+        
+        etree.SubElement(total, "vNFTot").text = "{:.2f}".format(
+            nota_fiscal.totais_vitem
+        )                 
 
         # Transporte
         transp = etree.SubElement(raiz, "transp")

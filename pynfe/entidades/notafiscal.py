@@ -398,7 +398,46 @@ class NotaFiscal(Entidade):
     pagamentos = list()
     # valor do troco
     valor_troco = Decimal()
-
+    
+    totais_ibscbs_vbcibscbs = Decimal()
+    totais_ibscbs_pibsuf = Decimal()
+    totais_ibscbs_vibsuf = Decimal()
+    totais_ibscbs_pibsmun = Decimal()
+    totais_ibscbs_vibsmun = Decimal()
+    totais_ibscbs_predaliqibsuf = Decimal()
+    totais_ibscbs_paliqefetibsuf = Decimal()
+    totais_ibscbs_predaliqibsmun = Decimal()
+    totais_ibscbs_paliqefetibsmun = Decimal()
+    totais_ibscbs_vdifibsmun = Decimal()
+    totais_ibscbs_vdifibsuf = Decimal()
+    totais_ibscbs_pdifibsuf = Decimal()
+    totais_ibscbs_pdifibsmun = Decimal()
+    totais_ibscbs_vibs = Decimal()
+    totais_ibscbs_pcbs = Decimal()
+    totais_ibscbs_vcbs = Decimal()
+    totais_ibscbs_predaliqcbs = Decimal()
+    totais_ibscbs_paliqefetcbs = Decimal()
+    totais_ibscbs_pdifcbs = Decimal()
+    totais_ibscbs_vdifcbs = Decimal()
+    totais_ibscbs_cstreg = str()
+    totais_ibscbs_cclasstribreg = str()
+    totais_ibscbs_vtribregcbs = Decimal()
+    totais_ibscbs_vtribregibsmun = Decimal()
+    totais_ibscbs_vtribregibsuf = Decimal()
+    totais_ibscbs_paliqefetregcbs = Decimal()
+    totais_ibscbs_paliqefetregibsmun = Decimal()
+    totais_ibscbs_paliqefetregibsuf = Decimal()
+    
+    totais_ibscbs_vdevtribibsuf = Decimal()
+    totais_ibscbs_vdevtribibsmun = Decimal()
+    totais_ibscbs_vcredpresibs = Decimal()
+    totais_ibscbs_vcredprescondsusibs = Decimal()
+    totais_ibscbs_vdevtribcbs = Decimal()
+    totais_ibscbs_vcredprescbs = Decimal()
+    totais_ibscbs_vcredprescondsuscbs = Decimal()
+    
+    totais_vitem = Decimal()
+    
     def __init__(self, *args, **kwargs):
         self.autorizados_baixar_xml = []
         self.notas_fiscais_referenciadas = []
@@ -469,6 +508,43 @@ class NotaFiscal(Entidade):
 
         # TODO calcular impostos aproximados
         # self.totais_tributos_aproximado += obj.tributos
+        
+        self.totais_ibscbs_vbcibscbs += obj.ibscbs_vbcibscbs
+        self.totais_ibscbs_pibsuf += obj.ibscbs_pibsuf
+        self.totais_ibscbs_vibsuf += obj.ibscbs_vibsuf
+        self.totais_ibscbs_pibsmun += obj.ibscbs_pibsmun
+        self.totais_ibscbs_vibsmun += obj.ibscbs_vibsmun
+        self.totais_ibscbs_predaliqibsuf += obj.ibscbs_predaliqibsuf
+        self.totais_ibscbs_paliqefetibsuf += obj.ibscbs_paliqefetibsuf
+        self.totais_ibscbs_predaliqibsmun += obj.ibscbs_predaliqibsmun
+        self.totais_ibscbs_paliqefetibsmun += obj.ibscbs_paliqefetibsmun
+        self.totais_ibscbs_vdifibsmun += obj.ibscbs_vdifibsmun
+        self.totais_ibscbs_vdifibsuf += obj.ibscbs_vdifibsuf
+        self.totais_ibscbs_pdifibsuf += obj.ibscbs_pdifibsuf
+        self.totais_ibscbs_pdifibsmun += obj.ibscbs_pdifibsmun
+        self.totais_ibscbs_vibs += obj.ibscbs_vibs
+        self.totais_ibscbs_pcbs += obj.ibscbs_pcbs
+        self.totais_ibscbs_vcbs += obj.ibscbs_vcbs
+        self.totais_ibscbs_predaliqcbs += obj.ibscbs_predaliqcbs
+        self.totais_ibscbs_paliqefetcbs += obj.ibscbs_paliqefetcbs
+        self.totais_ibscbs_pdifcbs += obj.ibscbs_pdifcbs
+        self.totais_ibscbs_vdifcbs += obj.ibscbs_vdifcbs
+        self.totais_ibscbs_vtribregcbs += obj.ibscbs_vtribregcbs
+        self.totais_ibscbs_vtribregibsmun += obj.ibscbs_vtribregibsmun
+        self.totais_ibscbs_vtribregibsuf += obj.ibscbs_vtribregibsuf
+        self.totais_ibscbs_paliqefetregcbs += obj.ibscbs_paliqefetregcbs
+        self.totais_ibscbs_paliqefetregibsmun += obj.ibscbs_paliqefetregibsmun
+        self.totais_ibscbs_paliqefetregibsuf += obj.ibscbs_paliqefetregibsuf
+        
+        self.totais_ibscbs_vdevtribibsuf += obj.ibscbs_vdevtribibsuf
+        self.totais_ibscbs_vdevtribibsmun += obj.ibscbs_vdevtribibsmun
+        self.totais_ibscbs_vcredpresibs += obj.ibscbs_vcredpresibs
+        self.totais_ibscbs_vcredprescondsusibs += obj.ibscbs_vcredprescondsusibs
+        self.totais_ibscbs_vdevtribcbs  += obj.ibscbs_vdevtribcbs
+        self.totais_ibscbs_vcredprescbs += obj.ibscbs_vcredprescbs
+        self.totais_ibscbs_vcredprescondsuscbs += obj.ibscbs_vcredprescondsuscbs
+        
+        self.totais_vitem += obj.vitem
 
         self.totais_icms_total_nota += (
             obj.valor_total_bruto
@@ -1011,6 +1087,43 @@ class NotaFiscalProduto(Entidade):
 
     # - Declaracao de Importacao (lista 1 para * / ManyToManyField)
     declaracoes_importacao = None
+    
+    ibscbs_vbcibscbs = Decimal()
+    ibscbs_pibsuf = Decimal()
+    ibscbs_vibsuf = Decimal()
+    ibscbs_pibsmun = Decimal()
+    ibscbs_vibsmun = Decimal()
+    ibscbs_predaliqibsuf = Decimal()
+    ibscbs_paliqefetibsuf = Decimal()
+    ibscbs_predaliqibsmun = Decimal()
+    ibscbs_paliqefetibsmun = Decimal()
+    ibscbs_vdifibsmun = Decimal()
+    ibscbs_vdifibsuf = Decimal()
+    ibscbs_pdifibsuf = Decimal()
+    ibscbs_pdifibsmun = Decimal()
+    ibscbs_vibs = Decimal()
+    ibscbs_pcbs = Decimal()
+    ibscbs_vcbs = Decimal()
+    ibscbs_predaliqcbs = Decimal()
+    ibscbs_paliqefetcbs = Decimal()
+    ibscbs_pdifcbs = Decimal()
+    ibscbs_vdifcbs = Decimal()
+    ibscbs_vtribregcbs = Decimal()
+    ibscbs_vtribregibsmun = Decimal()
+    ibscbs_vtribregibsuf = Decimal()
+    ibscbs_paliqefetregcbs = Decimal()
+    ibscbs_paliqefetregibsmun = Decimal()
+    ibscbs_paliqefetregibsuf = Decimal()
+    
+    ibscbs_vdevtribibsuf = Decimal()
+    ibscbs_vdevtribibsmun = Decimal()
+    ibscbs_vcredpresibs = Decimal()
+    ibscbs_vcredprescondsusibs = Decimal()
+    ibscbs_vdevtribcbs = Decimal()
+    ibscbs_vcredprescbs = Decimal()
+    ibscbs_vcredprescondsuscbs = Decimal()
+    
+    vitem = Decimal()
 
     def __init__(self, *args, **kwargs):
         self.declaracoes_importacao = []
