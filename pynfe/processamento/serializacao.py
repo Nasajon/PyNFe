@@ -493,7 +493,7 @@ class SerializacaoXML(Serializacao):
             etree.SubElement(icms_item, "modBC").text = str(
                 produto_servico.icms_modalidade_determinacao_bc
             )
-            etree.SubElement(icms_item, "vBC").text = str(
+            etree.SubElement(icms_item, "vBC").text  = "{:.2f}".format(
                 produto_servico.icms_valor_base_calculo
             )  # Valor da BC do ICMS
             etree.SubElement(icms_item, "pICMS").text = "{:.2f}".format(
@@ -1401,7 +1401,7 @@ class SerializacaoXML(Serializacao):
 
     def _serializar_pagamentos(self, pagamentos: list, finalidade_emissao='', valor_troco = 0.00, retorna_string=True):
         pag = etree.Element('pag')
-        if (finalidade_emissao in [3, 4]):
+        if (finalidade_emissao in [3, 4]) or not pagamentos:
             detpag = etree.SubElement(pag, "detPag")
             etree.SubElement(detpag, "tPag").text = "90"
             etree.SubElement(detpag, "vPag").text = "{:.2f}".format(0)
@@ -1449,7 +1449,7 @@ class SerializacaoXML(Serializacao):
         etree.SubElement(ide, "natOp").text = nota_fiscal.natureza_operacao
         etree.SubElement(ide, "mod").text = str(nota_fiscal.modelo)
         etree.SubElement(ide, "serie").text = nota_fiscal.serie
-        etree.SubElement(ide, "nNF").text = str(nota_fiscal.numero_nf)
+        etree.SubElement(ide, "nNF").text = str(int(nota_fiscal.numero_nf))
         etree.SubElement(ide, "dhEmi").text = (
             nota_fiscal.data_emissao.strftime("%Y-%m-%dT%H:%M:%S") + tz
         )
