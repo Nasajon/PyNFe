@@ -570,9 +570,9 @@ class SerializacaoNacional(InterfaceAutorizador):
         # Strategy 1: Try direct import after basic namespace clearing
         try:
             self._clear_all_pyxb_namespaces()
-            from pynfe.utils.nfse.nacional import DPS_v1_00
+            from pynfe.utils.nfse.nacional import DPS_v1_01
 
-            return DPS_v1_00
+            return DPS_v1_01
         except (pyxb.exceptions_.NamespaceUniquenessError, ImportError) as e:
             error_msg = str(e)
             if any(
@@ -582,9 +582,9 @@ class SerializacaoNacional(InterfaceAutorizador):
                 # Strategy 2: Try more aggressive cleanup for both NFSe and XMLDSig conflicts
                 try:
                     self._force_clear_all_namespaces()
-                    from pynfe.utils.nfse.nacional import DPS_v1_00
+                    from pynfe.utils.nfse.nacional import DPS_v1_01
 
-                    return DPS_v1_00
+                    return DPS_v1_01
                 except Exception as e2:
                     # Strategy 3: Try importing with progressive module cleanup
                     if "CryptoBinary" in str(e2):
@@ -594,7 +594,7 @@ class SerializacaoNacional(InterfaceAutorizador):
                                 # Clear everything and try again
                                 self._ultra_clear_xmldsig_namespace()
                                 module = self._import_module_fresh_isolated(
-                                    "pynfe.utils.nfse.nacional.DPS_v1_00"
+                                    "pynfe.utils.nfse.nacional.DPS_v1_01"
                                 )
                                 return module
                             except Exception as e3:
@@ -612,7 +612,7 @@ class SerializacaoNacional(InterfaceAutorizador):
                     else:
                         # Last resort: import from fresh module with full cleanup
                         return self._import_module_fresh_isolated(
-                            "pynfe.utils.nfse.nacional.DPS_v1_00"
+                            "pynfe.utils.nfse.nacional.DPS_v1_01"
                         )
             else:
                 raise
@@ -625,9 +625,9 @@ class SerializacaoNacional(InterfaceAutorizador):
         try:
             # First, clear any existing namespace conflicts
             self._clear_all_pyxb_namespaces()
-            from pynfe.utils.nfse.nacional import pedRegEvento_v1_00
+            from pynfe.utils.nfse.nacional import pedRegEvento_v1_01
 
-            return pedRegEvento_v1_00
+            return pedRegEvento_v1_01
         except (pyxb.exceptions_.NamespaceUniquenessError, ImportError) as e:
             error_msg = str(e)
             if any(
@@ -637,13 +637,13 @@ class SerializacaoNacional(InterfaceAutorizador):
                 # Try more aggressive cleanup for both NFSe and XMLDSig conflicts
                 self._force_clear_all_namespaces()
                 try:
-                    from pynfe.utils.nfse.nacional import pedRegEvento_v1_00
+                    from pynfe.utils.nfse.nacional import pedRegEvento_v1_01
 
-                    return pedRegEvento_v1_00
+                    return pedRegEvento_v1_01
                 except Exception:
                     # Last resort: import from fresh module with full cleanup
                     return self._import_module_fresh_isolated(
-                        "pynfe.utils.nfse.nacional.pedRegEvento_v1_00"
+                        "pynfe.utils.nfse.nacional.pedRegEvento_v1_01"
                     )
             else:
                 raise
@@ -653,11 +653,11 @@ class SerializacaoNacional(InterfaceAutorizador):
         import sys
 
         modules_to_clear = [
-            "pynfe.utils.nfse.nacional.DPS_v1_00",
-            "pynfe.utils.nfse.nacional.pedRegEvento_v1_00",
-            "pynfe.utils.nfse.nacional.tiposSimples_v1_00",
-            "pynfe.utils.nfse.nacional.tiposEventos_v1_00",
-            "pynfe.utils.nfse.nacional.tiposComplexos_v1_00",
+            "pynfe.utils.nfse.nacional.DPS_v1_01",
+            "pynfe.utils.nfse.nacional.pedRegEvento_v1_01",
+            "pynfe.utils.nfse.nacional.tiposSimples_v1_01",
+            "pynfe.utils.nfse.nacional.tiposEventos_v1_01",
+            "pynfe.utils.nfse.nacional.tiposComplexos_v1_01",
             "pynfe.utils.nfse.nacional.tiposCnc_v1_00",
             # Also clear XMLDSig related modules that might cause CryptoBinary conflicts
             "pynfe.utils.nfse.nacional._ds",
@@ -899,7 +899,7 @@ class SerializacaoNacional(InterfaceAutorizador):
         # Use safe schema import with autocomplete-friendly casting
         if TYPE_CHECKING:
             # During type checking, provide the proper type for autocomplete
-            from pynfe.utils.nfse.nacional import DPS_v1_00 as _DPS
+            from pynfe.utils.nfse.nacional import DPS_v1_01 as _DPS
 
             nfse_nacional_schema = _DPS  # This gives autocomplete
         else:
@@ -919,7 +919,7 @@ class SerializacaoNacional(InterfaceAutorizador):
         infdps.tpEmit = "1"  # 1 - Emissão de NFS-e pelo próprio prestador do serviço
         infdps.cLocEmi = obter_codigo_por_municipio(
             nfse.emitente.endereco_municipio, nfse.emitente.endereco_uf
-        )
+        ) if nfse.emitente.endereco_municipio else nfse.servico.codigo_municipio
 
         prestador = nfse_nacional_schema.TCInfoPrestador()
         prestador.CNPJ = nfse.emitente.cnpj
@@ -987,6 +987,7 @@ class SerializacaoNacional(InterfaceAutorizador):
         codigo_servico = nfse_nacional_schema.TCCServ()
         codigo_servico.cTribNac = nfse.servico.codigo_tributacao_nacional
         codigo_servico.xDescServ = nfse.servico.discriminacao
+        codigo_servico.cNBS = nfse.servico.codigo_nbs
         if nfse.servico.codigo_tributacao_municipal:
             codigo_servico.cTribMun = nfse.servico.codigo_tributacao_municipal
 
@@ -1046,9 +1047,115 @@ class SerializacaoNacional(InterfaceAutorizador):
 
         infdps.valores = valores
 
+        if nfse.ibs_cbs:
+            ibs_cbs = nfse_nacional_schema.TCRTCInfoIBSCBS()
+            ibs_cbs.finNFSe = "0"
+            ibs_cbs.indFinal = "0"
+            ibs_cbs.cIndOp = nfse.ibs_cbs.codigo_indicador_operacao
+
+            if nfse.ibs_cbs.referencias_nfse:
+                grupo_ref = nfse_nacional_schema.TCInfoRefNFSe()
+                grupo_ref.refNFSe = [ref_nfse.chave for ref_nfse in nfse.ibs_cbs.referencias_nfse]
+                ibs_cbs.gRefNFSe = grupo_ref
+
+            ibs_cbs.indDest = nfse.ibs_cbs.indicador_destinatario
+
+            if nfse.ibs_cbs.destinatario:
+                dest = nfse_nacional_schema.TCRTCInfoDest()
+                if nfse.ibs_cbs.destinatario.tipo_documento == "CPF":
+                    dest.CPF = nfse.ibs_cbs.destinatario.numero_documento
+                else:
+                    dest.CNPJ = nfse.ibs_cbs.destinatario.numero_documento
+
+                dest.xNome = nfse.ibs_cbs.destinatario.razao_social
+
+                if nfse.ibs_cbs.destinatario.endereco_cep:
+                    dest_endereco = nfse_nacional_schema.TCEndereco()
+                    end_nacional = nfse_nacional_schema.TCEnderNac()
+                    end_nacional.CEP = nfse.ibs_cbs.destinatario.endereco_cep
+                    end_nacional.cMun = obter_codigo_por_municipio(
+                        nfse.ibs_cbs.destinatario.endereco_municipio,
+                        nfse.ibs_cbs.destinatario.endereco_uf,
+                    )
+                    dest_endereco.endNac = end_nacional
+                    dest_endereco.xLgr = nfse.ibs_cbs.destinatario.endereco_logradouro
+                    dest_endereco.nro = nfse.ibs_cbs.destinatario.endereco_numero
+                    if nfse.ibs_cbs.destinatario.endereco_complemento:
+                        dest_endereco.xCpl = nfse.ibs_cbs.destinatario.endereco_complemento
+                    dest_endereco.xBairro = nfse.ibs_cbs.destinatario.endereco_bairro
+                    dest.end = dest_endereco
+                ibs_cbs.dest = dest
+
+            if nfse.ibs_cbs.imovel:
+                imovel = nfse_nacional_schema.TCRTCInfoImovel()
+                imovel.inscImobFisc = nfse.ibs_cbs.imovel.inscricao_imobiliaria
+                imovel.cCIB = nfse.ibs_cbs.imovel.cib
+                end = nfse_nacional_schema.TCEnderObraEvento()
+                end.CEP = nfse.ibs_cbs.imovel.endereco_cep
+                end.xLgr = nfse.ibs_cbs.imovel.endereco_logradouro
+                end.nro = nfse.ibs_cbs.imovel.endereco_numero
+                if nfse.ibs_cbs.imovel.endereco_complemento:
+                    end.xCpl = nfse.ibs_cbs.imovel.endereco_complemento
+                end.xBairro = nfse.ibs_cbs.imovel.endereco_bairro
+                imovel.end = end
+                ibs_cbs.imovel = imovel
+
+            valores = nfse_nacional_schema.TCRTCInfoValoresIBSCBS()
+            if nfse.ibs_cbs.documentos_reembolso_repasse:
+                grupo = nfse_nacional_schema.TCRTCInfoReeRepRes()
+                documentos = []
+                for documento in nfse.ibs_cbs.documentos_reembolso_repasse:
+                    doc = nfse_nacional_schema.TCRTCListaDoc()
+                    nota = nfse_nacional_schema.TCRTCListaDocDFe()
+                    nota.tipoChaveDFe = documento.tipo_documento
+                    nota.chaveDFe = documento.chave
+                    doc.dFeNacional = nota
+                    doc.dtEmiDoc = documento.data_emissao.strftime("%Y-%m-%d")
+                    doc.dtCompDoc = documento.data_competencia.strftime("%Y-%m-%d")
+                    doc.tpReeRepRes = documento.tipo_valor
+                    doc.vlrReeRepRes = "{:.2f}".format(documento.valor)
+                    if documento.fornecedor:
+                        fornecedor = nfse_nacional_schema.TCRTCListaDocFornec()
+                        if documento.fornecedor.tipo_documento == "CPF":
+                            fornecedor.CPF = documento.fornecedor.numero_documento
+                        else:
+                            fornecedor.CNPJ = documento.fornecedor.numero_documento
+
+                        fornecedor.xNome = documento.fornecedor.razao_social
+                        doc.fornec = fornecedor
+
+                    documentos.append(doc)
+                grupo.documentos = documentos
+                valores.gReeRepRes = grupo
+            
+            tributos = nfse_nacional_schema.TCRTCInfoTributosIBSCBS()
+            grupo_ibs_cbs = nfse_nacional_schema.TCRTCInfoTributosSitClas()
+            grupo_ibs_cbs.CST = nfse.ibs_cbs.tributos.cst
+            grupo_ibs_cbs.cClassTrib = nfse.ibs_cbs.tributos.codigo_classificacao_tributaria
+            if nfse.ibs_cbs.tributos.codigo_credito_presumido:
+                grupo_ibs_cbs.cCredPrest = nfse.ibs_cbs.tributos.codigo_credito_presumido
+
+            if nfse.ibs_cbs.tributos.trib_regular:
+                grupo_trib_regular = nfse_nacional_schema.TCRTCInfoTributosTribRegular()
+                grupo_trib_regular.CSTReg = nfse.ibs_cbs.tributos.trib_regular.cst
+                grupo_trib_regular.cClassTribReg = nfse.ibs_cbs.tributos.trib_regular.codigo_classificacao_tributaria
+                grupo_ibs_cbs.gTribRegular = grupo_trib_regular
+
+            if nfse.ibs_cbs.tributos.diferimento:
+                grupo_diferimento = nfse_nacional_schema.TCRTCInfoTributosDif()
+                grupo_diferimento.pDifUF = "{:.2f}".format(nfse.ibs_cbs.tributos.diferimento.percentual_diferimento_uf)
+                grupo_diferimento.pDifMun = "{:.2f}".format(nfse.ibs_cbs.tributos.diferimento.percentual_diferimento_municipal)
+                grupo_diferimento.pDifCBS = "{:.2f}".format(nfse.ibs_cbs.tributos.diferimento.percentual_diferimento_cbs)
+                grupo_ibs_cbs.gDif = grupo_diferimento
+
+            tributos.gIBSCBS = grupo_ibs_cbs
+            valores.trib = tributos
+            ibs_cbs.valores = valores
+            infdps.IBSCBS = ibs_cbs
+
         dps = nfse_nacional_schema.TCDPS()
         dps.infDPS = infdps
-        dps.versao = "1.00"
+        dps.versao = "1.01"
 
         # Gera o XML e remove as tags ns1 do PyXB
         xml_content = dps.toxml(element_name="DPS")
@@ -1066,7 +1173,7 @@ class SerializacaoNacional(InterfaceAutorizador):
         # Use safe schema import with autocomplete-friendly casting
         if TYPE_CHECKING:
             # During type checking, provide the proper type for autocomplete
-            from pynfe.utils.nfse.nacional import pedRegEvento_v1_00 as _Evento
+            from pynfe.utils.nfse.nacional import pedRegEvento_v1_01 as _Evento
 
             nfse_nacional_evento_schema = _Evento  # This gives autocomplete
         else:

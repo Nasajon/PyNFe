@@ -34,6 +34,7 @@ class Servico(Entidade):
     tipo_retencao_issqn = str()
     cst_pis_cofins = str()
     tipo_retencao_pis_cofins = str()
+    codigo_nbs = str()
     # Dados opcionais
     valor_deducoes = Decimal()
     valor_pis = Decimal()

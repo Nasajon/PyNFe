@@ -1,7 +1,7 @@
-# /app/output/tiposCnc_v1_00.py
+# /app/output/tiposEventos_v1_01.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:c27cf6a1980499753073c1afd72a5bfd80976ec9
-# Generated 2025-11-05 13:20:53.688932 by PyXB version 1.2.6 using Python 3.12.11.final.0
+# Generated 2025-11-05 13:20:55.258651 by PyXB version 1.2.6 using Python 3.12.11.final.0
 # Namespace http://www.sped.fazenda.gov.br/nfse
 
 from __future__ import unicode_literals
@@ -14,7 +14,7 @@ import pyxb.utils.domutils
 import sys
 import pyxb.utils.six as _six
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:0fbb514b-5e82-48d5-bd84-19426a4e7ddc')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:92eb13c3-e6be-4f20-b227-e311331e4539')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
@@ -84,6 +84,246 @@ def CreateFromDOM (node, fallback_namespace=None, default_namespace=None):
         fallback_namespace = Namespace.fallbackNamespace()
     return pyxb.binding.basis.element.AnyCreateFromDOM(node, fallback_namespace)
 
+
+# Atomic simple type: [anonymous]
+class STD_ANON (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 209, 8)
+    _Documentation = None
+STD_ANON._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON)
+STD_ANON.Cancelamento_de_NFS_e = STD_ANON._CF_enumeration.addEnumeration(unicode_value='Cancelamento de NFS-e', tag='Cancelamento_de_NFS_e')
+STD_ANON._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON._InitializeFacetMap(STD_ANON._CF_enumeration,
+   STD_ANON._CF_whiteSpace)
+_module_typeBindings.STD_ANON = STD_ANON
+
+# Atomic simple type: [anonymous]
+class STD_ANON_ (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 237, 8)
+    _Documentation = None
+STD_ANON_._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_)
+STD_ANON_.Cancelamento_de_NFS_e_por_Substituicao = STD_ANON_._CF_enumeration.addEnumeration(unicode_value='Cancelamento de NFS-e por Substituicao', tag='Cancelamento_de_NFS_e_por_Substituicao')
+STD_ANON_._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_._InitializeFacetMap(STD_ANON_._CF_enumeration,
+   STD_ANON_._CF_whiteSpace)
+_module_typeBindings.STD_ANON_ = STD_ANON_
+
+# Atomic simple type: [anonymous]
+class STD_ANON_2 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 270, 8)
+    _Documentation = None
+STD_ANON_2._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_2)
+STD_ANON_2.Solicitacao_de_Analise_Fiscal_para_Cancelamento_de_NFS_e = STD_ANON_2._CF_enumeration.addEnumeration(unicode_value='Solicitacao de Analise Fiscal para Cancelamento de NFS-e', tag='Solicitacao_de_Analise_Fiscal_para_Cancelamento_de_NFS_e')
+STD_ANON_2._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_2._InitializeFacetMap(STD_ANON_2._CF_enumeration,
+   STD_ANON_2._CF_whiteSpace)
+_module_typeBindings.STD_ANON_2 = STD_ANON_2
+
+# Atomic simple type: [anonymous]
+class STD_ANON_3 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 298, 8)
+    _Documentation = None
+STD_ANON_3._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_3)
+STD_ANON_3.Cancelamento_de_NFS_e_Deferido_por_Anlise_Fiscal = STD_ANON_3._CF_enumeration.addEnumeration(unicode_value='Cancelamento de NFS-e Deferido por Análise Fiscal', tag='Cancelamento_de_NFS_e_Deferido_por_Anlise_Fiscal')
+STD_ANON_3._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_3._InitializeFacetMap(STD_ANON_3._CF_enumeration,
+   STD_ANON_3._CF_whiteSpace)
+_module_typeBindings.STD_ANON_3 = STD_ANON_3
+
+# Atomic simple type: [anonymous]
+class STD_ANON_4 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 345, 8)
+    _Documentation = None
+STD_ANON_4._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_4)
+STD_ANON_4.Cancelamento_de_NFS_e_Indeferido_por_Anlise_Fiscal = STD_ANON_4._CF_enumeration.addEnumeration(unicode_value='Cancelamento de NFS-e Indeferido por Análise Fiscal', tag='Cancelamento_de_NFS_e_Indeferido_por_Anlise_Fiscal')
+STD_ANON_4._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_4._InitializeFacetMap(STD_ANON_4._CF_enumeration,
+   STD_ANON_4._CF_whiteSpace)
+_module_typeBindings.STD_ANON_4 = STD_ANON_4
+
+# Atomic simple type: [anonymous]
+class STD_ANON_5 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 391, 8)
+    _Documentation = None
+STD_ANON_5._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_5)
+STD_ANON_5.Confirmao_do_Prestador = STD_ANON_5._CF_enumeration.addEnumeration(unicode_value='Confirmação do Prestador', tag='Confirmao_do_Prestador')
+STD_ANON_5._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_5._InitializeFacetMap(STD_ANON_5._CF_enumeration,
+   STD_ANON_5._CF_whiteSpace)
+_module_typeBindings.STD_ANON_5 = STD_ANON_5
+
+# Atomic simple type: [anonymous]
+class STD_ANON_6 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 409, 8)
+    _Documentation = None
+STD_ANON_6._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_6)
+STD_ANON_6.Confirmao_do_Tomador = STD_ANON_6._CF_enumeration.addEnumeration(unicode_value='Confirmação do Tomador', tag='Confirmao_do_Tomador')
+STD_ANON_6._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_6._InitializeFacetMap(STD_ANON_6._CF_enumeration,
+   STD_ANON_6._CF_whiteSpace)
+_module_typeBindings.STD_ANON_6 = STD_ANON_6
+
+# Atomic simple type: [anonymous]
+class STD_ANON_7 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 427, 8)
+    _Documentation = None
+STD_ANON_7._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_7)
+STD_ANON_7.Confirmao_do_Intermedirio = STD_ANON_7._CF_enumeration.addEnumeration(unicode_value='Confirmação do Intermediário', tag='Confirmao_do_Intermedirio')
+STD_ANON_7._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_7._InitializeFacetMap(STD_ANON_7._CF_enumeration,
+   STD_ANON_7._CF_whiteSpace)
+_module_typeBindings.STD_ANON_7 = STD_ANON_7
+
+# Atomic simple type: [anonymous]
+class STD_ANON_8 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 445, 8)
+    _Documentation = None
+STD_ANON_8._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_8)
+STD_ANON_8.Confirmao_Tcita = STD_ANON_8._CF_enumeration.addEnumeration(unicode_value='Confirmação Tácita', tag='Confirmao_Tcita')
+STD_ANON_8._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_8._InitializeFacetMap(STD_ANON_8._CF_enumeration,
+   STD_ANON_8._CF_whiteSpace)
+_module_typeBindings.STD_ANON_8 = STD_ANON_8
+
+# Atomic simple type: [anonymous]
+class STD_ANON_9 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 463, 8)
+    _Documentation = None
+STD_ANON_9._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_9)
+STD_ANON_9.Rejeio_do_Prestador = STD_ANON_9._CF_enumeration.addEnumeration(unicode_value='Rejeição do Prestador', tag='Rejeio_do_Prestador')
+STD_ANON_9._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_9._InitializeFacetMap(STD_ANON_9._CF_enumeration,
+   STD_ANON_9._CF_whiteSpace)
+_module_typeBindings.STD_ANON_9 = STD_ANON_9
+
+# Atomic simple type: [anonymous]
+class STD_ANON_10 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 487, 8)
+    _Documentation = None
+STD_ANON_10._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_10)
+STD_ANON_10.Rejeio_do_Tomador = STD_ANON_10._CF_enumeration.addEnumeration(unicode_value='Rejeição do Tomador', tag='Rejeio_do_Tomador')
+STD_ANON_10._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_10._InitializeFacetMap(STD_ANON_10._CF_enumeration,
+   STD_ANON_10._CF_whiteSpace)
+_module_typeBindings.STD_ANON_10 = STD_ANON_10
+
+# Atomic simple type: [anonymous]
+class STD_ANON_11 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 511, 8)
+    _Documentation = None
+STD_ANON_11._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_11)
+STD_ANON_11.Rejeio_do_Intermedirio = STD_ANON_11._CF_enumeration.addEnumeration(unicode_value='Rejeição do Intermediário', tag='Rejeio_do_Intermedirio')
+STD_ANON_11._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_11._InitializeFacetMap(STD_ANON_11._CF_enumeration,
+   STD_ANON_11._CF_whiteSpace)
+_module_typeBindings.STD_ANON_11 = STD_ANON_11
+
+# Atomic simple type: [anonymous]
+class STD_ANON_12 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 535, 8)
+    _Documentation = None
+STD_ANON_12._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_12)
+STD_ANON_12.Anulao_da_Rejeio = STD_ANON_12._CF_enumeration.addEnumeration(unicode_value='Anulação da Rejeição', tag='Anulao_da_Rejeio')
+STD_ANON_12._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_12._InitializeFacetMap(STD_ANON_12._CF_enumeration,
+   STD_ANON_12._CF_whiteSpace)
+_module_typeBindings.STD_ANON_12 = STD_ANON_12
+
+# Atomic simple type: [anonymous]
+class STD_ANON_13 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 559, 8)
+    _Documentation = None
+STD_ANON_13._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_13)
+STD_ANON_13.Cancelamento_de_NFS_e_por_Ofcio = STD_ANON_13._CF_enumeration.addEnumeration(unicode_value='Cancelamento de NFS-e por Ofício', tag='Cancelamento_de_NFS_e_por_Ofcio')
+STD_ANON_13._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_13._InitializeFacetMap(STD_ANON_13._CF_enumeration,
+   STD_ANON_13._CF_whiteSpace)
+_module_typeBindings.STD_ANON_13 = STD_ANON_13
+
+# Atomic simple type: [anonymous]
+class STD_ANON_14 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 598, 8)
+    _Documentation = None
+STD_ANON_14._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_14)
+STD_ANON_14.Bloqueio_de_NFS_e_por_Ofcio = STD_ANON_14._CF_enumeration.addEnumeration(unicode_value='Bloqueio de NFS-e por Ofício', tag='Bloqueio_de_NFS_e_por_Ofcio')
+STD_ANON_14._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_14._InitializeFacetMap(STD_ANON_14._CF_enumeration,
+   STD_ANON_14._CF_whiteSpace)
+_module_typeBindings.STD_ANON_14 = STD_ANON_14
+
+# Atomic simple type: [anonymous]
+class STD_ANON_15 (pyxb.binding.datatypes.string, pyxb.binding.basis.enumeration_mixin):
+
+    """An atomic simple type."""
+
+    _ExpandedName = None
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 633, 8)
+    _Documentation = None
+STD_ANON_15._CF_enumeration = pyxb.binding.facets.CF_enumeration(enum_prefix=None, value_datatype=STD_ANON_15)
+STD_ANON_15.Desbloqueio_de_NFS_e_por_Ofcio = STD_ANON_15._CF_enumeration.addEnumeration(unicode_value='Desbloqueio de NFS-e por Ofício', tag='Desbloqueio_de_NFS_e_por_Ofcio')
+STD_ANON_15._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
+STD_ANON_15._InitializeFacetMap(STD_ANON_15._CF_enumeration,
+   STD_ANON_15._CF_whiteSpace)
+_module_typeBindings.STD_ANON_15 = STD_ANON_15
 
 # Atomic simple type: {http://www.sped.fazenda.gov.br/nfse}TVerNFSe
 class TVerNFSe (pyxb.binding.datatypes.string):
@@ -2913,237 +3153,6 @@ TSNumeroPostes._InitializeFacetMap(TSNumeroPostes._CF_maxLength,
    TSNumeroPostes._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'TSNumeroPostes', TSNumeroPostes)
 _module_typeBindings.TSNumeroPostes = TSNumeroPostes
-
-# Complex type {http://www.sped.fazenda.gov.br/nfse}TCEnderContribuinteCNC with content type ELEMENT_ONLY
-class TCEnderContribuinteCNC (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCEnderContribuinteCNC with content type ELEMENT_ONLY"""
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCEnderContribuinteCNC')
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 12, 2)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}CEP uses Python identifier CEP
-    __CEP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CEP'), 'CEP', '__httpwww_sped_fazenda_gov_brnfse_TCEnderContribuinteCNC_httpwww_sped_fazenda_gov_brnfseCEP', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 14, 6), )
-
-    
-    CEP = property(__CEP.value, __CEP.set, None, 'Código de endereçamento postal do estabelecimento do contribuinte')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}nro uses Python identifier nro
-    __nro = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nro'), 'nro', '__httpwww_sped_fazenda_gov_brnfse_TCEnderContribuinteCNC_httpwww_sped_fazenda_gov_brnfsenro', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 19, 6), )
-
-    
-    nro = property(__nro.value, __nro.set, None, 'Número do estabelecimento no logradouro informado')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}xCpl uses Python identifier xCpl
-    __xCpl = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xCpl'), 'xCpl', '__httpwww_sped_fazenda_gov_brnfse_TCEnderContribuinteCNC_httpwww_sped_fazenda_gov_brnfsexCpl', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 24, 6), )
-
-    
-    xCpl = property(__xCpl.value, __xCpl.set, None, 'Informação complementar para identificação do endereço do contribuinte')
-
-    _ElementMap.update({
-        __CEP.name() : __CEP,
-        __nro.name() : __nro,
-        __xCpl.name() : __xCpl
-    })
-    _AttributeMap.update({
-        
-    })
-_module_typeBindings.TCEnderContribuinteCNC = TCEnderContribuinteCNC
-Namespace.addCategoryObject('typeBinding', 'TCEnderContribuinteCNC', TCEnderContribuinteCNC)
-
-
-# Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfCNC with content type ELEMENT_ONLY
-class TCInfCNC (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfCNC with content type ELEMENT_ONLY"""
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCInfCNC')
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 39, 2)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}tpAmb uses Python identifier tpAmb
-    __tpAmb = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tpAmb'), 'tpAmb', '__httpwww_sped_fazenda_gov_brnfse_TCInfCNC_httpwww_sped_fazenda_gov_brnfsetpAmb', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 41, 6), )
-
-    
-    tpAmb = property(__tpAmb.value, __tpAmb.set, None, 'Identificação do Ambiente: 1 - Produção; 2 - Homologação')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}dhGeracaoArquivo uses Python identifier dhGeracaoArquivo
-    __dhGeracaoArquivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'dhGeracaoArquivo'), 'dhGeracaoArquivo', '__httpwww_sped_fazenda_gov_brnfse_TCInfCNC_httpwww_sped_fazenda_gov_brnfsedhGeracaoArquivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 46, 6), )
-
-    
-    dhGeracaoArquivo = property(__dhGeracaoArquivo.value, __dhGeracaoArquivo.set, None, 'Data e hora da geração do arquivo CNC. Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}verAplic uses Python identifier verAplic
-    __verAplic = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'verAplic'), 'verAplic', '__httpwww_sped_fazenda_gov_brnfse_TCInfCNC_httpwww_sped_fazenda_gov_brnfseverAplic', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 51, 6), )
-
-    
-    verAplic = property(__verAplic.value, __verAplic.set, None, 'Versão do aplicativo que gerou Informações para cadastramento de novos contribuintes CNC')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}contribuintesCnc uses Python identifier contribuintesCnc
-    __contribuintesCnc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'contribuintesCnc'), 'contribuintesCnc', '__httpwww_sped_fazenda_gov_brnfse_TCInfCNC_httpwww_sped_fazenda_gov_brnfsecontribuintesCnc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 56, 6), )
-
-    
-    contribuintesCnc = property(__contribuintesCnc.value, __contribuintesCnc.set, None, None)
-
-    _ElementMap.update({
-        __tpAmb.name() : __tpAmb,
-        __dhGeracaoArquivo.name() : __dhGeracaoArquivo,
-        __verAplic.name() : __verAplic,
-        __contribuintesCnc.name() : __contribuintesCnc
-    })
-    _AttributeMap.update({
-        
-    })
-_module_typeBindings.TCInfCNC = TCInfCNC
-Namespace.addCategoryObject('typeBinding', 'TCInfCNC', TCInfCNC)
-
-
-# Complex type [anonymous] with content type ELEMENT_ONLY
-class CTD_ANON (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type [anonymous] with content type ELEMENT_ONLY"""
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 57, 8)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}contribuinteCnc uses Python identifier contribuinteCnc
-    __contribuinteCnc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'contribuinteCnc'), 'contribuinteCnc', '__httpwww_sped_fazenda_gov_brnfse_CTD_ANON_httpwww_sped_fazenda_gov_brnfsecontribuinteCnc', True, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 59, 12), )
-
-    
-    contribuinteCnc = property(__contribuinteCnc.value, __contribuinteCnc.set, None, 'Grupo de informações cadastramento de novos contribuintes CNC')
-
-    _ElementMap.update({
-        __contribuinteCnc.name() : __contribuinteCnc
-    })
-    _AttributeMap.update({
-        
-    })
-_module_typeBindings.CTD_ANON = CTD_ANON
-
-
-# Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfoContribuinteCNC with content type ELEMENT_ONLY
-class TCInfoContribuinteCNC (pyxb.binding.basis.complexTypeDefinition):
-    """Informações para cadastramento de novos contribuintes CNC """
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCInfoContribuinteCNC')
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 70, 2)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}CNPJ uses Python identifier CNPJ
-    __CNPJ = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CNPJ'), 'CNPJ', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseCNPJ', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 76, 8), )
-
-    
-    CNPJ = property(__CNPJ.value, __CNPJ.set, None, 'Número do CNPJ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}CPF uses Python identifier CPF
-    __CPF = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPF'), 'CPF', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseCPF', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 81, 8), )
-
-    
-    CPF = property(__CPF.value, __CPF.set, None, 'Número do CPF')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}IM uses Python identifier IM
-    __IM = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IM'), 'IM', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseIM', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 87, 6), )
-
-    
-    IM = property(__IM.value, __IM.set, None, 'Número da inscrição municipal')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}dInscricaoMunicipal uses Python identifier dInscricaoMunicipal
-    __dInscricaoMunicipal = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'dInscricaoMunicipal'), 'dInscricaoMunicipal', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsedInscricaoMunicipal', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 92, 6), )
-
-    
-    dInscricaoMunicipal = property(__dInscricaoMunicipal.value, __dInscricaoMunicipal.set, None, ' Data da Inscrição Municipal: Dia, mês e ano (AAAAMMDD)')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}enderContribuinteCNC uses Python identifier enderContribuinteCNC
-    __enderContribuinteCNC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'enderContribuinteCNC'), 'enderContribuinteCNC', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseenderContribuinteCNC', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 97, 6), )
-
-    
-    enderContribuinteCNC = property(__enderContribuinteCNC.value, __enderContribuinteCNC.set, None, 'Grupo de informações do endereço do contribuinte do CNC')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}fone uses Python identifier fone
-    __fone = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'fone'), 'fone', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsefone', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 102, 6), )
-
-    
-    fone = property(__fone.value, __fone.set, None, '\n            Número do telefone do prestador:\n            Preencher com o Código DDD + número do telefone.\n            Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone)\n          ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}email uses Python identifier email
-    __email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'email'), 'email', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseemail', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 111, 6), )
-
-    
-    email = property(__email.value, __email.set, None, 'Endereço de e-mail para contato com o contribuinte')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}regEspTribContribuinteCNC uses Python identifier regEspTribContribuinteCNC
-    __regEspTribContribuinteCNC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'regEspTribContribuinteCNC'), 'regEspTribContribuinteCNC', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseregEspTribContribuinteCNC', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 116, 6), )
-
-    
-    regEspTribContribuinteCNC = property(__regEspTribContribuinteCNC.value, __regEspTribContribuinteCNC.set, None, '\n            Tipos de Regimes Especiais de Tributação:\n            0 - Nenhum;\n            1 - Ato Cooperado (Cooperativa);\n            2 - Estimativa;\n            3 - Microempresa Municipal;\n            4 - Notário ou Registrador;\n            5 - Profissional Autônomo;\n            6 - Sociedade de Profissionais;\n          ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}situacaoCadastroContribuinte uses Python identifier situacaoCadastroContribuinte
-    __situacaoCadastroContribuinte = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'situacaoCadastroContribuinte'), 'situacaoCadastroContribuinte', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsesituacaoCadastroContribuinte', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 130, 6), )
-
-    
-    situacaoCadastroContribuinte = property(__situacaoCadastroContribuinte.value, __situacaoCadastroContribuinte.set, None, '\n            Identificação da situação do cadastro do contribuinte\n          ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}motivoSituacaoCadastroContribuinte uses Python identifier motivoSituacaoCadastroContribuinte
-    __motivoSituacaoCadastroContribuinte = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'motivoSituacaoCadastroContribuinte'), 'motivoSituacaoCadastroContribuinte', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsemotivoSituacaoCadastroContribuinte', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 137, 6), )
-
-    
-    motivoSituacaoCadastroContribuinte = property(__motivoSituacaoCadastroContribuinte.value, __motivoSituacaoCadastroContribuinte.set, None, '\n            Motivo pelo qual o contribuinte se enquadra na situação informada\n          ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}situacaoEmissaoNFSE uses Python identifier situacaoEmissaoNFSE
-    __situacaoEmissaoNFSE = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'situacaoEmissaoNFSE'), 'situacaoEmissaoNFSE', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsesituacaoEmissaoNFSE', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 144, 6), )
-
-    
-    situacaoEmissaoNFSE = property(__situacaoEmissaoNFSE.value, __situacaoEmissaoNFSE.set, None, '\n            Situação Emissão NFS-e:\n            0 - Não Habilitado;\n            1 - Habilitado;\n          ')
-
-    _ElementMap.update({
-        __CNPJ.name() : __CNPJ,
-        __CPF.name() : __CPF,
-        __IM.name() : __IM,
-        __dInscricaoMunicipal.name() : __dInscricaoMunicipal,
-        __enderContribuinteCNC.name() : __enderContribuinteCNC,
-        __fone.name() : __fone,
-        __email.name() : __email,
-        __regEspTribContribuinteCNC.name() : __regEspTribContribuinteCNC,
-        __situacaoCadastroContribuinte.name() : __situacaoCadastroContribuinte,
-        __motivoSituacaoCadastroContribuinte.name() : __motivoSituacaoCadastroContribuinte,
-        __situacaoEmissaoNFSE.name() : __situacaoEmissaoNFSE
-    })
-    _AttributeMap.update({
-        
-    })
-_module_typeBindings.TCInfoContribuinteCNC = TCInfoContribuinteCNC
-Namespace.addCategoryObject('typeBinding', 'TCInfoContribuinteCNC', TCInfoContribuinteCNC)
-
 
 # Complex type {http://www.sped.fazenda.gov.br/nfse}TCEmitente with content type ELEMENT_ONLY
 class TCEmitente (pyxb.binding.basis.complexTypeDefinition):
@@ -6957,40 +6966,776 @@ _module_typeBindings.TCRTCInfoTributosDif = TCRTCInfoTributosDif
 Namespace.addCategoryObject('typeBinding', 'TCRTCInfoTributosDif', TCRTCInfoTributosDif)
 
 
-# Complex type {http://www.sped.fazenda.gov.br/nfse}TCNC with content type ELEMENT_ONLY
-class TCNC (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCNC with content type ELEMENT_ONLY"""
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE101101 with content type ELEMENT_ONLY
+class TE101101 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE101101 with content type ELEMENT_ONLY"""
     _TypeDefinition = None
     _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
     _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCNC')
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 32, 2)
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE101101')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 201, 2)
     _ElementMap = {}
     _AttributeMap = {}
     # Base type is pyxb.binding.datatypes.anyType
     
-    # Element {http://www.sped.fazenda.gov.br/nfse}infCNC uses Python identifier infCNC
-    __infCNC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'infCNC'), 'infCNC', '__httpwww_sped_fazenda_gov_brnfse_TCNC_httpwww_sped_fazenda_gov_brnfseinfCNC', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 34, 6), )
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE101101_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 203, 6), )
 
     
-    infCNC = property(__infCNC.value, __infCNC.set, None, None)
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do Evento: Descrição do evento: "Cancelamento de NFS-e".\n          ')
 
     
-    # Attribute versao uses Python identifier versao
-    __versao = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'versao'), 'versao', '__httpwww_sped_fazenda_gov_brnfse_TCNC_versao', _module_typeBindings.TVerCNC, required=True)
-    __versao._DeclarationLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 36, 4)
-    __versao._UseLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 36, 4)
+    # Element {http://www.sped.fazenda.gov.br/nfse}cMotivo uses Python identifier cMotivo
+    __cMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), 'cMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE101101_httpwww_sped_fazenda_gov_brnfsecMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 216, 6), )
+
     
-    versao = property(__versao.value, __versao.set, None, None)
+    cMotivo = property(__cMotivo.value, __cMotivo.set, None, 'Código de justificativa de cancelamento')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xMotivo uses Python identifier xMotivo
+    __xMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), 'xMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE101101_httpwww_sped_fazenda_gov_brnfsexMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 221, 6), )
+
+    
+    xMotivo = property(__xMotivo.value, __xMotivo.set, None, 'Descrição para explicitar o motivo indicado neste evento')
 
     _ElementMap.update({
-        __infCNC.name() : __infCNC
+        __xDesc.name() : __xDesc,
+        __cMotivo.name() : __cMotivo,
+        __xMotivo.name() : __xMotivo
     })
     _AttributeMap.update({
-        __versao.name() : __versao
+        
     })
-_module_typeBindings.TCNC = TCNC
-Namespace.addCategoryObject('typeBinding', 'TCNC', TCNC)
+_module_typeBindings.TE101101 = TE101101
+Namespace.addCategoryObject('typeBinding', 'TE101101', TE101101)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE105102 with content type ELEMENT_ONLY
+class TE105102 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE105102 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE105102')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 229, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE105102_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 231, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do Evento: Descrição do evento: "Cancelamento de NFS-e por Substituição".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}cMotivo uses Python identifier cMotivo
+    __cMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), 'cMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE105102_httpwww_sped_fazenda_gov_brnfsecMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 244, 6), )
+
+    
+    cMotivo = property(__cMotivo.value, __cMotivo.set, None, 'Código de justificativa de cancelamento substituição')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xMotivo uses Python identifier xMotivo
+    __xMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), 'xMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE105102_httpwww_sped_fazenda_gov_brnfsexMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 249, 6), )
+
+    
+    xMotivo = property(__xMotivo.value, __xMotivo.set, None, 'Descrição para explicitar o motivo indicado neste evento')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}chSubstituta uses Python identifier chSubstituta
+    __chSubstituta = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'chSubstituta'), 'chSubstituta', '__httpwww_sped_fazenda_gov_brnfse_TE105102_httpwww_sped_fazenda_gov_brnfsechSubstituta', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 254, 6), )
+
+    
+    chSubstituta = property(__chSubstituta.value, __chSubstituta.set, None, 'Chave de Acesso da NFS-e substituta.')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __cMotivo.name() : __cMotivo,
+        __xMotivo.name() : __xMotivo,
+        __chSubstituta.name() : __chSubstituta
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE105102 = TE105102
+Namespace.addCategoryObject('typeBinding', 'TE105102', TE105102)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE101103 with content type ELEMENT_ONLY
+class TE101103 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE101103 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE101103')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 262, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE101103_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 264, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Solicitação de Análise Fiscal para Cancelamento de NFS-e"\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}cMotivo uses Python identifier cMotivo
+    __cMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), 'cMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE101103_httpwww_sped_fazenda_gov_brnfsecMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 277, 6), )
+
+    
+    cMotivo = property(__cMotivo.value, __cMotivo.set, None, 'Código do motivo da solicitação de análise fiscal para cancelamento de NFS-e:')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xMotivo uses Python identifier xMotivo
+    __xMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), 'xMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE101103_httpwww_sped_fazenda_gov_brnfsexMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 282, 6), )
+
+    
+    xMotivo = property(__xMotivo.value, __xMotivo.set, None, 'Descrição para explicitar o motivo indicado neste evento')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __cMotivo.name() : __cMotivo,
+        __xMotivo.name() : __xMotivo
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE101103 = TE101103
+Namespace.addCategoryObject('typeBinding', 'TE101103', TE101103)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE105104 with content type ELEMENT_ONLY
+class TE105104 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE105104 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE105104')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 290, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE105104_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 292, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Cancelamento de NFS-e Deferido por Análise Fiscal"\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}CPFAgTrib uses Python identifier CPFAgTrib
+    __CPFAgTrib = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), 'CPFAgTrib', '__httpwww_sped_fazenda_gov_brnfse_TE105104_httpwww_sped_fazenda_gov_brnfseCPFAgTrib', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 305, 6), )
+
+    
+    CPFAgTrib = property(__CPFAgTrib.value, __CPFAgTrib.set, None, '\n            CPF do agente da administração tributária municipal que efetuou o deferimento da  solicitação de análise fiscal para cancelamento de NFS-e.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}nProcAdm uses Python identifier nProcAdm
+    __nProcAdm = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm'), 'nProcAdm', '__httpwww_sped_fazenda_gov_brnfse_TE105104_httpwww_sped_fazenda_gov_brnfsenProcAdm', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 312, 6), )
+
+    
+    nProcAdm = property(__nProcAdm.value, __nProcAdm.set, None, '\n            Número do processo administrativo municipal vinculado à solicitação de análise fiscal para cancelamento de NFS-e.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}cMotivo uses Python identifier cMotivo
+    __cMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), 'cMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE105104_httpwww_sped_fazenda_gov_brnfsecMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 319, 6), )
+
+    
+    cMotivo = property(__cMotivo.value, __cMotivo.set, None, '\n            Resposta da solicitação de análise fiscal para cancelamento de NFS-e:\n            1 - Cancelamento de NFS-e Deferido.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xMotivo uses Python identifier xMotivo
+    __xMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), 'xMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE105104_httpwww_sped_fazenda_gov_brnfsexMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 327, 6), )
+
+    
+    xMotivo = property(__xMotivo.value, __xMotivo.set, None, '\n            Descrição para explicitar o motivo indicado neste evento\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __CPFAgTrib.name() : __CPFAgTrib,
+        __nProcAdm.name() : __nProcAdm,
+        __cMotivo.name() : __cMotivo,
+        __xMotivo.name() : __xMotivo
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE105104 = TE105104
+Namespace.addCategoryObject('typeBinding', 'TE105104', TE105104)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE105105 with content type ELEMENT_ONLY
+class TE105105 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE105105 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE105105')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 337, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE105105_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 339, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Cancelamento de NFS-e Indeferido por Análise Fiscal".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}CPFAgTrib uses Python identifier CPFAgTrib
+    __CPFAgTrib = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), 'CPFAgTrib', '__httpwww_sped_fazenda_gov_brnfse_TE105105_httpwww_sped_fazenda_gov_brnfseCPFAgTrib', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 352, 6), )
+
+    
+    CPFAgTrib = property(__CPFAgTrib.value, __CPFAgTrib.set, None, '\n            CPF do agente da administração tributária municipal que efetuou o indeferimento da solicitação de análise fiscal para cancelamento de NFS-e.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}nProcAdm uses Python identifier nProcAdm
+    __nProcAdm = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm'), 'nProcAdm', '__httpwww_sped_fazenda_gov_brnfse_TE105105_httpwww_sped_fazenda_gov_brnfsenProcAdm', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 359, 6), )
+
+    
+    nProcAdm = property(__nProcAdm.value, __nProcAdm.set, None, '\n            Número do processo administrativo municipal vinculado à solicitação de análise fiscal para cancelamento de NFS-e.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}cMotivo uses Python identifier cMotivo
+    __cMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), 'cMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE105105_httpwww_sped_fazenda_gov_brnfsecMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 366, 6), )
+
+    
+    cMotivo = property(__cMotivo.value, __cMotivo.set, None, '\n            Resposta da solicitação de análise fiscal para cancelamento de NFS-e:\n            1 - Cancelamento de NFS-e Indeferido;\n            2 - Cancelamento de NFS-e Indeferido Sem Análise de Mérito.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xMotivo uses Python identifier xMotivo
+    __xMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), 'xMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE105105_httpwww_sped_fazenda_gov_brnfsexMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 375, 6), )
+
+    
+    xMotivo = property(__xMotivo.value, __xMotivo.set, None, 'Descrição para explicitar o motivo indicado neste evento')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __CPFAgTrib.name() : __CPFAgTrib,
+        __nProcAdm.name() : __nProcAdm,
+        __cMotivo.name() : __cMotivo,
+        __xMotivo.name() : __xMotivo
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE105105 = TE105105
+Namespace.addCategoryObject('typeBinding', 'TE105105', TE105105)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE202201 with content type ELEMENT_ONLY
+class TE202201 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE202201 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE202201')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 383, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE202201_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 385, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Confirmação do Prestador".\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE202201 = TE202201
+Namespace.addCategoryObject('typeBinding', 'TE202201', TE202201)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE203202 with content type ELEMENT_ONLY
+class TE203202 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE203202 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE203202')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 401, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE203202_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 403, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Confirmação do Tomador".\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE203202 = TE203202
+Namespace.addCategoryObject('typeBinding', 'TE203202', TE203202)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE204203 with content type ELEMENT_ONLY
+class TE204203 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE204203 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE204203')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 419, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE204203_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 421, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Confirmação do Intermediário".\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE204203 = TE204203
+Namespace.addCategoryObject('typeBinding', 'TE204203', TE204203)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE205204 with content type ELEMENT_ONLY
+class TE205204 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE205204 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE205204')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 437, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE205204_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 439, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Confirmação Tácita".\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE205204 = TE205204
+Namespace.addCategoryObject('typeBinding', 'TE205204', TE205204)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE202205 with content type ELEMENT_ONLY
+class TE202205 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE202205 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE202205')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 455, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE202205_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 457, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Rejeição do Prestador".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}infRej uses Python identifier infRej
+    __infRej = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'infRej'), 'infRej', '__httpwww_sped_fazenda_gov_brnfse_TE202205_httpwww_sped_fazenda_gov_brnfseinfRej', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 470, 6), )
+
+    
+    infRej = property(__infRej.value, __infRej.set, None, '\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __infRej.name() : __infRej
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE202205 = TE202205
+Namespace.addCategoryObject('typeBinding', 'TE202205', TE202205)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE203206 with content type ELEMENT_ONLY
+class TE203206 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE203206 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE203206')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 479, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE203206_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 481, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Rejeição do Tomador".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}infRej uses Python identifier infRej
+    __infRej = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'infRej'), 'infRej', '__httpwww_sped_fazenda_gov_brnfse_TE203206_httpwww_sped_fazenda_gov_brnfseinfRej', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 494, 6), )
+
+    
+    infRej = property(__infRej.value, __infRej.set, None, '\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __infRej.name() : __infRej
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE203206 = TE203206
+Namespace.addCategoryObject('typeBinding', 'TE203206', TE203206)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE204207 with content type ELEMENT_ONLY
+class TE204207 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE204207 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE204207')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 503, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE204207_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 505, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Rejeição do Intermediário".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}infRej uses Python identifier infRej
+    __infRej = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'infRej'), 'infRej', '__httpwww_sped_fazenda_gov_brnfse_TE204207_httpwww_sped_fazenda_gov_brnfseinfRej', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 518, 6), )
+
+    
+    infRej = property(__infRej.value, __infRej.set, None, '\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __infRej.name() : __infRej
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE204207 = TE204207
+Namespace.addCategoryObject('typeBinding', 'TE204207', TE204207)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE205208 with content type ELEMENT_ONLY
+class TE205208 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE205208 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE205208')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 527, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE205208_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 529, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Anulação da Rejeição".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}infAnRej uses Python identifier infAnRej
+    __infAnRej = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'infAnRej'), 'infAnRej', '__httpwww_sped_fazenda_gov_brnfse_TE205208_httpwww_sped_fazenda_gov_brnfseinfAnRej', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 542, 6), )
+
+    
+    infAnRej = property(__infAnRej.value, __infAnRej.set, None, '\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __infAnRej.name() : __infAnRej
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE205208 = TE205208
+Namespace.addCategoryObject('typeBinding', 'TE205208', TE205208)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE305101 with content type ELEMENT_ONLY
+class TE305101 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE305101 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE305101')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 551, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE305101_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 553, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Cancelamento de NFS-e por Ofício".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}CPFAgTrib uses Python identifier CPFAgTrib
+    __CPFAgTrib = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), 'CPFAgTrib', '__httpwww_sped_fazenda_gov_brnfse_TE305101_httpwww_sped_fazenda_gov_brnfseCPFAgTrib', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 566, 6), )
+
+    
+    CPFAgTrib = property(__CPFAgTrib.value, __CPFAgTrib.set, None, '\n            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}nProcAdm uses Python identifier nProcAdm
+    __nProcAdm = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm'), 'nProcAdm', '__httpwww_sped_fazenda_gov_brnfse_TE305101_httpwww_sped_fazenda_gov_brnfsenProcAdm', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 573, 6), )
+
+    
+    nProcAdm = property(__nProcAdm.value, __nProcAdm.set, None, '\n            Número do processo administrativo municipal vinculado ao cancelamento de NFS-e por ofício.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xProcAdm uses Python identifier xProcAdm
+    __xProcAdm = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xProcAdm'), 'xProcAdm', '__httpwww_sped_fazenda_gov_brnfse_TE305101_httpwww_sped_fazenda_gov_brnfsexProcAdm', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 580, 6), )
+
+    
+    xProcAdm = property(__xProcAdm.value, __xProcAdm.set, None, '\n            Descrição para explicitar o motivo indicado neste evento.\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __CPFAgTrib.name() : __CPFAgTrib,
+        __nProcAdm.name() : __nProcAdm,
+        __xProcAdm.name() : __xProcAdm
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE305101 = TE305101
+Namespace.addCategoryObject('typeBinding', 'TE305101', TE305101)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE305102 with content type ELEMENT_ONLY
+class TE305102 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE305102 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE305102')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 590, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE305102_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 592, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Bloqueio de NFS-e por Ofício".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}CPFAgTrib uses Python identifier CPFAgTrib
+    __CPFAgTrib = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), 'CPFAgTrib', '__httpwww_sped_fazenda_gov_brnfse_TE305102_httpwww_sped_fazenda_gov_brnfseCPFAgTrib', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 605, 6), )
+
+    
+    CPFAgTrib = property(__CPFAgTrib.value, __CPFAgTrib.set, None, '\n            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xMotivo uses Python identifier xMotivo
+    __xMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), 'xMotivo', '__httpwww_sped_fazenda_gov_brnfse_TE305102_httpwww_sped_fazenda_gov_brnfsexMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 612, 6), )
+
+    
+    xMotivo = property(__xMotivo.value, __xMotivo.set, None, 'Descrição para explicitar o motivo indicado neste evento')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}codEvento uses Python identifier codEvento
+    __codEvento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'codEvento'), 'codEvento', '__httpwww_sped_fazenda_gov_brnfse_TE305102_httpwww_sped_fazenda_gov_brnfsecodEvento', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 617, 6), )
+
+    
+    codEvento = property(__codEvento.value, __codEvento.set, None, 'Descrição para explicitar o motivo indicado neste evento')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __CPFAgTrib.name() : __CPFAgTrib,
+        __xMotivo.name() : __xMotivo,
+        __codEvento.name() : __codEvento
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE305102 = TE305102
+Namespace.addCategoryObject('typeBinding', 'TE305102', TE305102)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TE305103 with content type ELEMENT_ONLY
+class TE305103 (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TE305103 with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TE305103')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 625, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xDesc uses Python identifier xDesc
+    __xDesc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), 'xDesc', '__httpwww_sped_fazenda_gov_brnfse_TE305103_httpwww_sped_fazenda_gov_brnfsexDesc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 627, 6), )
+
+    
+    xDesc = property(__xDesc.value, __xDesc.set, None, '\n            Descrição do evento: "Desbloqueio de NFS-e por Ofício".\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}CPFAgTrib uses Python identifier CPFAgTrib
+    __CPFAgTrib = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), 'CPFAgTrib', '__httpwww_sped_fazenda_gov_brnfse_TE305103_httpwww_sped_fazenda_gov_brnfseCPFAgTrib', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 640, 6), )
+
+    
+    CPFAgTrib = property(__CPFAgTrib.value, __CPFAgTrib.set, None, '\n            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}idBloqOfic uses Python identifier idBloqOfic
+    __idBloqOfic = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'idBloqOfic'), 'idBloqOfic', '__httpwww_sped_fazenda_gov_brnfse_TE305103_httpwww_sped_fazenda_gov_brnfseidBloqOfic', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 647, 6), )
+
+    
+    idBloqOfic = property(__idBloqOfic.value, __idBloqOfic.set, None, '\n            Referência ao Id da "Manifestação de rejeição da NFS-e" que originou o presente evento de anulação.\n          ')
+
+    _ElementMap.update({
+        __xDesc.name() : __xDesc,
+        __CPFAgTrib.name() : __CPFAgTrib,
+        __idBloqOfic.name() : __idBloqOfic
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TE305103 = TE305103
+Namespace.addCategoryObject('typeBinding', 'TE305103', TE305103)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TCListaEventos with content type ELEMENT_ONLY
+class TCListaEventos (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCListaEventos with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCListaEventos')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 657, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}codEvento uses Python identifier codEvento
+    __codEvento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'codEvento'), 'codEvento', '__httpwww_sped_fazenda_gov_brnfse_TCListaEventos_httpwww_sped_fazenda_gov_brnfsecodEvento', True, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 659, 6), )
+
+    
+    codEvento = property(__codEvento.value, __codEvento.set, None, '\n            Grupo de informações de documento utilizado para Dedução/Redução do valor do serviço\n          ')
+
+    _ElementMap.update({
+        __codEvento.name() : __codEvento
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TCListaEventos = TCListaEventos
+Namespace.addCategoryObject('typeBinding', 'TCListaEventos', TCListaEventos)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfoEventoRejeicao with content type ELEMENT_ONLY
+class TCInfoEventoRejeicao (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfoEventoRejeicao with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCInfoEventoRejeicao')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 669, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}cMotivo uses Python identifier cMotivo
+    __cMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), 'cMotivo', '__httpwww_sped_fazenda_gov_brnfse_TCInfoEventoRejeicao_httpwww_sped_fazenda_gov_brnfsecMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 671, 6), )
+
+    
+    cMotivo = property(__cMotivo.value, __cMotivo.set, None, '\n            Motivo da Rejeição da NFS-e:\n            1 - NFS-e em duplicidade;\n            2 - NFS-e já emitida pelo tomador;\n            3 - Não ocorrência do fato gerador;\n            4 - Erro quanto a responsabilidade tributária;\n            5 - Erro quanto ao valor do serviço, valor das deduções ou serviço prestado ou data do fato gerador;\n            9 - Outros;\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xMotivo uses Python identifier xMotivo
+    __xMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), 'xMotivo', '__httpwww_sped_fazenda_gov_brnfse_TCInfoEventoRejeicao_httpwww_sped_fazenda_gov_brnfsexMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 684, 6), )
+
+    
+    xMotivo = property(__xMotivo.value, __xMotivo.set, None, 'Descrição para explicitar o motivo indicado neste evento')
+
+    _ElementMap.update({
+        __cMotivo.name() : __cMotivo,
+        __xMotivo.name() : __xMotivo
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TCInfoEventoRejeicao = TCInfoEventoRejeicao
+Namespace.addCategoryObject('typeBinding', 'TCInfoEventoRejeicao', TCInfoEventoRejeicao)
+
+
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfoEventoAnulacaoRejeicao with content type ELEMENT_ONLY
+class TCInfoEventoAnulacaoRejeicao (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfoEventoAnulacaoRejeicao with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCInfoEventoAnulacaoRejeicao')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 692, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}CPFAgTrib uses Python identifier CPFAgTrib
+    __CPFAgTrib = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), 'CPFAgTrib', '__httpwww_sped_fazenda_gov_brnfse_TCInfoEventoAnulacaoRejeicao_httpwww_sped_fazenda_gov_brnfseCPFAgTrib', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 694, 6), )
+
+    
+    CPFAgTrib = property(__CPFAgTrib.value, __CPFAgTrib.set, None, '\n            CPF do agente da administração tributária municipal que efetuou o anulação da manifestação de rejeição da NFS-e.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}idEvManifRej uses Python identifier idEvManifRej
+    __idEvManifRej = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'idEvManifRej'), 'idEvManifRej', '__httpwww_sped_fazenda_gov_brnfse_TCInfoEventoAnulacaoRejeicao_httpwww_sped_fazenda_gov_brnfseidEvManifRej', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 701, 6), )
+
+    
+    idEvManifRej = property(__idEvManifRej.value, __idEvManifRej.set, None, '\n            Referência ao Id da "Manifestação de rejeição da NFS-e" que originou o presente evento de anulação.\n          ')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}xMotivo uses Python identifier xMotivo
+    __xMotivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), 'xMotivo', '__httpwww_sped_fazenda_gov_brnfse_TCInfoEventoAnulacaoRejeicao_httpwww_sped_fazenda_gov_brnfsexMotivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 708, 6), )
+
+    
+    xMotivo = property(__xMotivo.value, __xMotivo.set, None, 'Descrição para explicitar o motivo da anluação')
+
+    _ElementMap.update({
+        __CPFAgTrib.name() : __CPFAgTrib,
+        __idEvManifRej.name() : __idEvManifRej,
+        __xMotivo.name() : __xMotivo
+    })
+    _AttributeMap.update({
+        
+    })
+_module_typeBindings.TCInfoEventoAnulacaoRejeicao = TCInfoEventoAnulacaoRejeicao
+Namespace.addCategoryObject('typeBinding', 'TCInfoEventoAnulacaoRejeicao', TCInfoEventoAnulacaoRejeicao)
 
 
 # Complex type {http://www.sped.fazenda.gov.br/nfse}TCNFSe with content type ELEMENT_ONLY
@@ -7425,285 +8170,380 @@ _module_typeBindings.TCInfDPS = TCInfDPS
 Namespace.addCategoryObject('typeBinding', 'TCInfDPS', TCInfDPS)
 
 
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TCEvento with content type ELEMENT_ONLY
+class TCEvento (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCEvento with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCEvento')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 11, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}infEvento uses Python identifier infEvento
+    __infEvento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'infEvento'), 'infEvento', '__httpwww_sped_fazenda_gov_brnfse_TCEvento_httpwww_sped_fazenda_gov_brnfseinfEvento', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 13, 6), )
+
+    
+    infEvento = property(__infEvento.value, __infEvento.set, None, None)
+
+    
+    # Element {http://www.w3.org/2000/09/xmldsig#}Signature uses Python identifier Signature
+    __Signature = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), 'Signature', '__httpwww_sped_fazenda_gov_brnfse_TCEvento_httpwww_w3_org200009xmldsigSignature', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/xmldsig-core-schema.xsd', 43, 0), )
+
+    
+    Signature = property(__Signature.value, __Signature.set, None, None)
+
+    
+    # Attribute versao uses Python identifier versao
+    __versao = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'versao'), 'versao', '__httpwww_sped_fazenda_gov_brnfse_TCEvento_versao', _module_typeBindings.TVerNFSe, required=True)
+    __versao._DeclarationLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 16, 4)
+    __versao._UseLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 16, 4)
+    
+    versao = property(__versao.value, __versao.set, None, None)
+
+    _ElementMap.update({
+        __infEvento.name() : __infEvento,
+        __Signature.name() : __Signature
+    })
+    _AttributeMap.update({
+        __versao.name() : __versao
+    })
+_module_typeBindings.TCEvento = TCEvento
+Namespace.addCategoryObject('typeBinding', 'TCEvento', TCEvento)
 
 
-TCEnderContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CEP'), TSCEP, scope=TCEnderContribuinteCNC, documentation='Código de endereçamento postal do estabelecimento do contribuinte', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 14, 6)))
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfEvento with content type ELEMENT_ONLY
+class TCInfEvento (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfEvento with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCInfEvento')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 19, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}verAplic uses Python identifier verAplic
+    __verAplic = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'verAplic'), 'verAplic', '__httpwww_sped_fazenda_gov_brnfse_TCInfEvento_httpwww_sped_fazenda_gov_brnfseverAplic', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 21, 6), )
 
-TCEnderContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nro'), TSNumeroEndereco, scope=TCEnderContribuinteCNC, documentation='Número do estabelecimento no logradouro informado', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 19, 6)))
+    
+    verAplic = property(__verAplic.value, __verAplic.set, None, 'Versão do aplicativo que gerou o pedido do evento.')
 
-TCEnderContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xCpl'), TSComplementoEndereco, scope=TCEnderContribuinteCNC, documentation='Informação complementar para identificação do endereço do contribuinte', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 24, 6)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}ambGer uses Python identifier ambGer
+    __ambGer = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'ambGer'), 'ambGer', '__httpwww_sped_fazenda_gov_brnfse_TCInfEvento_httpwww_sped_fazenda_gov_brnfseambGer', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 26, 6), )
 
-def _BuildAutomaton ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton
-    del _BuildAutomaton
-    import pyxb.utils.fac as fac
+    
+    ambGer = property(__ambGer.value, __ambGer.set, None, 'Ambiente gerador do evento')
 
-    counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 24, 6))
-    counters.add(cc_0)
-    states = []
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCEnderContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CEP')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 14, 6))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TCEnderContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nro')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 19, 6))
-    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_1)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(TCEnderContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xCpl')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 24, 6))
-    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_2)
-    transitions = []
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    st_0._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    st_1._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    st_2._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderContribuinteCNC._Automaton = _BuildAutomaton()
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}nSeqEvento uses Python identifier nSeqEvento
+    __nSeqEvento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nSeqEvento'), 'nSeqEvento', '__httpwww_sped_fazenda_gov_brnfse_TCInfEvento_httpwww_sped_fazenda_gov_brnfsenSeqEvento', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 31, 6), )
 
+    
+    nSeqEvento = property(__nSeqEvento.value, __nSeqEvento.set, None, 'Sequencial do evento para o mesmo tipo de evento. Para maioria dos eventos nSeqEvento=1. Nos casos em que possa existir mais de um evento do mesmo tipo o ambiente gerador deverá numerar de forma sequencial.')
 
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}dhProc uses Python identifier dhProc
+    __dhProc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'dhProc'), 'dhProc', '__httpwww_sped_fazenda_gov_brnfse_TCInfEvento_httpwww_sped_fazenda_gov_brnfsedhProc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 36, 6), )
 
+    
+    dhProc = property(__dhProc.value, __dhProc.set, None, '\n            Data/Hora do registro do evento.\n            Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD"\n          ')
 
-TCInfCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tpAmb'), TSTipoAmbiente, scope=TCInfCNC, documentation='Identificação do Ambiente: 1 - Produção; 2 - Homologação', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 41, 6)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}nDFe uses Python identifier nDFe
+    __nDFe = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nDFe'), 'nDFe', '__httpwww_sped_fazenda_gov_brnfse_TCInfEvento_httpwww_sped_fazenda_gov_brnfsenDFe', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 44, 6), )
 
-TCInfCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'dhGeracaoArquivo'), TSDateTimeUTC, scope=TCInfCNC, documentation='Data e hora da geração do arquivo CNC. Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 46, 6)))
+    
+    nDFe = property(__nDFe.value, __nDFe.set, None, 'Ambiente gerador do evento')
 
-TCInfCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'verAplic'), TSVerAplic, scope=TCInfCNC, documentation='Versão do aplicativo que gerou Informações para cadastramento de novos contribuintes CNC', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 51, 6)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}pedRegEvento uses Python identifier pedRegEvento
+    __pedRegEvento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'pedRegEvento'), 'pedRegEvento', '__httpwww_sped_fazenda_gov_brnfse_TCInfEvento_httpwww_sped_fazenda_gov_brnfsepedRegEvento', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 49, 6), )
 
-TCInfCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'contribuintesCnc'), CTD_ANON, scope=TCInfCNC, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 56, 6)))
+    
+    pedRegEvento = property(__pedRegEvento.value, __pedRegEvento.set, None, 'Leiaute do pedido de registro do evento gerado pelo autor do evento')
 
-def _BuildAutomaton_ ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_
-    del _BuildAutomaton_
-    import pyxb.utils.fac as fac
+    
+    # Attribute Id uses Python identifier Id
+    __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_sped_fazenda_gov_brnfse_TCInfEvento_Id', _module_typeBindings.TSIdEvento, required=True)
+    __Id._DeclarationLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 55, 4)
+    __Id._UseLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 55, 4)
+    
+    Id = property(__Id.value, __Id.set, None, None)
 
-    counters = set()
-    states = []
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tpAmb')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 41, 6))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'dhGeracaoArquivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 46, 6))
-    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_1)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'verAplic')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 51, 6))
-    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_2)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TCInfCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'contribuintesCnc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 56, 6))
-    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_3)
-    transitions = []
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    st_0._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    st_1._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    st_2._set_transitionSet(transitions)
-    transitions = []
-    st_3._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-TCInfCNC._Automaton = _BuildAutomaton_()
+    _ElementMap.update({
+        __verAplic.name() : __verAplic,
+        __ambGer.name() : __ambGer,
+        __nSeqEvento.name() : __nSeqEvento,
+        __dhProc.name() : __dhProc,
+        __nDFe.name() : __nDFe,
+        __pedRegEvento.name() : __pedRegEvento
+    })
+    _AttributeMap.update({
+        __Id.name() : __Id
+    })
+_module_typeBindings.TCInfEvento = TCInfEvento
+Namespace.addCategoryObject('typeBinding', 'TCInfEvento', TCInfEvento)
 
 
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TCPedRegEvt with content type ELEMENT_ONLY
+class TCPedRegEvt (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCPedRegEvt with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCPedRegEvt')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 58, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}infPedReg uses Python identifier infPedReg
+    __infPedReg = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'infPedReg'), 'infPedReg', '__httpwww_sped_fazenda_gov_brnfse_TCPedRegEvt_httpwww_sped_fazenda_gov_brnfseinfPedReg', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 60, 6), )
+
+    
+    infPedReg = property(__infPedReg.value, __infPedReg.set, None, None)
+
+    
+    # Element {http://www.w3.org/2000/09/xmldsig#}Signature uses Python identifier Signature
+    __Signature = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), 'Signature', '__httpwww_sped_fazenda_gov_brnfse_TCPedRegEvt_httpwww_w3_org200009xmldsigSignature', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/xmldsig-core-schema.xsd', 43, 0), )
+
+    
+    Signature = property(__Signature.value, __Signature.set, None, None)
+
+    
+    # Attribute versao uses Python identifier versao
+    __versao = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'versao'), 'versao', '__httpwww_sped_fazenda_gov_brnfse_TCPedRegEvt_versao', _module_typeBindings.TVerNFSe, required=True)
+    __versao._DeclarationLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 63, 4)
+    __versao._UseLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 63, 4)
+    
+    versao = property(__versao.value, __versao.set, None, None)
+
+    _ElementMap.update({
+        __infPedReg.name() : __infPedReg,
+        __Signature.name() : __Signature
+    })
+    _AttributeMap.update({
+        __versao.name() : __versao
+    })
+_module_typeBindings.TCPedRegEvt = TCPedRegEvt
+Namespace.addCategoryObject('typeBinding', 'TCPedRegEvt', TCPedRegEvt)
 
 
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'contribuinteCnc'), TCInfoContribuinteCNC, scope=CTD_ANON, documentation='Grupo de informações cadastramento de novos contribuintes CNC', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 59, 12)))
+# Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfPedReg with content type ELEMENT_ONLY
+class TCInfPedReg (pyxb.binding.basis.complexTypeDefinition):
+    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfPedReg with content type ELEMENT_ONLY"""
+    _TypeDefinition = None
+    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
+    _Abstract = False
+    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCInfPedReg')
+    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 66, 2)
+    _ElementMap = {}
+    _AttributeMap = {}
+    # Base type is pyxb.binding.datatypes.anyType
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}tpAmb uses Python identifier tpAmb
+    __tpAmb = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tpAmb'), 'tpAmb', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsetpAmb', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 68, 6), )
 
-def _BuildAutomaton_2 ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_2
-    del _BuildAutomaton_2
-    import pyxb.utils.fac as fac
+    
+    tpAmb = property(__tpAmb.value, __tpAmb.set, None, 'Identificação do Ambiente: 1 - Produção; 2 - Homologação')
 
-    counters = set()
-    states = []
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'contribuinteCnc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 59, 12))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    st_0._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-CTD_ANON._Automaton = _BuildAutomaton_2()
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}verAplic uses Python identifier verAplic
+    __verAplic = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'verAplic'), 'verAplic', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfseverAplic', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 73, 6), )
 
+    
+    verAplic = property(__verAplic.value, __verAplic.set, None, 'Versão do aplicativo que gerou o pedido de registro de evento.')
 
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}dhEvento uses Python identifier dhEvento
+    __dhEvento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'dhEvento'), 'dhEvento', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsedhEvento', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 78, 6), )
 
+    
+    dhEvento = property(__dhEvento.value, __dhEvento.set, None, '\n            Data e hora do evento no formato AAAA-MM-DDThh:mm:ssTZD (UTC - Universal Coordinated Time, onde TZD pode ser -02:00 (Fernando de Noronha), -03:00 (Brasília) ou -04:00 (Manaus), no horário de verão serão -01:00, -02:00 e -03:00.\n            Ex.: 2010-08-19T13:00:15-03:00.\n          ')
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CNPJ'), TSCNPJ, scope=TCInfoContribuinteCNC, documentation='Número do CNPJ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 76, 8)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}CNPJAutor uses Python identifier CNPJAutor
+    __CNPJAutor = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CNPJAutor'), 'CNPJAutor', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfseCNPJAutor', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 90, 8), )
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPF'), TSCPF, scope=TCInfoContribuinteCNC, documentation='Número do CPF', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 81, 8)))
+    
+    CNPJAutor = property(__CNPJAutor.value, __CNPJAutor.set, None, 'CNPJ do autor do evento.')
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IM'), TSInscMun, scope=TCInfoContribuinteCNC, documentation='Número da inscrição municipal', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 87, 6)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}CPFAutor uses Python identifier CPFAutor
+    __CPFAutor = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPFAutor'), 'CPFAutor', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfseCPFAutor', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 95, 8), )
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'dInscricaoMunicipal'), TSData, scope=TCInfoContribuinteCNC, documentation=' Data da Inscrição Municipal: Dia, mês e ano (AAAAMMDD)', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 92, 6)))
+    
+    CPFAutor = property(__CPFAutor.value, __CPFAutor.set, None, 'CPF do autor do evento.')
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'enderContribuinteCNC'), TCEnderContribuinteCNC, scope=TCInfoContribuinteCNC, documentation='Grupo de informações do endereço do contribuinte do CNC', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 97, 6)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}chNFSe uses Python identifier chNFSe
+    __chNFSe = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'chNFSe'), 'chNFSe', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsechNFSe', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 101, 6), )
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fone'), TSTelefone, scope=TCInfoContribuinteCNC, documentation='\n            Número do telefone do prestador:\n            Preencher com o Código DDD + número do telefone.\n            Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 102, 6)))
+    
+    chNFSe = property(__chNFSe.value, __chNFSe.set, None, 'Chave de Acesso da NFS-e vinculada ao Evento')
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'email'), TSEmail, scope=TCInfoContribuinteCNC, documentation='Endereço de e-mail para contato com o contribuinte', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 111, 6)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}nPedRegEvento uses Python identifier nPedRegEvento
+    __nPedRegEvento = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nPedRegEvento'), 'nPedRegEvento', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsenPedRegEvento', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 106, 6), )
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'regEspTribContribuinteCNC'), TSRegEspTrib, scope=TCInfoContribuinteCNC, documentation='\n            Tipos de Regimes Especiais de Tributação:\n            0 - Nenhum;\n            1 - Ato Cooperado (Cooperativa);\n            2 - Estimativa;\n            3 - Microempresa Municipal;\n            4 - Notário ou Registrador;\n            5 - Profissional Autônomo;\n            6 - Sociedade de Profissionais;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 116, 6)))
+    
+    nPedRegEvento = property(__nPedRegEvento.value, __nPedRegEvento.set, None, '\n            Número do pedido do registro de evento para o mesmo tipo de evento.\n            Para os eventos que ocorrem somente uma vez, como é o caso do cancelamento, o nPedRegEvento deve ser igual a 1.\n            Os eventos que podem ocorrer mais de uma vez devem ter o nPedRegEvento único.\n          ')
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'situacaoCadastroContribuinte'), TSSituacaoCadastroContribuinte, scope=TCInfoContribuinteCNC, documentation='\n            Identificação da situação do cadastro do contribuinte\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 130, 6)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e101101 uses Python identifier e101101
+    __e101101 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e101101'), 'e101101', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee101101', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 116, 8), )
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'motivoSituacaoCadastroContribuinte'), TSMotivoSituacaoCadastroContribuinte, scope=TCInfoContribuinteCNC, documentation='\n            Motivo pelo qual o contribuinte se enquadra na situação informada\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 137, 6)))
+    
+    e101101 = property(__e101101.value, __e101101.set, None, 'Evento de cancelamento')
 
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'situacaoEmissaoNFSE'), TSSituacaoEmissaoNFSE, scope=TCInfoContribuinteCNC, documentation='\n            Situação Emissão NFS-e:\n            0 - Não Habilitado;\n            1 - Habilitado;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 144, 6)))
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e105102 uses Python identifier e105102
+    __e105102 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e105102'), 'e105102', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee105102', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 121, 8), )
 
-def _BuildAutomaton_3 ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_3
-    del _BuildAutomaton_3
-    import pyxb.utils.fac as fac
+    
+    e105102 = property(__e105102.value, __e105102.set, None, 'Evento de cancelamento por substituição')
 
-    counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 87, 6))
-    counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 102, 6))
-    counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 111, 6))
-    counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 130, 6))
-    counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 137, 6))
-    counters.add(cc_4)
-    states = []
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CNPJ')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 76, 8))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPF')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 81, 8))
-    st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_1)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IM')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 87, 6))
-    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_2)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'dInscricaoMunicipal')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 92, 6))
-    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_3)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'enderContribuinteCNC')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 97, 6))
-    st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_4)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'fone')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 102, 6))
-    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_5)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'email')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 111, 6))
-    st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_6)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'regEspTribContribuinteCNC')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 116, 6))
-    st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_7)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'situacaoCadastroContribuinte')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 130, 6))
-    st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_8)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'motivoSituacaoCadastroContribuinte')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 137, 6))
-    st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_9)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'situacaoEmissaoNFSE')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 144, 6))
-    st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_10)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    st_0._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    st_1._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    st_2._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_4, [
-         ]))
-    st_3._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
-    transitions.append(fac.Transition(st_7, [
-         ]))
-    st_4._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, True) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_1, False) ]))
-    st_5._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, True) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False) ]))
-    st_6._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_8, [
-         ]))
-    transitions.append(fac.Transition(st_9, [
-         ]))
-    transitions.append(fac.Transition(st_10, [
-         ]))
-    st_7._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_3, True) ]))
-    transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_3, False) ]))
-    transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_3, False) ]))
-    st_8._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_4, True) ]))
-    transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_4, False) ]))
-    st_9._set_transitionSet(transitions)
-    transitions = []
-    st_10._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoContribuinteCNC._Automaton = _BuildAutomaton_3()
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e101103 uses Python identifier e101103
+    __e101103 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e101103'), 'e101103', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee101103', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 126, 8), )
+
+    
+    e101103 = property(__e101103.value, __e101103.set, None, 'Solicitação de Análise Fiscal para Cancelamento de NFS-e')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e105104 uses Python identifier e105104
+    __e105104 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e105104'), 'e105104', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee105104', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 131, 8), )
+
+    
+    e105104 = property(__e105104.value, __e105104.set, None, 'Cancelamento de NFS-e Deferido por Análise Fiscal')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e105105 uses Python identifier e105105
+    __e105105 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e105105'), 'e105105', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee105105', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 136, 8), )
+
+    
+    e105105 = property(__e105105.value, __e105105.set, None, 'Cancelamento de NFS-e Indeferido por Análise Fiscal')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e202201 uses Python identifier e202201
+    __e202201 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e202201'), 'e202201', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee202201', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 141, 8), )
+
+    
+    e202201 = property(__e202201.value, __e202201.set, None, 'Confirmação do Prestador')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e203202 uses Python identifier e203202
+    __e203202 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e203202'), 'e203202', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee203202', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 146, 8), )
+
+    
+    e203202 = property(__e203202.value, __e203202.set, None, 'Confirmação do Tomador')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e204203 uses Python identifier e204203
+    __e204203 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e204203'), 'e204203', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee204203', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 151, 8), )
+
+    
+    e204203 = property(__e204203.value, __e204203.set, None, 'Confirmação do Intermediário')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e205204 uses Python identifier e205204
+    __e205204 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e205204'), 'e205204', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee205204', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 156, 8), )
+
+    
+    e205204 = property(__e205204.value, __e205204.set, None, 'Confirmação Tácita')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e202205 uses Python identifier e202205
+    __e202205 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e202205'), 'e202205', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee202205', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 161, 8), )
+
+    
+    e202205 = property(__e202205.value, __e202205.set, None, 'Rejeição do Prestador')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e203206 uses Python identifier e203206
+    __e203206 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e203206'), 'e203206', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee203206', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 166, 8), )
+
+    
+    e203206 = property(__e203206.value, __e203206.set, None, 'Rejeição do Tomador')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e204207 uses Python identifier e204207
+    __e204207 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e204207'), 'e204207', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee204207', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 171, 8), )
+
+    
+    e204207 = property(__e204207.value, __e204207.set, None, 'Rejeição do Intermediário')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e205208 uses Python identifier e205208
+    __e205208 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e205208'), 'e205208', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee205208', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 176, 8), )
+
+    
+    e205208 = property(__e205208.value, __e205208.set, None, 'Anulação da Rejeição')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e305101 uses Python identifier e305101
+    __e305101 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e305101'), 'e305101', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee305101', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 181, 8), )
+
+    
+    e305101 = property(__e305101.value, __e305101.set, None, 'Cancelamento de NFS-e por Ofício')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e305102 uses Python identifier e305102
+    __e305102 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e305102'), 'e305102', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee305102', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 186, 8), )
+
+    
+    e305102 = property(__e305102.value, __e305102.set, None, 'Bloqueio de NFS-e por Ofício')
+
+    
+    # Element {http://www.sped.fazenda.gov.br/nfse}e305103 uses Python identifier e305103
+    __e305103 = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'e305103'), 'e305103', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_httpwww_sped_fazenda_gov_brnfsee305103', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 191, 8), )
+
+    
+    e305103 = property(__e305103.value, __e305103.set, None, 'Desbloqueio de NFS-e por Ofício')
+
+    
+    # Attribute Id uses Python identifier Id
+    __Id = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'Id'), 'Id', '__httpwww_sped_fazenda_gov_brnfse_TCInfPedReg_Id', _module_typeBindings.TSIdPedRefEvt, required=True)
+    __Id._DeclarationLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 198, 4)
+    __Id._UseLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 198, 4)
+    
+    Id = property(__Id.value, __Id.set, None, None)
+
+    _ElementMap.update({
+        __tpAmb.name() : __tpAmb,
+        __verAplic.name() : __verAplic,
+        __dhEvento.name() : __dhEvento,
+        __CNPJAutor.name() : __CNPJAutor,
+        __CPFAutor.name() : __CPFAutor,
+        __chNFSe.name() : __chNFSe,
+        __nPedRegEvento.name() : __nPedRegEvento,
+        __e101101.name() : __e101101,
+        __e105102.name() : __e105102,
+        __e101103.name() : __e101103,
+        __e105104.name() : __e105104,
+        __e105105.name() : __e105105,
+        __e202201.name() : __e202201,
+        __e203202.name() : __e203202,
+        __e204203.name() : __e204203,
+        __e205204.name() : __e205204,
+        __e202205.name() : __e202205,
+        __e203206.name() : __e203206,
+        __e204207.name() : __e204207,
+        __e205208.name() : __e205208,
+        __e305101.name() : __e305101,
+        __e305102.name() : __e305102,
+        __e305103.name() : __e305103
+    })
+    _AttributeMap.update({
+        __Id.name() : __Id
+    })
+_module_typeBindings.TCInfPedReg = TCInfPedReg
+Namespace.addCategoryObject('typeBinding', 'TCInfPedReg', TCInfPedReg)
 
 
 
@@ -7724,10 +8564,10 @@ TCEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'email'), TSEmail, scope=TCEmitente, documentation='E-mail do emitente.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 202, 6)))
 
-def _BuildAutomaton_4 ():
+def _BuildAutomaton ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_4
-    del _BuildAutomaton_4
+    global _BuildAutomaton
+    del _BuildAutomaton
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -7821,7 +8661,7 @@ def _BuildAutomaton_4 ():
         fac.UpdateInstruction(cc_3, True) ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEmitente._Automaton = _BuildAutomaton_4()
+TCEmitente._Automaton = _BuildAutomaton()
 
 
 
@@ -7844,10 +8684,10 @@ TCValoresNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCValoresNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xOutInf'), TSDesc2000, scope=TCValoresNFSe, documentation='\n            Uso da Administração Tributária Municipal.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 276, 6)))
 
-def _BuildAutomaton_5 ():
+def _BuildAutomaton_ ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_5
-    del _BuildAutomaton_5
+    global _BuildAutomaton_
+    del _BuildAutomaton_
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -7998,7 +8838,7 @@ def _BuildAutomaton_5 ():
         fac.UpdateInstruction(cc_7, True) ]))
     st_8._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCValoresNFSe._Automaton = _BuildAutomaton_5()
+TCValoresNFSe._Automaton = _BuildAutomaton_()
 
 
 
@@ -8013,10 +8853,10 @@ TCRTCIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCRTCIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'totCIBS'), TCRTCTotalCIBS, scope=TCRTCIBSCBS, documentation='\n            Grupo de Totalizadores\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 316, 6)))
 
-def _BuildAutomaton_6 ():
+def _BuildAutomaton_2 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_6
-    del _BuildAutomaton_6
+    global _BuildAutomaton_2
+    del _BuildAutomaton_2
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8060,7 +8900,7 @@ def _BuildAutomaton_6 ():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCIBSCBS._Automaton = _BuildAutomaton_6()
+TCRTCIBSCBS._Automaton = _BuildAutomaton_2()
 
 
 
@@ -8075,10 +8915,10 @@ TCRTCValoresIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expande
 
 TCRTCValoresIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fed'), TCRTCValoresIBSCBSFed, scope=TCRTCValoresIBSCBS, documentation='\n            Grupo de Informações relativas aos valores da CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 360, 6)))
 
-def _BuildAutomaton_7 ():
+def _BuildAutomaton_3 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_7
-    del _BuildAutomaton_7
+    global _BuildAutomaton_3
+    del _BuildAutomaton_3
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8128,7 +8968,7 @@ def _BuildAutomaton_7 ():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCValoresIBSCBS._Automaton = _BuildAutomaton_7()
+TCRTCValoresIBSCBS._Automaton = _BuildAutomaton_3()
 
 
 
@@ -8139,10 +8979,10 @@ TCRTCValoresIBSCBSUF._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expan
 
 TCRTCValoresIBSCBSUF._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pAliqEfetUF'), TSDec2V2, scope=TCRTCValoresIBSCBSUF, documentation='\n            pAliqEfetUF = pIBSUF x (1 - pRedAliqUF) x (1 - pRedutor)\n            Se pRedAliqUF não for informado na DPS, então pAliqEfetUF é a própria pIBSUF\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 386, 6)))
 
-def _BuildAutomaton_8 ():
+def _BuildAutomaton_4 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_8
-    del _BuildAutomaton_8
+    global _BuildAutomaton_4
+    del _BuildAutomaton_4
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8176,7 +9016,7 @@ def _BuildAutomaton_8 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCValoresIBSCBSUF._Automaton = _BuildAutomaton_8()
+TCRTCValoresIBSCBSUF._Automaton = _BuildAutomaton_4()
 
 
 
@@ -8187,10 +9027,10 @@ TCRTCValoresIBSCBSMun._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCValoresIBSCBSMun._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pAliqEfetMun'), TSDec2V2, scope=TCRTCValoresIBSCBSMun, documentation='\n            pAliqEfetMun = pIBSMun x (1 - pRedAliqMun) x (1 - pRedutor)\n            Se pRedAliqMun não for informado na DPS, então pAliqEfetMun é a própria pIBSMun\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 413, 6)))
 
-def _BuildAutomaton_9 ():
+def _BuildAutomaton_5 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_9
-    del _BuildAutomaton_9
+    global _BuildAutomaton_5
+    del _BuildAutomaton_5
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8224,7 +9064,7 @@ def _BuildAutomaton_9 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCValoresIBSCBSMun._Automaton = _BuildAutomaton_9()
+TCRTCValoresIBSCBSMun._Automaton = _BuildAutomaton_5()
 
 
 
@@ -8235,10 +9075,10 @@ TCRTCValoresIBSCBSFed._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCValoresIBSCBSFed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pAliqEfetCBS'), TSDec2V2, scope=TCRTCValoresIBSCBSFed, documentation='\n            pAliqEfetCBS = pCBS x (1 - pRedAliqCBS) x (1 - pRedutor)\n            Se pRedAliqCBS não for informado na DPS, então pAliqEfetCBS é a própria pCBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 440, 6)))
 
-def _BuildAutomaton_10 ():
+def _BuildAutomaton_6 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_10
-    del _BuildAutomaton_10
+    global _BuildAutomaton_6
+    del _BuildAutomaton_6
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8272,7 +9112,7 @@ def _BuildAutomaton_10 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCValoresIBSCBSFed._Automaton = _BuildAutomaton_10()
+TCRTCValoresIBSCBSFed._Automaton = _BuildAutomaton_6()
 
 
 
@@ -8287,10 +9127,10 @@ TCRTCTotalCIBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNam
 
 TCRTCTotalCIBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'gTribCompraGov'), TCRTCTotalTribCompraGov, scope=TCRTCTotalCIBS, documentation='\n            Grupo de informações da composição do valor do IBS e da CBS em compras governamentais\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 484, 6)))
 
-def _BuildAutomaton_11 ():
+def _BuildAutomaton_7 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_11
-    del _BuildAutomaton_11
+    global _BuildAutomaton_7
+    del _BuildAutomaton_7
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8346,7 +9186,7 @@ def _BuildAutomaton_11 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalCIBS._Automaton = _BuildAutomaton_11()
+TCRTCTotalCIBS._Automaton = _BuildAutomaton_7()
 
 
 
@@ -8359,10 +9199,10 @@ TCRTCTotalIBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCRTCTotalIBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'gIBSMunTot'), TCRTCTotalIBSMun, scope=TCRTCTotalIBS, documentation='\n            Grupo de valores referentes ao IBS Municipal\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 518, 6)))
 
-def _BuildAutomaton_12 ():
+def _BuildAutomaton_8 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_12
-    del _BuildAutomaton_12
+    global _BuildAutomaton_8
+    del _BuildAutomaton_8
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8404,7 +9244,7 @@ def _BuildAutomaton_12 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalIBS._Automaton = _BuildAutomaton_12()
+TCRTCTotalIBS._Automaton = _BuildAutomaton_8()
 
 
 
@@ -8413,10 +9253,10 @@ TCRTCTotalIBSCredPres._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCTotalIBSCredPres._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vCredPresIBS'), TSDec15V2, scope=TCRTCTotalIBSCredPres, documentation='\n            Valor do Crédito Presumido para o IBS\n            vCredPresIBS = vBC x pCredPresIBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 537, 6)))
 
-def _BuildAutomaton_13 ():
+def _BuildAutomaton_9 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_13
-    del _BuildAutomaton_13
+    global _BuildAutomaton_9
+    del _BuildAutomaton_9
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8436,7 +9276,7 @@ def _BuildAutomaton_13 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalIBSCredPres._Automaton = _BuildAutomaton_13()
+TCRTCTotalIBSCredPres._Automaton = _BuildAutomaton_9()
 
 
 
@@ -8445,10 +9285,10 @@ TCRTCTotalIBSUF._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCRTCTotalIBSUF._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vIBSUF'), TSDec15V2, scope=TCRTCTotalIBSUF, documentation='\n            Total valor do IBS estadual\n            vIBSUF = vBC x (pIBSUF ou pAliqEfetUF)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 558, 6)))
 
-def _BuildAutomaton_14 ():
+def _BuildAutomaton_10 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_14
-    del _BuildAutomaton_14
+    global _BuildAutomaton_10
+    del _BuildAutomaton_10
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8468,7 +9308,7 @@ def _BuildAutomaton_14 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalIBSUF._Automaton = _BuildAutomaton_14()
+TCRTCTotalIBSUF._Automaton = _BuildAutomaton_10()
 
 
 
@@ -8477,10 +9317,10 @@ TCRTCTotalIBSMun._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedN
 
 TCRTCTotalIBSMun._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vIBSMun'), TSDec15V2, scope=TCRTCTotalIBSMun, documentation='\n            Total valor do IBS municipal\n            vIBSMun = vBC x (pIBSMun ou pAliqEfetMun)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 579, 6)))
 
-def _BuildAutomaton_15 ():
+def _BuildAutomaton_11 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_15
-    del _BuildAutomaton_15
+    global _BuildAutomaton_11
+    del _BuildAutomaton_11
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8500,7 +9340,7 @@ def _BuildAutomaton_15 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalIBSMun._Automaton = _BuildAutomaton_15()
+TCRTCTotalIBSMun._Automaton = _BuildAutomaton_11()
 
 
 
@@ -8511,10 +9351,10 @@ TCRTCTotalCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCRTCTotalCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vCBS'), TSDec15V2, scope=TCRTCTotalCBS, documentation='\n            Total valor da CBS da União\n            vCBS = vBC x (pCBS ou pAliqEfetCBS)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 607, 6)))
 
-def _BuildAutomaton_16 ():
+def _BuildAutomaton_12 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_16
-    del _BuildAutomaton_16
+    global _BuildAutomaton_12
+    del _BuildAutomaton_12
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8546,7 +9386,7 @@ def _BuildAutomaton_16 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalCBS._Automaton = _BuildAutomaton_16()
+TCRTCTotalCBS._Automaton = _BuildAutomaton_12()
 
 
 
@@ -8555,10 +9395,10 @@ TCRTCTotalCBSCredPres._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCTotalCBSCredPres._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vCredPresCBS'), TSDec15V2, scope=TCRTCTotalCBSCredPres, documentation='\n            Valor do Crédito Presumido da CBS\n            vCredPresCBS = vBC x pCredPresCBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 627, 6)))
 
-def _BuildAutomaton_17 ():
+def _BuildAutomaton_13 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_17
-    del _BuildAutomaton_17
+    global _BuildAutomaton_13
+    del _BuildAutomaton_13
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8578,7 +9418,7 @@ def _BuildAutomaton_17 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalCBSCredPres._Automaton = _BuildAutomaton_17()
+TCRTCTotalCBSCredPres._Automaton = _BuildAutomaton_13()
 
 
 
@@ -8595,10 +9435,10 @@ TCRTCTotalTribRegular._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCTotalTribRegular._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vTribRegCBS'), TSDec15V2, scope=TCRTCTotalTribRegular, documentation='\n            Valor da tributação regular da CBS\n            vTribRegCBS = vBC x pAliqEfeRegCBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 677, 6)))
 
-def _BuildAutomaton_18 ():
+def _BuildAutomaton_14 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_18
-    del _BuildAutomaton_18
+    global _BuildAutomaton_14
+    del _BuildAutomaton_14
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8650,7 +9490,7 @@ def _BuildAutomaton_18 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalTribRegular._Automaton = _BuildAutomaton_18()
+TCRTCTotalTribRegular._Automaton = _BuildAutomaton_14()
 
 
 
@@ -8667,10 +9507,10 @@ TCRTCTotalTribCompraGov._AddElement(pyxb.binding.basis.element(pyxb.namespace.Ex
 
 TCRTCTotalTribCompraGov._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vCBS'), TSDec15V2, scope=TCRTCTotalTribCompraGov, documentation='\n            Valor do Tributo da CBS calculado\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 725, 6)))
 
-def _BuildAutomaton_19 ():
+def _BuildAutomaton_15 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_19
-    del _BuildAutomaton_19
+    global _BuildAutomaton_15
+    del _BuildAutomaton_15
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8722,7 +9562,7 @@ def _BuildAutomaton_19 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalTribCompraGov._Automaton = _BuildAutomaton_19()
+TCRTCTotalTribCompraGov._Automaton = _BuildAutomaton_15()
 
 
 
@@ -8733,10 +9573,10 @@ TCSubstituicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNam
 
 TCSubstituicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TCSubstituicao, documentation='Descrição do motivo da substituição da NFS-e', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 868, 6)))
 
-def _BuildAutomaton_20 ():
+def _BuildAutomaton_16 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_20
-    del _BuildAutomaton_20
+    global _BuildAutomaton_16
+    del _BuildAutomaton_16
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8769,7 +9609,7 @@ def _BuildAutomaton_20 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCSubstituicao._Automaton = _BuildAutomaton_20()
+TCSubstituicao._Automaton = _BuildAutomaton_16()
 
 
 
@@ -8796,10 +9636,10 @@ TCInfoPrestador._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCInfoPrestador._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'regTrib'), TCRegTrib, scope=TCInfoPrestador, documentation='\n            Grupo de informações relativas aos regimes de tributação do prestador de serviços\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 942, 6)))
 
-def _BuildAutomaton_21 ():
+def _BuildAutomaton_17 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_21
-    del _BuildAutomaton_21
+    global _BuildAutomaton_17
+    del _BuildAutomaton_17
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8993,7 +9833,7 @@ def _BuildAutomaton_21 ():
     transitions = []
     st_10._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoPrestador._Automaton = _BuildAutomaton_21()
+TCInfoPrestador._Automaton = _BuildAutomaton_17()
 
 
 
@@ -9004,10 +9844,10 @@ TCRegTrib._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Nam
 
 TCRegTrib._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'regEspTrib'), TSRegEspTrib, scope=TCRegTrib, documentation='\n            Tipos de Regimes Especiais de Tributação:\n            0 - Nenhum;\n            1 - Ato Cooperado (Cooperativa);\n            2 - Estimativa;\n            3 - Microempresa Municipal;\n            4 - Notário ou Registrador;\n            5 - Profissional Autônomo;\n            6 - Sociedade de Profissionais;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 974, 6)))
 
-def _BuildAutomaton_22 ():
+def _BuildAutomaton_18 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_22
-    del _BuildAutomaton_22
+    global _BuildAutomaton_18
+    del _BuildAutomaton_18
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9041,7 +9881,7 @@ def _BuildAutomaton_22 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRegTrib._Automaton = _BuildAutomaton_22()
+TCRegTrib._Automaton = _BuildAutomaton_18()
 
 
 
@@ -9066,10 +9906,10 @@ TCInfoPessoa._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 TCInfoPessoa._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'email'), TSEmail, scope=TCInfoPessoa, documentation='E-mail', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1052, 6)))
 
-def _BuildAutomaton_23 ():
+def _BuildAutomaton_19 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_23
-    del _BuildAutomaton_23
+    global _BuildAutomaton_19
+    del _BuildAutomaton_19
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9200,7 +10040,7 @@ def _BuildAutomaton_23 ():
         fac.UpdateInstruction(cc_4, True) ]))
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoPessoa._Automaton = _BuildAutomaton_23()
+TCInfoPessoa._Automaton = _BuildAutomaton_19()
 
 
 
@@ -9217,10 +10057,10 @@ TCEndereco._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCEndereco._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xBairro'), TSBairro, scope=TCEndereco, documentation='Bairro', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1089, 6)))
 
-def _BuildAutomaton_24 ():
+def _BuildAutomaton_20 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_24
-    del _BuildAutomaton_24
+    global _BuildAutomaton_20
+    del _BuildAutomaton_20
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9278,7 +10118,7 @@ def _BuildAutomaton_24 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEndereco._Automaton = _BuildAutomaton_24()
+TCEndereco._Automaton = _BuildAutomaton_20()
 
 
 
@@ -9297,10 +10137,10 @@ TCEnderecoEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expande
 
 TCEnderecoEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CEP'), TSCEP, scope=TCEnderecoEmitente, documentation='Número do CEP', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1129, 6)))
 
-def _BuildAutomaton_25 ():
+def _BuildAutomaton_21 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_25
-    del _BuildAutomaton_25
+    global _BuildAutomaton_21
+    del _BuildAutomaton_21
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9366,7 +10206,7 @@ def _BuildAutomaton_25 ():
     transitions = []
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderecoEmitente._Automaton = _BuildAutomaton_25()
+TCEnderecoEmitente._Automaton = _BuildAutomaton_21()
 
 
 
@@ -9383,10 +10223,10 @@ TCEnderecoSimples._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expanded
 
 TCEnderecoSimples._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xBairro'), TSBairro, scope=TCEnderecoSimples, documentation='Bairro', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1166, 6)))
 
-def _BuildAutomaton_26 ():
+def _BuildAutomaton_22 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_26
-    del _BuildAutomaton_26
+    global _BuildAutomaton_22
+    del _BuildAutomaton_22
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9444,7 +10284,7 @@ def _BuildAutomaton_26 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderecoSimples._Automaton = _BuildAutomaton_26()
+TCEnderecoSimples._Automaton = _BuildAutomaton_22()
 
 
 
@@ -9453,10 +10293,10 @@ TCEnderNac._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCEnderNac._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CEP'), TSCEP, scope=TCEnderNac, documentation='Número do CEP', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1181, 6)))
 
-def _BuildAutomaton_27 ():
+def _BuildAutomaton_23 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_27
-    del _BuildAutomaton_27
+    global _BuildAutomaton_23
+    del _BuildAutomaton_23
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9476,7 +10316,7 @@ def _BuildAutomaton_27 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderNac._Automaton = _BuildAutomaton_27()
+TCEnderNac._Automaton = _BuildAutomaton_23()
 
 
 
@@ -9489,10 +10329,10 @@ TCEnderExt._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCEnderExt._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xEstProvReg'), TSEstadoProvRegiao, scope=TCEnderExt, documentation='Estado, província ou região da cidade no exterior do prestador do serviço.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1206, 6)))
 
-def _BuildAutomaton_28 ():
+def _BuildAutomaton_24 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_28
-    del _BuildAutomaton_28
+    global _BuildAutomaton_24
+    del _BuildAutomaton_24
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9528,7 +10368,7 @@ def _BuildAutomaton_28 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderExt._Automaton = _BuildAutomaton_28()
+TCEnderExt._Automaton = _BuildAutomaton_24()
 
 
 
@@ -9539,10 +10379,10 @@ TCEnderExtSimples._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expanded
 
 TCEnderExtSimples._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xEstProvReg'), TSEstadoProvRegiao, scope=TCEnderExtSimples, documentation='Estado, província ou região da cidade no exterior do prestador do serviço.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1226, 6)))
 
-def _BuildAutomaton_29 ():
+def _BuildAutomaton_25 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_29
-    del _BuildAutomaton_29
+    global _BuildAutomaton_25
+    del _BuildAutomaton_25
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9570,7 +10410,7 @@ def _BuildAutomaton_29 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderExtSimples._Automaton = _BuildAutomaton_29()
+TCEnderExtSimples._Automaton = _BuildAutomaton_25()
 
 
 
@@ -9587,10 +10427,10 @@ TCEnderObraEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expanded
 
 TCEnderObraEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xBairro'), TSBairro, scope=TCEnderObraEvento, documentation='Bairro', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1263, 6)))
 
-def _BuildAutomaton_30 ():
+def _BuildAutomaton_26 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_30
-    del _BuildAutomaton_30
+    global _BuildAutomaton_26
+    del _BuildAutomaton_26
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9648,7 +10488,7 @@ def _BuildAutomaton_30 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderObraEvento._Automaton = _BuildAutomaton_30()
+TCEnderObraEvento._Automaton = _BuildAutomaton_26()
 
 
 
@@ -9669,10 +10509,10 @@ TCServ._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namesp
 
 TCServ._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infoCompl'), TCInfoCompl, scope=TCServ, documentation='\n            Grupo de informações complementares disponível para todos os serviços prestados\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1312, 6)))
 
-def _BuildAutomaton_31 ():
+def _BuildAutomaton_27 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_31
-    del _BuildAutomaton_31
+    global _BuildAutomaton_27
+    del _BuildAutomaton_27
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9800,7 +10640,7 @@ def _BuildAutomaton_31 ():
         fac.UpdateInstruction(cc_5, True) ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCServ._Automaton = _BuildAutomaton_31()
+TCServ._Automaton = _BuildAutomaton_27()
 
 
 
@@ -9809,10 +10649,10 @@ TCLocPrest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCLocPrest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cPaisPrestacao'), TSCodPaisISO, scope=TCLocPrest, documentation='Código do país onde o serviço foi prestado (Tabela de Países ISO)', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1329, 6)))
 
-def _BuildAutomaton_32 ():
+def _BuildAutomaton_28 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_32
-    del _BuildAutomaton_32
+    global _BuildAutomaton_28
+    del _BuildAutomaton_28
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9830,7 +10670,7 @@ def _BuildAutomaton_32 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCLocPrest._Automaton = _BuildAutomaton_32()
+TCLocPrest._Automaton = _BuildAutomaton_28()
 
 
 
@@ -9845,10 +10685,10 @@ TCCServ._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Names
 
 TCCServ._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cIntContrib'), TSCodigoInternoContribuinte, scope=TCCServ, documentation='\n            Código interno do contribuinte\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1362, 6)))
 
-def _BuildAutomaton_33 ():
+def _BuildAutomaton_29 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_33
-    del _BuildAutomaton_33
+    global _BuildAutomaton_29
+    del _BuildAutomaton_29
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9903,7 +10743,7 @@ def _BuildAutomaton_33 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCCServ._Automaton = _BuildAutomaton_33()
+TCCServ._Automaton = _BuildAutomaton_29()
 
 
 
@@ -9928,10 +10768,10 @@ TCComExterior._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCComExterior._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'mdic'), TSEnvMDIC, scope=TCComExterior, documentation='\n            Compartilhar as informações da NFS-e gerada a partir desta DPS com a Secretaria de Comércio Exterior:\n            0 - Não enviar para o MDIC;\n            1 - Enviar para o MDIC;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1480, 6)))
 
-def _BuildAutomaton_34 ():
+def _BuildAutomaton_30 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_34
-    del _BuildAutomaton_34
+    global _BuildAutomaton_30
+    del _BuildAutomaton_30
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10029,7 +10869,7 @@ def _BuildAutomaton_34 ():
     transitions = []
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCComExterior._Automaton = _BuildAutomaton_34()
+TCComExterior._Automaton = _BuildAutomaton_30()
 
 
 
@@ -10048,10 +10888,10 @@ TCExploracaoRodoviaria._AddElement(pyxb.binding.basis.element(pyxb.namespace.Exp
 
 TCExploracaoRodoviaria._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'codContrato'), TSCodContrato, scope=TCExploracaoRodoviaria, documentation='Código de contrato gerado automaticamente pelo sistema nacional no cadastro da concessionária.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1537, 6)))
 
-def _BuildAutomaton_35 ():
+def _BuildAutomaton_31 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_35
-    del _BuildAutomaton_35
+    global _BuildAutomaton_31
+    del _BuildAutomaton_31
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10111,7 +10951,7 @@ def _BuildAutomaton_35 ():
     transitions = []
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCExploracaoRodoviaria._Automaton = _BuildAutomaton_35()
+TCExploracaoRodoviaria._Automaton = _BuildAutomaton_31()
 
 
 
@@ -10124,10 +10964,10 @@ TCLocacaoSublocacao._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expand
 
 TCLocacaoSublocacao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nPostes'), TSNumeroPostes, scope=TCLocacaoSublocacao, documentation='Número total de postes', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1562, 6)))
 
-def _BuildAutomaton_36 ():
+def _BuildAutomaton_32 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_36
-    del _BuildAutomaton_36
+    global _BuildAutomaton_32
+    del _BuildAutomaton_32
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10163,7 +11003,7 @@ def _BuildAutomaton_36 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCLocacaoSublocacao._Automaton = _BuildAutomaton_36()
+TCLocacaoSublocacao._Automaton = _BuildAutomaton_32()
 
 
 
@@ -10178,10 +11018,10 @@ TCAtvEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCAtvEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'end'), TCEnderecoSimples, scope=TCAtvEvento, documentation='Grupo de informações relativas ao endereço da atividade, evento ou local do serviço prestado', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1593, 8)))
 
-def _BuildAutomaton_37 ():
+def _BuildAutomaton_33 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_37
-    del _BuildAutomaton_37
+    global _BuildAutomaton_33
+    del _BuildAutomaton_33
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10225,7 +11065,7 @@ def _BuildAutomaton_37 ():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCAtvEvento._Automaton = _BuildAutomaton_37()
+TCAtvEvento._Automaton = _BuildAutomaton_33()
 
 
 
@@ -10238,10 +11078,10 @@ TCInfoObra._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCInfoObra._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'end'), TCEnderObraEvento, scope=TCInfoObra, documentation='Grupo de informações do endereço da obra do serviço prestado\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1625, 8)))
 
-def _BuildAutomaton_38 ():
+def _BuildAutomaton_34 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_38
-    del _BuildAutomaton_38
+    global _BuildAutomaton_34
+    del _BuildAutomaton_34
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10281,7 +11121,7 @@ def _BuildAutomaton_38 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoObra._Automaton = _BuildAutomaton_38()
+TCInfoObra._Automaton = _BuildAutomaton_34()
 
 
 
@@ -10296,10 +11136,10 @@ TCInfoCompl._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCInfoCompl._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xInfComp'), TSDescInfCompl, scope=TCInfoCompl, documentation='\n            Informações complementares\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1665, 6)))
 
-def _BuildAutomaton_39 ():
+def _BuildAutomaton_35 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_39
-    del _BuildAutomaton_39
+    global _BuildAutomaton_35
+    del _BuildAutomaton_35
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10380,17 +11220,17 @@ def _BuildAutomaton_39 ():
         fac.UpdateInstruction(cc_4, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
-TCInfoCompl._Automaton = _BuildAutomaton_39()
+TCInfoCompl._Automaton = _BuildAutomaton_35()
 
 
 
 
 TCInfoItemPed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xItemPed'), TSNumeroEndereco, scope=TCInfoItemPed, documentation='\n            Número do item do  pedido/ordem de compra/ordem de serviço/projeto - Identificação do número do item do pedido ou ordem de compra destacado e xPed\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1677, 6)))
 
-def _BuildAutomaton_40 ():
+def _BuildAutomaton_36 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_40
-    del _BuildAutomaton_40
+    global _BuildAutomaton_36
+    del _BuildAutomaton_36
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10407,7 +11247,7 @@ def _BuildAutomaton_40 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoItemPed._Automaton = _BuildAutomaton_40()
+TCInfoItemPed._Automaton = _BuildAutomaton_36()
 
 
 
@@ -10420,10 +11260,10 @@ TCInfoValores._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCInfoValores._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'trib'), TCInfoTributacao, scope=TCInfoValores, documentation='\n            Grupo de informações relacionados aos tributos relacionados ao serviço prestado\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1710, 6)))
 
-def _BuildAutomaton_41 ():
+def _BuildAutomaton_37 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_41
-    del _BuildAutomaton_41
+    global _BuildAutomaton_37
+    del _BuildAutomaton_37
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10473,7 +11313,7 @@ def _BuildAutomaton_41 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoValores._Automaton = _BuildAutomaton_41()
+TCInfoValores._Automaton = _BuildAutomaton_37()
 
 
 
@@ -10484,10 +11324,10 @@ TCInfoTributacao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedN
 
 TCInfoTributacao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'totTrib'), TCTribTotal, scope=TCInfoTributacao, documentation='\n            Grupo de informações para totais aproximados dos tributos relacionados ao serviço prestado\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1736, 6)))
 
-def _BuildAutomaton_42 ():
+def _BuildAutomaton_38 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_42
-    del _BuildAutomaton_42
+    global _BuildAutomaton_38
+    del _BuildAutomaton_38
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10521,7 +11361,7 @@ def _BuildAutomaton_42 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoTributacao._Automaton = _BuildAutomaton_42()
+TCInfoTributacao._Automaton = _BuildAutomaton_38()
 
 
 
@@ -10530,10 +11370,10 @@ TCVServPrest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 TCVServPrest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vServ'), TSDec15V2, scope=TCVServPrest, documentation='Valor dos serviços em R$', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1753, 6)))
 
-def _BuildAutomaton_43 ():
+def _BuildAutomaton_39 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_43
-    del _BuildAutomaton_43
+    global _BuildAutomaton_39
+    del _BuildAutomaton_39
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10557,7 +11397,7 @@ def _BuildAutomaton_43 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCVServPrest._Automaton = _BuildAutomaton_43()
+TCVServPrest._Automaton = _BuildAutomaton_39()
 
 
 
@@ -10566,10 +11406,10 @@ TCVDescCondIncond._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expanded
 
 TCVDescCondIncond._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vDescCond'), TSDec15V2, scope=TCVDescCondIncond, documentation='Valor monetário do desconto condicionado (R$)', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1768, 6)))
 
-def _BuildAutomaton_44 ():
+def _BuildAutomaton_40 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_44
-    del _BuildAutomaton_44
+    global _BuildAutomaton_40
+    del _BuildAutomaton_40
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10599,7 +11439,7 @@ def _BuildAutomaton_44 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
-TCVDescCondIncond._Automaton = _BuildAutomaton_44()
+TCVDescCondIncond._Automaton = _BuildAutomaton_40()
 
 
 
@@ -10610,10 +11450,10 @@ TCInfoDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 TCInfoDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'documentos'), TCListaDocDedRed, scope=TCInfoDedRed, documentation='\n              Grupo de informações de documento utilizado para Dedução/Redução do valor do serviço\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1793, 8)))
 
-def _BuildAutomaton_45 ():
+def _BuildAutomaton_41 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_45
-    del _BuildAutomaton_45
+    global _BuildAutomaton_41
+    del _BuildAutomaton_41
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10637,17 +11477,17 @@ def _BuildAutomaton_45 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoDedRed._Automaton = _BuildAutomaton_45()
+TCInfoDedRed._Automaton = _BuildAutomaton_41()
 
 
 
 
 TCListaDocDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'docDedRed'), TCDocDedRed, scope=TCListaDocDedRed, documentation='\n            Grupo de informações de documento utilizado para Dedução/Redução do valor do serviço\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1806, 6)))
 
-def _BuildAutomaton_46 ():
+def _BuildAutomaton_42 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_46
-    del _BuildAutomaton_46
+    global _BuildAutomaton_42
+    del _BuildAutomaton_42
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10664,7 +11504,7 @@ def _BuildAutomaton_46 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCListaDocDedRed._Automaton = _BuildAutomaton_46()
+TCListaDocDedRed._Automaton = _BuildAutomaton_42()
 
 
 
@@ -10693,10 +11533,10 @@ TCDocDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCDocDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fornec'), TCInfoPessoa, scope=TCDocDedRed, documentation='Grupo de informações do Fornecedor em Deduções de Serviços', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1890, 6)))
 
-def _BuildAutomaton_47 ():
+def _BuildAutomaton_43 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_47
-    del _BuildAutomaton_47
+    global _BuildAutomaton_43
+    del _BuildAutomaton_43
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10807,7 +11647,7 @@ def _BuildAutomaton_47 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_11._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCDocDedRed._Automaton = _BuildAutomaton_47()
+TCDocDedRed._Automaton = _BuildAutomaton_43()
 
 
 
@@ -10818,10 +11658,10 @@ TCDocOutNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 TCDocOutNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cVerifNFSeMun'), TSCodVerificacao, scope=TCDocOutNFSe, documentation='Código de Verificação da nota eletrônica municipal', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1910, 6)))
 
-def _BuildAutomaton_48 ():
+def _BuildAutomaton_44 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_48
-    del _BuildAutomaton_48
+    global _BuildAutomaton_44
+    del _BuildAutomaton_44
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10849,7 +11689,7 @@ def _BuildAutomaton_48 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCDocOutNFSe._Automaton = _BuildAutomaton_48()
+TCDocOutNFSe._Automaton = _BuildAutomaton_44()
 
 
 
@@ -10860,10 +11700,10 @@ TCDocNFNFS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCDocNFNFS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'serieNFS'), TSSerieNFNFS, scope=TCDocNFNFS, documentation='Série Nota Fiscal NF ou NFS', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1930, 6)))
 
-def _BuildAutomaton_49 ():
+def _BuildAutomaton_45 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_49
-    del _BuildAutomaton_49
+    global _BuildAutomaton_45
+    del _BuildAutomaton_45
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10891,7 +11731,7 @@ def _BuildAutomaton_49 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCDocNFNFS._Automaton = _BuildAutomaton_49()
+TCDocNFNFS._Automaton = _BuildAutomaton_45()
 
 
 
@@ -10910,10 +11750,10 @@ TCTribMunicipal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCTribMunicipal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pAliq'), TSDec1V2, scope=TCTribMunicipal, documentation='\n            Valor da alíquota (%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.\n            Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.\n            Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2000, 6)))
 
-def _BuildAutomaton_50 ():
+def _BuildAutomaton_46 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_50
-    del _BuildAutomaton_50
+    global _BuildAutomaton_46
+    del _BuildAutomaton_46
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11014,7 +11854,7 @@ def _BuildAutomaton_50 ():
         fac.UpdateInstruction(cc_4, True) ]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribMunicipal._Automaton = _BuildAutomaton_50()
+TCTribMunicipal._Automaton = _BuildAutomaton_46()
 
 
 
@@ -11025,10 +11865,10 @@ TCBeneficioMunicipal._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expan
 
 TCBeneficioMunicipal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pRedBCBM'), TSDec3V2, scope=TCBeneficioMunicipal, documentation='\n              Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2036, 8)))
 
-def _BuildAutomaton_51 ():
+def _BuildAutomaton_47 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_51
-    del _BuildAutomaton_51
+    global _BuildAutomaton_47
+    del _BuildAutomaton_47
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11066,7 +11906,7 @@ def _BuildAutomaton_51 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCBeneficioMunicipal._Automaton = _BuildAutomaton_51()
+TCBeneficioMunicipal._Automaton = _BuildAutomaton_47()
 
 
 
@@ -11075,10 +11915,10 @@ TCExigSuspensa._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNam
 
 TCExigSuspensa._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nProcesso'), TSNumProcExigSuspensa, scope=TCExigSuspensa, documentation='\n            Número do processo judicial ou administrativo de suspensão da exigibilidade\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2058, 6)))
 
-def _BuildAutomaton_52 ():
+def _BuildAutomaton_48 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_52
-    del _BuildAutomaton_52
+    global _BuildAutomaton_48
+    del _BuildAutomaton_48
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11098,7 +11938,7 @@ def _BuildAutomaton_52 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCExigSuspensa._Automaton = _BuildAutomaton_52()
+TCExigSuspensa._Automaton = _BuildAutomaton_48()
 
 
 
@@ -11111,10 +11951,10 @@ TCTribFederal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCTribFederal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vRetCSLL'), TSDec15V2, scope=TCTribFederal, documentation='\n            Valor monetário do CSLL (R$).\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2091, 6)))
 
-def _BuildAutomaton_53 ():
+def _BuildAutomaton_49 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_53
-    del _BuildAutomaton_53
+    global _BuildAutomaton_49
+    del _BuildAutomaton_49
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11176,7 +12016,7 @@ def _BuildAutomaton_53 ():
         fac.UpdateInstruction(cc_3, True) ]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
-TCTribFederal._Automaton = _BuildAutomaton_53()
+TCTribFederal._Automaton = _BuildAutomaton_49()
 
 
 
@@ -11195,10 +12035,10 @@ TCTribOutrosPisCofins._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCTribOutrosPisCofins._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tpRetPisCofins'), TSTipoRetPISCofins, scope=TCTribOutrosPisCofins, documentation='\n            Tipo de retencao do Pis/Cofins:\n            1 - Retido;\n            2 - Não Retido;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2155, 6)))
 
-def _BuildAutomaton_54 ():
+def _BuildAutomaton_50 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_54
-    del _BuildAutomaton_54
+    global _BuildAutomaton_50
+    del _BuildAutomaton_50
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11318,7 +12158,7 @@ def _BuildAutomaton_54 ():
         fac.UpdateInstruction(cc_5, True) ]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribOutrosPisCofins._Automaton = _BuildAutomaton_54()
+TCTribOutrosPisCofins._Automaton = _BuildAutomaton_50()
 
 
 
@@ -11331,10 +12171,10 @@ TCTribTotal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCTribTotal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pTotTribSN'), TSDec2V2, scope=TCTribTotal, documentation='\n              Valor percentual aproximado do total dos tributos da alíquota do Simples Nacional (%)\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2193, 8)))
 
-def _BuildAutomaton_55 ():
+def _BuildAutomaton_51 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_55
-    del _BuildAutomaton_55
+    global _BuildAutomaton_51
+    del _BuildAutomaton_51
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11364,7 +12204,7 @@ def _BuildAutomaton_55 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribTotal._Automaton = _BuildAutomaton_55()
+TCTribTotal._Automaton = _BuildAutomaton_51()
 
 
 
@@ -11375,10 +12215,10 @@ TCTribTotalMonet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedN
 
 TCTribTotalMonet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vTotTribMun'), TSDec15V2, scope=TCTribTotalMonet, documentation='\n            Valor monetário total aproximado dos tributos municipais (R$).\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2220, 6)))
 
-def _BuildAutomaton_56 ():
+def _BuildAutomaton_52 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_56
-    del _BuildAutomaton_56
+    global _BuildAutomaton_52
+    del _BuildAutomaton_52
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11406,7 +12246,7 @@ def _BuildAutomaton_56 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribTotalMonet._Automaton = _BuildAutomaton_56()
+TCTribTotalMonet._Automaton = _BuildAutomaton_52()
 
 
 
@@ -11417,10 +12257,10 @@ TCTribTotalPercent._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expande
 
 TCTribTotalPercent._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pTotTribMun'), TSDec3V2, scope=TCTribTotalPercent, documentation='\n            Valor percentual total aproximado dos tributos municipais (%).\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2246, 6)))
 
-def _BuildAutomaton_57 ():
+def _BuildAutomaton_53 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_57
-    del _BuildAutomaton_57
+    global _BuildAutomaton_53
+    del _BuildAutomaton_53
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11448,7 +12288,7 @@ def _BuildAutomaton_57 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribTotalPercent._Automaton = _BuildAutomaton_57()
+TCTribTotalPercent._Automaton = _BuildAutomaton_53()
 
 
 
@@ -11473,10 +12313,10 @@ TCRTCInfoIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCRTCInfoIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'valores'), TCRTCInfoValoresIBSCBS, scope=TCRTCInfoIBSCBS, documentation='\n            Grupo de informações relativas aos valores do serviço prestado para IBS e CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2321, 6)))
 
-def _BuildAutomaton_58 ():
+def _BuildAutomaton_54 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_58
-    del _BuildAutomaton_58
+    global _BuildAutomaton_54
+    del _BuildAutomaton_54
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11598,17 +12438,17 @@ def _BuildAutomaton_58 ():
     transitions = []
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoIBSCBS._Automaton = _BuildAutomaton_58()
+TCRTCInfoIBSCBS._Automaton = _BuildAutomaton_54()
 
 
 
 
 TCInfoRefNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'refNFSe'), TSChaveNFSe, scope=TCInfoRefNFSe, documentation='\n            Chave da NFS-e referenciada\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2333, 6)))
 
-def _BuildAutomaton_59 ():
+def _BuildAutomaton_55 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_59
-    del _BuildAutomaton_59
+    global _BuildAutomaton_55
+    del _BuildAutomaton_55
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11625,7 +12465,7 @@ def _BuildAutomaton_59 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoRefNFSe._Automaton = _BuildAutomaton_59()
+TCInfoRefNFSe._Automaton = _BuildAutomaton_55()
 
 
 
@@ -11646,10 +12486,10 @@ TCRTCInfoDest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCRTCInfoDest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'email'), TSEmail, scope=TCRTCInfoDest, documentation='E-mail do Destinatário do serviço', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2401, 6)))
 
-def _BuildAutomaton_60 ():
+def _BuildAutomaton_56 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_60
-    del _BuildAutomaton_60
+    global _BuildAutomaton_56
+    del _BuildAutomaton_56
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11738,7 +12578,7 @@ def _BuildAutomaton_60 ():
         fac.UpdateInstruction(cc_2, True) ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoDest._Automaton = _BuildAutomaton_60()
+TCRTCInfoDest._Automaton = _BuildAutomaton_56()
 
 
 
@@ -11749,10 +12589,10 @@ TCRTCInfoImovel._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCRTCInfoImovel._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'end'), TCEnderObraEvento, scope=TCRTCInfoImovel, documentation='\n              Grupo de informações do endereço da obra do serviço prestado\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2426, 8)))
 
-def _BuildAutomaton_61 ():
+def _BuildAutomaton_57 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_61
-    del _BuildAutomaton_61
+    global _BuildAutomaton_57
+    del _BuildAutomaton_57
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11784,7 +12624,7 @@ def _BuildAutomaton_61 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoImovel._Automaton = _BuildAutomaton_61()
+TCRTCInfoImovel._Automaton = _BuildAutomaton_57()
 
 
 
@@ -11793,10 +12633,10 @@ TCRTCInfoValoresIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.Exp
 
 TCRTCInfoValoresIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'trib'), TCRTCInfoTributosIBSCBS, scope=TCRTCInfoValoresIBSCBS, documentation='\n            Grupo de informações relacionados aos tributos IBS e CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2447, 6)))
 
-def _BuildAutomaton_62 ():
+def _BuildAutomaton_58 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_62
-    del _BuildAutomaton_62
+    global _BuildAutomaton_58
+    del _BuildAutomaton_58
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11820,17 +12660,17 @@ def _BuildAutomaton_62 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoValoresIBSCBS._Automaton = _BuildAutomaton_62()
+TCRTCInfoValoresIBSCBS._Automaton = _BuildAutomaton_58()
 
 
 
 
 TCRTCInfoReeRepRes._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'documentos'), TCRTCListaDoc, scope=TCRTCInfoReeRepRes, documentation='\n            Grupo relativo aos documentos referenciados nos casos de reembolso, repasse e ressarcimento que serão \n            considerados na base de cálculo do ISSQN, do IBS e da CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2459, 6)))
 
-def _BuildAutomaton_63 ():
+def _BuildAutomaton_59 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_63
-    del _BuildAutomaton_63
+    global _BuildAutomaton_59
+    del _BuildAutomaton_59
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11847,17 +12687,17 @@ def _BuildAutomaton_63 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoReeRepRes._Automaton = _BuildAutomaton_63()
+TCRTCInfoReeRepRes._Automaton = _BuildAutomaton_59()
 
 
 
 
 TCRTCInfoTributosIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'gIBSCBS'), TCRTCInfoTributosSitClas, scope=TCRTCInfoTributosIBSCBS, documentation='\n            Grupo de informações relacionadas ao IBS e à CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2472, 6)))
 
-def _BuildAutomaton_64 ():
+def _BuildAutomaton_60 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_64
-    del _BuildAutomaton_64
+    global _BuildAutomaton_60
+    del _BuildAutomaton_60
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11869,7 +12709,7 @@ def _BuildAutomaton_64 ():
     transitions = []
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoTributosIBSCBS._Automaton = _BuildAutomaton_64()
+TCRTCInfoTributosIBSCBS._Automaton = _BuildAutomaton_60()
 
 
 
@@ -11892,10 +12732,10 @@ TCRTCListaDoc._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCRTCListaDoc._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vlrReeRepRes'), TSDec15V2, scope=TCRTCListaDoc, documentation='\n            Valor monetário (total ou parcial, conforme documento informado) utilizado para não inclusão na base de cálculo \n            do ISS e do IBS e da CBS da NFS-e que está sendo emitida (R$)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2546, 6)))
 
-def _BuildAutomaton_65 ():
+def _BuildAutomaton_61 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_65
-    del _BuildAutomaton_65
+    global _BuildAutomaton_61
+    del _BuildAutomaton_61
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11987,7 +12827,7 @@ def _BuildAutomaton_65 ():
     transitions = []
     st_8._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDoc._Automaton = _BuildAutomaton_65()
+TCRTCListaDoc._Automaton = _BuildAutomaton_61()
 
 
 
@@ -11998,10 +12838,10 @@ TCRTCListaDocDFe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedN
 
 TCRTCListaDocDFe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'chaveDFe'), TSRTCChaveDFe, scope=TCRTCListaDocDFe, documentation='\n            Chave do Documento Fiscal eletrônico do repositório nacional referenciado para os casos de operações já tributadas\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2574, 6)))
 
-def _BuildAutomaton_66 ():
+def _BuildAutomaton_62 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_66
-    del _BuildAutomaton_66
+    global _BuildAutomaton_62
+    del _BuildAutomaton_62
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12035,7 +12875,7 @@ def _BuildAutomaton_66 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDocDFe._Automaton = _BuildAutomaton_66()
+TCRTCListaDocDFe._Automaton = _BuildAutomaton_62()
 
 
 
@@ -12046,10 +12886,10 @@ TCRTCListaDocFiscalOutro._AddElement(pyxb.binding.basis.element(pyxb.namespace.E
 
 TCRTCListaDocFiscalOutro._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDocFiscal'), TSDesc255, scope=TCRTCListaDocFiscalOutro, documentation='\n            Descrição do documento fiscal\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2600, 6)))
 
-def _BuildAutomaton_67 ():
+def _BuildAutomaton_63 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_67
-    del _BuildAutomaton_67
+    global _BuildAutomaton_63
+    del _BuildAutomaton_63
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12077,7 +12917,7 @@ def _BuildAutomaton_67 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDocFiscalOutro._Automaton = _BuildAutomaton_67()
+TCRTCListaDocFiscalOutro._Automaton = _BuildAutomaton_63()
 
 
 
@@ -12086,10 +12926,10 @@ TCRTCListaDocOutro._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expande
 
 TCRTCListaDocOutro._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDoc'), TSDesc255, scope=TCRTCListaDocOutro, documentation='\n            Descrição do documento não fiscal\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2619, 6)))
 
-def _BuildAutomaton_68 ():
+def _BuildAutomaton_64 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_68
-    del _BuildAutomaton_68
+    global _BuildAutomaton_64
+    del _BuildAutomaton_64
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12109,7 +12949,7 @@ def _BuildAutomaton_68 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDocOutro._Automaton = _BuildAutomaton_68()
+TCRTCListaDocOutro._Automaton = _BuildAutomaton_64()
 
 
 
@@ -12124,10 +12964,10 @@ TCRTCListaDocFornec._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expand
 
 TCRTCListaDocFornec._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xNome'), TSDesc150, scope=TCRTCListaDocFornec, documentation='\n            Nome / Razão Social do do Fornecedor do serviço\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2664, 6)))
 
-def _BuildAutomaton_69 ():
+def _BuildAutomaton_65 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_69
-    del _BuildAutomaton_69
+    global _BuildAutomaton_65
+    del _BuildAutomaton_65
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12171,7 +13011,7 @@ def _BuildAutomaton_69 ():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDocFornec._Automaton = _BuildAutomaton_69()
+TCRTCListaDocFornec._Automaton = _BuildAutomaton_65()
 
 
 
@@ -12186,10 +13026,10 @@ TCRTCInfoTributosSitClas._AddElement(pyxb.binding.basis.element(pyxb.namespace.E
 
 TCRTCInfoTributosSitClas._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'gDif'), TCRTCInfoTributosDif, scope=TCRTCInfoTributosSitClas, documentation='\n            Grupo de informações relacionadas ao diferimento para IBS e CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2704, 6)))
 
-def _BuildAutomaton_70 ():
+def _BuildAutomaton_66 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_70
-    del _BuildAutomaton_70
+    global _BuildAutomaton_66
+    del _BuildAutomaton_66
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12254,7 +13094,7 @@ def _BuildAutomaton_70 ():
         fac.UpdateInstruction(cc_2, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoTributosSitClas._Automaton = _BuildAutomaton_70()
+TCRTCInfoTributosSitClas._Automaton = _BuildAutomaton_66()
 
 
 
@@ -12263,10 +13103,10 @@ TCRTCInfoTributosTribRegular._AddElement(pyxb.binding.basis.element(pyxb.namespa
 
 TCRTCInfoTributosTribRegular._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cClassTribReg'), TSRTCCodClassTrib, scope=TCRTCInfoTributosTribRegular, documentation='\n            Código da Classificação Tributária do IBS e da CBS de tributação regular\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2723, 6)))
 
-def _BuildAutomaton_71 ():
+def _BuildAutomaton_67 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_71
-    del _BuildAutomaton_71
+    global _BuildAutomaton_67
+    del _BuildAutomaton_67
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12286,7 +13126,7 @@ def _BuildAutomaton_71 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoTributosTribRegular._Automaton = _BuildAutomaton_71()
+TCRTCInfoTributosTribRegular._Automaton = _BuildAutomaton_67()
 
 
 
@@ -12297,10 +13137,10 @@ TCRTCInfoTributosDif._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expan
 
 TCRTCInfoTributosDif._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pDifCBS'), TSDec3V2, scope=TCRTCInfoTributosDif, documentation='\n            Percentual de diferimento para a CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2749, 6)))
 
-def _BuildAutomaton_72 ():
+def _BuildAutomaton_68 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_72
-    del _BuildAutomaton_72
+    global _BuildAutomaton_68
+    del _BuildAutomaton_68
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12328,12 +13168,230 @@ def _BuildAutomaton_72 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoTributosDif._Automaton = _BuildAutomaton_72()
+TCRTCInfoTributosDif._Automaton = _BuildAutomaton_68()
 
 
 
 
-TCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infCNC'), TCInfCNC, scope=TCNC, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 34, 6)))
+TE101101._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON, scope=TE101101, documentation='\n            Descrição do Evento: Descrição do evento: "Cancelamento de NFS-e".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 203, 6)))
+
+TE101101._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), TSCodJustCanc, scope=TE101101, documentation='Código de justificativa de cancelamento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 216, 6)))
+
+TE101101._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TE101101, documentation='Descrição para explicitar o motivo indicado neste evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 221, 6)))
+
+def _BuildAutomaton_69 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_69
+    del _BuildAutomaton_69
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE101101._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 203, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE101101._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 216, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE101101._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 221, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    st_2._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE101101._Automaton = _BuildAutomaton_69()
+
+
+
+
+TE105102._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_, scope=TE105102, documentation='\n            Descrição do Evento: Descrição do evento: "Cancelamento de NFS-e por Substituição".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 231, 6)))
+
+TE105102._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), TSCodJustSubst, scope=TE105102, documentation='Código de justificativa de cancelamento substituição', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 244, 6)))
+
+TE105102._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TE105102, documentation='Descrição para explicitar o motivo indicado neste evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 249, 6)))
+
+TE105102._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'chSubstituta'), TSChaveNFSe, scope=TE105102, documentation='Chave de Acesso da NFS-e substituta.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 254, 6)))
+
+def _BuildAutomaton_70 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_70
+    del _BuildAutomaton_70
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 249, 6))
+    counters.add(cc_0)
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105102._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 231, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105102._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 244, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105102._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 249, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE105102._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'chSubstituta')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 254, 6))
+    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_3, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    st_3._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE105102._Automaton = _BuildAutomaton_70()
+
+
+
+
+TE101103._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_2, scope=TE101103, documentation='\n            Descrição do evento: "Solicitação de Análise Fiscal para Cancelamento de NFS-e"\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 264, 6)))
+
+TE101103._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), TSCodJustAnaliseFiscalCanc, scope=TE101103, documentation='Código do motivo da solicitação de análise fiscal para cancelamento de NFS-e:', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 277, 6)))
+
+TE101103._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TE101103, documentation='Descrição para explicitar o motivo indicado neste evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 282, 6)))
+
+def _BuildAutomaton_71 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_71
+    del _BuildAutomaton_71
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE101103._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 264, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE101103._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 277, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE101103._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 282, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    st_2._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE101103._Automaton = _BuildAutomaton_71()
+
+
+
+
+TE105104._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_3, scope=TE105104, documentation='\n            Descrição do evento: "Cancelamento de NFS-e Deferido por Análise Fiscal"\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 292, 6)))
+
+TE105104._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), TSCPF, scope=TE105104, documentation='\n            CPF do agente da administração tributária municipal que efetuou o deferimento da  solicitação de análise fiscal para cancelamento de NFS-e.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 305, 6)))
+
+TE105104._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm'), TSNumProcAdmAnaliseFiscalCanc, scope=TE105104, documentation='\n            Número do processo administrativo municipal vinculado à solicitação de análise fiscal para cancelamento de NFS-e.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 312, 6)))
+
+TE105104._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), TSCodJustAnaliseFiscalCancDef, scope=TE105104, documentation='\n            Resposta da solicitação de análise fiscal para cancelamento de NFS-e:\n            1 - Cancelamento de NFS-e Deferido.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 319, 6)))
+
+TE105104._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TE105104, documentation='\n            Descrição para explicitar o motivo indicado neste evento\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 327, 6)))
+
+def _BuildAutomaton_72 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_72
+    del _BuildAutomaton_72
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 312, 6))
+    counters.add(cc_0)
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105104._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 292, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105104._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 305, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105104._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 312, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105104._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 319, 6))
+    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE105104._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 327, 6))
+    st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_4)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_3, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    st_3._set_transitionSet(transitions)
+    transitions = []
+    st_4._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE105104._Automaton = _BuildAutomaton_72()
+
+
+
+
+TE105105._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_4, scope=TE105105, documentation='\n            Descrição do evento: "Cancelamento de NFS-e Indeferido por Análise Fiscal".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 339, 6)))
+
+TE105105._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), TSCPF, scope=TE105105, documentation='\n            CPF do agente da administração tributária municipal que efetuou o indeferimento da solicitação de análise fiscal para cancelamento de NFS-e.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 352, 6)))
+
+TE105105._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm'), TSNumProcAdmAnaliseFiscalCanc, scope=TE105105, documentation='\n            Número do processo administrativo municipal vinculado à solicitação de análise fiscal para cancelamento de NFS-e.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 359, 6)))
+
+TE105105._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), TSCodJustAnaliseFiscalCancIndef, scope=TE105105, documentation='\n            Resposta da solicitação de análise fiscal para cancelamento de NFS-e:\n            1 - Cancelamento de NFS-e Indeferido;\n            2 - Cancelamento de NFS-e Indeferido Sem Análise de Mérito.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 366, 6)))
+
+TE105105._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TE105105, documentation='Descrição para explicitar o motivo indicado neste evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 375, 6)))
 
 def _BuildAutomaton_73 ():
     # Remove this helper function from the namespace after it is invoked
@@ -12342,15 +13400,521 @@ def _BuildAutomaton_73 ():
     import pyxb.utils.fac as fac
 
     counters = set()
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 359, 6))
+    counters.add(cc_0)
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105105._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 339, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105105._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 352, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105105._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 359, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE105105._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 366, 6))
+    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE105105._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 375, 6))
+    st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_4)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_3, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    st_3._set_transitionSet(transitions)
+    transitions = []
+    st_4._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE105105._Automaton = _BuildAutomaton_73()
+
+
+
+
+TE202201._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_5, scope=TE202201, documentation='\n            Descrição do evento: "Confirmação do Prestador".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 385, 6)))
+
+def _BuildAutomaton_74 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_74
+    del _BuildAutomaton_74
+    import pyxb.utils.fac as fac
+
+    counters = set()
     states = []
     final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'infCNC')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 34, 6))
+    symbol = pyxb.binding.content.ElementUse(TE202201._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 385, 6))
     st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
     states.append(st_0)
     transitions = []
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCNC._Automaton = _BuildAutomaton_73()
+TE202201._Automaton = _BuildAutomaton_74()
+
+
+
+
+TE203202._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_6, scope=TE203202, documentation='\n            Descrição do evento: "Confirmação do Tomador".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 403, 6)))
+
+def _BuildAutomaton_75 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_75
+    del _BuildAutomaton_75
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE203202._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 403, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    transitions = []
+    st_0._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE203202._Automaton = _BuildAutomaton_75()
+
+
+
+
+TE204203._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_7, scope=TE204203, documentation='\n            Descrição do evento: "Confirmação do Intermediário".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 421, 6)))
+
+def _BuildAutomaton_76 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_76
+    del _BuildAutomaton_76
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE204203._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 421, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    transitions = []
+    st_0._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE204203._Automaton = _BuildAutomaton_76()
+
+
+
+
+TE205204._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_8, scope=TE205204, documentation='\n            Descrição do evento: "Confirmação Tácita".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 439, 6)))
+
+def _BuildAutomaton_77 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_77
+    del _BuildAutomaton_77
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE205204._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 439, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    transitions = []
+    st_0._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE205204._Automaton = _BuildAutomaton_77()
+
+
+
+
+TE202205._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_9, scope=TE202205, documentation='\n            Descrição do evento: "Rejeição do Prestador".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 457, 6)))
+
+TE202205._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infRej'), TCInfoEventoRejeicao, scope=TE202205, documentation='\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 470, 6)))
+
+def _BuildAutomaton_78 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_78
+    del _BuildAutomaton_78
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE202205._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 457, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE202205._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'infRej')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 470, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    st_1._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE202205._Automaton = _BuildAutomaton_78()
+
+
+
+
+TE203206._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_10, scope=TE203206, documentation='\n            Descrição do evento: "Rejeição do Tomador".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 481, 6)))
+
+TE203206._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infRej'), TCInfoEventoRejeicao, scope=TE203206, documentation='\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 494, 6)))
+
+def _BuildAutomaton_79 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_79
+    del _BuildAutomaton_79
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE203206._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 481, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE203206._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'infRej')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 494, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    st_1._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE203206._Automaton = _BuildAutomaton_79()
+
+
+
+
+TE204207._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_11, scope=TE204207, documentation='\n            Descrição do evento: "Rejeição do Intermediário".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 505, 6)))
+
+TE204207._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infRej'), TCInfoEventoRejeicao, scope=TE204207, documentation='\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 518, 6)))
+
+def _BuildAutomaton_80 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_80
+    del _BuildAutomaton_80
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE204207._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 505, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE204207._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'infRej')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 518, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    st_1._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE204207._Automaton = _BuildAutomaton_80()
+
+
+
+
+TE205208._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_12, scope=TE205208, documentation='\n            Descrição do evento: "Anulação da Rejeição".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 529, 6)))
+
+TE205208._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infAnRej'), TCInfoEventoAnulacaoRejeicao, scope=TE205208, documentation='\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 542, 6)))
+
+def _BuildAutomaton_81 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_81
+    del _BuildAutomaton_81
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE205208._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 529, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE205208._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'infAnRej')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 542, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    st_1._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE205208._Automaton = _BuildAutomaton_81()
+
+
+
+
+TE305101._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_13, scope=TE305101, documentation='\n            Descrição do evento: "Cancelamento de NFS-e por Ofício".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 553, 6)))
+
+TE305101._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), TSCPF, scope=TE305101, documentation='\n            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 566, 6)))
+
+TE305101._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm'), TSNumProcAdmAnaliseFiscalCanc, scope=TE305101, documentation='\n            Número do processo administrativo municipal vinculado ao cancelamento de NFS-e por ofício.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 573, 6)))
+
+TE305101._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xProcAdm'), TSMotivo, scope=TE305101, documentation='\n            Descrição para explicitar o motivo indicado neste evento.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 580, 6)))
+
+def _BuildAutomaton_82 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_82
+    del _BuildAutomaton_82
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE305101._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 553, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE305101._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 566, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE305101._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nProcAdm')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 573, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE305101._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xProcAdm')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 580, 6))
+    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    st_3._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE305101._Automaton = _BuildAutomaton_82()
+
+
+
+
+TE305102._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_14, scope=TE305102, documentation='\n            Descrição do evento: "Bloqueio de NFS-e por Ofício".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 592, 6)))
+
+TE305102._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), TSCPF, scope=TE305102, documentation='\n            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 605, 6)))
+
+TE305102._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TE305102, documentation='Descrição para explicitar o motivo indicado neste evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 612, 6)))
+
+TE305102._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'codEvento'), TSCodigoEventoNFSe, scope=TE305102, documentation='Descrição para explicitar o motivo indicado neste evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 617, 6)))
+
+def _BuildAutomaton_83 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_83
+    del _BuildAutomaton_83
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE305102._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 592, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE305102._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 605, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE305102._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 612, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE305102._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'codEvento')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 617, 6))
+    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    st_3._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE305102._Automaton = _BuildAutomaton_83()
+
+
+
+
+TE305103._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDesc'), STD_ANON_15, scope=TE305103, documentation='\n            Descrição do evento: "Desbloqueio de NFS-e por Ofício".\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 627, 6)))
+
+TE305103._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), TSCPF, scope=TE305103, documentation='\n            CPF do agente da administração tributária municipal que efetuou o cancelamento por ofício de NFS-e.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 640, 6)))
+
+TE305103._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'idBloqOfic'), TSIdNumEvento, scope=TE305103, documentation='\n            Referência ao Id da "Manifestação de rejeição da NFS-e" que originou o presente evento de anulação.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 647, 6)))
+
+def _BuildAutomaton_84 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_84
+    del _BuildAutomaton_84
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE305103._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xDesc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 627, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TE305103._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 640, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TE305103._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'idBloqOfic')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 647, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    st_2._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TE305103._Automaton = _BuildAutomaton_84()
+
+
+
+
+TCListaEventos._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'codEvento'), TSCodigoEventoNFSe, scope=TCListaEventos, documentation='\n            Grupo de informações de documento utilizado para Dedução/Redução do valor do serviço\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 659, 6)))
+
+def _BuildAutomaton_85 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_85
+    del _BuildAutomaton_85
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    cc_0 = fac.CounterCondition(min=1, max=9, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 659, 6))
+    counters.add(cc_0)
+    states = []
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(TCListaEventos._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'codEvento')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 659, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    st_0._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TCListaEventos._Automaton = _BuildAutomaton_85()
+
+
+
+
+TCInfoEventoRejeicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cMotivo'), TSCodMotivoRejeicao, scope=TCInfoEventoRejeicao, documentation='\n            Motivo da Rejeição da NFS-e:\n            1 - NFS-e em duplicidade;\n            2 - NFS-e já emitida pelo tomador;\n            3 - Não ocorrência do fato gerador;\n            4 - Erro quanto a responsabilidade tributária;\n            5 - Erro quanto ao valor do serviço, valor das deduções ou serviço prestado ou data do fato gerador;\n            9 - Outros;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 671, 6)))
+
+TCInfoEventoRejeicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TCInfoEventoRejeicao, documentation='Descrição para explicitar o motivo indicado neste evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 684, 6)))
+
+def _BuildAutomaton_86 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_86
+    del _BuildAutomaton_86
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 684, 6))
+    counters.add(cc_0)
+    states = []
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfoEventoRejeicao._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'cMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 671, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(TCInfoEventoRejeicao._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 684, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    st_1._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TCInfoEventoRejeicao._Automaton = _BuildAutomaton_86()
+
+
+
+
+TCInfoEventoAnulacaoRejeicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib'), TSCPF, scope=TCInfoEventoAnulacaoRejeicao, documentation='\n            CPF do agente da administração tributária municipal que efetuou o anulação da manifestação de rejeição da NFS-e.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 694, 6)))
+
+TCInfoEventoAnulacaoRejeicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'idEvManifRej'), TSIdNumEvento, scope=TCInfoEventoAnulacaoRejeicao, documentation='\n            Referência ao Id da "Manifestação de rejeição da NFS-e" que originou o presente evento de anulação.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 701, 6)))
+
+TCInfoEventoAnulacaoRejeicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TCInfoEventoAnulacaoRejeicao, documentation='Descrição para explicitar o motivo da anluação', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 708, 6)))
+
+def _BuildAutomaton_87 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_87
+    del _BuildAutomaton_87
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfoEventoAnulacaoRejeicao._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPFAgTrib')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 694, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfoEventoAnulacaoRejeicao._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'idEvManifRej')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 701, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfoEventoAnulacaoRejeicao._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xMotivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 708, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    st_2._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TCInfoEventoAnulacaoRejeicao._Automaton = _BuildAutomaton_87()
 
 
 
@@ -12359,10 +13923,10 @@ TCNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namesp
 
 TCNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=TCNFSe, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/xmldsig-core-schema.xsd', 43, 0)))
 
-def _BuildAutomaton_74 ():
+def _BuildAutomaton_88 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_74
-    del _BuildAutomaton_74
+    global _BuildAutomaton_88
+    del _BuildAutomaton_88
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12382,7 +13946,7 @@ def _BuildAutomaton_74 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCNFSe._Automaton = _BuildAutomaton_74()
+TCNFSe._Automaton = _BuildAutomaton_88()
 
 
 
@@ -12425,10 +13989,10 @@ TCInfNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Nam
 
 TCInfNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DPS'), TCDPS, scope=TCInfNFSe, documentation='\n            Grupo de informações da DPS relativas ao serviço prestado\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 140, 6)))
 
-def _BuildAutomaton_75 ():
+def _BuildAutomaton_89 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_75
-    del _BuildAutomaton_75
+    global _BuildAutomaton_89
+    del _BuildAutomaton_89
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12624,7 +14188,7 @@ def _BuildAutomaton_75 ():
     transitions = []
     st_18._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfNFSe._Automaton = _BuildAutomaton_75()
+TCInfNFSe._Automaton = _BuildAutomaton_89()
 
 
 
@@ -12633,10 +14197,10 @@ TCDPS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespa
 
 TCDPS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=TCDPS, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/xmldsig-core-schema.xsd', 43, 0)))
 
-def _BuildAutomaton_76 ():
+def _BuildAutomaton_90 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_76
-    del _BuildAutomaton_76
+    global _BuildAutomaton_90
+    del _BuildAutomaton_90
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12661,7 +14225,7 @@ def _BuildAutomaton_76 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCDPS._Automaton = _BuildAutomaton_76()
+TCDPS._Automaton = _BuildAutomaton_90()
 
 
 
@@ -12700,10 +14264,10 @@ TCInfDPS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Name
 
 TCInfDPS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IBSCBS'), TCRTCInfoIBSCBS, scope=TCInfDPS, documentation='\n            Grupo de informações declaradas pelo emitente referentes ao IBS e à CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 837, 6)))
 
-def _BuildAutomaton_77 ():
+def _BuildAutomaton_91 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_77
-    del _BuildAutomaton_77
+    global _BuildAutomaton_91
+    del _BuildAutomaton_91
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12882,5 +14446,394 @@ def _BuildAutomaton_77 ():
         fac.UpdateInstruction(cc_5, True) ]))
     st_16._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfDPS._Automaton = _BuildAutomaton_77()
+TCInfDPS._Automaton = _BuildAutomaton_91()
+
+
+
+
+TCEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infEvento'), TCInfEvento, scope=TCEvento, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 13, 6)))
+
+TCEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=TCEvento, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/xmldsig-core-schema.xsd', 43, 0)))
+
+def _BuildAutomaton_92 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_92
+    del _BuildAutomaton_92
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCEvento._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'infEvento')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 13, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCEvento._UseForTag(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 14, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    st_1._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TCEvento._Automaton = _BuildAutomaton_92()
+
+
+
+
+TCInfEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'verAplic'), TSVerAplic, scope=TCInfEvento, documentation='Versão do aplicativo que gerou o pedido do evento.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 21, 6)))
+
+TCInfEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'ambGer'), TSAmbGeradorEvt, scope=TCInfEvento, documentation='Ambiente gerador do evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 26, 6)))
+
+TCInfEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nSeqEvento'), TSNum3Dig, scope=TCInfEvento, documentation='Sequencial do evento para o mesmo tipo de evento. Para maioria dos eventos nSeqEvento=1. Nos casos em que possa existir mais de um evento do mesmo tipo o ambiente gerador deverá numerar de forma sequencial.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 31, 6)))
+
+TCInfEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'dhProc'), TSDateTimeUTC, scope=TCInfEvento, documentation='\n            Data/Hora do registro do evento.\n            Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD"\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 36, 6)))
+
+TCInfEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nDFe'), TSNumDFe, scope=TCInfEvento, documentation='Ambiente gerador do evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 44, 6)))
+
+TCInfEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pedRegEvento'), TCPedRegEvt, scope=TCInfEvento, documentation='Leiaute do pedido de registro do evento gerado pelo autor do evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 49, 6)))
+
+def _BuildAutomaton_93 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_93
+    del _BuildAutomaton_93
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 21, 6))
+    counters.add(cc_0)
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfEvento._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'verAplic')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 21, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfEvento._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'ambGer')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 26, 6))
+    st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfEvento._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nSeqEvento')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 31, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfEvento._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'dhProc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 36, 6))
+    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfEvento._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nDFe')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 44, 6))
+    st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_4)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfEvento._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'pedRegEvento')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 49, 6))
+    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_5)
+    transitions = []
+    transitions.append(fac.Transition(st_0, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_0, False) ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    st_3._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_4._set_transitionSet(transitions)
+    transitions = []
+    st_5._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TCInfEvento._Automaton = _BuildAutomaton_93()
+
+
+
+
+TCPedRegEvt._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infPedReg'), TCInfPedReg, scope=TCPedRegEvt, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 60, 6)))
+
+TCPedRegEvt._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=TCPedRegEvt, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/xmldsig-core-schema.xsd', 43, 0)))
+
+def _BuildAutomaton_94 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_94
+    del _BuildAutomaton_94
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 61, 6))
+    counters.add(cc_0)
+    states = []
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCPedRegEvt._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'infPedReg')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 60, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = set()
+    final_update.add(fac.UpdateInstruction(cc_0, False))
+    symbol = pyxb.binding.content.ElementUse(TCPedRegEvt._UseForTag(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 61, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+        fac.UpdateInstruction(cc_0, True) ]))
+    st_1._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TCPedRegEvt._Automaton = _BuildAutomaton_94()
+
+
+
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tpAmb'), TSTipoAmbiente, scope=TCInfPedReg, documentation='Identificação do Ambiente: 1 - Produção; 2 - Homologação', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 68, 6)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'verAplic'), TSVerAplic, scope=TCInfPedReg, documentation='Versão do aplicativo que gerou o pedido de registro de evento.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 73, 6)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'dhEvento'), TSDateTimeUTC, scope=TCInfPedReg, documentation='\n            Data e hora do evento no formato AAAA-MM-DDThh:mm:ssTZD (UTC - Universal Coordinated Time, onde TZD pode ser -02:00 (Fernando de Noronha), -03:00 (Brasília) ou -04:00 (Manaus), no horário de verão serão -01:00, -02:00 e -03:00.\n            Ex.: 2010-08-19T13:00:15-03:00.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 78, 6)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CNPJAutor'), TSCNPJ, scope=TCInfPedReg, documentation='CNPJ do autor do evento.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 90, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPFAutor'), TSCPF, scope=TCInfPedReg, documentation='CPF do autor do evento.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 95, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'chNFSe'), TSChaveNFSe, scope=TCInfPedReg, documentation='Chave de Acesso da NFS-e vinculada ao Evento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 101, 6)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nPedRegEvento'), TSNum3Dig, scope=TCInfPedReg, documentation='\n            Número do pedido do registro de evento para o mesmo tipo de evento.\n            Para os eventos que ocorrem somente uma vez, como é o caso do cancelamento, o nPedRegEvento deve ser igual a 1.\n            Os eventos que podem ocorrer mais de uma vez devem ter o nPedRegEvento único.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 106, 6)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e101101'), TE101101, scope=TCInfPedReg, documentation='Evento de cancelamento', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 116, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e105102'), TE105102, scope=TCInfPedReg, documentation='Evento de cancelamento por substituição', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 121, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e101103'), TE101103, scope=TCInfPedReg, documentation='Solicitação de Análise Fiscal para Cancelamento de NFS-e', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 126, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e105104'), TE105104, scope=TCInfPedReg, documentation='Cancelamento de NFS-e Deferido por Análise Fiscal', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 131, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e105105'), TE105105, scope=TCInfPedReg, documentation='Cancelamento de NFS-e Indeferido por Análise Fiscal', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 136, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e202201'), TE202201, scope=TCInfPedReg, documentation='Confirmação do Prestador', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 141, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e203202'), TE203202, scope=TCInfPedReg, documentation='Confirmação do Tomador', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 146, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e204203'), TE204203, scope=TCInfPedReg, documentation='Confirmação do Intermediário', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 151, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e205204'), TE205204, scope=TCInfPedReg, documentation='Confirmação Tácita', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 156, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e202205'), TE202205, scope=TCInfPedReg, documentation='Rejeição do Prestador', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 161, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e203206'), TE203206, scope=TCInfPedReg, documentation='Rejeição do Tomador', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 166, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e204207'), TE204207, scope=TCInfPedReg, documentation='Rejeição do Intermediário', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 171, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e205208'), TE205208, scope=TCInfPedReg, documentation='Anulação da Rejeição', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 176, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e305101'), TE305101, scope=TCInfPedReg, documentation='Cancelamento de NFS-e por Ofício', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 181, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e305102'), TE305102, scope=TCInfPedReg, documentation='Bloqueio de NFS-e por Ofício', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 186, 8)))
+
+TCInfPedReg._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'e305103'), TE305103, scope=TCInfPedReg, documentation='Desbloqueio de NFS-e por Ofício', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 191, 8)))
+
+def _BuildAutomaton_95 ():
+    # Remove this helper function from the namespace after it is invoked
+    global _BuildAutomaton_95
+    del _BuildAutomaton_95
+    import pyxb.utils.fac as fac
+
+    counters = set()
+    states = []
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tpAmb')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 68, 6))
+    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_0)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'verAplic')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 73, 6))
+    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_1)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'dhEvento')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 78, 6))
+    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_2)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CNPJAutor')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 90, 8))
+    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_3)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPFAutor')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 95, 8))
+    st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_4)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'chNFSe')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 101, 6))
+    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_5)
+    final_update = None
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nPedRegEvento')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 106, 6))
+    st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_6)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e101101')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 116, 8))
+    st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_7)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e105102')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 121, 8))
+    st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_8)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e101103')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 126, 8))
+    st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_9)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e105104')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 131, 8))
+    st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_10)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e105105')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 136, 8))
+    st_11 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_11)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e202201')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 141, 8))
+    st_12 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_12)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e203202')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 146, 8))
+    st_13 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_13)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e204203')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 151, 8))
+    st_14 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_14)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e205204')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 156, 8))
+    st_15 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_15)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e202205')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 161, 8))
+    st_16 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_16)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e203206')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 166, 8))
+    st_17 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_17)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e204207')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 171, 8))
+    st_18 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_18)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e205208')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 176, 8))
+    st_19 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_19)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e305101')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 181, 8))
+    st_20 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_20)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e305102')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 186, 8))
+    st_21 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_21)
+    final_update = set()
+    symbol = pyxb.binding.content.ElementUse(TCInfPedReg._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'e305103')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposEventos_v1.01.xsd', 191, 8))
+    st_22 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
+    states.append(st_22)
+    transitions = []
+    transitions.append(fac.Transition(st_1, [
+         ]))
+    st_0._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_2, [
+         ]))
+    st_1._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_3, [
+         ]))
+    transitions.append(fac.Transition(st_4, [
+         ]))
+    st_2._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_3._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_5, [
+         ]))
+    st_4._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_6, [
+         ]))
+    st_5._set_transitionSet(transitions)
+    transitions = []
+    transitions.append(fac.Transition(st_7, [
+         ]))
+    transitions.append(fac.Transition(st_8, [
+         ]))
+    transitions.append(fac.Transition(st_9, [
+         ]))
+    transitions.append(fac.Transition(st_10, [
+         ]))
+    transitions.append(fac.Transition(st_11, [
+         ]))
+    transitions.append(fac.Transition(st_12, [
+         ]))
+    transitions.append(fac.Transition(st_13, [
+         ]))
+    transitions.append(fac.Transition(st_14, [
+         ]))
+    transitions.append(fac.Transition(st_15, [
+         ]))
+    transitions.append(fac.Transition(st_16, [
+         ]))
+    transitions.append(fac.Transition(st_17, [
+         ]))
+    transitions.append(fac.Transition(st_18, [
+         ]))
+    transitions.append(fac.Transition(st_19, [
+         ]))
+    transitions.append(fac.Transition(st_20, [
+         ]))
+    transitions.append(fac.Transition(st_21, [
+         ]))
+    transitions.append(fac.Transition(st_22, [
+         ]))
+    st_6._set_transitionSet(transitions)
+    transitions = []
+    st_7._set_transitionSet(transitions)
+    transitions = []
+    st_8._set_transitionSet(transitions)
+    transitions = []
+    st_9._set_transitionSet(transitions)
+    transitions = []
+    st_10._set_transitionSet(transitions)
+    transitions = []
+    st_11._set_transitionSet(transitions)
+    transitions = []
+    st_12._set_transitionSet(transitions)
+    transitions = []
+    st_13._set_transitionSet(transitions)
+    transitions = []
+    st_14._set_transitionSet(transitions)
+    transitions = []
+    st_15._set_transitionSet(transitions)
+    transitions = []
+    st_16._set_transitionSet(transitions)
+    transitions = []
+    st_17._set_transitionSet(transitions)
+    transitions = []
+    st_18._set_transitionSet(transitions)
+    transitions = []
+    st_19._set_transitionSet(transitions)
+    transitions = []
+    st_20._set_transitionSet(transitions)
+    transitions = []
+    st_21._set_transitionSet(transitions)
+    transitions = []
+    st_22._set_transitionSet(transitions)
+    return fac.Automaton(states, counters, False, containing_state=None)
+TCInfPedReg._Automaton = _BuildAutomaton_95()
 

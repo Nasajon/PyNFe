@@ -7,6 +7,7 @@ from pynfe import get_version
 # from pynfe.utils import so_numeros, memoize
 from pynfe.entidades.cliente import Cliente
 from pynfe.entidades.emitente import Emitente
+from pynfe.entidades.ibs_cbs import IBS_CBS
 from pynfe.entidades.servico import Servico
 from pynfe.utils import obter_codigo_por_municipio, so_numeros
 from pynfe.utils.flags import CODIGOS_ESTADOS, NF_STATUS
@@ -436,7 +437,7 @@ class NotaFiscal(Entidade):
         """Adiciona uma instancia de Produto"""
         obj = NotaFiscalProduto(**kwargs)
         self.produtos_e_servicos.append(obj)
-        self.totais_icms_base_calculo += obj.icms_valor_base_calculo
+        self.totais_icms_base_calculo += obj.icms_valor_base_calculo if obj.icms_modalidade not in ["40", "41", "50"] else Decimal("0.00")
         self.totais_icms_total += obj.icms_valor
         self.totais_icms_desonerado += obj.icms_desonerado
         self.totais_icms_st_base_calculo += obj.icms_st_valor_base_calculo
@@ -1218,6 +1219,9 @@ class NotaFiscalServico(Entidade):
 
     ambiente = "2"  # 1-Produção; 2-Homologação
 
+    # Parâmetros para IBS/CBS (NFS-e Nacional)
+    ibs_cbs: IBS_CBS = None  # Deve ser um objeto com os atributos esperados na serialização nacional
+
     def __init__(self, *args, **kwargs):
         super(NotaFiscalServico, self).__init__(*args, **kwargs)
 
@@ -1256,7 +1260,7 @@ class NotaFiscalServico(Entidade):
     @property
     def identificador_unico_dps(self):
         return "DPS%(cMun)s%(tpIF)s%(cnpj)s%(serie)s%(nDPS)s" % {
-            "cMun": obter_codigo_por_municipio(self.emitente.endereco_municipio, self.emitente.endereco_uf),
+            "cMun": obter_codigo_por_municipio(self.emitente.endereco_municipio, self.emitente.endereco_uf) if self.emitente.endereco_municipio else self.servico.codigo_municipio,
             "tpIF": 2 if len(self.emitente.cnpj) == 14 else 1,
             "cnpj": str(self.emitente.cnpj).zfill(14),
             "serie": str(self.serie).zfill(5),

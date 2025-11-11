@@ -1,7 +1,7 @@
-# /app/output/tiposCnc_v1_00.py
+# /app/output/tiposComplexos_v1_01.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:c27cf6a1980499753073c1afd72a5bfd80976ec9
-# Generated 2025-11-05 13:20:53.688932 by PyXB version 1.2.6 using Python 3.12.11.final.0
+# Generated 2025-11-05 13:20:54.426183 by PyXB version 1.2.6 using Python 3.12.11.final.0
 # Namespace http://www.sped.fazenda.gov.br/nfse
 
 from __future__ import unicode_literals
@@ -14,7 +14,7 @@ import pyxb.utils.domutils
 import sys
 import pyxb.utils.six as _six
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:0fbb514b-5e82-48d5-bd84-19426a4e7ddc')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:bd97e431-757d-4570-8e32-a1881a45839d')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
@@ -2913,237 +2913,6 @@ TSNumeroPostes._InitializeFacetMap(TSNumeroPostes._CF_maxLength,
    TSNumeroPostes._CF_pattern)
 Namespace.addCategoryObject('typeBinding', 'TSNumeroPostes', TSNumeroPostes)
 _module_typeBindings.TSNumeroPostes = TSNumeroPostes
-
-# Complex type {http://www.sped.fazenda.gov.br/nfse}TCEnderContribuinteCNC with content type ELEMENT_ONLY
-class TCEnderContribuinteCNC (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCEnderContribuinteCNC with content type ELEMENT_ONLY"""
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCEnderContribuinteCNC')
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 12, 2)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}CEP uses Python identifier CEP
-    __CEP = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CEP'), 'CEP', '__httpwww_sped_fazenda_gov_brnfse_TCEnderContribuinteCNC_httpwww_sped_fazenda_gov_brnfseCEP', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 14, 6), )
-
-    
-    CEP = property(__CEP.value, __CEP.set, None, 'Código de endereçamento postal do estabelecimento do contribuinte')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}nro uses Python identifier nro
-    __nro = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'nro'), 'nro', '__httpwww_sped_fazenda_gov_brnfse_TCEnderContribuinteCNC_httpwww_sped_fazenda_gov_brnfsenro', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 19, 6), )
-
-    
-    nro = property(__nro.value, __nro.set, None, 'Número do estabelecimento no logradouro informado')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}xCpl uses Python identifier xCpl
-    __xCpl = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'xCpl'), 'xCpl', '__httpwww_sped_fazenda_gov_brnfse_TCEnderContribuinteCNC_httpwww_sped_fazenda_gov_brnfsexCpl', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 24, 6), )
-
-    
-    xCpl = property(__xCpl.value, __xCpl.set, None, 'Informação complementar para identificação do endereço do contribuinte')
-
-    _ElementMap.update({
-        __CEP.name() : __CEP,
-        __nro.name() : __nro,
-        __xCpl.name() : __xCpl
-    })
-    _AttributeMap.update({
-        
-    })
-_module_typeBindings.TCEnderContribuinteCNC = TCEnderContribuinteCNC
-Namespace.addCategoryObject('typeBinding', 'TCEnderContribuinteCNC', TCEnderContribuinteCNC)
-
-
-# Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfCNC with content type ELEMENT_ONLY
-class TCInfCNC (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfCNC with content type ELEMENT_ONLY"""
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCInfCNC')
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 39, 2)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}tpAmb uses Python identifier tpAmb
-    __tpAmb = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'tpAmb'), 'tpAmb', '__httpwww_sped_fazenda_gov_brnfse_TCInfCNC_httpwww_sped_fazenda_gov_brnfsetpAmb', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 41, 6), )
-
-    
-    tpAmb = property(__tpAmb.value, __tpAmb.set, None, 'Identificação do Ambiente: 1 - Produção; 2 - Homologação')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}dhGeracaoArquivo uses Python identifier dhGeracaoArquivo
-    __dhGeracaoArquivo = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'dhGeracaoArquivo'), 'dhGeracaoArquivo', '__httpwww_sped_fazenda_gov_brnfse_TCInfCNC_httpwww_sped_fazenda_gov_brnfsedhGeracaoArquivo', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 46, 6), )
-
-    
-    dhGeracaoArquivo = property(__dhGeracaoArquivo.value, __dhGeracaoArquivo.set, None, 'Data e hora da geração do arquivo CNC. Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}verAplic uses Python identifier verAplic
-    __verAplic = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'verAplic'), 'verAplic', '__httpwww_sped_fazenda_gov_brnfse_TCInfCNC_httpwww_sped_fazenda_gov_brnfseverAplic', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 51, 6), )
-
-    
-    verAplic = property(__verAplic.value, __verAplic.set, None, 'Versão do aplicativo que gerou Informações para cadastramento de novos contribuintes CNC')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}contribuintesCnc uses Python identifier contribuintesCnc
-    __contribuintesCnc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'contribuintesCnc'), 'contribuintesCnc', '__httpwww_sped_fazenda_gov_brnfse_TCInfCNC_httpwww_sped_fazenda_gov_brnfsecontribuintesCnc', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 56, 6), )
-
-    
-    contribuintesCnc = property(__contribuintesCnc.value, __contribuintesCnc.set, None, None)
-
-    _ElementMap.update({
-        __tpAmb.name() : __tpAmb,
-        __dhGeracaoArquivo.name() : __dhGeracaoArquivo,
-        __verAplic.name() : __verAplic,
-        __contribuintesCnc.name() : __contribuintesCnc
-    })
-    _AttributeMap.update({
-        
-    })
-_module_typeBindings.TCInfCNC = TCInfCNC
-Namespace.addCategoryObject('typeBinding', 'TCInfCNC', TCInfCNC)
-
-
-# Complex type [anonymous] with content type ELEMENT_ONLY
-class CTD_ANON (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type [anonymous] with content type ELEMENT_ONLY"""
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = None
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 57, 8)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}contribuinteCnc uses Python identifier contribuinteCnc
-    __contribuinteCnc = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'contribuinteCnc'), 'contribuinteCnc', '__httpwww_sped_fazenda_gov_brnfse_CTD_ANON_httpwww_sped_fazenda_gov_brnfsecontribuinteCnc', True, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 59, 12), )
-
-    
-    contribuinteCnc = property(__contribuinteCnc.value, __contribuinteCnc.set, None, 'Grupo de informações cadastramento de novos contribuintes CNC')
-
-    _ElementMap.update({
-        __contribuinteCnc.name() : __contribuinteCnc
-    })
-    _AttributeMap.update({
-        
-    })
-_module_typeBindings.CTD_ANON = CTD_ANON
-
-
-# Complex type {http://www.sped.fazenda.gov.br/nfse}TCInfoContribuinteCNC with content type ELEMENT_ONLY
-class TCInfoContribuinteCNC (pyxb.binding.basis.complexTypeDefinition):
-    """Informações para cadastramento de novos contribuintes CNC """
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCInfoContribuinteCNC')
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 70, 2)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}CNPJ uses Python identifier CNPJ
-    __CNPJ = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CNPJ'), 'CNPJ', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseCNPJ', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 76, 8), )
-
-    
-    CNPJ = property(__CNPJ.value, __CNPJ.set, None, 'Número do CNPJ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}CPF uses Python identifier CPF
-    __CPF = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'CPF'), 'CPF', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseCPF', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 81, 8), )
-
-    
-    CPF = property(__CPF.value, __CPF.set, None, 'Número do CPF')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}IM uses Python identifier IM
-    __IM = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'IM'), 'IM', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseIM', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 87, 6), )
-
-    
-    IM = property(__IM.value, __IM.set, None, 'Número da inscrição municipal')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}dInscricaoMunicipal uses Python identifier dInscricaoMunicipal
-    __dInscricaoMunicipal = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'dInscricaoMunicipal'), 'dInscricaoMunicipal', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsedInscricaoMunicipal', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 92, 6), )
-
-    
-    dInscricaoMunicipal = property(__dInscricaoMunicipal.value, __dInscricaoMunicipal.set, None, ' Data da Inscrição Municipal: Dia, mês e ano (AAAAMMDD)')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}enderContribuinteCNC uses Python identifier enderContribuinteCNC
-    __enderContribuinteCNC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'enderContribuinteCNC'), 'enderContribuinteCNC', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseenderContribuinteCNC', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 97, 6), )
-
-    
-    enderContribuinteCNC = property(__enderContribuinteCNC.value, __enderContribuinteCNC.set, None, 'Grupo de informações do endereço do contribuinte do CNC')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}fone uses Python identifier fone
-    __fone = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'fone'), 'fone', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsefone', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 102, 6), )
-
-    
-    fone = property(__fone.value, __fone.set, None, '\n            Número do telefone do prestador:\n            Preencher com o Código DDD + número do telefone.\n            Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone)\n          ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}email uses Python identifier email
-    __email = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'email'), 'email', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseemail', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 111, 6), )
-
-    
-    email = property(__email.value, __email.set, None, 'Endereço de e-mail para contato com o contribuinte')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}regEspTribContribuinteCNC uses Python identifier regEspTribContribuinteCNC
-    __regEspTribContribuinteCNC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'regEspTribContribuinteCNC'), 'regEspTribContribuinteCNC', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfseregEspTribContribuinteCNC', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 116, 6), )
-
-    
-    regEspTribContribuinteCNC = property(__regEspTribContribuinteCNC.value, __regEspTribContribuinteCNC.set, None, '\n            Tipos de Regimes Especiais de Tributação:\n            0 - Nenhum;\n            1 - Ato Cooperado (Cooperativa);\n            2 - Estimativa;\n            3 - Microempresa Municipal;\n            4 - Notário ou Registrador;\n            5 - Profissional Autônomo;\n            6 - Sociedade de Profissionais;\n          ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}situacaoCadastroContribuinte uses Python identifier situacaoCadastroContribuinte
-    __situacaoCadastroContribuinte = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'situacaoCadastroContribuinte'), 'situacaoCadastroContribuinte', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsesituacaoCadastroContribuinte', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 130, 6), )
-
-    
-    situacaoCadastroContribuinte = property(__situacaoCadastroContribuinte.value, __situacaoCadastroContribuinte.set, None, '\n            Identificação da situação do cadastro do contribuinte\n          ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}motivoSituacaoCadastroContribuinte uses Python identifier motivoSituacaoCadastroContribuinte
-    __motivoSituacaoCadastroContribuinte = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'motivoSituacaoCadastroContribuinte'), 'motivoSituacaoCadastroContribuinte', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsemotivoSituacaoCadastroContribuinte', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 137, 6), )
-
-    
-    motivoSituacaoCadastroContribuinte = property(__motivoSituacaoCadastroContribuinte.value, __motivoSituacaoCadastroContribuinte.set, None, '\n            Motivo pelo qual o contribuinte se enquadra na situação informada\n          ')
-
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}situacaoEmissaoNFSE uses Python identifier situacaoEmissaoNFSE
-    __situacaoEmissaoNFSE = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'situacaoEmissaoNFSE'), 'situacaoEmissaoNFSE', '__httpwww_sped_fazenda_gov_brnfse_TCInfoContribuinteCNC_httpwww_sped_fazenda_gov_brnfsesituacaoEmissaoNFSE', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 144, 6), )
-
-    
-    situacaoEmissaoNFSE = property(__situacaoEmissaoNFSE.value, __situacaoEmissaoNFSE.set, None, '\n            Situação Emissão NFS-e:\n            0 - Não Habilitado;\n            1 - Habilitado;\n          ')
-
-    _ElementMap.update({
-        __CNPJ.name() : __CNPJ,
-        __CPF.name() : __CPF,
-        __IM.name() : __IM,
-        __dInscricaoMunicipal.name() : __dInscricaoMunicipal,
-        __enderContribuinteCNC.name() : __enderContribuinteCNC,
-        __fone.name() : __fone,
-        __email.name() : __email,
-        __regEspTribContribuinteCNC.name() : __regEspTribContribuinteCNC,
-        __situacaoCadastroContribuinte.name() : __situacaoCadastroContribuinte,
-        __motivoSituacaoCadastroContribuinte.name() : __motivoSituacaoCadastroContribuinte,
-        __situacaoEmissaoNFSE.name() : __situacaoEmissaoNFSE
-    })
-    _AttributeMap.update({
-        
-    })
-_module_typeBindings.TCInfoContribuinteCNC = TCInfoContribuinteCNC
-Namespace.addCategoryObject('typeBinding', 'TCInfoContribuinteCNC', TCInfoContribuinteCNC)
-
 
 # Complex type {http://www.sped.fazenda.gov.br/nfse}TCEmitente with content type ELEMENT_ONLY
 class TCEmitente (pyxb.binding.basis.complexTypeDefinition):
@@ -6957,42 +6726,6 @@ _module_typeBindings.TCRTCInfoTributosDif = TCRTCInfoTributosDif
 Namespace.addCategoryObject('typeBinding', 'TCRTCInfoTributosDif', TCRTCInfoTributosDif)
 
 
-# Complex type {http://www.sped.fazenda.gov.br/nfse}TCNC with content type ELEMENT_ONLY
-class TCNC (pyxb.binding.basis.complexTypeDefinition):
-    """Complex type {http://www.sped.fazenda.gov.br/nfse}TCNC with content type ELEMENT_ONLY"""
-    _TypeDefinition = None
-    _ContentTypeTag = pyxb.binding.basis.complexTypeDefinition._CT_ELEMENT_ONLY
-    _Abstract = False
-    _ExpandedName = pyxb.namespace.ExpandedName(Namespace, 'TCNC')
-    _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 32, 2)
-    _ElementMap = {}
-    _AttributeMap = {}
-    # Base type is pyxb.binding.datatypes.anyType
-    
-    # Element {http://www.sped.fazenda.gov.br/nfse}infCNC uses Python identifier infCNC
-    __infCNC = pyxb.binding.content.ElementDeclaration(pyxb.namespace.ExpandedName(Namespace, 'infCNC'), 'infCNC', '__httpwww_sped_fazenda_gov_brnfse_TCNC_httpwww_sped_fazenda_gov_brnfseinfCNC', False, pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 34, 6), )
-
-    
-    infCNC = property(__infCNC.value, __infCNC.set, None, None)
-
-    
-    # Attribute versao uses Python identifier versao
-    __versao = pyxb.binding.content.AttributeUse(pyxb.namespace.ExpandedName(None, 'versao'), 'versao', '__httpwww_sped_fazenda_gov_brnfse_TCNC_versao', _module_typeBindings.TVerCNC, required=True)
-    __versao._DeclarationLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 36, 4)
-    __versao._UseLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 36, 4)
-    
-    versao = property(__versao.value, __versao.set, None, None)
-
-    _ElementMap.update({
-        __infCNC.name() : __infCNC
-    })
-    _AttributeMap.update({
-        __versao.name() : __versao
-    })
-_module_typeBindings.TCNC = TCNC
-Namespace.addCategoryObject('typeBinding', 'TCNC', TCNC)
-
-
 # Complex type {http://www.sped.fazenda.gov.br/nfse}TCNFSe with content type ELEMENT_ONLY
 class TCNFSe (pyxb.binding.basis.complexTypeDefinition):
     """Complex type {http://www.sped.fazenda.gov.br/nfse}TCNFSe with content type ELEMENT_ONLY"""
@@ -7427,287 +7160,6 @@ Namespace.addCategoryObject('typeBinding', 'TCInfDPS', TCInfDPS)
 
 
 
-TCEnderContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CEP'), TSCEP, scope=TCEnderContribuinteCNC, documentation='Código de endereçamento postal do estabelecimento do contribuinte', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 14, 6)))
-
-TCEnderContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nro'), TSNumeroEndereco, scope=TCEnderContribuinteCNC, documentation='Número do estabelecimento no logradouro informado', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 19, 6)))
-
-TCEnderContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xCpl'), TSComplementoEndereco, scope=TCEnderContribuinteCNC, documentation='Informação complementar para identificação do endereço do contribuinte', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 24, 6)))
-
-def _BuildAutomaton ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton
-    del _BuildAutomaton
-    import pyxb.utils.fac as fac
-
-    counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 24, 6))
-    counters.add(cc_0)
-    states = []
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCEnderContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CEP')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 14, 6))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TCEnderContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'nro')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 19, 6))
-    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_1)
-    final_update = set()
-    final_update.add(fac.UpdateInstruction(cc_0, False))
-    symbol = pyxb.binding.content.ElementUse(TCEnderContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'xCpl')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 24, 6))
-    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_2)
-    transitions = []
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    st_0._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    st_1._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    st_2._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderContribuinteCNC._Automaton = _BuildAutomaton()
-
-
-
-
-TCInfCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tpAmb'), TSTipoAmbiente, scope=TCInfCNC, documentation='Identificação do Ambiente: 1 - Produção; 2 - Homologação', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 41, 6)))
-
-TCInfCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'dhGeracaoArquivo'), TSDateTimeUTC, scope=TCInfCNC, documentation='Data e hora da geração do arquivo CNC. Data e hora no formato UTC (Universal Coordinated Time): AAAA-MM-DDThh:mm:ssTZD', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 46, 6)))
-
-TCInfCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'verAplic'), TSVerAplic, scope=TCInfCNC, documentation='Versão do aplicativo que gerou Informações para cadastramento de novos contribuintes CNC', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 51, 6)))
-
-TCInfCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'contribuintesCnc'), CTD_ANON, scope=TCInfCNC, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 56, 6)))
-
-def _BuildAutomaton_ ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_
-    del _BuildAutomaton_
-    import pyxb.utils.fac as fac
-
-    counters = set()
-    states = []
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'tpAmb')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 41, 6))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'dhGeracaoArquivo')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 46, 6))
-    st_1 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_1)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'verAplic')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 51, 6))
-    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_2)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TCInfCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'contribuintesCnc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 56, 6))
-    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_3)
-    transitions = []
-    transitions.append(fac.Transition(st_1, [
-         ]))
-    st_0._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    st_1._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    st_2._set_transitionSet(transitions)
-    transitions = []
-    st_3._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-TCInfCNC._Automaton = _BuildAutomaton_()
-
-
-
-
-CTD_ANON._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'contribuinteCnc'), TCInfoContribuinteCNC, scope=CTD_ANON, documentation='Grupo de informações cadastramento de novos contribuintes CNC', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 59, 12)))
-
-def _BuildAutomaton_2 ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_2
-    del _BuildAutomaton_2
-    import pyxb.utils.fac as fac
-
-    counters = set()
-    states = []
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(CTD_ANON._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'contribuinteCnc')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 59, 12))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    transitions = []
-    transitions.append(fac.Transition(st_0, [
-         ]))
-    st_0._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-CTD_ANON._Automaton = _BuildAutomaton_2()
-
-
-
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CNPJ'), TSCNPJ, scope=TCInfoContribuinteCNC, documentation='Número do CNPJ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 76, 8)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPF'), TSCPF, scope=TCInfoContribuinteCNC, documentation='Número do CPF', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 81, 8)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IM'), TSInscMun, scope=TCInfoContribuinteCNC, documentation='Número da inscrição municipal', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 87, 6)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'dInscricaoMunicipal'), TSData, scope=TCInfoContribuinteCNC, documentation=' Data da Inscrição Municipal: Dia, mês e ano (AAAAMMDD)', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 92, 6)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'enderContribuinteCNC'), TCEnderContribuinteCNC, scope=TCInfoContribuinteCNC, documentation='Grupo de informações do endereço do contribuinte do CNC', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 97, 6)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fone'), TSTelefone, scope=TCInfoContribuinteCNC, documentation='\n            Número do telefone do prestador:\n            Preencher com o Código DDD + número do telefone.\n            Nas operações com exterior é permitido informar o código do país + código da localidade + número do telefone)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 102, 6)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'email'), TSEmail, scope=TCInfoContribuinteCNC, documentation='Endereço de e-mail para contato com o contribuinte', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 111, 6)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'regEspTribContribuinteCNC'), TSRegEspTrib, scope=TCInfoContribuinteCNC, documentation='\n            Tipos de Regimes Especiais de Tributação:\n            0 - Nenhum;\n            1 - Ato Cooperado (Cooperativa);\n            2 - Estimativa;\n            3 - Microempresa Municipal;\n            4 - Notário ou Registrador;\n            5 - Profissional Autônomo;\n            6 - Sociedade de Profissionais;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 116, 6)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'situacaoCadastroContribuinte'), TSSituacaoCadastroContribuinte, scope=TCInfoContribuinteCNC, documentation='\n            Identificação da situação do cadastro do contribuinte\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 130, 6)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'motivoSituacaoCadastroContribuinte'), TSMotivoSituacaoCadastroContribuinte, scope=TCInfoContribuinteCNC, documentation='\n            Motivo pelo qual o contribuinte se enquadra na situação informada\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 137, 6)))
-
-TCInfoContribuinteCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'situacaoEmissaoNFSE'), TSSituacaoEmissaoNFSE, scope=TCInfoContribuinteCNC, documentation='\n            Situação Emissão NFS-e:\n            0 - Não Habilitado;\n            1 - Habilitado;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 144, 6)))
-
-def _BuildAutomaton_3 ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_3
-    del _BuildAutomaton_3
-    import pyxb.utils.fac as fac
-
-    counters = set()
-    cc_0 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 87, 6))
-    counters.add(cc_0)
-    cc_1 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 102, 6))
-    counters.add(cc_1)
-    cc_2 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 111, 6))
-    counters.add(cc_2)
-    cc_3 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 130, 6))
-    counters.add(cc_3)
-    cc_4 = fac.CounterCondition(min=0, max=1, metadata=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 137, 6))
-    counters.add(cc_4)
-    states = []
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CNPJ')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 76, 8))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'CPF')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 81, 8))
-    st_1 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_1)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'IM')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 87, 6))
-    st_2 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_2)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'dInscricaoMunicipal')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 92, 6))
-    st_3 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_3)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'enderContribuinteCNC')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 97, 6))
-    st_4 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_4)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'fone')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 102, 6))
-    st_5 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_5)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'email')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 111, 6))
-    st_6 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_6)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'regEspTribContribuinteCNC')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 116, 6))
-    st_7 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_7)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'situacaoCadastroContribuinte')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 130, 6))
-    st_8 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_8)
-    final_update = None
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'motivoSituacaoCadastroContribuinte')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 137, 6))
-    st_9 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_9)
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TCInfoContribuinteCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'situacaoEmissaoNFSE')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 144, 6))
-    st_10 = fac.State(symbol, is_initial=False, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_10)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    st_0._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-         ]))
-    transitions.append(fac.Transition(st_3, [
-         ]))
-    st_1._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_2, [
-        fac.UpdateInstruction(cc_0, True) ]))
-    transitions.append(fac.Transition(st_3, [
-        fac.UpdateInstruction(cc_0, False) ]))
-    st_2._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_4, [
-         ]))
-    st_3._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-         ]))
-    transitions.append(fac.Transition(st_6, [
-         ]))
-    transitions.append(fac.Transition(st_7, [
-         ]))
-    st_4._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_5, [
-        fac.UpdateInstruction(cc_1, True) ]))
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_1, False) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_1, False) ]))
-    st_5._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_6, [
-        fac.UpdateInstruction(cc_2, True) ]))
-    transitions.append(fac.Transition(st_7, [
-        fac.UpdateInstruction(cc_2, False) ]))
-    st_6._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_8, [
-         ]))
-    transitions.append(fac.Transition(st_9, [
-         ]))
-    transitions.append(fac.Transition(st_10, [
-         ]))
-    st_7._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_8, [
-        fac.UpdateInstruction(cc_3, True) ]))
-    transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_3, False) ]))
-    transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_3, False) ]))
-    st_8._set_transitionSet(transitions)
-    transitions = []
-    transitions.append(fac.Transition(st_9, [
-        fac.UpdateInstruction(cc_4, True) ]))
-    transitions.append(fac.Transition(st_10, [
-        fac.UpdateInstruction(cc_4, False) ]))
-    st_9._set_transitionSet(transitions)
-    transitions = []
-    st_10._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoContribuinteCNC._Automaton = _BuildAutomaton_3()
-
-
-
-
 TCEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CNPJ'), TSCNPJ, scope=TCEmitente, documentation='\n              Número do CNPJ do emitente da NFS-e.\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 154, 8)))
 
 TCEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CPF'), TSCPF, scope=TCEmitente, documentation='\n              Número do CPF do emitente da NFS-e.\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 161, 8)))
@@ -7724,10 +7176,10 @@ TCEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'email'), TSEmail, scope=TCEmitente, documentation='E-mail do emitente.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 202, 6)))
 
-def _BuildAutomaton_4 ():
+def _BuildAutomaton ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_4
-    del _BuildAutomaton_4
+    global _BuildAutomaton
+    del _BuildAutomaton
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -7821,7 +7273,7 @@ def _BuildAutomaton_4 ():
         fac.UpdateInstruction(cc_3, True) ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEmitente._Automaton = _BuildAutomaton_4()
+TCEmitente._Automaton = _BuildAutomaton()
 
 
 
@@ -7844,10 +7296,10 @@ TCValoresNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCValoresNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xOutInf'), TSDesc2000, scope=TCValoresNFSe, documentation='\n            Uso da Administração Tributária Municipal.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 276, 6)))
 
-def _BuildAutomaton_5 ():
+def _BuildAutomaton_ ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_5
-    del _BuildAutomaton_5
+    global _BuildAutomaton_
+    del _BuildAutomaton_
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -7998,7 +7450,7 @@ def _BuildAutomaton_5 ():
         fac.UpdateInstruction(cc_7, True) ]))
     st_8._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCValoresNFSe._Automaton = _BuildAutomaton_5()
+TCValoresNFSe._Automaton = _BuildAutomaton_()
 
 
 
@@ -8013,10 +7465,10 @@ TCRTCIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCRTCIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'totCIBS'), TCRTCTotalCIBS, scope=TCRTCIBSCBS, documentation='\n            Grupo de Totalizadores\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 316, 6)))
 
-def _BuildAutomaton_6 ():
+def _BuildAutomaton_2 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_6
-    del _BuildAutomaton_6
+    global _BuildAutomaton_2
+    del _BuildAutomaton_2
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8060,7 +7512,7 @@ def _BuildAutomaton_6 ():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCIBSCBS._Automaton = _BuildAutomaton_6()
+TCRTCIBSCBS._Automaton = _BuildAutomaton_2()
 
 
 
@@ -8075,10 +7527,10 @@ TCRTCValoresIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expande
 
 TCRTCValoresIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fed'), TCRTCValoresIBSCBSFed, scope=TCRTCValoresIBSCBS, documentation='\n            Grupo de Informações relativas aos valores da CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 360, 6)))
 
-def _BuildAutomaton_7 ():
+def _BuildAutomaton_3 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_7
-    del _BuildAutomaton_7
+    global _BuildAutomaton_3
+    del _BuildAutomaton_3
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8128,7 +7580,7 @@ def _BuildAutomaton_7 ():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCValoresIBSCBS._Automaton = _BuildAutomaton_7()
+TCRTCValoresIBSCBS._Automaton = _BuildAutomaton_3()
 
 
 
@@ -8139,10 +7591,10 @@ TCRTCValoresIBSCBSUF._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expan
 
 TCRTCValoresIBSCBSUF._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pAliqEfetUF'), TSDec2V2, scope=TCRTCValoresIBSCBSUF, documentation='\n            pAliqEfetUF = pIBSUF x (1 - pRedAliqUF) x (1 - pRedutor)\n            Se pRedAliqUF não for informado na DPS, então pAliqEfetUF é a própria pIBSUF\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 386, 6)))
 
-def _BuildAutomaton_8 ():
+def _BuildAutomaton_4 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_8
-    del _BuildAutomaton_8
+    global _BuildAutomaton_4
+    del _BuildAutomaton_4
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8176,7 +7628,7 @@ def _BuildAutomaton_8 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCValoresIBSCBSUF._Automaton = _BuildAutomaton_8()
+TCRTCValoresIBSCBSUF._Automaton = _BuildAutomaton_4()
 
 
 
@@ -8187,10 +7639,10 @@ TCRTCValoresIBSCBSMun._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCValoresIBSCBSMun._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pAliqEfetMun'), TSDec2V2, scope=TCRTCValoresIBSCBSMun, documentation='\n            pAliqEfetMun = pIBSMun x (1 - pRedAliqMun) x (1 - pRedutor)\n            Se pRedAliqMun não for informado na DPS, então pAliqEfetMun é a própria pIBSMun\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 413, 6)))
 
-def _BuildAutomaton_9 ():
+def _BuildAutomaton_5 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_9
-    del _BuildAutomaton_9
+    global _BuildAutomaton_5
+    del _BuildAutomaton_5
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8224,7 +7676,7 @@ def _BuildAutomaton_9 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCValoresIBSCBSMun._Automaton = _BuildAutomaton_9()
+TCRTCValoresIBSCBSMun._Automaton = _BuildAutomaton_5()
 
 
 
@@ -8235,10 +7687,10 @@ TCRTCValoresIBSCBSFed._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCValoresIBSCBSFed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pAliqEfetCBS'), TSDec2V2, scope=TCRTCValoresIBSCBSFed, documentation='\n            pAliqEfetCBS = pCBS x (1 - pRedAliqCBS) x (1 - pRedutor)\n            Se pRedAliqCBS não for informado na DPS, então pAliqEfetCBS é a própria pCBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 440, 6)))
 
-def _BuildAutomaton_10 ():
+def _BuildAutomaton_6 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_10
-    del _BuildAutomaton_10
+    global _BuildAutomaton_6
+    del _BuildAutomaton_6
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8272,7 +7724,7 @@ def _BuildAutomaton_10 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCValoresIBSCBSFed._Automaton = _BuildAutomaton_10()
+TCRTCValoresIBSCBSFed._Automaton = _BuildAutomaton_6()
 
 
 
@@ -8287,10 +7739,10 @@ TCRTCTotalCIBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNam
 
 TCRTCTotalCIBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'gTribCompraGov'), TCRTCTotalTribCompraGov, scope=TCRTCTotalCIBS, documentation='\n            Grupo de informações da composição do valor do IBS e da CBS em compras governamentais\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 484, 6)))
 
-def _BuildAutomaton_11 ():
+def _BuildAutomaton_7 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_11
-    del _BuildAutomaton_11
+    global _BuildAutomaton_7
+    del _BuildAutomaton_7
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8346,7 +7798,7 @@ def _BuildAutomaton_11 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalCIBS._Automaton = _BuildAutomaton_11()
+TCRTCTotalCIBS._Automaton = _BuildAutomaton_7()
 
 
 
@@ -8359,10 +7811,10 @@ TCRTCTotalIBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCRTCTotalIBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'gIBSMunTot'), TCRTCTotalIBSMun, scope=TCRTCTotalIBS, documentation='\n            Grupo de valores referentes ao IBS Municipal\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 518, 6)))
 
-def _BuildAutomaton_12 ():
+def _BuildAutomaton_8 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_12
-    del _BuildAutomaton_12
+    global _BuildAutomaton_8
+    del _BuildAutomaton_8
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8404,7 +7856,7 @@ def _BuildAutomaton_12 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalIBS._Automaton = _BuildAutomaton_12()
+TCRTCTotalIBS._Automaton = _BuildAutomaton_8()
 
 
 
@@ -8413,10 +7865,10 @@ TCRTCTotalIBSCredPres._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCTotalIBSCredPres._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vCredPresIBS'), TSDec15V2, scope=TCRTCTotalIBSCredPres, documentation='\n            Valor do Crédito Presumido para o IBS\n            vCredPresIBS = vBC x pCredPresIBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 537, 6)))
 
-def _BuildAutomaton_13 ():
+def _BuildAutomaton_9 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_13
-    del _BuildAutomaton_13
+    global _BuildAutomaton_9
+    del _BuildAutomaton_9
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8436,7 +7888,7 @@ def _BuildAutomaton_13 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalIBSCredPres._Automaton = _BuildAutomaton_13()
+TCRTCTotalIBSCredPres._Automaton = _BuildAutomaton_9()
 
 
 
@@ -8445,10 +7897,10 @@ TCRTCTotalIBSUF._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCRTCTotalIBSUF._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vIBSUF'), TSDec15V2, scope=TCRTCTotalIBSUF, documentation='\n            Total valor do IBS estadual\n            vIBSUF = vBC x (pIBSUF ou pAliqEfetUF)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 558, 6)))
 
-def _BuildAutomaton_14 ():
+def _BuildAutomaton_10 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_14
-    del _BuildAutomaton_14
+    global _BuildAutomaton_10
+    del _BuildAutomaton_10
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8468,7 +7920,7 @@ def _BuildAutomaton_14 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalIBSUF._Automaton = _BuildAutomaton_14()
+TCRTCTotalIBSUF._Automaton = _BuildAutomaton_10()
 
 
 
@@ -8477,10 +7929,10 @@ TCRTCTotalIBSMun._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedN
 
 TCRTCTotalIBSMun._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vIBSMun'), TSDec15V2, scope=TCRTCTotalIBSMun, documentation='\n            Total valor do IBS municipal\n            vIBSMun = vBC x (pIBSMun ou pAliqEfetMun)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 579, 6)))
 
-def _BuildAutomaton_15 ():
+def _BuildAutomaton_11 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_15
-    del _BuildAutomaton_15
+    global _BuildAutomaton_11
+    del _BuildAutomaton_11
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8500,7 +7952,7 @@ def _BuildAutomaton_15 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalIBSMun._Automaton = _BuildAutomaton_15()
+TCRTCTotalIBSMun._Automaton = _BuildAutomaton_11()
 
 
 
@@ -8511,10 +7963,10 @@ TCRTCTotalCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCRTCTotalCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vCBS'), TSDec15V2, scope=TCRTCTotalCBS, documentation='\n            Total valor da CBS da União\n            vCBS = vBC x (pCBS ou pAliqEfetCBS)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 607, 6)))
 
-def _BuildAutomaton_16 ():
+def _BuildAutomaton_12 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_16
-    del _BuildAutomaton_16
+    global _BuildAutomaton_12
+    del _BuildAutomaton_12
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8546,7 +7998,7 @@ def _BuildAutomaton_16 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalCBS._Automaton = _BuildAutomaton_16()
+TCRTCTotalCBS._Automaton = _BuildAutomaton_12()
 
 
 
@@ -8555,10 +8007,10 @@ TCRTCTotalCBSCredPres._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCTotalCBSCredPres._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vCredPresCBS'), TSDec15V2, scope=TCRTCTotalCBSCredPres, documentation='\n            Valor do Crédito Presumido da CBS\n            vCredPresCBS = vBC x pCredPresCBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 627, 6)))
 
-def _BuildAutomaton_17 ():
+def _BuildAutomaton_13 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_17
-    del _BuildAutomaton_17
+    global _BuildAutomaton_13
+    del _BuildAutomaton_13
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8578,7 +8030,7 @@ def _BuildAutomaton_17 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalCBSCredPres._Automaton = _BuildAutomaton_17()
+TCRTCTotalCBSCredPres._Automaton = _BuildAutomaton_13()
 
 
 
@@ -8595,10 +8047,10 @@ TCRTCTotalTribRegular._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCRTCTotalTribRegular._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vTribRegCBS'), TSDec15V2, scope=TCRTCTotalTribRegular, documentation='\n            Valor da tributação regular da CBS\n            vTribRegCBS = vBC x pAliqEfeRegCBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 677, 6)))
 
-def _BuildAutomaton_18 ():
+def _BuildAutomaton_14 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_18
-    del _BuildAutomaton_18
+    global _BuildAutomaton_14
+    del _BuildAutomaton_14
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8650,7 +8102,7 @@ def _BuildAutomaton_18 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalTribRegular._Automaton = _BuildAutomaton_18()
+TCRTCTotalTribRegular._Automaton = _BuildAutomaton_14()
 
 
 
@@ -8667,10 +8119,10 @@ TCRTCTotalTribCompraGov._AddElement(pyxb.binding.basis.element(pyxb.namespace.Ex
 
 TCRTCTotalTribCompraGov._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vCBS'), TSDec15V2, scope=TCRTCTotalTribCompraGov, documentation='\n            Valor do Tributo da CBS calculado\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 725, 6)))
 
-def _BuildAutomaton_19 ():
+def _BuildAutomaton_15 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_19
-    del _BuildAutomaton_19
+    global _BuildAutomaton_15
+    del _BuildAutomaton_15
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8722,7 +8174,7 @@ def _BuildAutomaton_19 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCTotalTribCompraGov._Automaton = _BuildAutomaton_19()
+TCRTCTotalTribCompraGov._Automaton = _BuildAutomaton_15()
 
 
 
@@ -8733,10 +8185,10 @@ TCSubstituicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNam
 
 TCSubstituicao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xMotivo'), TSMotivo, scope=TCSubstituicao, documentation='Descrição do motivo da substituição da NFS-e', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 868, 6)))
 
-def _BuildAutomaton_20 ():
+def _BuildAutomaton_16 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_20
-    del _BuildAutomaton_20
+    global _BuildAutomaton_16
+    del _BuildAutomaton_16
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8769,7 +8221,7 @@ def _BuildAutomaton_20 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCSubstituicao._Automaton = _BuildAutomaton_20()
+TCSubstituicao._Automaton = _BuildAutomaton_16()
 
 
 
@@ -8796,10 +8248,10 @@ TCInfoPrestador._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCInfoPrestador._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'regTrib'), TCRegTrib, scope=TCInfoPrestador, documentation='\n            Grupo de informações relativas aos regimes de tributação do prestador de serviços\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 942, 6)))
 
-def _BuildAutomaton_21 ():
+def _BuildAutomaton_17 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_21
-    del _BuildAutomaton_21
+    global _BuildAutomaton_17
+    del _BuildAutomaton_17
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -8993,7 +8445,7 @@ def _BuildAutomaton_21 ():
     transitions = []
     st_10._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoPrestador._Automaton = _BuildAutomaton_21()
+TCInfoPrestador._Automaton = _BuildAutomaton_17()
 
 
 
@@ -9004,10 +8456,10 @@ TCRegTrib._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Nam
 
 TCRegTrib._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'regEspTrib'), TSRegEspTrib, scope=TCRegTrib, documentation='\n            Tipos de Regimes Especiais de Tributação:\n            0 - Nenhum;\n            1 - Ato Cooperado (Cooperativa);\n            2 - Estimativa;\n            3 - Microempresa Municipal;\n            4 - Notário ou Registrador;\n            5 - Profissional Autônomo;\n            6 - Sociedade de Profissionais;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 974, 6)))
 
-def _BuildAutomaton_22 ():
+def _BuildAutomaton_18 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_22
-    del _BuildAutomaton_22
+    global _BuildAutomaton_18
+    del _BuildAutomaton_18
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9041,7 +8493,7 @@ def _BuildAutomaton_22 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRegTrib._Automaton = _BuildAutomaton_22()
+TCRegTrib._Automaton = _BuildAutomaton_18()
 
 
 
@@ -9066,10 +8518,10 @@ TCInfoPessoa._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 TCInfoPessoa._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'email'), TSEmail, scope=TCInfoPessoa, documentation='E-mail', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1052, 6)))
 
-def _BuildAutomaton_23 ():
+def _BuildAutomaton_19 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_23
-    del _BuildAutomaton_23
+    global _BuildAutomaton_19
+    del _BuildAutomaton_19
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9200,7 +8652,7 @@ def _BuildAutomaton_23 ():
         fac.UpdateInstruction(cc_4, True) ]))
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoPessoa._Automaton = _BuildAutomaton_23()
+TCInfoPessoa._Automaton = _BuildAutomaton_19()
 
 
 
@@ -9217,10 +8669,10 @@ TCEndereco._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCEndereco._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xBairro'), TSBairro, scope=TCEndereco, documentation='Bairro', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1089, 6)))
 
-def _BuildAutomaton_24 ():
+def _BuildAutomaton_20 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_24
-    del _BuildAutomaton_24
+    global _BuildAutomaton_20
+    del _BuildAutomaton_20
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9278,7 +8730,7 @@ def _BuildAutomaton_24 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEndereco._Automaton = _BuildAutomaton_24()
+TCEndereco._Automaton = _BuildAutomaton_20()
 
 
 
@@ -9297,10 +8749,10 @@ TCEnderecoEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expande
 
 TCEnderecoEmitente._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CEP'), TSCEP, scope=TCEnderecoEmitente, documentation='Número do CEP', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1129, 6)))
 
-def _BuildAutomaton_25 ():
+def _BuildAutomaton_21 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_25
-    del _BuildAutomaton_25
+    global _BuildAutomaton_21
+    del _BuildAutomaton_21
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9366,7 +8818,7 @@ def _BuildAutomaton_25 ():
     transitions = []
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderecoEmitente._Automaton = _BuildAutomaton_25()
+TCEnderecoEmitente._Automaton = _BuildAutomaton_21()
 
 
 
@@ -9383,10 +8835,10 @@ TCEnderecoSimples._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expanded
 
 TCEnderecoSimples._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xBairro'), TSBairro, scope=TCEnderecoSimples, documentation='Bairro', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1166, 6)))
 
-def _BuildAutomaton_26 ():
+def _BuildAutomaton_22 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_26
-    del _BuildAutomaton_26
+    global _BuildAutomaton_22
+    del _BuildAutomaton_22
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9444,7 +8896,7 @@ def _BuildAutomaton_26 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderecoSimples._Automaton = _BuildAutomaton_26()
+TCEnderecoSimples._Automaton = _BuildAutomaton_22()
 
 
 
@@ -9453,10 +8905,10 @@ TCEnderNac._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCEnderNac._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'CEP'), TSCEP, scope=TCEnderNac, documentation='Número do CEP', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1181, 6)))
 
-def _BuildAutomaton_27 ():
+def _BuildAutomaton_23 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_27
-    del _BuildAutomaton_27
+    global _BuildAutomaton_23
+    del _BuildAutomaton_23
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9476,7 +8928,7 @@ def _BuildAutomaton_27 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderNac._Automaton = _BuildAutomaton_27()
+TCEnderNac._Automaton = _BuildAutomaton_23()
 
 
 
@@ -9489,10 +8941,10 @@ TCEnderExt._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCEnderExt._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xEstProvReg'), TSEstadoProvRegiao, scope=TCEnderExt, documentation='Estado, província ou região da cidade no exterior do prestador do serviço.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1206, 6)))
 
-def _BuildAutomaton_28 ():
+def _BuildAutomaton_24 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_28
-    del _BuildAutomaton_28
+    global _BuildAutomaton_24
+    del _BuildAutomaton_24
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9528,7 +8980,7 @@ def _BuildAutomaton_28 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderExt._Automaton = _BuildAutomaton_28()
+TCEnderExt._Automaton = _BuildAutomaton_24()
 
 
 
@@ -9539,10 +8991,10 @@ TCEnderExtSimples._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expanded
 
 TCEnderExtSimples._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xEstProvReg'), TSEstadoProvRegiao, scope=TCEnderExtSimples, documentation='Estado, província ou região da cidade no exterior do prestador do serviço.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1226, 6)))
 
-def _BuildAutomaton_29 ():
+def _BuildAutomaton_25 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_29
-    del _BuildAutomaton_29
+    global _BuildAutomaton_25
+    del _BuildAutomaton_25
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9570,7 +9022,7 @@ def _BuildAutomaton_29 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderExtSimples._Automaton = _BuildAutomaton_29()
+TCEnderExtSimples._Automaton = _BuildAutomaton_25()
 
 
 
@@ -9587,10 +9039,10 @@ TCEnderObraEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expanded
 
 TCEnderObraEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xBairro'), TSBairro, scope=TCEnderObraEvento, documentation='Bairro', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1263, 6)))
 
-def _BuildAutomaton_30 ():
+def _BuildAutomaton_26 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_30
-    del _BuildAutomaton_30
+    global _BuildAutomaton_26
+    del _BuildAutomaton_26
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9648,7 +9100,7 @@ def _BuildAutomaton_30 ():
     transitions = []
     st_5._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCEnderObraEvento._Automaton = _BuildAutomaton_30()
+TCEnderObraEvento._Automaton = _BuildAutomaton_26()
 
 
 
@@ -9669,10 +9121,10 @@ TCServ._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namesp
 
 TCServ._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infoCompl'), TCInfoCompl, scope=TCServ, documentation='\n            Grupo de informações complementares disponível para todos os serviços prestados\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1312, 6)))
 
-def _BuildAutomaton_31 ():
+def _BuildAutomaton_27 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_31
-    del _BuildAutomaton_31
+    global _BuildAutomaton_27
+    del _BuildAutomaton_27
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9800,7 +9252,7 @@ def _BuildAutomaton_31 ():
         fac.UpdateInstruction(cc_5, True) ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCServ._Automaton = _BuildAutomaton_31()
+TCServ._Automaton = _BuildAutomaton_27()
 
 
 
@@ -9809,10 +9261,10 @@ TCLocPrest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCLocPrest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cPaisPrestacao'), TSCodPaisISO, scope=TCLocPrest, documentation='Código do país onde o serviço foi prestado (Tabela de Países ISO)', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1329, 6)))
 
-def _BuildAutomaton_32 ():
+def _BuildAutomaton_28 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_32
-    del _BuildAutomaton_32
+    global _BuildAutomaton_28
+    del _BuildAutomaton_28
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9830,7 +9282,7 @@ def _BuildAutomaton_32 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCLocPrest._Automaton = _BuildAutomaton_32()
+TCLocPrest._Automaton = _BuildAutomaton_28()
 
 
 
@@ -9845,10 +9297,10 @@ TCCServ._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Names
 
 TCCServ._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cIntContrib'), TSCodigoInternoContribuinte, scope=TCCServ, documentation='\n            Código interno do contribuinte\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1362, 6)))
 
-def _BuildAutomaton_33 ():
+def _BuildAutomaton_29 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_33
-    del _BuildAutomaton_33
+    global _BuildAutomaton_29
+    del _BuildAutomaton_29
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -9903,7 +9355,7 @@ def _BuildAutomaton_33 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCCServ._Automaton = _BuildAutomaton_33()
+TCCServ._Automaton = _BuildAutomaton_29()
 
 
 
@@ -9928,10 +9380,10 @@ TCComExterior._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCComExterior._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'mdic'), TSEnvMDIC, scope=TCComExterior, documentation='\n            Compartilhar as informações da NFS-e gerada a partir desta DPS com a Secretaria de Comércio Exterior:\n            0 - Não enviar para o MDIC;\n            1 - Enviar para o MDIC;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1480, 6)))
 
-def _BuildAutomaton_34 ():
+def _BuildAutomaton_30 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_34
-    del _BuildAutomaton_34
+    global _BuildAutomaton_30
+    del _BuildAutomaton_30
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10029,7 +9481,7 @@ def _BuildAutomaton_34 ():
     transitions = []
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCComExterior._Automaton = _BuildAutomaton_34()
+TCComExterior._Automaton = _BuildAutomaton_30()
 
 
 
@@ -10048,10 +9500,10 @@ TCExploracaoRodoviaria._AddElement(pyxb.binding.basis.element(pyxb.namespace.Exp
 
 TCExploracaoRodoviaria._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'codContrato'), TSCodContrato, scope=TCExploracaoRodoviaria, documentation='Código de contrato gerado automaticamente pelo sistema nacional no cadastro da concessionária.', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1537, 6)))
 
-def _BuildAutomaton_35 ():
+def _BuildAutomaton_31 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_35
-    del _BuildAutomaton_35
+    global _BuildAutomaton_31
+    del _BuildAutomaton_31
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10111,7 +9563,7 @@ def _BuildAutomaton_35 ():
     transitions = []
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCExploracaoRodoviaria._Automaton = _BuildAutomaton_35()
+TCExploracaoRodoviaria._Automaton = _BuildAutomaton_31()
 
 
 
@@ -10124,10 +9576,10 @@ TCLocacaoSublocacao._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expand
 
 TCLocacaoSublocacao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nPostes'), TSNumeroPostes, scope=TCLocacaoSublocacao, documentation='Número total de postes', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1562, 6)))
 
-def _BuildAutomaton_36 ():
+def _BuildAutomaton_32 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_36
-    del _BuildAutomaton_36
+    global _BuildAutomaton_32
+    del _BuildAutomaton_32
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10163,7 +9615,7 @@ def _BuildAutomaton_36 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCLocacaoSublocacao._Automaton = _BuildAutomaton_36()
+TCLocacaoSublocacao._Automaton = _BuildAutomaton_32()
 
 
 
@@ -10178,10 +9630,10 @@ TCAtvEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCAtvEvento._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'end'), TCEnderecoSimples, scope=TCAtvEvento, documentation='Grupo de informações relativas ao endereço da atividade, evento ou local do serviço prestado', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1593, 8)))
 
-def _BuildAutomaton_37 ():
+def _BuildAutomaton_33 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_37
-    del _BuildAutomaton_37
+    global _BuildAutomaton_33
+    del _BuildAutomaton_33
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10225,7 +9677,7 @@ def _BuildAutomaton_37 ():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCAtvEvento._Automaton = _BuildAutomaton_37()
+TCAtvEvento._Automaton = _BuildAutomaton_33()
 
 
 
@@ -10238,10 +9690,10 @@ TCInfoObra._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCInfoObra._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'end'), TCEnderObraEvento, scope=TCInfoObra, documentation='Grupo de informações do endereço da obra do serviço prestado\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1625, 8)))
 
-def _BuildAutomaton_38 ():
+def _BuildAutomaton_34 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_38
-    del _BuildAutomaton_38
+    global _BuildAutomaton_34
+    del _BuildAutomaton_34
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10281,7 +9733,7 @@ def _BuildAutomaton_38 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoObra._Automaton = _BuildAutomaton_38()
+TCInfoObra._Automaton = _BuildAutomaton_34()
 
 
 
@@ -10296,10 +9748,10 @@ TCInfoCompl._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCInfoCompl._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xInfComp'), TSDescInfCompl, scope=TCInfoCompl, documentation='\n            Informações complementares\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1665, 6)))
 
-def _BuildAutomaton_39 ():
+def _BuildAutomaton_35 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_39
-    del _BuildAutomaton_39
+    global _BuildAutomaton_35
+    del _BuildAutomaton_35
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10380,17 +9832,17 @@ def _BuildAutomaton_39 ():
         fac.UpdateInstruction(cc_4, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
-TCInfoCompl._Automaton = _BuildAutomaton_39()
+TCInfoCompl._Automaton = _BuildAutomaton_35()
 
 
 
 
 TCInfoItemPed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xItemPed'), TSNumeroEndereco, scope=TCInfoItemPed, documentation='\n            Número do item do  pedido/ordem de compra/ordem de serviço/projeto - Identificação do número do item do pedido ou ordem de compra destacado e xPed\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1677, 6)))
 
-def _BuildAutomaton_40 ():
+def _BuildAutomaton_36 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_40
-    del _BuildAutomaton_40
+    global _BuildAutomaton_36
+    del _BuildAutomaton_36
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10407,7 +9859,7 @@ def _BuildAutomaton_40 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoItemPed._Automaton = _BuildAutomaton_40()
+TCInfoItemPed._Automaton = _BuildAutomaton_36()
 
 
 
@@ -10420,10 +9872,10 @@ TCInfoValores._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCInfoValores._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'trib'), TCInfoTributacao, scope=TCInfoValores, documentation='\n            Grupo de informações relacionados aos tributos relacionados ao serviço prestado\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1710, 6)))
 
-def _BuildAutomaton_41 ():
+def _BuildAutomaton_37 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_41
-    del _BuildAutomaton_41
+    global _BuildAutomaton_37
+    del _BuildAutomaton_37
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10473,7 +9925,7 @@ def _BuildAutomaton_41 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoValores._Automaton = _BuildAutomaton_41()
+TCInfoValores._Automaton = _BuildAutomaton_37()
 
 
 
@@ -10484,10 +9936,10 @@ TCInfoTributacao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedN
 
 TCInfoTributacao._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'totTrib'), TCTribTotal, scope=TCInfoTributacao, documentation='\n            Grupo de informações para totais aproximados dos tributos relacionados ao serviço prestado\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1736, 6)))
 
-def _BuildAutomaton_42 ():
+def _BuildAutomaton_38 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_42
-    del _BuildAutomaton_42
+    global _BuildAutomaton_38
+    del _BuildAutomaton_38
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10521,7 +9973,7 @@ def _BuildAutomaton_42 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoTributacao._Automaton = _BuildAutomaton_42()
+TCInfoTributacao._Automaton = _BuildAutomaton_38()
 
 
 
@@ -10530,10 +9982,10 @@ TCVServPrest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 TCVServPrest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vServ'), TSDec15V2, scope=TCVServPrest, documentation='Valor dos serviços em R$', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1753, 6)))
 
-def _BuildAutomaton_43 ():
+def _BuildAutomaton_39 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_43
-    del _BuildAutomaton_43
+    global _BuildAutomaton_39
+    del _BuildAutomaton_39
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10557,7 +10009,7 @@ def _BuildAutomaton_43 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCVServPrest._Automaton = _BuildAutomaton_43()
+TCVServPrest._Automaton = _BuildAutomaton_39()
 
 
 
@@ -10566,10 +10018,10 @@ TCVDescCondIncond._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expanded
 
 TCVDescCondIncond._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vDescCond'), TSDec15V2, scope=TCVDescCondIncond, documentation='Valor monetário do desconto condicionado (R$)', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1768, 6)))
 
-def _BuildAutomaton_44 ():
+def _BuildAutomaton_40 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_44
-    del _BuildAutomaton_44
+    global _BuildAutomaton_40
+    del _BuildAutomaton_40
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10599,7 +10051,7 @@ def _BuildAutomaton_44 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
-TCVDescCondIncond._Automaton = _BuildAutomaton_44()
+TCVDescCondIncond._Automaton = _BuildAutomaton_40()
 
 
 
@@ -10610,10 +10062,10 @@ TCInfoDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 TCInfoDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'documentos'), TCListaDocDedRed, scope=TCInfoDedRed, documentation='\n              Grupo de informações de documento utilizado para Dedução/Redução do valor do serviço\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1793, 8)))
 
-def _BuildAutomaton_45 ():
+def _BuildAutomaton_41 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_45
-    del _BuildAutomaton_45
+    global _BuildAutomaton_41
+    del _BuildAutomaton_41
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10637,17 +10089,17 @@ def _BuildAutomaton_45 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoDedRed._Automaton = _BuildAutomaton_45()
+TCInfoDedRed._Automaton = _BuildAutomaton_41()
 
 
 
 
 TCListaDocDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'docDedRed'), TCDocDedRed, scope=TCListaDocDedRed, documentation='\n            Grupo de informações de documento utilizado para Dedução/Redução do valor do serviço\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1806, 6)))
 
-def _BuildAutomaton_46 ():
+def _BuildAutomaton_42 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_46
-    del _BuildAutomaton_46
+    global _BuildAutomaton_42
+    del _BuildAutomaton_42
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10664,7 +10116,7 @@ def _BuildAutomaton_46 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCListaDocDedRed._Automaton = _BuildAutomaton_46()
+TCListaDocDedRed._Automaton = _BuildAutomaton_42()
 
 
 
@@ -10693,10 +10145,10 @@ TCDocDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCDocDedRed._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'fornec'), TCInfoPessoa, scope=TCDocDedRed, documentation='Grupo de informações do Fornecedor em Deduções de Serviços', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1890, 6)))
 
-def _BuildAutomaton_47 ():
+def _BuildAutomaton_43 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_47
-    del _BuildAutomaton_47
+    global _BuildAutomaton_43
+    del _BuildAutomaton_43
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10807,7 +10259,7 @@ def _BuildAutomaton_47 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_11._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCDocDedRed._Automaton = _BuildAutomaton_47()
+TCDocDedRed._Automaton = _BuildAutomaton_43()
 
 
 
@@ -10818,10 +10270,10 @@ TCDocOutNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(
 
 TCDocOutNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cVerifNFSeMun'), TSCodVerificacao, scope=TCDocOutNFSe, documentation='Código de Verificação da nota eletrônica municipal', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1910, 6)))
 
-def _BuildAutomaton_48 ():
+def _BuildAutomaton_44 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_48
-    del _BuildAutomaton_48
+    global _BuildAutomaton_44
+    del _BuildAutomaton_44
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10849,7 +10301,7 @@ def _BuildAutomaton_48 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCDocOutNFSe._Automaton = _BuildAutomaton_48()
+TCDocOutNFSe._Automaton = _BuildAutomaton_44()
 
 
 
@@ -10860,10 +10312,10 @@ TCDocNFNFS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Na
 
 TCDocNFNFS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'serieNFS'), TSSerieNFNFS, scope=TCDocNFNFS, documentation='Série Nota Fiscal NF ou NFS', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 1930, 6)))
 
-def _BuildAutomaton_49 ():
+def _BuildAutomaton_45 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_49
-    del _BuildAutomaton_49
+    global _BuildAutomaton_45
+    del _BuildAutomaton_45
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -10891,7 +10343,7 @@ def _BuildAutomaton_49 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCDocNFNFS._Automaton = _BuildAutomaton_49()
+TCDocNFNFS._Automaton = _BuildAutomaton_45()
 
 
 
@@ -10910,10 +10362,10 @@ TCTribMunicipal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCTribMunicipal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pAliq'), TSDec1V2, scope=TCTribMunicipal, documentation='\n            Valor da alíquota (%) do serviço prestado relativo ao município sujeito ativo (município de incidência) do ISSQN.\n            Se o município de incidência pertence ao Sistema Nacional NFS-e a alíquota estará parametrizada e, portanto, será fornecida pelo sistema.\n            Se o município de incidência não pertence ao Sistema Nacional NFS-e a alíquota não estará parametrizada e, por isso, deverá ser fornecida pelo emitente.\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2000, 6)))
 
-def _BuildAutomaton_50 ():
+def _BuildAutomaton_46 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_50
-    del _BuildAutomaton_50
+    global _BuildAutomaton_46
+    del _BuildAutomaton_46
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11014,7 +10466,7 @@ def _BuildAutomaton_50 ():
         fac.UpdateInstruction(cc_4, True) ]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribMunicipal._Automaton = _BuildAutomaton_50()
+TCTribMunicipal._Automaton = _BuildAutomaton_46()
 
 
 
@@ -11025,10 +10477,10 @@ TCBeneficioMunicipal._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expan
 
 TCBeneficioMunicipal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pRedBCBM'), TSDec3V2, scope=TCBeneficioMunicipal, documentation='\n              Valor percentual informado pelo emitente para redução da base de cálculo (BC) do ISSQN devido a um Benefício Municipal (BM).\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2036, 8)))
 
-def _BuildAutomaton_51 ():
+def _BuildAutomaton_47 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_51
-    del _BuildAutomaton_51
+    global _BuildAutomaton_47
+    del _BuildAutomaton_47
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11066,7 +10518,7 @@ def _BuildAutomaton_51 ():
         fac.UpdateInstruction(cc_1, True) ]))
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCBeneficioMunicipal._Automaton = _BuildAutomaton_51()
+TCBeneficioMunicipal._Automaton = _BuildAutomaton_47()
 
 
 
@@ -11075,10 +10527,10 @@ TCExigSuspensa._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNam
 
 TCExigSuspensa._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'nProcesso'), TSNumProcExigSuspensa, scope=TCExigSuspensa, documentation='\n            Número do processo judicial ou administrativo de suspensão da exigibilidade\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2058, 6)))
 
-def _BuildAutomaton_52 ():
+def _BuildAutomaton_48 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_52
-    del _BuildAutomaton_52
+    global _BuildAutomaton_48
+    del _BuildAutomaton_48
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11098,7 +10550,7 @@ def _BuildAutomaton_52 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCExigSuspensa._Automaton = _BuildAutomaton_52()
+TCExigSuspensa._Automaton = _BuildAutomaton_48()
 
 
 
@@ -11111,10 +10563,10 @@ TCTribFederal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCTribFederal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vRetCSLL'), TSDec15V2, scope=TCTribFederal, documentation='\n            Valor monetário do CSLL (R$).\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2091, 6)))
 
-def _BuildAutomaton_53 ():
+def _BuildAutomaton_49 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_53
-    del _BuildAutomaton_53
+    global _BuildAutomaton_49
+    del _BuildAutomaton_49
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11176,7 +10628,7 @@ def _BuildAutomaton_53 ():
         fac.UpdateInstruction(cc_3, True) ]))
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, True, containing_state=None)
-TCTribFederal._Automaton = _BuildAutomaton_53()
+TCTribFederal._Automaton = _BuildAutomaton_49()
 
 
 
@@ -11195,10 +10647,10 @@ TCTribOutrosPisCofins._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expa
 
 TCTribOutrosPisCofins._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'tpRetPisCofins'), TSTipoRetPISCofins, scope=TCTribOutrosPisCofins, documentation='\n            Tipo de retencao do Pis/Cofins:\n            1 - Retido;\n            2 - Não Retido;\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2155, 6)))
 
-def _BuildAutomaton_54 ():
+def _BuildAutomaton_50 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_54
-    del _BuildAutomaton_54
+    global _BuildAutomaton_50
+    del _BuildAutomaton_50
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11318,7 +10770,7 @@ def _BuildAutomaton_54 ():
         fac.UpdateInstruction(cc_5, True) ]))
     st_6._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribOutrosPisCofins._Automaton = _BuildAutomaton_54()
+TCTribOutrosPisCofins._Automaton = _BuildAutomaton_50()
 
 
 
@@ -11331,10 +10783,10 @@ TCTribTotal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(N
 
 TCTribTotal._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pTotTribSN'), TSDec2V2, scope=TCTribTotal, documentation='\n              Valor percentual aproximado do total dos tributos da alíquota do Simples Nacional (%)\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2193, 8)))
 
-def _BuildAutomaton_55 ():
+def _BuildAutomaton_51 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_55
-    del _BuildAutomaton_55
+    global _BuildAutomaton_51
+    del _BuildAutomaton_51
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11364,7 +10816,7 @@ def _BuildAutomaton_55 ():
     transitions = []
     st_3._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribTotal._Automaton = _BuildAutomaton_55()
+TCTribTotal._Automaton = _BuildAutomaton_51()
 
 
 
@@ -11375,10 +10827,10 @@ TCTribTotalMonet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedN
 
 TCTribTotalMonet._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vTotTribMun'), TSDec15V2, scope=TCTribTotalMonet, documentation='\n            Valor monetário total aproximado dos tributos municipais (R$).\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2220, 6)))
 
-def _BuildAutomaton_56 ():
+def _BuildAutomaton_52 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_56
-    del _BuildAutomaton_56
+    global _BuildAutomaton_52
+    del _BuildAutomaton_52
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11406,7 +10858,7 @@ def _BuildAutomaton_56 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribTotalMonet._Automaton = _BuildAutomaton_56()
+TCTribTotalMonet._Automaton = _BuildAutomaton_52()
 
 
 
@@ -11417,10 +10869,10 @@ TCTribTotalPercent._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expande
 
 TCTribTotalPercent._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pTotTribMun'), TSDec3V2, scope=TCTribTotalPercent, documentation='\n            Valor percentual total aproximado dos tributos municipais (%).\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2246, 6)))
 
-def _BuildAutomaton_57 ():
+def _BuildAutomaton_53 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_57
-    del _BuildAutomaton_57
+    global _BuildAutomaton_53
+    del _BuildAutomaton_53
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11448,7 +10900,7 @@ def _BuildAutomaton_57 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCTribTotalPercent._Automaton = _BuildAutomaton_57()
+TCTribTotalPercent._Automaton = _BuildAutomaton_53()
 
 
 
@@ -11473,10 +10925,10 @@ TCRTCInfoIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCRTCInfoIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'valores'), TCRTCInfoValoresIBSCBS, scope=TCRTCInfoIBSCBS, documentation='\n            Grupo de informações relativas aos valores do serviço prestado para IBS e CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2321, 6)))
 
-def _BuildAutomaton_58 ():
+def _BuildAutomaton_54 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_58
-    del _BuildAutomaton_58
+    global _BuildAutomaton_54
+    del _BuildAutomaton_54
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11598,17 +11050,17 @@ def _BuildAutomaton_58 ():
     transitions = []
     st_9._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoIBSCBS._Automaton = _BuildAutomaton_58()
+TCRTCInfoIBSCBS._Automaton = _BuildAutomaton_54()
 
 
 
 
 TCInfoRefNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'refNFSe'), TSChaveNFSe, scope=TCInfoRefNFSe, documentation='\n            Chave da NFS-e referenciada\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2333, 6)))
 
-def _BuildAutomaton_59 ():
+def _BuildAutomaton_55 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_59
-    del _BuildAutomaton_59
+    global _BuildAutomaton_55
+    del _BuildAutomaton_55
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11625,7 +11077,7 @@ def _BuildAutomaton_59 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfoRefNFSe._Automaton = _BuildAutomaton_59()
+TCInfoRefNFSe._Automaton = _BuildAutomaton_55()
 
 
 
@@ -11646,10 +11098,10 @@ TCRTCInfoDest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCRTCInfoDest._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'email'), TSEmail, scope=TCRTCInfoDest, documentation='E-mail do Destinatário do serviço', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2401, 6)))
 
-def _BuildAutomaton_60 ():
+def _BuildAutomaton_56 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_60
-    del _BuildAutomaton_60
+    global _BuildAutomaton_56
+    del _BuildAutomaton_56
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11738,7 +11190,7 @@ def _BuildAutomaton_60 ():
         fac.UpdateInstruction(cc_2, True) ]))
     st_7._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoDest._Automaton = _BuildAutomaton_60()
+TCRTCInfoDest._Automaton = _BuildAutomaton_56()
 
 
 
@@ -11749,10 +11201,10 @@ TCRTCInfoImovel._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedNa
 
 TCRTCInfoImovel._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'end'), TCEnderObraEvento, scope=TCRTCInfoImovel, documentation='\n              Grupo de informações do endereço da obra do serviço prestado\n            ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2426, 8)))
 
-def _BuildAutomaton_61 ():
+def _BuildAutomaton_57 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_61
-    del _BuildAutomaton_61
+    global _BuildAutomaton_57
+    del _BuildAutomaton_57
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11784,7 +11236,7 @@ def _BuildAutomaton_61 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoImovel._Automaton = _BuildAutomaton_61()
+TCRTCInfoImovel._Automaton = _BuildAutomaton_57()
 
 
 
@@ -11793,10 +11245,10 @@ TCRTCInfoValoresIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.Exp
 
 TCRTCInfoValoresIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'trib'), TCRTCInfoTributosIBSCBS, scope=TCRTCInfoValoresIBSCBS, documentation='\n            Grupo de informações relacionados aos tributos IBS e CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2447, 6)))
 
-def _BuildAutomaton_62 ():
+def _BuildAutomaton_58 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_62
-    del _BuildAutomaton_62
+    global _BuildAutomaton_58
+    del _BuildAutomaton_58
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11820,17 +11272,17 @@ def _BuildAutomaton_62 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoValoresIBSCBS._Automaton = _BuildAutomaton_62()
+TCRTCInfoValoresIBSCBS._Automaton = _BuildAutomaton_58()
 
 
 
 
 TCRTCInfoReeRepRes._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'documentos'), TCRTCListaDoc, scope=TCRTCInfoReeRepRes, documentation='\n            Grupo relativo aos documentos referenciados nos casos de reembolso, repasse e ressarcimento que serão \n            considerados na base de cálculo do ISSQN, do IBS e da CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2459, 6)))
 
-def _BuildAutomaton_63 ():
+def _BuildAutomaton_59 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_63
-    del _BuildAutomaton_63
+    global _BuildAutomaton_59
+    del _BuildAutomaton_59
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11847,17 +11299,17 @@ def _BuildAutomaton_63 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoReeRepRes._Automaton = _BuildAutomaton_63()
+TCRTCInfoReeRepRes._Automaton = _BuildAutomaton_59()
 
 
 
 
 TCRTCInfoTributosIBSCBS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'gIBSCBS'), TCRTCInfoTributosSitClas, scope=TCRTCInfoTributosIBSCBS, documentation='\n            Grupo de informações relacionadas ao IBS e à CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2472, 6)))
 
-def _BuildAutomaton_64 ():
+def _BuildAutomaton_60 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_64
-    del _BuildAutomaton_64
+    global _BuildAutomaton_60
+    del _BuildAutomaton_60
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11869,7 +11321,7 @@ def _BuildAutomaton_64 ():
     transitions = []
     st_0._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoTributosIBSCBS._Automaton = _BuildAutomaton_64()
+TCRTCInfoTributosIBSCBS._Automaton = _BuildAutomaton_60()
 
 
 
@@ -11892,10 +11344,10 @@ TCRTCListaDoc._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName
 
 TCRTCListaDoc._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'vlrReeRepRes'), TSDec15V2, scope=TCRTCListaDoc, documentation='\n            Valor monetário (total ou parcial, conforme documento informado) utilizado para não inclusão na base de cálculo \n            do ISS e do IBS e da CBS da NFS-e que está sendo emitida (R$)\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2546, 6)))
 
-def _BuildAutomaton_65 ():
+def _BuildAutomaton_61 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_65
-    del _BuildAutomaton_65
+    global _BuildAutomaton_61
+    del _BuildAutomaton_61
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -11987,7 +11439,7 @@ def _BuildAutomaton_65 ():
     transitions = []
     st_8._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDoc._Automaton = _BuildAutomaton_65()
+TCRTCListaDoc._Automaton = _BuildAutomaton_61()
 
 
 
@@ -11998,10 +11450,10 @@ TCRTCListaDocDFe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedN
 
 TCRTCListaDocDFe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'chaveDFe'), TSRTCChaveDFe, scope=TCRTCListaDocDFe, documentation='\n            Chave do Documento Fiscal eletrônico do repositório nacional referenciado para os casos de operações já tributadas\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2574, 6)))
 
-def _BuildAutomaton_66 ():
+def _BuildAutomaton_62 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_66
-    del _BuildAutomaton_66
+    global _BuildAutomaton_62
+    del _BuildAutomaton_62
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12035,7 +11487,7 @@ def _BuildAutomaton_66 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDocDFe._Automaton = _BuildAutomaton_66()
+TCRTCListaDocDFe._Automaton = _BuildAutomaton_62()
 
 
 
@@ -12046,10 +11498,10 @@ TCRTCListaDocFiscalOutro._AddElement(pyxb.binding.basis.element(pyxb.namespace.E
 
 TCRTCListaDocFiscalOutro._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDocFiscal'), TSDesc255, scope=TCRTCListaDocFiscalOutro, documentation='\n            Descrição do documento fiscal\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2600, 6)))
 
-def _BuildAutomaton_67 ():
+def _BuildAutomaton_63 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_67
-    del _BuildAutomaton_67
+    global _BuildAutomaton_63
+    del _BuildAutomaton_63
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12077,7 +11529,7 @@ def _BuildAutomaton_67 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDocFiscalOutro._Automaton = _BuildAutomaton_67()
+TCRTCListaDocFiscalOutro._Automaton = _BuildAutomaton_63()
 
 
 
@@ -12086,10 +11538,10 @@ TCRTCListaDocOutro._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expande
 
 TCRTCListaDocOutro._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xDoc'), TSDesc255, scope=TCRTCListaDocOutro, documentation='\n            Descrição do documento não fiscal\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2619, 6)))
 
-def _BuildAutomaton_68 ():
+def _BuildAutomaton_64 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_68
-    del _BuildAutomaton_68
+    global _BuildAutomaton_64
+    del _BuildAutomaton_64
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12109,7 +11561,7 @@ def _BuildAutomaton_68 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDocOutro._Automaton = _BuildAutomaton_68()
+TCRTCListaDocOutro._Automaton = _BuildAutomaton_64()
 
 
 
@@ -12124,10 +11576,10 @@ TCRTCListaDocFornec._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expand
 
 TCRTCListaDocFornec._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'xNome'), TSDesc150, scope=TCRTCListaDocFornec, documentation='\n            Nome / Razão Social do do Fornecedor do serviço\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2664, 6)))
 
-def _BuildAutomaton_69 ():
+def _BuildAutomaton_65 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_69
-    del _BuildAutomaton_69
+    global _BuildAutomaton_65
+    del _BuildAutomaton_65
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12171,7 +11623,7 @@ def _BuildAutomaton_69 ():
     transitions = []
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCListaDocFornec._Automaton = _BuildAutomaton_69()
+TCRTCListaDocFornec._Automaton = _BuildAutomaton_65()
 
 
 
@@ -12186,10 +11638,10 @@ TCRTCInfoTributosSitClas._AddElement(pyxb.binding.basis.element(pyxb.namespace.E
 
 TCRTCInfoTributosSitClas._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'gDif'), TCRTCInfoTributosDif, scope=TCRTCInfoTributosSitClas, documentation='\n            Grupo de informações relacionadas ao diferimento para IBS e CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2704, 6)))
 
-def _BuildAutomaton_70 ():
+def _BuildAutomaton_66 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_70
-    del _BuildAutomaton_70
+    global _BuildAutomaton_66
+    del _BuildAutomaton_66
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12254,7 +11706,7 @@ def _BuildAutomaton_70 ():
         fac.UpdateInstruction(cc_2, True) ]))
     st_4._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoTributosSitClas._Automaton = _BuildAutomaton_70()
+TCRTCInfoTributosSitClas._Automaton = _BuildAutomaton_66()
 
 
 
@@ -12263,10 +11715,10 @@ TCRTCInfoTributosTribRegular._AddElement(pyxb.binding.basis.element(pyxb.namespa
 
 TCRTCInfoTributosTribRegular._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'cClassTribReg'), TSRTCCodClassTrib, scope=TCRTCInfoTributosTribRegular, documentation='\n            Código da Classificação Tributária do IBS e da CBS de tributação regular\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2723, 6)))
 
-def _BuildAutomaton_71 ():
+def _BuildAutomaton_67 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_71
-    del _BuildAutomaton_71
+    global _BuildAutomaton_67
+    del _BuildAutomaton_67
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12286,7 +11738,7 @@ def _BuildAutomaton_71 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoTributosTribRegular._Automaton = _BuildAutomaton_71()
+TCRTCInfoTributosTribRegular._Automaton = _BuildAutomaton_67()
 
 
 
@@ -12297,10 +11749,10 @@ TCRTCInfoTributosDif._AddElement(pyxb.binding.basis.element(pyxb.namespace.Expan
 
 TCRTCInfoTributosDif._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'pDifCBS'), TSDec3V2, scope=TCRTCInfoTributosDif, documentation='\n            Percentual de diferimento para a CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 2749, 6)))
 
-def _BuildAutomaton_72 ():
+def _BuildAutomaton_68 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_72
-    del _BuildAutomaton_72
+    global _BuildAutomaton_68
+    del _BuildAutomaton_68
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12328,29 +11780,7 @@ def _BuildAutomaton_72 ():
     transitions = []
     st_2._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCRTCInfoTributosDif._Automaton = _BuildAutomaton_72()
-
-
-
-
-TCNC._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'infCNC'), TCInfCNC, scope=TCNC, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 34, 6)))
-
-def _BuildAutomaton_73 ():
-    # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_73
-    del _BuildAutomaton_73
-    import pyxb.utils.fac as fac
-
-    counters = set()
-    states = []
-    final_update = set()
-    symbol = pyxb.binding.content.ElementUse(TCNC._UseForTag(pyxb.namespace.ExpandedName(Namespace, 'infCNC')), pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposCnc_v1.00.xsd', 34, 6))
-    st_0 = fac.State(symbol, is_initial=True, final_update=final_update, is_unordered_catenation=False)
-    states.append(st_0)
-    transitions = []
-    st_0._set_transitionSet(transitions)
-    return fac.Automaton(states, counters, False, containing_state=None)
-TCNC._Automaton = _BuildAutomaton_73()
+TCRTCInfoTributosDif._Automaton = _BuildAutomaton_68()
 
 
 
@@ -12359,10 +11789,10 @@ TCNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namesp
 
 TCNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=TCNFSe, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/xmldsig-core-schema.xsd', 43, 0)))
 
-def _BuildAutomaton_74 ():
+def _BuildAutomaton_69 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_74
-    del _BuildAutomaton_74
+    global _BuildAutomaton_69
+    del _BuildAutomaton_69
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12382,7 +11812,7 @@ def _BuildAutomaton_74 ():
     transitions = []
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCNFSe._Automaton = _BuildAutomaton_74()
+TCNFSe._Automaton = _BuildAutomaton_69()
 
 
 
@@ -12425,10 +11855,10 @@ TCInfNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Nam
 
 TCInfNFSe._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'DPS'), TCDPS, scope=TCInfNFSe, documentation='\n            Grupo de informações da DPS relativas ao serviço prestado\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 140, 6)))
 
-def _BuildAutomaton_75 ():
+def _BuildAutomaton_70 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_75
-    del _BuildAutomaton_75
+    global _BuildAutomaton_70
+    del _BuildAutomaton_70
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12624,7 +12054,7 @@ def _BuildAutomaton_75 ():
     transitions = []
     st_18._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfNFSe._Automaton = _BuildAutomaton_75()
+TCInfNFSe._Automaton = _BuildAutomaton_70()
 
 
 
@@ -12633,10 +12063,10 @@ TCDPS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespa
 
 TCDPS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(_Namespace_ds, 'Signature'), _ImportedBinding__ds.SignatureType, scope=TCDPS, location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/xmldsig-core-schema.xsd', 43, 0)))
 
-def _BuildAutomaton_76 ():
+def _BuildAutomaton_71 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_76
-    del _BuildAutomaton_76
+    global _BuildAutomaton_71
+    del _BuildAutomaton_71
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12661,7 +12091,7 @@ def _BuildAutomaton_76 ():
         fac.UpdateInstruction(cc_0, True) ]))
     st_1._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCDPS._Automaton = _BuildAutomaton_76()
+TCDPS._Automaton = _BuildAutomaton_71()
 
 
 
@@ -12700,10 +12130,10 @@ TCInfDPS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Name
 
 TCInfDPS._AddElement(pyxb.binding.basis.element(pyxb.namespace.ExpandedName(Namespace, 'IBSCBS'), TCRTCInfoIBSCBS, scope=TCInfDPS, documentation='\n            Grupo de informações declaradas pelo emitente referentes ao IBS e à CBS\n          ', location=pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposComplexos_v1.01.xsd', 837, 6)))
 
-def _BuildAutomaton_77 ():
+def _BuildAutomaton_72 ():
     # Remove this helper function from the namespace after it is invoked
-    global _BuildAutomaton_77
-    del _BuildAutomaton_77
+    global _BuildAutomaton_72
+    del _BuildAutomaton_72
     import pyxb.utils.fac as fac
 
     counters = set()
@@ -12882,5 +12312,5 @@ def _BuildAutomaton_77 ():
         fac.UpdateInstruction(cc_5, True) ]))
     st_16._set_transitionSet(transitions)
     return fac.Automaton(states, counters, False, containing_state=None)
-TCInfDPS._Automaton = _BuildAutomaton_77()
+TCInfDPS._Automaton = _BuildAutomaton_72()
 
