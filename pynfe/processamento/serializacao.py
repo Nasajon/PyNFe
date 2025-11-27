@@ -2862,6 +2862,11 @@ class SerializacaoCTE(Serializacao):
             )
             etree.SubElement(tomador, "toma").text = '4'
 
+        if cte.compra_gov_ente:
+            compra_gov = etree.SubElement(ide, "gCompraGov")
+            etree.SubElement(compra_gov, "tpEnteGov").text = str(cte.compra_gov_ente)
+            etree.SubElement(compra_gov, "pRedutor").text = "{:.2f}".format(cte.compra_gov_redutor)
+
         if cte.observacao:
             complemento = etree.SubElement(raiz, "compl")
             etree.SubElement(complemento, "xObs").text = cte.observacao
@@ -2914,13 +2919,18 @@ class SerializacaoCTE(Serializacao):
         if cte.valor_total_tributos is not None:
             etree.SubElement(imp, "vTotTrib").text = "{:.2f}".format(cte.valor_total_tributos)
 
+        total = cte.valor_total_prestacao
+
         if cte.ibs_cbs:
             imp.append(
                 self._serializar_imposto_ibs_cbs(
                     cte.ibs_cbs, retorna_string=False
                 )
             )
+            total += cte.ibs_cbs.ibs_mun.valor + cte.ibs_cbs.ibs_uf.valor + cte.ibs_cbs.cbs.valor
 
+        
+        etree.SubElement(imp, "vTotDFe").text = "{:.2f}".format(total)
 
         raiz.append(
             self._serializar_informacoes_cte(

@@ -115,6 +115,9 @@ class CTe(Entidade):
     fatura_valor_desconto = Decimal(0)
     fatura_valor_liquido = Decimal(0)
 
+    compra_gov_ente = 0
+    compra_gov_redutor = Decimal(0)
+
     def __init__(self, *args, **kwargs):
         self.prestacao_componentes: list[CTeComponente] = []
         self.cargas: list[CTeCarga] = []
