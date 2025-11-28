@@ -6,8 +6,9 @@ import warnings
 
 from datetime import datetime
 
-from pynfe.entidades.cte import IBS_CBS_CTE, CTe
+from pynfe.entidades.cte import IBS_CBS, CTe
 from pynfe.entidades.evento import EventoCancelarNota
+from pynfe.entidades.notafiscal import NotaFiscalProduto
 import pynfe.utils.xml_writer as xmlw
 from pynfe.entidades import Manifesto, NotaFiscal
 from pynfe.utils import (
@@ -456,6 +457,17 @@ class SerializacaoXML(Serializacao):
             modelo=modelo,
             tag_raiz=imposto,
             retorna_string=False,
+        )
+
+        # IBSCBS
+        self._serializar_imposto_ibscbs(
+            produto_servico=produto_servico, 
+            tag_raiz=imposto, 
+            retorna_string=False
+        )
+        
+        etree.SubElement(raiz, "vItem").text = str("{:.2f}").format(
+            produto_servico.vitem or 0
         )
 
         # tag impostoDevol
@@ -1277,6 +1289,119 @@ class SerializacaoXML(Serializacao):
             #   .cofins_aliquota_percentual
             # etree.SubElement(cofins_item, 'vCOFINS').text = produto_servico.cofins_valor
 
+    def _serializar_imposto_ibscbs(
+        self, produto_servico:NotaFiscalProduto, tag_raiz="imposto", retorna_string=True
+    ):
+        ibs_cbs_dados = produto_servico.ibs_cbs
+        if not ibs_cbs_dados:
+            return
+
+        ibs_cbs = etree.SubElement(tag_raiz, "IBSCBS")
+        etree.SubElement(ibs_cbs, "CST").text = ibs_cbs_dados.modalidade
+        etree.SubElement(ibs_cbs, "cClassTrib").text = ibs_cbs_dados.classificacao
+
+        grupo_ibs_cbs = etree.SubElement(ibs_cbs, "gIBSCBS")
+        etree.SubElement(grupo_ibs_cbs, "vBC").text = "{:.2f}".format(ibs_cbs_dados.base_calculo)
+
+        #IBS UF
+        grupo_uf = etree.SubElement(grupo_ibs_cbs, "gIBSUF")
+        etree.SubElement(grupo_uf, "pIBSUF").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.aliquota)
+        etree.SubElement(grupo_uf, "vIBSUF").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.valor)
+        if ibs_cbs_dados.ibs_uf.aliquota_diferimento:
+            grupo_dif_uf = etree.SubElement(grupo_uf, "gDif")
+            etree.SubElement(grupo_dif_uf, "pDif").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.aliquota_diferimento)
+            etree.SubElement(grupo_dif_uf, "vDif").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.valor_diferimento)
+        if ibs_cbs_dados.ibs_uf.valor_devolucao:
+            grupo_dev_uf = etree.SubElement(grupo_uf, "gDevTrib")
+            etree.SubElement(grupo_dev_uf, "vDevTrib").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.valor_devolucao)
+        if ibs_cbs_dados.ibs_uf.percentual_reducao:
+            grupo_red_uf = etree.SubElement(grupo_uf, "gRed")
+            etree.SubElement(grupo_red_uf, "pDif").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.percentual_reducao)
+            etree.SubElement(grupo_red_uf, "vDif").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.aliquota_efetiva)
+
+        #IBS Mun
+        grupo_mun = etree.SubElement(grupo_ibs_cbs, "gIBSMun")
+        etree.SubElement(grupo_mun, "pIBSMun").text = "{:.2f}".format(ibs_cbs_dados.ibs_mun.aliquota)
+        etree.SubElement(grupo_mun, "vIBSMun").text = "{:.2f}".format(ibs_cbs_dados.ibs_mun.valor)
+        if ibs_cbs_dados.ibs_mun.aliquota_diferimento:
+            grupo_dif_mun = etree.SubElement(grupo_mun, "gDif")
+            etree.SubElement(grupo_dif_mun, "pDif").text = "{:.2f}".format(ibs_cbs_dados.ibs_mun.aliquota_diferimento)
+            etree.SubElement(grupo_dif_mun, "vDif").text = "{:.2f}".format(ibs_cbs_dados.ibs_mun.valor_diferimento)
+        if ibs_cbs_dados.ibs_mun.valor_devolucao:
+            grupo_dev_mun = etree.SubElement(grupo_mun, "gDevTrib")
+            etree.SubElement(grupo_dev_mun, "vDevTrib").text = "{:.2f}".format(ibs_cbs_dados.ibs_mun.valor_devolucao)
+        if ibs_cbs_dados.ibs_mun.percentual_reducao:
+            grupo_red_mun = etree.SubElement(grupo_mun, "gRed")
+            etree.SubElement(grupo_red_mun, "pDif").text = "{:.2f}".format(ibs_cbs_dados.ibs_mun.percentual_reducao)
+            etree.SubElement(grupo_red_mun, "vDif").text = "{:.2f}".format(ibs_cbs_dados.ibs_mun.aliquota_efetiva)
+
+        
+        etree.SubElement(grupo_ibs_cbs, "vIBS").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.valor + ibs_cbs_dados.ibs_mun.valor)
+
+        #CBS
+        grupo_cbs = etree.SubElement(grupo_ibs_cbs, "gCBS")
+        etree.SubElement(grupo_cbs, "pCBS").text = "{:.2f}".format(ibs_cbs_dados.cbs.aliquota)
+        etree.SubElement(grupo_cbs, "vCBS").text = "{:.2f}".format(ibs_cbs_dados.cbs.valor)
+        if ibs_cbs_dados.cbs.aliquota_diferimento:
+            grupo_dif_cbs = etree.SubElement(grupo_cbs, "gDif")
+            etree.SubElement(grupo_dif_cbs, "pDif").text = "{:.2f}".format(ibs_cbs_dados.cbs.aliquota_diferimento)
+            etree.SubElement(grupo_dif_cbs, "vDif").text = "{:.2f}".format(ibs_cbs_dados.cbs.valor_diferimento)
+        if ibs_cbs_dados.cbs.valor_devolucao:
+            grupo_dev_cbs= etree.SubElement(grupo_cbs, "gDevTrib")
+            etree.SubElement(grupo_dev_cbs, "vDevTrib").text = "{:.2f}".format(ibs_cbs_dados.cbs.valor_devolucao)
+        if ibs_cbs_dados.cbs.percentual_reducao:
+            grupo_red_cbs = etree.SubElement(grupo_cbs, "gRed")
+            etree.SubElement(grupo_red_cbs, "pDif").text = "{:.2f}".format(ibs_cbs_dados.cbs.percentual_reducao)
+            etree.SubElement(grupo_red_cbs, "vDif").text = "{:.2f}".format(ibs_cbs_dados.cbs.aliquota_efetiva)
+
+        if ibs_cbs_dados.trib_reg:
+            #Tributação Regular
+            grupo_trib_reg = etree.SubElement(grupo_ibs_cbs, "gTribRegular")
+            etree.SubElement(grupo_trib_reg, "CSTReg").text = ibs_cbs_dados.trib_reg.modalidade
+            etree.SubElement(grupo_trib_reg, "cClassTribReg").text = ibs_cbs_dados.trib_reg.classificacao
+            etree.SubElement(grupo_trib_reg, "pAliqEfetRegIBSUF").text = "{:.2f}".format(ibs_cbs_dados.trib_reg.aliquota_ibs_uf)
+            etree.SubElement(grupo_trib_reg, "vTribRegIBSUF").text = "{:.2f}".format(ibs_cbs_dados.trib_reg.valor_ibs_uf)
+            etree.SubElement(grupo_trib_reg, "pAliqEfetRegIBSMun").text = "{:.2f}".format(ibs_cbs_dados.trib_reg.aliquota_ibs_mun)
+            etree.SubElement(grupo_trib_reg, "vTribRegIBSMun").text = "{:.2f}".format(ibs_cbs_dados.trib_reg.valor_ibs_mun)
+            etree.SubElement(grupo_trib_reg, "pAliqEfetRegCBS").text = "{:.2f}".format(ibs_cbs_dados.trib_reg.aliquota_cbs)
+            etree.SubElement(grupo_trib_reg, "vTribRegCBS").text = "{:.2f}".format(ibs_cbs_dados.trib_reg.valor_cbs)
+
+        if ibs_cbs_dados.compra_gov:
+            #Tributação Compra Governo
+            grupo_compra_gov = etree.SubElement(grupo_ibs_cbs, "gTribCompraGov")
+            etree.SubElement(grupo_compra_gov, "pAliqIBSUF").text = "{:.2f}".format(ibs_cbs_dados.compra_gov.aliquota_ibs_uf)
+            etree.SubElement(grupo_compra_gov, "vTribIBSUF").text = "{:.2f}".format(ibs_cbs_dados.compra_gov.valor_ibs_uf)
+            etree.SubElement(grupo_compra_gov, "pAliqIBSMun").text = "{:.2f}".format(ibs_cbs_dados.compra_gov.aliquota_ibs_mun)
+            etree.SubElement(grupo_compra_gov, "vTribIBSMun").text = "{:.2f}".format(ibs_cbs_dados.compra_gov.valor_ibs_mun)
+            etree.SubElement(grupo_compra_gov, "pAliqCBS").text = "{:.2f}".format(ibs_cbs_dados.compra_gov.aliquota_cbs)
+            etree.SubElement(grupo_compra_gov, "vTribCBS").text = "{:.2f}".format(ibs_cbs_dados.compra_gov.valor_cbs)
+
+        if ibs_cbs_dados.estorno:
+            #Estorno
+            grupo_estorno = etree.SubElement(grupo_ibs_cbs, "gEstornoCred")
+            etree.SubElement(grupo_estorno, "vIBSEstCred").text = "{:.2f}".format(ibs_cbs_dados.estorno.valor_ibs)
+            etree.SubElement(grupo_estorno, "vCBSEstCred").text = "{:.2f}".format(ibs_cbs_dados.estorno.valor_cbs)
+
+        if ibs_cbs_dados.transferencia:
+            #Transferência
+            grupo_transferencia = etree.SubElement(grupo_ibs_cbs, "gTransfCred")
+            etree.SubElement(grupo_transferencia, "vIBS").text = "{:.2f}".format(ibs_cbs_dados.transferencia.valor_ibs)
+            etree.SubElement(grupo_transferencia, "vCBS").text = "{:.2f}".format(ibs_cbs_dados.transferencia.valor_cbs)
+
+        if ibs_cbs_dados.ajuste_competencia:
+            #Ajuste de Competência
+            grupo_transferencia = etree.SubElement(grupo_ibs_cbs, "gAjusteCompet")
+            etree.SubElement(grupo_transferencia, "competApur").text = ibs_cbs_dados.ajuste_competencia.competencia_apuracao.strftime("%Y-%m")
+            etree.SubElement(grupo_transferencia, "vIBS").text = "{:.2f}".format(ibs_cbs_dados.ajuste_competencia.valor_ibs)
+            etree.SubElement(grupo_transferencia, "vCBS").text = "{:.2f}".format(ibs_cbs_dados.ajuste_competencia.valor_cbs)
+
+        if ibs_cbs_dados.monofasico:
+            #Ajuste de Competência
+            grupo_transferencia = etree.SubElement(grupo_ibs_cbs, "gAjusteCompet")
+            etree.SubElement(grupo_transferencia, "competApur").text = ibs_cbs_dados.ajuste_competencia.competencia_apuracao.strftime("%Y-%m")
+            etree.SubElement(grupo_transferencia, "vIBS").text = "{:.2f}".format(ibs_cbs_dados.ajuste_competencia.valor_ibs)
+            etree.SubElement(grupo_transferencia, "vCBS").text = "{:.2f}".format(ibs_cbs_dados.ajuste_competencia.valor_cbs)
+
     def _serializar_imposto_importacao(
         self, produto_servico, modelo, tag_raiz="imposto", retorna_string=True
     ):
@@ -1721,6 +1846,80 @@ class SerializacaoXML(Serializacao):
             etree.SubElement(icms_total, "vTotTrib").text = "{:.2f}".format(
                 nota_fiscal.totais_tributos_aproximado
             )
+            
+        ibscbs_total = etree.SubElement(total, "IBSCBSTot")  
+        
+        etree.SubElement(ibscbs_total, "vBCIBSCBS").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vbcibscbs
+        ) 
+            
+        ibscbs_total_g_ibs = etree.SubElement(ibscbs_total, "gIBS")   
+            
+        ibscbs_total_g_ibsuf = etree.SubElement(ibscbs_total_g_ibs, "gIBSUF")  
+        
+        etree.SubElement(ibscbs_total_g_ibsuf, "vDif").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdifibsuf
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibsuf, "vDevTrib").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdevtribibsuf
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibsuf, "vIBSUF").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vibsuf
+        ) 
+            
+        ibscbs_total_g_ibsmun = etree.SubElement(ibscbs_total_g_ibs, "gIBSMun")  
+        
+        etree.SubElement(ibscbs_total_g_ibsmun, "vDif").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdifibsmun
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibsmun, "vDevTrib").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdevtribibsmun
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibsmun, "vIBSMun").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vibsmun
+        )  
+        
+        etree.SubElement(ibscbs_total_g_ibs, "vIBS").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vibs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibs, "vCredPres").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcredpresibs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_ibs, "vCredPresCondSus").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcredprescondsusibs
+        ) 
+        
+        ibscbs_total_g_cbs = etree.SubElement(ibscbs_total, "gCBS")  
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vDif").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdifcbs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vDevTrib").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vdevtribcbs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vCBS").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcbs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vCredPres").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcredprescbs
+        ) 
+        
+        etree.SubElement(ibscbs_total_g_cbs, "vCredPresCondSus").text = "{:.2f}".format(
+            nota_fiscal.totais_ibscbs_vcredprescondsuscbs
+        )                 
+        
+        etree.SubElement(total, "vNFTot").text = "{:.2f}".format(
+            nota_fiscal.totais_vitem
+        )                 
 
         # Transporte
         transp = etree.SubElement(raiz, "transp")
@@ -2927,7 +3126,8 @@ class SerializacaoCTE(Serializacao):
                     cte.ibs_cbs, retorna_string=False
                 )
             )
-            total += cte.ibs_cbs.ibs_mun.valor + cte.ibs_cbs.ibs_uf.valor + cte.ibs_cbs.cbs.valor
+            if datetime.now().year > 2026:
+                total += cte.ibs_cbs.ibs_mun.valor + cte.ibs_cbs.ibs_uf.valor + cte.ibs_cbs.cbs.valor
 
         
         etree.SubElement(imp, "vTotDFe").text = "{:.2f}".format(total)
@@ -3158,7 +3358,7 @@ class SerializacaoCTE(Serializacao):
             return raiz
         
     def _serializar_imposto_ibs_cbs(
-        self, ibs_cbs: IBS_CBS_CTE, tag_raiz="IBSCBS", retorna_string=True
+        self, ibs_cbs: IBS_CBS, tag_raiz="IBSCBS", retorna_string=True
     ):
         raiz = etree.Element(tag_raiz)
 
@@ -3245,7 +3445,7 @@ class SerializacaoCTE(Serializacao):
             #Estorno
             grupo_estorno = etree.SubElement(grupo_ibs_cbs, "gEstornoCred")
             etree.SubElement(grupo_estorno, "vIBSEstCred").text = "{:.2f}".format(ibs_cbs.estorno.valor_ibs)
-            etree.SubElement(grupo_estorno, "vCBSEstCred").text = "{:.2f}".format(ibs_cbs.compra_gov.valor_cbs)
+            etree.SubElement(grupo_estorno, "vCBSEstCred").text = "{:.2f}".format(ibs_cbs.estorno.valor_cbs)
     
         
         if retorna_string:

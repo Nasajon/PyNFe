@@ -1,140 +1,104 @@
 from decimal import Decimal
-from typing import Optional
-from datetime import datetime
+from pynfe.entidades.base import Entidade
 
 
-# Estruturas para IBS/CBS (NFS-e Nacional)
-class IBS_CBS_ReferenciaNFSe:
-    def __init__(self, chave: str):
-        self.chave = chave
+class IBSComponente(Entidade):
+    """Componente de IBS UF ou IBS Mun"""
+    aliquota = Decimal(0)
+    valor = Decimal(0)
+    aliquota_diferimento = Decimal(0)
+    valor_diferimento = Decimal(0)
+    valor_devolucao = Decimal(0)
+    percentual_reducao = Decimal(0)
+    aliquota_efetiva = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(IBSComponente, self).__init__(*args, **kwargs)
 
 
-class IBS_CBS_Destinatario:
-    def __init__(
-        self,
-        tipo_documento: str,
-        numero_documento: str,
-        razao_social: str,
-        endereco_cep: Optional[str] = None,
-        endereco_municipio: Optional[str] = None,
-        endereco_uf: Optional[str] = None,
-        endereco_logradouro: Optional[str] = None,
-        endereco_numero: Optional[str] = None,
-        endereco_complemento: Optional[str] = None,
-        endereco_bairro: Optional[str] = None,
-    ):
-        self.tipo_documento = tipo_documento
-        self.numero_documento = numero_documento
-        self.razao_social = razao_social
-        self.endereco_cep = endereco_cep
-        self.endereco_municipio = endereco_municipio
-        self.endereco_uf = endereco_uf
-        self.endereco_logradouro = endereco_logradouro
-        self.endereco_numero = endereco_numero
-        self.endereco_complemento = endereco_complemento
-        self.endereco_bairro = endereco_bairro
+class CBSComponente(Entidade):
+    """Componente de CBS"""
+    aliquota = Decimal(0)
+    valor = Decimal(0)
+    aliquota_diferimento = Decimal(0)
+    valor_diferimento = Decimal(0)
+    valor_devolucao = Decimal(0)
+    percentual_reducao = Decimal(0)
+    aliquota_efetiva = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(CBSComponente, self).__init__(*args, **kwargs)
 
 
-class IBS_CBS_Imovel:
-    def __init__(
-        self,
-        inscricao_imobiliaria: str,
-        cib: str,
-        endereco_cep: str,
-        endereco_logradouro: str,
-        endereco_numero: str,
-        endereco_bairro: str,
-        endereco_complemento: Optional[str] = None,
-    ):
-        self.inscricao_imobiliaria = inscricao_imobiliaria
-        self.cib = cib
-        self.endereco_cep = endereco_cep
-        self.endereco_logradouro = endereco_logradouro
-        self.endereco_numero = endereco_numero
-        self.endereco_complemento = endereco_complemento
-        self.endereco_bairro = endereco_bairro
+class TribucaoRegular(Entidade):
+    """Tributação Regular"""
+    modalidade = ''
+    classificacao = ''
+    aliquota_ibs_uf = Decimal(0)
+    valor_ibs_uf = Decimal(0)
+    aliquota_ibs_mun = Decimal(0)
+    valor_ibs_mun = Decimal(0)
+    aliquota_cbs = Decimal(0)
+    valor_cbs = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(TribucaoRegular, self).__init__(*args, **kwargs)
 
 
-class IBS_CBS_Fornecedor:
-    def __init__(self, tipo_documento: str, numero_documento: str, razao_social: str):
-        self.tipo_documento = tipo_documento
-        self.numero_documento = numero_documento
-        self.razao_social = razao_social
+class TribucaoCompraGov(Entidade):
+    """Tributação Compra Governo"""
+    aliquota_ibs_uf = Decimal(0)
+    valor_ibs_uf = Decimal(0)
+    aliquota_ibs_mun = Decimal(0)
+    valor_ibs_mun = Decimal(0)
+    aliquota_cbs = Decimal(0)
+    valor_cbs = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(TribucaoCompraGov, self).__init__(*args, **kwargs)
 
 
-class IBS_CBS_Documento:
-    def __init__(
-        self,
-        tipo_documento: str,
-        chave: str,
-        data_emissao: datetime,
-        data_competencia: datetime,
-        tipo_valor: str,
-        valor: Decimal,
-        fornecedor: Optional[IBS_CBS_Fornecedor] = None,
-    ):
-        self.tipo_documento = tipo_documento
-        self.chave = chave
-        self.data_emissao = data_emissao
-        self.data_competencia = data_competencia
-        self.tipo_valor = tipo_valor
-        self.valor = valor
-        self.fornecedor = fornecedor
+class Estorno(Entidade):
+    """Estorno de Crédito"""
+    valor_ibs = Decimal(0)
+    valor_cbs = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(Estorno, self).__init__(*args, **kwargs)
 
 
-class IBS_CBS_TribRegular:
-    def __init__(self, cst: str, codigo_classificacao_tributaria: str):
-        self.cst = cst
-        self.codigo_classificacao_tributaria = codigo_classificacao_tributaria
+class Transferencia(Entidade):
+    """Transferência de Crédito"""
+    valor_ibs = Decimal(0)
+    valor_cbs = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(Transferencia, self).__init__(*args, **kwargs)
 
 
-class IBS_CBS_Diferimento:
-    def __init__(
-        self,
-        percentual_diferimento_uf: Decimal,
-        percentual_diferimento_municipal: Decimal,
-        percentual_diferimento_cbs: Decimal,
-    ):
-        self.percentual_diferimento_uf = percentual_diferimento_uf
-        self.percentual_diferimento_municipal = percentual_diferimento_municipal
-        self.percentual_diferimento_cbs = percentual_diferimento_cbs
+class AjusteCompetencia(Entidade):
+    """Ajuste de competência"""
+    competencia_apuracao = None
+    valor_ibs = Decimal(0)
+    valor_cbs = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(AjusteCompetencia, self).__init__(*args, **kwargs)
 
 
-class IBS_CBS_Tributos:
-    def __init__(
-        self,
-        cst: str,
-        codigo_classificacao_tributaria: str,
-        codigo_credito_presumido: Optional[str] = None,
-        trib_regular: Optional[IBS_CBS_TribRegular] = None,
-        diferimento: Optional[IBS_CBS_Diferimento] = None,
-    ):
-        self.cst = cst
-        self.codigo_classificacao_tributaria = codigo_classificacao_tributaria
-        self.codigo_credito_presumido = codigo_credito_presumido
-        self.trib_regular = trib_regular
-        self.diferimento = diferimento
+class IBS_CBS(Entidade):
+    """Imposto IBS/CBS"""
+    modalidade = ''
+    classificacao = ''
+    base_calculo = Decimal(0)
+    ibs_uf: IBSComponente = None
+    ibs_mun: IBSComponente = None
+    cbs: CBSComponente = None
+    trib_reg: TribucaoRegular = None
+    compra_gov: TribucaoCompraGov = None
+    estorno: Estorno = None
+    transferencia: Transferencia = None
+    ajuste_competencia: AjusteCompetencia = None
 
-
-class IBS_CBS:
-    def __init__(
-        self,
-        codigo_indicador_operacao: str,
-        indicador_destinatario: str,
-        tributos: IBS_CBS_Tributos,
-        destinatario: Optional[IBS_CBS_Destinatario] = None,
-        imovel: Optional[IBS_CBS_Imovel] = None,
-    ):
-        self.codigo_indicador_operacao = codigo_indicador_operacao
-        self.indicador_destinatario = indicador_destinatario
-        self.referencias_nfse = []
-        self.destinatario = destinatario
-        self.imovel = imovel
-        self.documentos_reembolso_repasse = []
-        self.tributos = tributos
-
-    def adicionar_referencia_nfse(self, referencia: IBS_CBS_ReferenciaNFSe):
-        self.referencias_nfse.append(referencia)
-
-    def adicionar_documento_reembolse_repasse(self, documento: IBS_CBS_Documento):
-        self.documentos_reembolso_repasse.append(documento)
+    def __init__(self, *args, **kwargs):
+        super(IBS_CBS, self).__init__(*args, **kwargs)

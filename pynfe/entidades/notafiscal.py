@@ -8,6 +8,7 @@ from pynfe import get_version
 from pynfe.entidades.cliente import Cliente
 from pynfe.entidades.emitente import Emitente
 from pynfe.entidades.ibs_cbs import IBS_CBS
+from pynfe.entidades.ibs_cbs_nfse import IBS_CBS_NFSE
 from pynfe.entidades.servico import Servico
 from pynfe.utils import obter_codigo_por_municipio, so_numeros
 from pynfe.utils.flags import CODIGOS_ESTADOS, NF_STATUS
@@ -399,7 +400,46 @@ class NotaFiscal(Entidade):
     pagamentos = list()
     # valor do troco
     valor_troco = Decimal()
-
+    
+    totais_ibscbs_vbcibscbs = Decimal()
+    totais_ibscbs_pibsuf = Decimal()
+    totais_ibscbs_vibsuf = Decimal()
+    totais_ibscbs_pibsmun = Decimal()
+    totais_ibscbs_vibsmun = Decimal()
+    totais_ibscbs_predaliqibsuf = Decimal()
+    totais_ibscbs_paliqefetibsuf = Decimal()
+    totais_ibscbs_predaliqibsmun = Decimal()
+    totais_ibscbs_paliqefetibsmun = Decimal()
+    totais_ibscbs_vdifibsmun = Decimal()
+    totais_ibscbs_vdifibsuf = Decimal()
+    totais_ibscbs_pdifibsuf = Decimal()
+    totais_ibscbs_pdifibsmun = Decimal()
+    totais_ibscbs_vibs = Decimal()
+    totais_ibscbs_pcbs = Decimal()
+    totais_ibscbs_vcbs = Decimal()
+    totais_ibscbs_predaliqcbs = Decimal()
+    totais_ibscbs_paliqefetcbs = Decimal()
+    totais_ibscbs_pdifcbs = Decimal()
+    totais_ibscbs_vdifcbs = Decimal()
+    totais_ibscbs_cstreg = str()
+    totais_ibscbs_cclasstribreg = str()
+    totais_ibscbs_vtribregcbs = Decimal()
+    totais_ibscbs_vtribregibsmun = Decimal()
+    totais_ibscbs_vtribregibsuf = Decimal()
+    totais_ibscbs_paliqefetregcbs = Decimal()
+    totais_ibscbs_paliqefetregibsmun = Decimal()
+    totais_ibscbs_paliqefetregibsuf = Decimal()
+    
+    totais_ibscbs_vdevtribibsuf = Decimal()
+    totais_ibscbs_vdevtribibsmun = Decimal()
+    totais_ibscbs_vcredpresibs = Decimal()
+    totais_ibscbs_vcredprescondsusibs = Decimal()
+    totais_ibscbs_vdevtribcbs = Decimal()
+    totais_ibscbs_vcredprescbs = Decimal()
+    totais_ibscbs_vcredprescondsuscbs = Decimal()
+    
+    totais_vitem = Decimal()
+    
     def __init__(self, *args, **kwargs):
         self.autorizados_baixar_xml = []
         self.notas_fiscais_referenciadas = []
@@ -470,6 +510,61 @@ class NotaFiscal(Entidade):
 
         # TODO calcular impostos aproximados
         # self.totais_tributos_aproximado += obj.tributos
+        
+        if obj.ibs_cbs:
+            def _decimal_or_zero(value):
+                if isinstance(value, Decimal):
+                    return value
+                if value in (None, ""):
+                    return Decimal(0)
+                return Decimal(value)
+
+            ibscbs = obj.ibs_cbs
+            ibs_uf = ibscbs.ibs_uf
+            ibs_mun = ibscbs.ibs_mun
+            cbs = ibscbs.cbs
+
+            self.totais_ibscbs_vbcibscbs += _decimal_or_zero(ibscbs.base_calculo)
+            self.totais_ibscbs_vdifibsuf += _decimal_or_zero(
+                ibs_uf.valor_diferimento
+            )
+            self.totais_ibscbs_vdevtribibsuf += _decimal_or_zero(
+                ibs_uf.valor_devolucao
+            )
+            self.totais_ibscbs_vibsuf += _decimal_or_zero(ibs_uf.valor)
+
+            self.totais_ibscbs_vdifibsmun += _decimal_or_zero(
+                ibs_mun.valor_diferimento
+            )
+            self.totais_ibscbs_vdevtribibsmun += _decimal_or_zero(
+                ibs_mun.valor_devolucao
+            )
+            self.totais_ibscbs_vibsmun += _decimal_or_zero(ibs_mun.valor)
+
+            self.totais_ibscbs_vibs += _decimal_or_zero(ibs_uf.valor) + _decimal_or_zero(
+                ibs_mun.valor
+            )
+
+            self.totais_ibscbs_vdifcbs += _decimal_or_zero(cbs.valor_diferimento)
+            self.totais_ibscbs_vdevtribcbs += _decimal_or_zero(cbs.valor_devolucao)
+            self.totais_ibscbs_vcbs += _decimal_or_zero(cbs.valor)
+
+            if getattr(ibscbs, "estorno", None):
+                self.totais_ibscbs_vcredpresibs += _decimal_or_zero(
+                    ibscbs.estorno.valor_ibs
+                )
+                self.totais_ibscbs_vcredprescbs += _decimal_or_zero(
+                    ibscbs.estorno.valor_cbs
+                )
+
+            self.totais_ibscbs_vcredprescondsusibs += _decimal_or_zero(
+                getattr(ibscbs, "credito_presumido_cond_susp_ibs", Decimal(0))
+            )
+            self.totais_ibscbs_vcredprescondsuscbs += _decimal_or_zero(
+                getattr(ibscbs, "credito_presumido_cond_susp_cbs", Decimal(0))
+            )
+        
+        self.totais_vitem += obj.vitem
 
         self.totais_icms_total_nota += (
             obj.valor_total_bruto
@@ -1012,6 +1107,9 @@ class NotaFiscalProduto(Entidade):
 
     # - Declaracao de Importacao (lista 1 para * / ManyToManyField)
     declaracoes_importacao = None
+    ibs_cbs: IBS_CBS = None
+    
+    vitem = Decimal()
 
     def __init__(self, *args, **kwargs):
         self.declaracoes_importacao = []
@@ -1220,7 +1318,7 @@ class NotaFiscalServico(Entidade):
     ambiente = "2"  # 1-Produção; 2-Homologação
 
     # Parâmetros para IBS/CBS (NFS-e Nacional)
-    ibs_cbs: IBS_CBS = None  # Deve ser um objeto com os atributos esperados na serialização nacional
+    ibs_cbs: IBS_CBS_NFSE = None  # Deve ser um objeto com os atributos esperados na serialização nacional
 
     def __init__(self, *args, **kwargs):
         super(NotaFiscalServico, self).__init__(*args, **kwargs)

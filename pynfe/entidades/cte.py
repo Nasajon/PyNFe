@@ -8,6 +8,7 @@ from pynfe import get_version
 # from pynfe.utils import so_numeros, memoize
 from pynfe.entidades.cliente import Cliente
 from pynfe.entidades.emitente import Emitente
+from pynfe.entidades.ibs_cbs import IBS_CBS
 from pynfe.entidades.pessoa import Pessoa
 from pynfe.utils import so_numeros
 from pynfe.utils.flags import CODIGOS_ESTADOS, CTE_STATUS
@@ -117,13 +118,14 @@ class CTe(Entidade):
 
     compra_gov_ente = 0
     compra_gov_redutor = Decimal(0)
+    
+    ibs_cbs: IBS_CBS = None
 
     def __init__(self, *args, **kwargs):
         self.prestacao_componentes: list[CTeComponente] = []
         self.cargas: list[CTeCarga] = []
         self.duplicatas: list[CTeDuplicata] = []
         self.nfes: list[CTeNFe] = []
-        self.ibs_cbs: IBS_CBS_CTE = None
         
 
         super(CTe, self).__init__(*args, **kwargs)
@@ -245,84 +247,3 @@ class CTeNFe(Entidade):
     def __init__(self, *args, **kwargs):
 
       super(CTeNFe, self).__init__(*args, **kwargs)
-
-
-class IBSComponente(Entidade):
-    """Componente de IBS UF ou IBS Mun"""
-    aliquota = Decimal(0)
-    valor = Decimal(0)
-    aliquota_diferimento = Decimal(0)
-    valor_diferimento = Decimal(0)
-    valor_devolucao = Decimal(0)
-    percentual_reducao = Decimal(0)
-    aliquota_efetiva = Decimal(0)
-
-    def __init__(self, *args, **kwargs):
-        super(IBSComponente, self).__init__(*args, **kwargs)
-
-
-class CBSComponente(Entidade):
-    """Componente de CBS"""
-    aliquota = Decimal(0)
-    valor = Decimal(0)
-    aliquota_diferimento = Decimal(0)
-    valor_diferimento = Decimal(0)
-    valor_devolucao = Decimal(0)
-    percentual_reducao = Decimal(0)
-    aliquota_efetiva = Decimal(0)
-
-    def __init__(self, *args, **kwargs):
-        super(CBSComponente, self).__init__(*args, **kwargs)
-
-
-class TribucaoRegular(Entidade):
-    """Tributação Regular"""
-    modalidade = ''
-    classificacao = ''
-    aliquota_ibs_uf = Decimal(0)
-    valor_ibs_uf = Decimal(0)
-    aliquota_ibs_mun = Decimal(0)
-    valor_ibs_mun = Decimal(0)
-    aliquota_cbs = Decimal(0)
-    valor_cbs = Decimal(0)
-
-    def __init__(self, *args, **kwargs):
-        super(TribucaoRegular, self).__init__(*args, **kwargs)
-
-
-class TribucaoCompraGov(Entidade):
-    """Tributação Compra Governo"""
-    aliquota_ibs_uf = Decimal(0)
-    valor_ibs_uf = Decimal(0)
-    aliquota_ibs_mun = Decimal(0)
-    valor_ibs_mun = Decimal(0)
-    aliquota_cbs = Decimal(0)
-    valor_cbs = Decimal(0)
-
-    def __init__(self, *args, **kwargs):
-        super(TribucaoCompraGov, self).__init__(*args, **kwargs)
-
-
-class Estorno(Entidade):
-    """Estorno de Crédito"""
-    valor_ibs = Decimal(0)
-    valor_cbs = Decimal(0)
-
-    def __init__(self, *args, **kwargs):
-        super(Estorno, self).__init__(*args, **kwargs)
-
-
-class IBS_CBS_CTE(Entidade):
-    """Imposto IBS/CBS"""
-    modalidade = ''
-    classificacao = ''
-    base_calculo = Decimal(0)
-    ibs_uf: IBSComponente = None
-    ibs_mun: IBSComponente = None
-    cbs: CBSComponente = None
-    trib_reg: TribucaoRegular = None
-    compra_gov: TribucaoCompraGov = None
-    estorno: Estorno = None
-
-    def __init__(self, *args, **kwargs):
-        super(IBS_CBS_CTE, self).__init__(*args, **kwargs)
