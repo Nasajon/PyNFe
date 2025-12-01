@@ -86,6 +86,85 @@ class AjusteCompetencia(Entidade):
         super(AjusteCompetencia, self).__init__(*args, **kwargs)
 
 
+class IBS_CBS_MonofasicoOperacao(Entidade):
+    """Dados de uma operação monofásica padrão/retenção/retida"""
+    quantidade_base_calculo = Decimal(0)
+    aliquota_ibs = Decimal(0)
+    aliquota_cbs = Decimal(0)
+    valor_ibs = Decimal(0)
+    valor_cbs = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(IBS_CBS_MonofasicoOperacao, self).__init__(*args, **kwargs)
+
+
+class IBS_CBS_MonofasicoDiferimento(Entidade):
+    """Dados do diferimento monofásico"""
+    aliquota_ibs = Decimal(0)
+    aliquota_cbs = Decimal(0)
+    valor_ibs = Decimal(0)
+    valor_cbs = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(IBS_CBS_MonofasicoDiferimento, self).__init__(*args, **kwargs)
+
+
+class IBS_CBS_Monofasico(Entidade):
+    """Totais e detalhamento monofásico"""
+    valor_total_ibs = Decimal(0)
+    valor_total_cbs = Decimal(0)
+    valor_ibs = Decimal(0)
+    valor_cbs = Decimal(0)
+    padrao: IBS_CBS_MonofasicoOperacao = None
+    retencao: IBS_CBS_MonofasicoOperacao = None
+    retida: IBS_CBS_MonofasicoOperacao = None
+    diferimento: IBS_CBS_MonofasicoDiferimento = None
+
+    def __init__(self, *args, **kwargs):
+        super(IBS_CBS_Monofasico, self).__init__(*args, **kwargs)
+
+
+class CreditoPresumidoIBS(Entidade):
+    """Dados do crédito presumido para IBS"""
+    aliquota_ibs = Decimal(0)
+    valor_ibs = Decimal(0)
+    valor_ibs_condicao_suspensiva = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(CreditoPresumidoIBS, self).__init__(*args, **kwargs)
+
+
+class CreditoPresumidoCBS(Entidade):
+    """Dados do crédito presumido para CBS"""
+    aliquota_cbs = Decimal(0)
+    valor_cbs = Decimal(0)
+    valor_cbs_condicao_suspensiva = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(CreditoPresumidoCBS, self).__init__(*args, **kwargs)
+
+
+class CreditoPresumido(Entidade):
+    """Crédito presumido por operação"""
+    base_calculo = Decimal(0)
+    classificacao = ''
+    ibs: CreditoPresumidoIBS = None
+    cbs: CreditoPresumidoCBS = None
+
+    def __init__(self, *args, **kwargs):
+        super(CreditoPresumido, self).__init__(*args, **kwargs)
+
+
+class CreditoPresumidoZFM(Entidade):
+    """Crédito presumido da Zona Franca de Manaus"""
+    competencia_apuracao = None
+    tipo = ''
+    valor_ibs = Decimal(0)
+
+    def __init__(self, *args, **kwargs):
+        super(CreditoPresumidoZFM, self).__init__(*args, **kwargs)
+
+
 class IBS_CBS(Entidade):
     """Imposto IBS/CBS"""
     modalidade = ''
@@ -99,6 +178,9 @@ class IBS_CBS(Entidade):
     estorno: Estorno = None
     transferencia: Transferencia = None
     ajuste_competencia: AjusteCompetencia = None
+    monofasico: IBS_CBS_Monofasico = None
+    credito_presumido: CreditoPresumido = None
+    credito_presumido_zfm: CreditoPresumidoZFM = None
 
     def __init__(self, *args, **kwargs):
         super(IBS_CBS, self).__init__(*args, **kwargs)

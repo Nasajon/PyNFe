@@ -437,6 +437,14 @@ class NotaFiscal(Entidade):
     totais_ibscbs_vdevtribcbs = Decimal()
     totais_ibscbs_vcredprescbs = Decimal()
     totais_ibscbs_vcredprescondsuscbs = Decimal()
+    totais_ibs_estornocred = Decimal()
+    totais_cbs_estornocred = Decimal()
+    totais_ibs_monofasico = Decimal()
+    totais_cbs_monofasico = Decimal()
+    totais_ibs_monofasico_reten = Decimal()
+    totais_cbs_monofasico_reten = Decimal()
+    totais_ibs_monofasico_ret = Decimal()
+    totais_cbs_monofasico_ret = Decimal()
     
     totais_vitem = Decimal()
     
@@ -549,20 +557,53 @@ class NotaFiscal(Entidade):
             self.totais_ibscbs_vdevtribcbs += _decimal_or_zero(cbs.valor_devolucao)
             self.totais_ibscbs_vcbs += _decimal_or_zero(cbs.valor)
 
-            if getattr(ibscbs, "estorno", None):
-                self.totais_ibscbs_vcredpresibs += _decimal_or_zero(
+            if ibscbs.estorno:
+                self.totais_ibs_estornocred += _decimal_or_zero(
                     ibscbs.estorno.valor_ibs
                 )
-                self.totais_ibscbs_vcredprescbs += _decimal_or_zero(
+                self.totais_cbs_estornocred += _decimal_or_zero(
                     ibscbs.estorno.valor_cbs
                 )
 
-            self.totais_ibscbs_vcredprescondsusibs += _decimal_or_zero(
-                getattr(ibscbs, "credito_presumido_cond_susp_ibs", Decimal(0))
-            )
-            self.totais_ibscbs_vcredprescondsuscbs += _decimal_or_zero(
-                getattr(ibscbs, "credito_presumido_cond_susp_cbs", Decimal(0))
-            )
+            if ibscbs.credito_presumido:
+                if ibscbs.credito_presumido.ibs:
+                    self.totais_ibscbs_vcredpresibs += _decimal_or_zero(
+                        ibscbs.credito_presumido.ibs.valor_ibs
+                    )
+                if ibscbs.credito_presumido.cbs:
+                    self.totais_ibscbs_vcredprescbs += _decimal_or_zero(
+                        ibscbs.credito_presumido.cbs.valor_cbs
+                    )
+
+            if ibscbs.monofasico:
+                valor_total_ibs = getattr(
+                    ibscbs.monofasico,
+                    "valor_total_ibs",
+                    getattr(ibscbs.monofasico, "valor_ibs", Decimal(0)),
+                )
+                valor_total_cbs = getattr(
+                    ibscbs.monofasico,
+                    "valor_total_cbs",
+                    getattr(ibscbs.monofasico, "valor_cbs", Decimal(0)),
+                )
+                self.totais_ibs_monofasico += _decimal_or_zero(valor_total_ibs)
+                self.totais_cbs_monofasico += _decimal_or_zero(valor_total_cbs)
+
+                if ibscbs.monofasico.retencao:
+                    self.totais_ibs_monofasico_reten += _decimal_or_zero(
+                        ibscbs.monofasico.retencao.valor_ibs
+                    )
+                    self.totais_cbs_monofasico_reten += _decimal_or_zero(
+                        ibscbs.monofasico.retencao.valor_cbs
+                    )
+
+                if ibscbs.monofasico.retida:
+                    self.totais_ibs_monofasico_ret += _decimal_or_zero(
+                        ibscbs.monofasico.retida.valor_ibs
+                    )
+                    self.totais_cbs_monofasico_ret += _decimal_or_zero(
+                        ibscbs.monofasico.retida.valor_cbs
+                    )
         
         self.totais_vitem += obj.vitem
 
