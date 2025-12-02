@@ -2020,113 +2020,114 @@ class SerializacaoXML(Serializacao):
                 nota_fiscal.totais_tributos_aproximado
             )
 
-        ibscbs_total = etree.SubElement(total, "IBSCBSTot")
+        if nota_fiscal.totais_ibscbs_vbcibscbs:
+            ibscbs_total = etree.SubElement(total, "IBSCBSTot")
 
-        etree.SubElement(ibscbs_total, "vBCIBSCBS").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vbcibscbs
-        )
-
-        ibscbs_total_g_ibs = etree.SubElement(ibscbs_total, "gIBS")
-
-        ibscbs_total_g_ibsuf = etree.SubElement(ibscbs_total_g_ibs, "gIBSUF")
-
-        etree.SubElement(ibscbs_total_g_ibsuf, "vDif").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vdifibsuf
-        )
-
-        etree.SubElement(ibscbs_total_g_ibsuf, "vDevTrib").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vdevtribibsuf
-        )
-
-        etree.SubElement(ibscbs_total_g_ibsuf, "vIBSUF").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vibsuf
-        )
-
-        ibscbs_total_g_ibsmun = etree.SubElement(ibscbs_total_g_ibs, "gIBSMun")
-
-        etree.SubElement(ibscbs_total_g_ibsmun, "vDif").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vdifibsmun
-        )
-
-        etree.SubElement(ibscbs_total_g_ibsmun, "vDevTrib").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vdevtribibsmun
-        )
-
-        etree.SubElement(ibscbs_total_g_ibsmun, "vIBSMun").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vibsmun
-        )
-
-        etree.SubElement(ibscbs_total_g_ibs, "vIBS").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vibs
-        )
-
-        etree.SubElement(ibscbs_total_g_ibs, "vCredPres").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vcredpresibs
-        )
-
-        etree.SubElement(ibscbs_total_g_ibs, "vCredPresCondSus").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vcredprescondsusibs
-        )
-
-        ibscbs_total_g_cbs = etree.SubElement(ibscbs_total, "gCBS")
-
-        etree.SubElement(ibscbs_total_g_cbs, "vDif").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vdifcbs
-        )
-
-        etree.SubElement(ibscbs_total_g_cbs, "vDevTrib").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vdevtribcbs
-        )
-
-        etree.SubElement(ibscbs_total_g_cbs, "vCBS").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vcbs
-        )
-
-        etree.SubElement(ibscbs_total_g_cbs, "vCredPres").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vcredprescbs
-        )
-
-        etree.SubElement(ibscbs_total_g_cbs, "vCredPresCondSus").text = "{:.2f}".format(
-            nota_fiscal.totais_ibscbs_vcredprescondsuscbs
-        )
-
-        ibscbs_total_estorno = etree.SubElement(ibscbs_total, "gEstornoCred")
-
-        etree.SubElement(ibscbs_total_estorno, "vIBSEstCred").text = "{:.2f}".format(
-            nota_fiscal.totais_ibs_estornocred
-        )
-
-        etree.SubElement(ibscbs_total_estorno, "vCBSEstCred").text = "{:.2f}".format(
-            nota_fiscal.totais_cbs_estornocred
-        )
-
-        if nota_fiscal.totais_ibs_monofasico:
-
-            ibscbs_total_monofasico = etree.SubElement(ibscbs_total, "gMono")
-
-            etree.SubElement(ibscbs_total_monofasico, "vIBSMono").text = "{:.2f}".format(
-                nota_fiscal.totais_ibs_monofasico
+            etree.SubElement(ibscbs_total, "vBCIBSCBS").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vbcibscbs
             )
 
-            etree.SubElement(ibscbs_total_monofasico, "vCBSMono").text = "{:.2f}".format(
-                nota_fiscal.totais_cbs_monofasico
+            ibscbs_total_g_ibs = etree.SubElement(ibscbs_total, "gIBS")
+
+            ibscbs_total_g_ibsuf = etree.SubElement(ibscbs_total_g_ibs, "gIBSUF")
+
+            etree.SubElement(ibscbs_total_g_ibsuf, "vDif").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vdifibsuf
             )
 
-            etree.SubElement(ibscbs_total_monofasico, "vIBSMonoReten").text = "{:.2f}".format(
-                nota_fiscal.totais_ibs_monofasico_reten
+            etree.SubElement(ibscbs_total_g_ibsuf, "vDevTrib").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vdevtribibsuf
             )
 
-            etree.SubElement(ibscbs_total_monofasico, "vCBSMonoReten").text = "{:.2f}".format(
-                nota_fiscal.totais_cbs_monofasico_reten
+            etree.SubElement(ibscbs_total_g_ibsuf, "vIBSUF").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vibsuf
             )
 
-            etree.SubElement(ibscbs_total_monofasico, "vIBSMonoRet").text = "{:.2f}".format(
-                nota_fiscal.totais_ibs_monofasico_ret
+            ibscbs_total_g_ibsmun = etree.SubElement(ibscbs_total_g_ibs, "gIBSMun")
+
+            etree.SubElement(ibscbs_total_g_ibsmun, "vDif").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vdifibsmun
             )
 
-            etree.SubElement(ibscbs_total_monofasico, "vCBSMonoRet").text = "{:.2f}".format(
-                nota_fiscal.totais_cbs_monofasico_ret
+            etree.SubElement(ibscbs_total_g_ibsmun, "vDevTrib").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vdevtribibsmun
             )
+
+            etree.SubElement(ibscbs_total_g_ibsmun, "vIBSMun").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vibsmun
+            )
+
+            etree.SubElement(ibscbs_total_g_ibs, "vIBS").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vibs
+            )
+
+            etree.SubElement(ibscbs_total_g_ibs, "vCredPres").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vcredpresibs
+            )
+
+            etree.SubElement(ibscbs_total_g_ibs, "vCredPresCondSus").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vcredprescondsusibs
+            )
+
+            ibscbs_total_g_cbs = etree.SubElement(ibscbs_total, "gCBS")
+
+            etree.SubElement(ibscbs_total_g_cbs, "vDif").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vdifcbs
+            )
+
+            etree.SubElement(ibscbs_total_g_cbs, "vDevTrib").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vdevtribcbs
+            )
+
+            etree.SubElement(ibscbs_total_g_cbs, "vCBS").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vcbs
+            )
+
+            etree.SubElement(ibscbs_total_g_cbs, "vCredPres").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vcredprescbs
+            )
+
+            etree.SubElement(ibscbs_total_g_cbs, "vCredPresCondSus").text = "{:.2f}".format(
+                nota_fiscal.totais_ibscbs_vcredprescondsuscbs
+            )
+
+            ibscbs_total_estorno = etree.SubElement(ibscbs_total, "gEstornoCred")
+
+            etree.SubElement(ibscbs_total_estorno, "vIBSEstCred").text = "{:.2f}".format(
+                nota_fiscal.totais_ibs_estornocred
+            )
+
+            etree.SubElement(ibscbs_total_estorno, "vCBSEstCred").text = "{:.2f}".format(
+                nota_fiscal.totais_cbs_estornocred
+            )
+
+            if nota_fiscal.totais_ibs_monofasico:
+
+                ibscbs_total_monofasico = etree.SubElement(ibscbs_total, "gMono")
+
+                etree.SubElement(ibscbs_total_monofasico, "vIBSMono").text = "{:.2f}".format(
+                    nota_fiscal.totais_ibs_monofasico
+                )
+
+                etree.SubElement(ibscbs_total_monofasico, "vCBSMono").text = "{:.2f}".format(
+                    nota_fiscal.totais_cbs_monofasico
+                )
+
+                etree.SubElement(ibscbs_total_monofasico, "vIBSMonoReten").text = "{:.2f}".format(
+                    nota_fiscal.totais_ibs_monofasico_reten
+                )
+
+                etree.SubElement(ibscbs_total_monofasico, "vCBSMonoReten").text = "{:.2f}".format(
+                    nota_fiscal.totais_cbs_monofasico_reten
+                )
+
+                etree.SubElement(ibscbs_total_monofasico, "vIBSMonoRet").text = "{:.2f}".format(
+                    nota_fiscal.totais_ibs_monofasico_ret
+                )
+
+                etree.SubElement(ibscbs_total_monofasico, "vCBSMonoRet").text = "{:.2f}".format(
+                    nota_fiscal.totais_cbs_monofasico_ret
+                )
 
         etree.SubElement(total, "vNFTot").text = "{:.2f}".format(nota_fiscal.totais_vitem)
 
