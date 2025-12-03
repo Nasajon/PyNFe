@@ -605,6 +605,15 @@ class NotaFiscal(Entidade):
                         ibscbs.monofasico.retida.valor_cbs
                     )
         
+        obj.vitem = obj.valor_total_bruto - obj.desconto + obj.icms_st_valor + obj.fcp_st_valor 
+        + obj.total_frete + obj.total_seguro + obj.outras_despesas_acessorias + obj.imposto_importacao_valor + obj.ipi_valor_ipi + obj.ipi_valor_ipi_dev
+
+        if datetime.now().year > 2026:
+            if obj.ibs_cbs:
+                obj.vitem += obj.ibs_cbs.ibs_uf.valor + obj.ibs_cbs.ibs_mun.valor + obj.ibs_cbs.cbs.valor
+                if obj.ibs_cbs.monofasico:
+                    obj.vitem += obj.ibs_cbs.monofasico.valor_total_ibs + obj.ibs_cbs.monofasico.valor_total_cbs    
+
         self.totais_vitem += obj.vitem
 
         self.totais_icms_total_nota += (

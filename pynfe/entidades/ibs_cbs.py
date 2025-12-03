@@ -113,8 +113,6 @@ class IBS_CBS_Monofasico(Entidade):
     """Totais e detalhamento monofásico"""
     valor_total_ibs = Decimal(0)
     valor_total_cbs = Decimal(0)
-    valor_ibs = Decimal(0)
-    valor_cbs = Decimal(0)
     padrao: IBS_CBS_MonofasicoOperacao = None
     retencao: IBS_CBS_MonofasicoOperacao = None
     retida: IBS_CBS_MonofasicoOperacao = None
