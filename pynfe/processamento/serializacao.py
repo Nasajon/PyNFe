@@ -17,6 +17,7 @@ from pynfe.utils import (
     obter_pais_por_codigo,
     so_numeros,
 )
+from pynfe.utils.ibs_cbs_indicadores import IBSCBSIndicadores
 from pynfe.utils.flags import (
     CODIGOS_ESTADOS,
     NAMESPACE_CTE,
@@ -1288,11 +1289,23 @@ class SerializacaoXML(Serializacao):
         etree.SubElement(ibs_cbs, "CST").text = ibs_cbs_dados.modalidade
         etree.SubElement(ibs_cbs, "cClassTrib").text = ibs_cbs_dados.classificacao
 
+        indicadores_cst = IBSCBSIndicadores.obter_por_cst(ibs_cbs_dados.modalidade)
+        indicadores_classtrib = IBSCBSIndicadores.obter_por_classificacao(
+            ibs_cbs_dados.classificacao
+        )
+
+        def grupo_permitido(*chaves):
+            return IBSCBSIndicadores.grupo_permitido(
+                chaves, indicadores_cst, indicadores_classtrib
+            )
+
+        grupo_ibs_cbs = None
         if (
             ibs_cbs_dados.base_calculo
             and ibs_cbs_dados.ibs_uf
             and ibs_cbs_dados.ibs_mun
             and ibs_cbs_dados.cbs
+            and grupo_permitido("ind_gIBSCBS")
         ):
             grupo_ibs_cbs = etree.SubElement(ibs_cbs, "gIBSCBS")
             etree.SubElement(grupo_ibs_cbs, "vBC").text = "{:.2f}".format(
@@ -1305,7 +1318,7 @@ class SerializacaoXML(Serializacao):
                 ibs_cbs_dados.ibs_uf.aliquota
             )
             etree.SubElement(grupo_uf, "vIBSUF").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.valor)
-            if ibs_cbs_dados.ibs_uf.aliquota_diferimento:
+            if ibs_cbs_dados.ibs_uf.aliquota_diferimento and grupo_permitido("ind_gDif"):
                 grupo_dif_uf = etree.SubElement(grupo_uf, "gDif")
                 etree.SubElement(grupo_dif_uf, "pDif").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_uf.aliquota_diferimento
@@ -1318,7 +1331,7 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_dev_uf, "vDevTrib").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_uf.valor_devolucao
                 )
-            if ibs_cbs_dados.ibs_uf.percentual_reducao:
+            if ibs_cbs_dados.ibs_uf.percentual_reducao and grupo_permitido("ind_gRed"):
                 grupo_red_uf = etree.SubElement(grupo_uf, "gRed")
                 etree.SubElement(grupo_red_uf, "pDif").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_uf.percentual_reducao
@@ -1335,7 +1348,7 @@ class SerializacaoXML(Serializacao):
             etree.SubElement(grupo_mun, "vIBSMun").text = "{:.2f}".format(
                 ibs_cbs_dados.ibs_mun.valor
             )
-            if ibs_cbs_dados.ibs_mun.aliquota_diferimento:
+            if ibs_cbs_dados.ibs_mun.aliquota_diferimento and grupo_permitido("ind_gDif"):
                 grupo_dif_mun = etree.SubElement(grupo_mun, "gDif")
                 etree.SubElement(grupo_dif_mun, "pDif").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_mun.aliquota_diferimento
@@ -1348,7 +1361,7 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_dev_mun, "vDevTrib").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_mun.valor_devolucao
                 )
-            if ibs_cbs_dados.ibs_mun.percentual_reducao:
+            if ibs_cbs_dados.ibs_mun.percentual_reducao and grupo_permitido("ind_gRed"):
                 grupo_red_mun = etree.SubElement(grupo_mun, "gRed")
                 etree.SubElement(grupo_red_mun, "pDif").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_mun.percentual_reducao
@@ -1365,7 +1378,7 @@ class SerializacaoXML(Serializacao):
             grupo_cbs = etree.SubElement(grupo_ibs_cbs, "gCBS")
             etree.SubElement(grupo_cbs, "pCBS").text = "{:.2f}".format(ibs_cbs_dados.cbs.aliquota)
             etree.SubElement(grupo_cbs, "vCBS").text = "{:.2f}".format(ibs_cbs_dados.cbs.valor)
-            if ibs_cbs_dados.cbs.aliquota_diferimento:
+            if ibs_cbs_dados.cbs.aliquota_diferimento and grupo_permitido("ind_gDif"):
                 grupo_dif_cbs = etree.SubElement(grupo_cbs, "gDif")
                 etree.SubElement(grupo_dif_cbs, "pDif").text = "{:.2f}".format(
                     ibs_cbs_dados.cbs.aliquota_diferimento
@@ -1378,7 +1391,7 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_dev_cbs, "vDevTrib").text = "{:.2f}".format(
                     ibs_cbs_dados.cbs.valor_devolucao
                 )
-            if ibs_cbs_dados.cbs.percentual_reducao:
+            if ibs_cbs_dados.cbs.percentual_reducao and grupo_permitido("ind_gRed"):
                 grupo_red_cbs = etree.SubElement(grupo_cbs, "gRed")
                 etree.SubElement(grupo_red_cbs, "pDif").text = "{:.2f}".format(
                     ibs_cbs_dados.cbs.percentual_reducao
@@ -1387,8 +1400,11 @@ class SerializacaoXML(Serializacao):
                     ibs_cbs_dados.cbs.aliquota_efetiva
                 )
 
-        if ibs_cbs_dados.trib_reg:
-            # Tributação Regular
+        if (
+            grupo_ibs_cbs is not None
+            and ibs_cbs_dados.trib_reg
+            and grupo_permitido("ind_gTribRegular")
+        ):
             grupo_trib_reg = etree.SubElement(grupo_ibs_cbs, "gTribRegular")
             etree.SubElement(grupo_trib_reg, "CSTReg").text = ibs_cbs_dados.trib_reg.modalidade
             etree.SubElement(
@@ -1413,8 +1429,7 @@ class SerializacaoXML(Serializacao):
                 ibs_cbs_dados.trib_reg.valor_cbs
             )
 
-        if ibs_cbs_dados.compra_gov:
-            # Tributação Compra Governo
+        if grupo_ibs_cbs is not None and ibs_cbs_dados.compra_gov:
             grupo_compra_gov = etree.SubElement(grupo_ibs_cbs, "gTribCompraGov")
             etree.SubElement(grupo_compra_gov, "pAliqIBSUF").text = "{:.2f}".format(
                 ibs_cbs_dados.compra_gov.aliquota_ibs_uf
@@ -1435,8 +1450,7 @@ class SerializacaoXML(Serializacao):
                 ibs_cbs_dados.compra_gov.valor_cbs
             )
 
-        if ibs_cbs_dados.estorno:
-            # Estorno
+        if ibs_cbs_dados.estorno and grupo_permitido("ind_gEstornoCred"):
             grupo_estorno = etree.SubElement(ibs_cbs, "gEstornoCred")
             etree.SubElement(grupo_estorno, "vIBSEstCred").text = "{:.2f}".format(
                 ibs_cbs_dados.estorno.valor_ibs
@@ -1445,8 +1459,7 @@ class SerializacaoXML(Serializacao):
                 ibs_cbs_dados.estorno.valor_cbs
             )
 
-        if ibs_cbs_dados.transferencia:
-            # Transferência
+        if ibs_cbs_dados.transferencia and grupo_permitido("ind_gTransfCred"):
             grupo_transferencia = etree.SubElement(ibs_cbs, "gTransfCred")
             etree.SubElement(grupo_transferencia, "vIBS").text = "{:.2f}".format(
                 ibs_cbs_dados.transferencia.valor_ibs
@@ -1455,8 +1468,7 @@ class SerializacaoXML(Serializacao):
                 ibs_cbs_dados.transferencia.valor_cbs
             )
 
-        if ibs_cbs_dados.ajuste_competencia:
-            # Ajuste de Competência
+        if ibs_cbs_dados.ajuste_competencia and grupo_permitido("ind_gAjusteCompet"):
             grupo_transferencia = etree.SubElement(ibs_cbs, "gAjusteCompet")
             etree.SubElement(
                 grupo_transferencia, "competApur"
@@ -1468,8 +1480,7 @@ class SerializacaoXML(Serializacao):
                 ibs_cbs_dados.ajuste_competencia.valor_cbs
             )
 
-        if ibs_cbs_dados.monofasico:
-            # Monofásico
+        if ibs_cbs_dados.monofasico and grupo_permitido("ind_gIBSCBSMono"):
             grupo_monofasico = etree.SubElement(ibs_cbs, "gIBSCBSMono")
             etree.SubElement(grupo_monofasico, "vTotIBSMonoItem").text = "{:.2f}".format(
                 ibs_cbs_dados.monofasico.valor_total_ibs
@@ -1477,7 +1488,7 @@ class SerializacaoXML(Serializacao):
             etree.SubElement(grupo_monofasico, "vTotCBSMonoItem").text = "{:.2f}".format(
                 ibs_cbs_dados.monofasico.valor_total_cbs
             )
-            if ibs_cbs_dados.monofasico.padrao:
+            if ibs_cbs_dados.monofasico.padrao and grupo_permitido("ind_gMonoPadrao"):
                 grupo_monofasico_padrao = etree.SubElement(grupo_monofasico, "gMonoPadrao")
                 etree.SubElement(grupo_monofasico_padrao, "qBCMono").text = str(
                     ibs_cbs_dados.monofasico.padrao.quantidade_base_calculo
@@ -1494,7 +1505,7 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_monofasico_padrao, "vCBSMono").text = "{:.2f}".format(
                     ibs_cbs_dados.monofasico.padrao.valor_cbs
                 )
-            if ibs_cbs_dados.monofasico.retencao:
+            if ibs_cbs_dados.monofasico.retencao and grupo_permitido("ind_gMonoReten"):
                 grupo_monofasico_retencao = etree.SubElement(grupo_monofasico, "gMonoReten")
                 etree.SubElement(grupo_monofasico_retencao, "qBCMonoReten").text = str(
                     ibs_cbs_dados.monofasico.retencao.quantidade_base_calculo
@@ -1511,7 +1522,7 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_monofasico_retencao, "vCBSMonoReten").text = "{:.2f}".format(
                     ibs_cbs_dados.monofasico.retencao.valor_cbs
                 )
-            if ibs_cbs_dados.monofasico.retida:
+            if ibs_cbs_dados.monofasico.retida and grupo_permitido("ind_gMonoRet"):
                 grupo_monofasico_retida = etree.SubElement(grupo_monofasico, "gMonoRet")
                 etree.SubElement(grupo_monofasico_retida, "qBCMonoRet").text = str(
                     ibs_cbs_dados.monofasico.retida.quantidade_base_calculo
@@ -1528,7 +1539,7 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_monofasico_retida, "vCBSMonoRet").text = "{:.2f}".format(
                     ibs_cbs_dados.monofasico.retida.valor_cbs
                 )
-            if ibs_cbs_dados.monofasico.diferimento:
+            if ibs_cbs_dados.monofasico.diferimento and grupo_permitido("ind_gMonoDif"):
                 grupo_monofasico_diferimento = etree.SubElement(grupo_monofasico, "gMonoDif")
                 etree.SubElement(grupo_monofasico_diferimento, "pDifIBS").text = "{:.2f}".format(
                     ibs_cbs_dados.monofasico.diferimento.aliquota_ibs
@@ -1543,8 +1554,7 @@ class SerializacaoXML(Serializacao):
                     grupo_monofasico_diferimento, "vCBSMonoDif"
                 ).text = "{:.2f}".format(ibs_cbs_dados.monofasico.diferimento.valor_cbs)
 
-        if ibs_cbs_dados.credito_presumido:
-            # Credito Presumido
+        if ibs_cbs_dados.credito_presumido and grupo_permitido("ind_gCredPresOper"):
             grupo_credito_presumido = etree.SubElement(ibs_cbs, "gCredPresOper")
             etree.SubElement(grupo_credito_presumido, "vBCCredPres").text = "{:.2f}".format(
                 ibs_cbs_dados.credito_presumido.base_calculo
@@ -1585,8 +1595,7 @@ class SerializacaoXML(Serializacao):
                         ibs_cbs_dados.credito_presumido.cbs.valor_cbs_condicao_suspensiva
                     )
 
-        if ibs_cbs_dados.credito_presumido_zfm:
-            # Credito Presumido ZFM
+        if ibs_cbs_dados.credito_presumido_zfm and grupo_permitido("ind_gCredPresIBSZFM"):
             grupo_credito_presumido_zfm = etree.SubElement(ibs_cbs, "gCredPresOper")
             etree.SubElement(
                 grupo_credito_presumido_zfm, "competApur"
