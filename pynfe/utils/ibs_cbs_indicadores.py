@@ -64,8 +64,8 @@ def _load_csv(filename: str, key_field: str) -> Dict[str, Dict[str, Any]]:
 
 
 class IBSCBSIndicadores:
-    _CST_FILE = "CST 2025-11-19.csv"
-    _CLASS_FILE = "cClassTrib 2025-11-19.csv"
+    _CST_FILE = "CST.csv"
+    _CLASS_FILE = "cClassTrib.csv"
 
     @classmethod
     @lru_cache(maxsize=1)
