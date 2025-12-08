@@ -1155,7 +1155,7 @@ class SerializacaoNacional(InterfaceAutorizador):
 
         dps = nfse_nacional_schema.TCDPS()
         dps.infDPS = infdps
-        dps.versao = "1.01"
+        dps.versao = "1.00"
 
         # Gera o XML e remove as tags ns1 do PyXB
         xml_content = dps.toxml(element_name="DPS")

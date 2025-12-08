@@ -3656,22 +3656,6 @@ class SerializacaoCTE(Serializacao):
             informacao_rodoviario = etree.SubElement(informacao_modal, "rodo")
             etree.SubElement(informacao_rodoviario, "RNTRC").text = cte.rodoviario_registro
 
-        if cte.fatura_numero or cte.duplicatas:
-            cobranca = etree.SubElement(raiz, "cobr")
-
-            if cte.fatura_numero:
-                fatura = etree.SubElement(cobranca, "fat")
-                etree.SubElement(fatura, "nFat").text = cte.fatura_numero
-                etree.SubElement(fatura, "vOrig").text = "{:.2f}".format(cte.fatura_valor_original)
-                etree.SubElement(fatura, "vDesc").text = "{:.2f}".format(cte.fatura_valor_desconto)
-                etree.SubElement(fatura, "vLiq").text = "{:.2f}".format(cte.fatura_valor_liquido)
-
-            for duplicata in cte.duplicatas:
-                dup = etree.SubElement(cobranca, "dup")
-                etree.SubElement(dup, "nDup").text = duplicata.numero
-                etree.SubElement(dup, "dVenc").text = duplicata.vencimento.strftime("%Y-%m-%d")
-                etree.SubElement(dup, "vDup").text = "{:.2f}".format(duplicata.valor)
-
         if retorna_string:
             return etree.tostring(raiz, encoding="unicode", pretty_print=True)
         else:

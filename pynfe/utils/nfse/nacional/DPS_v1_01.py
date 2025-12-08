@@ -94,7 +94,7 @@ class TVerNFSe (pyxb.binding.datatypes.string):
     _XSDLocation = pyxb.utils.utility.Location('file:///app/pynfe_nasajon/pynfe/data/XSDs/NFS-e/nacional/tiposSimples_v1.01.xsd', 3, 2)
     _Documentation = 'Tipo Versão da NF-e - 1.01'
 TVerNFSe._CF_pattern = pyxb.binding.facets.CF_pattern()
-TVerNFSe._CF_pattern.addPattern(pattern='1\\.01')
+TVerNFSe._CF_pattern.addPattern(pattern='1\\.00')
 TVerNFSe._CF_whiteSpace = pyxb.binding.facets.CF_whiteSpace(value=pyxb.binding.facets._WhiteSpace_enum.preserve)
 TVerNFSe._InitializeFacetMap(TVerNFSe._CF_pattern,
    TVerNFSe._CF_whiteSpace)
