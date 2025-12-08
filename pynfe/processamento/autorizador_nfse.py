@@ -1164,6 +1164,7 @@ class SerializacaoNacional(InterfaceAutorizador):
         xml_content = re.sub(r"</ns1:", "</", xml_content)
         # Remove declarações de namespace desnecessárias
         xml_content = re.sub(r":ns1", "", xml_content)
+        xml_content = xml_content.replace('<?xml version="1.0" ?>', "")
 
         return xml_content
 
