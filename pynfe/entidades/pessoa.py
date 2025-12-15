@@ -36,3 +36,6 @@ class Pessoa(Entidade):
 
     # - Municipio (obrigatorio)
     endereco_municipio = str()
+
+    # - Telefone
+    endereco_telefone = str()
