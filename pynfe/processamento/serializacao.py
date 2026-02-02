@@ -3226,7 +3226,7 @@ class SerializacaoCTE(Serializacao):
 
         if cte.observacao:
             complemento = etree.SubElement(raiz, "compl")
-            etree.SubElement(complemento, "xObs").text = cte.observacao
+            etree.SubElement(complemento, "xObs").text = cte.observacao.replace("\n", " ").replace("\r", " ")
 
         # Emitente
         raiz.append(self._serializar_emitente(cte.emitente, retorna_string=False))
