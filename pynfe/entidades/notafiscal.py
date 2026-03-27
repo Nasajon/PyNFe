@@ -401,7 +401,8 @@ class NotaFiscal(Entidade):
     # valor do troco
     valor_troco = Decimal()
     
-    totais_ibscbs_vbcibscbs = None
+    tem_ibscbs = False
+    totais_ibscbs_vbcibscbs = Decimal()
     totais_ibscbs_pibsuf = Decimal()
     totais_ibscbs_vibsuf = Decimal()
     totais_ibscbs_pibsmun = Decimal()
@@ -520,6 +521,7 @@ class NotaFiscal(Entidade):
         # self.totais_tributos_aproximado += obj.tributos
         
         if obj.ibs_cbs:
+            self.tem_ibscbs = True
             def _decimal_or_zero(value):
                 if isinstance(value, Decimal):
                     return value

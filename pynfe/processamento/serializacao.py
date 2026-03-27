@@ -1759,7 +1759,7 @@ class SerializacaoXML(Serializacao):
         else:
             return pag
 
-    def _serializar_nota_fiscal(self, nota_fiscal, tag_raiz="infNFe", retorna_string=True):
+    def _serializar_nota_fiscal(self, nota_fiscal: NotaFiscal, tag_raiz="infNFe", retorna_string=True):
         raiz = etree.Element(tag_raiz, versao=self._versao)
 
         # 'Id' da tag raiz
@@ -2029,7 +2029,7 @@ class SerializacaoXML(Serializacao):
                 nota_fiscal.totais_tributos_aproximado
             )
 
-        if nota_fiscal.totais_ibscbs_vbcibscbs is not None:
+        if nota_fiscal.tem_ibscbs:
             ibscbs_total = etree.SubElement(total, "IBSCBSTot")
 
             etree.SubElement(ibscbs_total, "vBCIBSCBS").text = "{:.2f}".format(
