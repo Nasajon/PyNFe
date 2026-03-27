@@ -401,7 +401,7 @@ class NotaFiscal(Entidade):
     # valor do troco
     valor_troco = Decimal()
     
-    totais_ibscbs_vbcibscbs = Decimal()
+    totais_ibscbs_vbcibscbs = None
     totais_ibscbs_pibsuf = Decimal()
     totais_ibscbs_vibsuf = Decimal()
     totais_ibscbs_pibsmun = Decimal()

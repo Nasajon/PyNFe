@@ -2029,7 +2029,7 @@ class SerializacaoXML(Serializacao):
                 nota_fiscal.totais_tributos_aproximado
             )
 
-        if nota_fiscal.totais_ibscbs_vbcibscbs:
+        if nota_fiscal.totais_ibscbs_vbcibscbs is not None:
             ibscbs_total = etree.SubElement(total, "IBSCBSTot")
 
             etree.SubElement(ibscbs_total, "vBCIBSCBS").text = "{:.2f}".format(
