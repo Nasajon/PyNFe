@@ -22,6 +22,7 @@ from pynfe.utils.flags import (
     CODIGOS_ESTADOS,
     NAMESPACE_CTE,
     NAMESPACE_MDFE,
+    NAMESPACE_NFGAS,
     NAMESPACE_NFE,
     NAMESPACE_SIG,
     VERSAO_CTE,
@@ -29,7 +30,7 @@ from pynfe.utils.flags import (
     VERSAO_PADRAO,
     VERSAO_QRCODE,
 )
-from pynfe.utils.webservices import CTE, MDFE, NFCE
+from pynfe.utils.webservices import CTE, MDFE, NFCE, NFGAS
 
 
 class Serializacao(object):
@@ -2551,6 +2552,39 @@ class SerializacaoQrcode(object):
         # retorna apenas cte com o qrcode incluido NT2015/002
         else:
             return cte
+
+    def gerar_qrcode_nfgas(self, xml, return_qr=False):
+        """Classe para gerar url do qrcode da NFGas"""
+        ns = {"ns": NAMESPACE_NFGAS}
+        nfgas = xml
+        chave = nfgas[0].attrib["Id"].replace("NFGas", "")
+        tpamb = nfgas.xpath("ns:infNFGas/ns:ide/ns:tpAmb/text()", namespaces=ns)[0]
+        cuf = nfgas.xpath("ns:infNFGas/ns:ide/ns:cUF/text()", namespaces=ns)[0]
+        uf = [key for key, value in CODIGOS_ESTADOS.items() if value == cuf][0].upper()
+
+        url = f"chNFGas={chave}&tpAmb={tpamb}"
+
+        config = NFGAS.get(uf) or NFGAS.get("SVRS")
+        if not config:
+            raise ValueError("URL de QRCode da NFGas não configurada em webservices.NFGAS.")
+
+        if tpamb == "1":
+            base_url = config.get("QR")
+        else:
+            base_url = config.get("HOMOLOGACAO")
+
+        if not base_url:
+            raise ValueError("URL de QRCode da NFGas não configurada em webservices.NFGAS.")
+
+        qrcode = base_url + url
+        info = etree.Element("infNFGasSupl")
+        etree.SubElement(info, "qrCodNFGas").text = qrcode.strip()
+        nfgas.insert(1, info)
+
+        if return_qr:
+            return nfgas, qrcode.strip()
+        else:
+            return nfgas
 
 
 class SerializacaoNfse(object):

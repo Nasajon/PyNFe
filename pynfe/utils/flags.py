@@ -15,6 +15,10 @@ NAMESPACE_MDFE_METODO = "http://www.portalfiscal.inf.br/mdfe/wsdl/"
 MODELO_MDFE = "58"
 VERSAO_MDFE = "3.00"
 
+NAMESPACE_NFGAS = "http://www.portalfiscal.inf.br/nfgas"
+NAMESPACE_NFGAS_METODO = "http://www.portalfiscal.inf.br/nfgas/wsdl/"
+VERSAO_NFGAS = "1.00"
+
 VERSAO_PADRAO = "4.00"
 
 NAMESPACE_CTE = "http://www.portalfiscal.inf.br/cte"

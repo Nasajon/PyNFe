@@ -579,3 +579,15 @@ CTE = {
         "EVENTOS": "fazenda.sp.gov.br/CTeWS/WS/CTeRecepcaoEventoV4.asmx",
     },
 }
+
+NFGAS = {
+    "SVRS": {
+        "QR": "https://dfe-portal.svrs.rs.gov.br/NFGas/qrCode?",
+        "HOMOLOGACAO": "https://dfe-portal.svrs.rs.gov.br/NFGas/qrCode?",
+        "HTTPS": "",
+        "AUTORIZACAO": "",
+        "STATUS": "",
+        "EVENTOS": "",
+        "DISTRIBUICAO": "",
+    }
+}

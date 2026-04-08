@@ -17,15 +17,18 @@ from pynfe.utils.flags import (
     NAMESPACE_MDFE,
     NAMESPACE_MDFE_METODO,
     NAMESPACE_METODO,
+    NAMESPACE_NFGAS,
+    NAMESPACE_NFGAS_METODO,
     NAMESPACE_NFE,
     NAMESPACE_SOAP,
     NAMESPACE_XSD,
     NAMESPACE_XSI,
     VERSAO_CTE,
     VERSAO_MDFE,
+    VERSAO_NFGAS,
     VERSAO_PADRAO,
 )
-from pynfe.utils.webservices import CTE, MDFE, NFCE, NFE, NFSE
+from pynfe.utils.webservices import CTE, MDFE, NFCE, NFE, NFSE, NFGAS
 
 from .assinatura import AssinaturaA1
 
@@ -1469,4 +1472,224 @@ class ComunicacaoCTe(Comunicacao):
         url = self._get_url(consulta="EVENTOS")
 
         xml = self._construir_xml_soap("CTeRecepcaoEventoV4", evento)
+        return self._post(url, xml)
+
+
+class ComunicacaoNFGas(Comunicacao):
+    """Classe de comunicação que segue o padrão definido para as SEFAZ dos Estados."""
+
+    _versao = VERSAO_NFGAS
+    _assinatura = AssinaturaA1
+    _namespace = NAMESPACE_NFGAS
+    _header = "nfgasCabecMsg"
+    _envio_mensagem = "nfgasDadosMsg"
+    _namespace_metodo = NAMESPACE_NFGAS_METODO
+    _accept = False
+    _namespace_soap = NAMESPACE_SOAP
+    _namespace_xsi = NAMESPACE_XSI
+    _namespace_xsd = NAMESPACE_XSD
+    _soap_version = "soap"
+
+    def autorizacao(self, nfgas, contingencia=False):
+        """
+        Método para realizar autorização da NFGas.
+        :param nfgas: XML assinado
+        :param contingencia: Indica se o envio é em contingência ou não
+        :return: Tupla com xml autorizado e protocolo, quando aplicável.
+        """
+        url = self._get_url(consulta="AUTORIZACAO", contingencia=contingencia)
+
+        xml = self._construir_xml_soap(
+            "NFGasRecepcaoSinc",
+            base64.b64encode(gzip.compress(etree.tostring(nfgas))).decode("utf-8"),
+        )
+        retorno = self._post(url, xml)
+
+        if retorno.status_code == 200:
+            ns = {"ns": NAMESPACE_NFGAS}
+            try:
+                prot = etree.fromstring(retorno.text)
+            except ValueError:
+                prot = etree.fromstring(retorno.content)
+            try:
+                try:
+                    inf_prot = prot[0][0]
+                except IndexError:
+                    inf_prot = prot[1][0]
+
+                lote_status = inf_prot.xpath("ns:retNFGas/ns:cStat", namespaces=ns)[0].text
+                if lote_status == "100":
+                    prot_nfgas = inf_prot.xpath("ns:retNFGas/ns:protNFGas", namespaces=ns)[
+                        0
+                    ]
+                    status = prot_nfgas.xpath("ns:infProt/ns:cStat", namespaces=ns)[0].text
+                    if status == "100":
+                        raiz = etree.Element(
+                            "nfgasProc", xmlns=NAMESPACE_NFGAS, versao=self._versao
+                        )
+                        raiz.append(nfgas)
+                        raiz.append(prot_nfgas)
+                        return 0, raiz
+            except IndexError:
+                return 1, retorno, nfgas
+        return 1, retorno, nfgas
+
+    def status_servico(self):
+        """
+        Verifica status do servidor da receita.
+        :return:
+        """
+        url = self._get_url("STATUS")
+        raiz = etree.Element("consStatServNFGas", versao=self._versao, xmlns=NAMESPACE_NFGAS)
+        etree.SubElement(raiz, "tpAmb").text = str(self._ambiente)
+        etree.SubElement(raiz, "xServ").text = "STATUS"
+        xml = self._construir_xml_soap("NFGasStatusServico", raiz)
+        return self._post(url, xml)
+
+    def consulta_distribuicao(
+        self, cnpj=None, cpf=None, chave=None, nsu=0, consulta_nsu_especifico=False
+    ):
+        """
+        Distribuição de DF-e (consulta por NSU ou chave).
+        """
+        url = self._get_url_an(consulta="DISTRIBUICAO")
+        raiz = etree.Element("distDFeInt", versao="1.00", xmlns=NAMESPACE_NFGAS)
+        etree.SubElement(raiz, "tpAmb").text = str(self._ambiente)
+        if self.uf:
+            etree.SubElement(raiz, "cUFAutor").text = CODIGOS_ESTADOS[self.uf.upper()]
+        if cnpj:
+            etree.SubElement(raiz, "CNPJ").text = cnpj
+        else:
+            etree.SubElement(raiz, "CPF").text = cpf
+
+        if not chave and not consulta_nsu_especifico:
+            distNSU = etree.SubElement(raiz, "distNSU")
+            etree.SubElement(distNSU, "ultNSU").text = str(nsu).zfill(15)
+        if chave:
+            consChNFGas = etree.SubElement(raiz, "consChNFGas")
+            etree.SubElement(consChNFGas, "chNFGas").text = chave
+        if consulta_nsu_especifico:
+            consNSU = etree.SubElement(raiz, "consNSU")
+            etree.SubElement(consNSU, "NSU").text = str(nsu).zfill(15)
+
+        xml = self._construir_xml_soap("NFGasDistribuicaoDFe", raiz)
+        return self._post(url, xml)
+
+    def _get_url_an(self, consulta):
+        if consulta not in NFGAS.get("SVRS", {}):
+            raise ValueError("URL de distribuição NFGas não configurada.")
+
+        ambiente = NFGAS["SVRS"].get("HTTPS", "")
+        if self._ambiente == 2:
+            ambiente = NFGAS["SVRS"].get("HOMOLOGACAO", "")
+
+        endpoint = NFGAS["SVRS"].get(consulta, "")
+        if not ambiente or not endpoint:
+            raise ValueError("URL de distribuição NFGas não configurada.")
+
+        self.url = ambiente + endpoint
+        return self.url
+
+    def _cabecalho_soap(self, metodo):
+        """Monta o XML do cabeçalho da requisição SOAP"""
+        raiz = etree.Element(self._header, xmlns=self._namespace_metodo + metodo)
+        etree.SubElement(raiz, "cUF").text = CODIGOS_ESTADOS[self.uf.upper()]
+        etree.SubElement(raiz, "versaoDados").text = self._versao
+        return raiz
+
+    def _get_url(self, consulta, contingencia=False):
+        """Retorna a url para comunicação com o webservice"""
+        config = NFGAS.get(self.uf.upper()) or NFGAS.get("SVRS")
+        if not config:
+            raise ValueError(f"Url não encontrada para {consulta} {self.uf.upper()}")
+
+        if self._ambiente == 1:
+            ambiente = config.get("HTTPS", "")
+        else:
+            ambiente = config.get("HOMOLOGACAO", "")
+
+        endpoint = config.get(consulta, "")
+        if not ambiente or not endpoint:
+            raise ValueError(f"URL não configurada para {consulta} {self.uf.upper()}")
+
+        self.url = ambiente + endpoint
+        return self.url
+
+    def _construir_xml_soap(self, metodo, dados, cabecalho=False):
+        """Monta o XML para o envio via SOAP"""
+        raiz = etree.Element(
+            "{%s}Envelope" % self._namespace_soap,
+            nsmap={"xsi": NAMESPACE_XSI, "xsd": NAMESPACE_XSD, "soap12": NAMESPACE_SOAP},
+        )
+
+        if self._header:
+            cabecalho = self._cabecalho_soap(metodo)
+            c = etree.SubElement(raiz, "{%s}Header" % self._namespace_soap)
+            c.append(cabecalho)
+
+        body = etree.SubElement(raiz, "{%s}Body" % self._namespace_soap)
+        if metodo == "NFGasDistribuicaoDFe":
+            x = etree.SubElement(
+                body, "nfgasDistDFeInteresse", xmlns=NAMESPACE_NFGAS_METODO + metodo
+            )
+            a = etree.SubElement(x, "nfgasDadosMsg")
+        else:
+            a = etree.SubElement(body, "nfgasDadosMsg", xmlns=NAMESPACE_NFGAS_METODO + metodo)
+
+        if metodo == "NFGasRecepcaoSinc":
+            a.text = dados
+        else:
+            a.append(dados)
+        return raiz
+
+    def _post_header(self):
+        response = {
+            "content-type": "application/soap+xml; charset=utf-8;",
+            "Accept": "application/soap+xml; charset=utf-8;",
+        }
+        response["SOAPAction"] = ""
+        return response
+
+    def _post(self, url, xml):
+        certificado_a1 = CertificadoA1(self.certificado)
+        chave, cert = certificado_a1.separar_arquivo(self.certificado_senha, caminho=True)
+        chave_cert = (cert, chave)
+        try:
+            xml_declaration = '<?xml version="1.0" encoding="UTF-8"?>'
+
+            xml = re.sub(
+                "<qrCodNFGas>(.*?)</qrCodNFGas>",
+                lambda x: x.group(0).replace("&lt;", "<").replace("&gt;", ">").replace(
+                    "&amp;", ""
+                ),
+                etree.tostring(xml, encoding="unicode").replace("\n", ""),
+            )
+            xml = xml_declaration + xml
+
+            result = requests.post(
+                url,
+                xml,
+                headers=self._post_header(),
+                cert=chave_cert,
+                verify=False,
+                timeout=300,
+            )
+            result.encoding = "utf-8"
+            return result
+        except requests.exceptions.Timeout as e:
+            raise e
+        except requests.exceptions.RequestException as e:
+            raise e
+        finally:
+            certificado_a1.excluir()
+
+    def evento(self, evento, id_lote=1):
+        """
+        Envia um evento de NFGas.
+        :param evento: Evento
+        :param id_lote: Id do lote
+        :return:
+        """
+        url = self._get_url(consulta="EVENTOS")
+        xml = self._construir_xml_soap("NFGasRecepcaoEvento", evento)
         return self._post(url, xml)
