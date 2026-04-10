@@ -24,6 +24,7 @@ from pynfe.entidades.nfag import (
 )
 from pynfe.entidades.ibs_cbs import IBS_CBS
 from pynfe.utils import obter_codigo_por_municipio, so_numeros
+from pynfe.utils.ibs_cbs_indicadores import IBSCBSIndicadores
 from pynfe.utils.flags import CODIGOS_ESTADOS
 
 from pynfe_nasajon.pynfe.utils.nfag.dfe_tipos_basicos_v1_00 import (
@@ -583,13 +584,28 @@ class SerializacaoNFAg:
         cst = data.modalidade
         c_class_trib = data.classificacao
 
+        indicadores_cst = IBSCBSIndicadores.obter_por_cst(str(cst))
+        indicadores_classtrib = IBSCBSIndicadores.obter_por_classificacao(
+            str(c_class_trib)
+        )
+
+        def grupo_permitido(*chaves):
+            return IBSCBSIndicadores.grupo_permitido(
+                chaves, indicadores_cst, indicadores_classtrib
+            )
+
         if data.monofasico:
             raise ValueError("imposto.ibs_cbs.monofasico nao e suportado para NFAg.")
 
-        g_ibscbs = self._build_ibscbs_padrao(data)
+        g_ibscbs = None
+        if grupo_permitido("ind_gIBSCBS"):
+            self._validar_ibscbs_padrao(data)
+            g_ibscbs = self._build_ibscbs_padrao(data, grupo_permitido)
+        elif grupo_permitido("ind_gIBSCBSMono"):
+            raise ValueError("imposto.ibs_cbs.monofasico nao e suportado para NFAg.")
 
         estorno = None
-        if data.estorno:
+        if data.estorno and grupo_permitido("ind_gEstornoCred"):
             estorno = TestornoCred(
                 v_ibsest_cred=self._fmt_money(data.estorno.valor_ibs),
                 v_cbsest_cred=self._fmt_money(data.estorno.valor_cbs),
@@ -602,14 +618,7 @@ class SerializacaoNFAg:
             g_estorno_cred=estorno,
         )
 
-    def _build_ibscbs_padrao(self, data: IBS_CBS) -> Tcibs:
-        if not data.ibs_uf:
-            raise ValueError("imposto.ibs_cbs.ibs_uf e obrigatorio.")
-        if not data.ibs_mun:
-            raise ValueError("imposto.ibs_cbs.ibs_mun e obrigatorio.")
-        if not data.cbs:
-            raise ValueError("imposto.ibs_cbs.cbs e obrigatorio.")
-
+    def _build_ibscbs_padrao(self, data: IBS_CBS, grupo_permitido) -> Tcibs:
         ibs_uf = data.ibs_uf
         ibs_mun = data.ibs_mun
         cbs = data.cbs
@@ -617,27 +626,27 @@ class SerializacaoNFAg:
         g_ibsuf = Tcibs.GIbsuf(
             p_ibsuf=self._fmt_money(ibs_uf.aliquota),
             v_ibsuf=self._fmt_money(ibs_uf.valor),
-            g_dif=self._build_dif(ibs_uf),
+            g_dif=self._build_dif(ibs_uf) if grupo_permitido("ind_gDif") else None,
             g_dev_trib=self._build_dev_trib(ibs_uf),
-            g_red=self._build_red(ibs_uf),
+            g_red=self._build_red(ibs_uf) if grupo_permitido("ind_gRed") else None,
         )
         g_ibsmun = Tcibs.GIbsmun(
             p_ibsmun=self._fmt_money(ibs_mun.aliquota),
             v_ibsmun=self._fmt_money(ibs_mun.valor),
-            g_dif=self._build_dif(ibs_mun),
+            g_dif=self._build_dif(ibs_mun) if grupo_permitido("ind_gDif") else None,
             g_dev_trib=self._build_dev_trib(ibs_mun),
-            g_red=self._build_red(ibs_mun),
+            g_red=self._build_red(ibs_mun) if grupo_permitido("ind_gRed") else None,
         )
         g_cbs = Tcibs.GCbs(
             p_cbs=self._fmt_money(cbs.aliquota),
             v_cbs=self._fmt_money(cbs.valor),
-            g_dif=self._build_dif(cbs),
+            g_dif=self._build_dif(cbs) if grupo_permitido("ind_gDif") else None,
             g_dev_trib=self._build_dev_trib(cbs),
-            g_red=self._build_red(cbs),
+            g_red=self._build_red(cbs) if grupo_permitido("ind_gRed") else None,
         )
 
         g_trib_regular = None
-        if data.trib_reg:
+        if data.trib_reg and grupo_permitido("ind_gTribRegular"):
             reg = data.trib_reg
             g_trib_regular = TtribRegular(
                 cstreg=str(reg.modalidade),
@@ -673,6 +682,16 @@ class SerializacaoNFAg:
             g_trib_regular=g_trib_regular,
             g_trib_compra_gov=g_trib_compra_gov,
         )
+
+    def _validar_ibscbs_padrao(self, data: IBS_CBS) -> None:
+        if data.base_calculo is None:
+            raise ValueError("imposto.ibs_cbs.base_calculo e obrigatorio.")
+        if not data.ibs_uf:
+            raise ValueError("imposto.ibs_cbs.ibs_uf e obrigatorio.")
+        if not data.ibs_mun:
+            raise ValueError("imposto.ibs_cbs.ibs_mun e obrigatorio.")
+        if not data.cbs:
+            raise ValueError("imposto.ibs_cbs.cbs e obrigatorio.")
 
     def _build_ibscbs_mono(self, data) -> Tmonofasia:
         g_padrao = None
