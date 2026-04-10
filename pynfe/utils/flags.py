@@ -19,6 +19,10 @@ NAMESPACE_NFGAS = "http://www.portalfiscal.inf.br/nfgas"
 NAMESPACE_NFGAS_METODO = "http://www.portalfiscal.inf.br/nfgas/wsdl/"
 VERSAO_NFGAS = "1.00"
 
+NAMESPACE_NFAG = "http://www.portalfiscal.inf.br/nfag"
+NAMESPACE_NFAG_METODO = "http://www.portalfiscal.inf.br/nfag/wsdl/"
+VERSAO_NFAG = "1.00"
+
 VERSAO_PADRAO = "4.00"
 
 NAMESPACE_CTE = "http://www.portalfiscal.inf.br/cte"

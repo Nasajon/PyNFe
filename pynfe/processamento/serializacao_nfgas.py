@@ -113,6 +113,9 @@ class SerializacaoNFGas:
     def _build_nfgas_from_nota(self, nota: NotaFiscalGas) -> Nfgas:
         if not nota.emitente or not nota.destinatario:
             raise ValueError("emitente e destinatario são obrigatórios para gerar NFGas.")
+        
+        # Necessário chamar o id aqui para preencher o número aleatório e digito verificador, que são usados no ide
+        id = nota.identificador_unico
 
         det_list = self._build_det_list(nota)
         total = self._build_total(nota)
@@ -134,7 +137,7 @@ class SerializacaoNFGas:
             inf_adic=nota.informacoes_adicionais,
             g_resp_tec=nota.responsavel_tecnico,
             versao="1.00",
-            id=nota.identificador_unico,
+            id=id,
         )
 
         return Nfgas(

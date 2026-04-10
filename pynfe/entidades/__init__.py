@@ -12,3 +12,4 @@ from .certificado import CertificadoA1
 from .evento import EventoCancelarNota
 from .servico import Servico
 from .nfgas import NotaFiscalGas
+from .nfag import NotaFiscalAgua

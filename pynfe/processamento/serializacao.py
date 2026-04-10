@@ -22,6 +22,7 @@ from pynfe.utils.flags import (
     CODIGOS_ESTADOS,
     NAMESPACE_CTE,
     NAMESPACE_MDFE,
+    NAMESPACE_NFAG,
     NAMESPACE_NFGAS,
     NAMESPACE_NFE,
     NAMESPACE_SIG,
@@ -30,7 +31,7 @@ from pynfe.utils.flags import (
     VERSAO_PADRAO,
     VERSAO_QRCODE,
 )
-from pynfe.utils.webservices import CTE, MDFE, NFCE, NFGAS
+from pynfe.utils.webservices import CTE, MDFE, NFAG, NFCE, NFGAS
 
 
 class Serializacao(object):
@@ -2568,10 +2569,7 @@ class SerializacaoQrcode(object):
         if not config:
             raise ValueError("URL de QRCode da NFGas não configurada em webservices.NFGAS.")
 
-        if tpamb == "1":
-            base_url = config.get("QR")
-        else:
-            base_url = config.get("HOMOLOGACAO")
+        base_url = config.get("QR")
 
         if not base_url:
             raise ValueError("URL de QRCode da NFGas não configurada em webservices.NFGAS.")
@@ -2585,6 +2583,35 @@ class SerializacaoQrcode(object):
             return nfgas, qrcode.strip()
         else:
             return nfgas
+        
+    def gerar_qrcode_nfag(self, xml, return_qr=False):
+        """Classe para gerar url do qrcode da NFGas"""
+        ns = {"ns": NAMESPACE_NFAG}
+        nfag = xml
+        chave = nfag[0].attrib["Id"].replace("NFAG", "")
+        tpamb = nfag.xpath("ns:infNFAg/ns:ide/ns:tpAmb/text()", namespaces=ns)[0]
+        cuf = nfag.xpath("ns:infNFAg/ns:ide/ns:cUF/text()", namespaces=ns)[0]
+        uf = [key for key, value in CODIGOS_ESTADOS.items() if value == cuf][0].upper()
+    
+        url = f"chNFAg={chave}&tpAmb={tpamb}"
+        config = NFAG.get(uf) or NFAG.get("SVRS")
+        if not config:
+            raise ValueError("URL de QRCode da NFAg não configurada em webservices.NFAG.")
+
+        base_url = config.get("QR")
+
+        if not base_url:
+            raise ValueError("URL de QRCode da NFAg não configurada em webservices.NFAG.")
+
+        qrcode = base_url + url
+        info = etree.Element("infNFAgSupl")
+        etree.SubElement(info, "qrCodNFAg").text = qrcode.strip()
+        nfag.insert(1, info)
+
+        if return_qr:
+            return nfag, qrcode.strip()
+        else:
+            return nfag
 
 
 class SerializacaoNfse(object):

@@ -582,12 +582,20 @@ CTE = {
 
 NFGAS = {
     "SVRS": {
-        "QR": "https://dfe-portal.svrs.rs.gov.br/NFGas/qrCode?",
-        "HOMOLOGACAO": "https://dfe-portal.svrs.rs.gov.br/NFGas/qrCode?",
-        "HTTPS": "",
-        "AUTORIZACAO": "",
-        "STATUS": "",
-        "EVENTOS": "",
-        "DISTRIBUICAO": "",
+        "QR": "https://dfe-portal.svrs.rs.gov.br/nfgas/qrCode?",
+        "HOMOLOGACAO": "https://nfgas-homologacao.",
+        "HTTPS": "https://nfgas.",
+        "AUTORIZACAO": "svrs.rs.gov.br/ws/NFGasRecepcao/NFGasRecepcao.asmx",
+        "EVENTOS": "svrs.rs.gov.br/ws/NFGasRecepcaoEvento/NFGasRecepcaoEvento.asmx",
+    }
+}
+
+NFAG = {
+    "SVRS": {
+        "QR": "https://dfe-portal.svrs.rs.gov.br/nfag/qrCode?",
+        "HOMOLOGACAO": "https://nfag-homologacao.",
+        "HTTPS": "https://nfag.",
+        "AUTORIZACAO": "svrs.rs.gov.br/ws/NFAgRecepcao/NFAgRecepcao.asmx",
+        "EVENTOS": "svrs.rs.gov.br/ws/NFAgRecepcaoEvento/NFAgRecepcaoEvento.asmx",
     }
 }

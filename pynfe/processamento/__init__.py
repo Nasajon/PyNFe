@@ -9,5 +9,8 @@ from .comunicacao import (
     ComunicacaoNfse,
     ComunicacaoMDFe,
     ComunicacaoCTe,
+    ComunicacaoNFGas,
+    ComunicacaoNFAg,
 )
 from .danfe import DanfeNfce
+from .serializacao_nfag import SerializacaoNFAg
