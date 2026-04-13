@@ -45,6 +45,7 @@ from pynfe_nasajon.pynfe.utils.nfag.nfag_tipos_basico_v1_00 import (
     ProdIndDevolucao,
     Tfaixa,
     TcategAg,
+    TgrMedAg,
     Tligacao,
     TmedidaAg,
     TmotNaoLeitura,
@@ -108,6 +109,9 @@ class SerializacaoNFAg:
         if not nota.emitente or not nota.destinatario:
             raise ValueError("emitente e destinatario sao obrigatorios para gerar NFAg.")
 
+        # Necessário chamar o id aqui para preencher o número aleatório e digito verificador, que são usados no ide
+        id=nota.identificador_unico
+
         det_list = self._build_det_list(nota)
         total = self._build_total(nota)
 
@@ -134,7 +138,7 @@ class SerializacaoNFAg:
             inf_paa=None,
             g_resp_tec=nota.responsavel_tecnico,
             versao="1.00",
-            id=nota.identificador_unico,
+            id=id,
         )
 
         return Nfag(
@@ -217,8 +221,8 @@ class SerializacaoNFAg:
             cod_deb_auto=str(g_fat.codigo_debito_automatico)
             if g_fat.codigo_debito_automatico
             else None,
-            cod_banco=str(g_fat.codigo_banco) if g_fat.codigo_banco else None,
-            cod_agencia=str(g_fat.codigo_agencia) if g_fat.codigo_agencia else None,
+            cod_banco=str(g_fat.codigo_banco) if g_fat.codigo_banco and not g_fat.codigo_debito_automatico else None,
+            cod_agencia=str(g_fat.codigo_agencia) if g_fat.codigo_agencia and not g_fat.codigo_debito_automatico else None,
             ender_corresp=ender_corresp,
             g_pix=g_pix,
         )
@@ -486,9 +490,26 @@ class SerializacaoNFAg:
                 g_medicao = item.medicao
             elif isinstance(item.medicao, NotaFiscalAguaItemMedicao):
                 g_medida = None
-                if item.medicao.unidade_medida or item.medicao.valor_medido is not None:
+                if (
+                    item.medicao.unidade_medida
+                    or item.medicao.valor_medido is not None
+                    or item.medicao.tipo_grandeza_medida
+                    or item.medicao.valor_medicao_anterior is not None
+                    or item.medicao.valor_medicao_atual is not None
+                ):
                     g_medida = TmedidaAg(
+                        tp_gr_med=self._enum_value(
+                            TgrMedAg, str(item.medicao.tipo_grandeza_medida)
+                        )
+                        if item.medicao.tipo_grandeza_medida
+                        else None,
                         u_med=self._enum_value(TumedAg, str(item.medicao.unidade_medida)),
+                        v_med_ant=self._fmt_qty(item.medicao.valor_medicao_anterior)
+                        if item.medicao.valor_medicao_anterior is not None
+                        else None,
+                        v_med_atu=self._fmt_qty(item.medicao.valor_medicao_atual)
+                        if item.medicao.valor_medicao_atual is not None
+                        else None,
                         v_med=self._fmt_qty(item.medicao.valor_medido),
                     )
                 g_medicao = Tnfag.InfNfag.Det.Prod.GMedicao(

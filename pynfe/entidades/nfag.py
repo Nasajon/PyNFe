@@ -273,8 +273,11 @@ class NotaFiscalAguaItemMedicao(Entidade):
     """Informacoes de medicao relacionadas ao item."""
 
     numero_medicao = None
+    tipo_grandeza_medida = None
     unidade_medida = None
     valor_medido = None
+    valor_medicao_anterior = None
+    valor_medicao_atual = None
     motivo_nao_leitura = None
 
 
