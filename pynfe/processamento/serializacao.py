@@ -1335,10 +1335,10 @@ class SerializacaoXML(Serializacao):
                 )
             if ibs_cbs_dados.ibs_uf.percentual_reducao and grupo_permitido("ind_gRed"):
                 grupo_red_uf = etree.SubElement(grupo_uf, "gRed")
-                etree.SubElement(grupo_red_uf, "pDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_uf, "pRedAliq").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_uf.percentual_reducao
                 )
-                etree.SubElement(grupo_red_uf, "vDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_uf, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_uf.aliquota_efetiva
                 )
 
@@ -1365,10 +1365,10 @@ class SerializacaoXML(Serializacao):
                 )
             if ibs_cbs_dados.ibs_mun.percentual_reducao and grupo_permitido("ind_gRed"):
                 grupo_red_mun = etree.SubElement(grupo_mun, "gRed")
-                etree.SubElement(grupo_red_mun, "pDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_mun, "pRedAliq").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_mun.percentual_reducao
                 )
-                etree.SubElement(grupo_red_mun, "vDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_mun, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_mun.aliquota_efetiva
                 )
 
@@ -1395,10 +1395,10 @@ class SerializacaoXML(Serializacao):
                 )
             if ibs_cbs_dados.cbs.percentual_reducao and grupo_permitido("ind_gRed"):
                 grupo_red_cbs = etree.SubElement(grupo_cbs, "gRed")
-                etree.SubElement(grupo_red_cbs, "pDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_cbs, "pRedAliq").text = "{:.2f}".format(
                     ibs_cbs_dados.cbs.percentual_reducao
                 )
-                etree.SubElement(grupo_red_cbs, "vDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_cbs, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs_dados.cbs.aliquota_efetiva
                 )
 
@@ -3571,10 +3571,10 @@ class SerializacaoCTE(Serializacao):
                 )
             if ibs_cbs.ibs_uf.percentual_reducao:
                 grupo_red_uf = etree.SubElement(grupo_uf, "gRed")
-                etree.SubElement(grupo_red_uf, "pDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_uf, "pRedAliq").text = "{:.2f}".format(
                     ibs_cbs.ibs_uf.percentual_reducao
                 )
-                etree.SubElement(grupo_red_uf, "vDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_uf, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs.ibs_uf.aliquota_efetiva
                 )
 
@@ -3597,10 +3597,10 @@ class SerializacaoCTE(Serializacao):
                 )
             if ibs_cbs.ibs_mun.percentual_reducao:
                 grupo_red_mun = etree.SubElement(grupo_mun, "gRed")
-                etree.SubElement(grupo_red_mun, "pDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_mun, "pRedAliq").text = "{:.2f}".format(
                     ibs_cbs.ibs_mun.percentual_reducao
                 )
-                etree.SubElement(grupo_red_mun, "vDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_mun, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs.ibs_mun.aliquota_efetiva
                 )
 
@@ -3627,10 +3627,10 @@ class SerializacaoCTE(Serializacao):
                 )
             if ibs_cbs.cbs.percentual_reducao:
                 grupo_red_cbs = etree.SubElement(grupo_cbs, "gRed")
-                etree.SubElement(grupo_red_cbs, "pDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_cbs, "pRedAliq").text = "{:.2f}".format(
                     ibs_cbs.cbs.percentual_reducao
                 )
-                etree.SubElement(grupo_red_cbs, "vDif").text = "{:.2f}".format(
+                etree.SubElement(grupo_red_cbs, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs.cbs.aliquota_efetiva
                 )
 
