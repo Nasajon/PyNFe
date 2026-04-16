@@ -4,6 +4,7 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Any, Dict, Optional, TYPE_CHECKING, List
 
+import pytz
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
@@ -22,6 +23,14 @@ from pynfe.utils import obter_codigo_por_municipio, so_numeros
 from pynfe.utils.ibs_cbs_indicadores import IBSCBSIndicadores
 from pynfe.utils.flags import CODIGOS_ESTADOS
 
+from pynfe_nasajon.pynfe.utils.nfgas.ev_canc_nfgas_v1_00 import (
+    EvCancNfgas,
+    EvCancNfgasDescEvento,
+)
+from pynfe_nasajon.pynfe.utils.nfgas.evento_nfgas_tipos_basico_v1_00 import (
+    Tevento,
+)
+from pynfe_nasajon.pynfe.utils.nfgas.evento_nfgas_v1_00 import EventoNfgas
 from pynfe_nasajon.pynfe.utils.nfgas.dfe_tipos_basicos_v1_00 import (
     Tcibs,
     TdevTrib,
@@ -67,6 +76,7 @@ from pynfe_nasajon.pynfe.utils.nfgas.nfgas_tipos_basico_v1_00 import (
 )
 from pynfe_nasajon.pynfe.utils.nfgas.tipos_geral_nfgas_v1_00 import (
     Tamb,
+    TcorgaoIbge,
     TcodUfIbge,
     TmodNf,
     TufSemEx,
@@ -74,7 +84,7 @@ from pynfe_nasajon.pynfe.utils.nfgas.tipos_geral_nfgas_v1_00 import (
 from pynfe_nasajon.pynfe.utils.nfgas.nfgas_v1_00 import Nfgas
 
 if TYPE_CHECKING:
-    from pynfe_nasajon.pynfe.utils.nfgas.evento_nfgas_v1_00 import EventoNfgas
+    pass
 
 
 NFGAS_NAMESPACE = "http://www.portalfiscal.inf.br/nfgas"
@@ -102,6 +112,79 @@ class SerializacaoNFGas:
     def registrar_evento(self, evento: "EventoNfgas") -> str:
         """Serializa o XML do pedido de registro de evento da NFGas."""
         return self._serialize(evento)
+
+    def montar_evento_cancelamento(
+        self,
+        *,
+        cnpj: str,
+        chave: str,
+        protocolo: str,
+        justificativa: str,
+        uf: str,
+        homologacao: bool,
+        dh_evento: Optional[str] = None,
+        n_seq_evento: str = "001",
+    ) -> EventoNfgas:
+        tp_evento = "110111"
+        versao = "1.00"
+
+        if dh_evento is None:
+            dh_evento = (
+                datetime.now(pytz.timezone("America/Sao_Paulo"))
+                .replace(microsecond=0)
+                .isoformat()
+            )
+
+        det_evento = Tevento.InfEvento.DetEvento(
+            any_element=EvCancNfgas(
+                desc_evento=EvCancNfgasDescEvento.CANCELAMENTO,
+                n_prot=protocolo,
+                x_just=justificativa,
+            ),
+            versao_evento=versao,
+        )
+
+        inf_evento = Tevento.InfEvento(
+            c_orgao=TcorgaoIbge(CODIGOS_ESTADOS[uf.upper()]),
+            tp_amb=Tamb.VALUE_2 if homologacao else Tamb.VALUE_1,
+            cnpj=cnpj,
+            ch_nfgas=chave,
+            dh_evento=dh_evento,
+            tp_evento=tp_evento,
+            n_seq_evento=n_seq_evento,
+            det_evento=det_evento,
+            id=f"ID{tp_evento}{chave}{n_seq_evento}",
+        )
+
+        return EventoNfgas(
+            inf_evento=inf_evento,
+            signature=None,
+            versao=versao,
+        )
+
+    def gerar_evento_cancelamento(
+        self,
+        *,
+        cnpj: str,
+        chave: str,
+        protocolo: str,
+        justificativa: str,
+        uf: str,
+        homologacao: bool,
+        dh_evento: Optional[str] = None,
+        n_seq_evento: str = "001",
+    ) -> str:
+        evento = self.montar_evento_cancelamento(
+            cnpj=cnpj,
+            chave=chave,
+            protocolo=protocolo,
+            justificativa=justificativa,
+            uf=uf,
+            homologacao=homologacao,
+            dh_evento=dh_evento,
+            n_seq_evento=n_seq_evento,
+        )
+        return self.registrar_evento(evento)
 
     def _serialize(self, payload: Any, ns_map: Optional[Dict[str, str]] = None) -> str:
         if ns_map is None:

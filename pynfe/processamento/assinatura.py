@@ -26,7 +26,7 @@ class AssinaturaA1(Assinatura):
     def __init__(self, certificado, senha):
         self.key, self.cert = CertificadoA1(certificado).separar_arquivo(senha)
 
-    def assinar(self, xml, retorna_string=False):
+    def assinar(self, xml, retorna_string=False, usar_prefixo_ds: bool = False):
         # busca tag que tem id(reference_uri), logo nao importa se tem namespace
         reference = xml.find(".//*[@Id]").attrib["Id"]
 
@@ -42,8 +42,10 @@ class AssinaturaA1(Assinatura):
         )
         signer.excise_empty_xmlns_declarations = True
 
-        ns = {None: signer.namespaces["ds"]}
-        signer.namespaces = ns
+        if usar_prefixo_ds:
+            signer.namespaces = {"ds": signer.namespaces["ds"]}
+        else:
+            signer.namespaces = {None: signer.namespaces["ds"]}
 
         ref_uri = ("#%s" % reference) if reference else None
         signed_root = signer.sign(xml, key=self.key, cert=self.cert, reference_uri=ref_uri)
