@@ -290,6 +290,15 @@ class SerializacaoXML(Serializacao):
         etree.SubElement(prod, "cEAN").text = produto_servico.ean
         etree.SubElement(prod, "xProd").text = produto_servico.descricao
         etree.SubElement(prod, "NCM").text = produto_servico.ncm
+        """
+        Código Especificador da Substituição Tributária – CEST,
+        que estabelece a sistemática de uniformização
+        e identificação das mercadorias e bens passíveis de
+        sujeição aos regimes de substituição tributária e de
+        antecipação de recolhimento do ICMS.
+        """
+        if produto_servico.cest:
+            etree.SubElement(prod, "CEST").text = produto_servico.cest
         # Codificação opcional que detalha alguns NCM.
         # Formato: duas letras maiúsculas e 4 algarismos.
         # Se a mercadoria se enquadrar em mais de uma codificação,
@@ -304,15 +313,6 @@ class SerializacaoXML(Serializacao):
         etree.SubElement(prod, "vUnCom").text = str("{:.10f}").format(
             produto_servico.valor_unitario_comercial or 0
         )
-        """
-        Código Especificador da Substituição Tributária – CEST,
-        que estabelece a sistemática de uniformização
-        e identificação das mercadorias e bens passíveis de
-        sujeição aos regimes de substituição tributária e de
-        antecipação de recolhimento do ICMS.
-        """
-        if produto_servico.cest:
-            etree.SubElement(prod, "CEST").text = produto_servico.cest
         etree.SubElement(prod, "vProd").text = str("{:.2f}").format(
             produto_servico.valor_total_bruto or 0
         )
@@ -1319,7 +1319,6 @@ class SerializacaoXML(Serializacao):
             etree.SubElement(grupo_uf, "pIBSUF").text = "{:.2f}".format(
                 ibs_cbs_dados.ibs_uf.aliquota
             )
-            etree.SubElement(grupo_uf, "vIBSUF").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.valor)
             if ibs_cbs_dados.ibs_uf.aliquota_diferimento and grupo_permitido("ind_gDif"):
                 grupo_dif_uf = etree.SubElement(grupo_uf, "gDif")
                 etree.SubElement(grupo_dif_uf, "pDif").text = "{:.2f}".format(
@@ -1341,14 +1340,11 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_red_uf, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_uf.aliquota_efetiva
                 )
-
+            etree.SubElement(grupo_uf, "vIBSUF").text = "{:.2f}".format(ibs_cbs_dados.ibs_uf.valor)
             # IBS Mun
             grupo_mun = etree.SubElement(grupo_ibs_cbs, "gIBSMun")
             etree.SubElement(grupo_mun, "pIBSMun").text = "{:.2f}".format(
                 ibs_cbs_dados.ibs_mun.aliquota
-            )
-            etree.SubElement(grupo_mun, "vIBSMun").text = "{:.2f}".format(
-                ibs_cbs_dados.ibs_mun.valor
             )
             if ibs_cbs_dados.ibs_mun.aliquota_diferimento and grupo_permitido("ind_gDif"):
                 grupo_dif_mun = etree.SubElement(grupo_mun, "gDif")
@@ -1371,7 +1367,9 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_red_mun, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs_dados.ibs_mun.aliquota_efetiva
                 )
-
+            etree.SubElement(grupo_mun, "vIBSMun").text = "{:.2f}".format(
+                ibs_cbs_dados.ibs_mun.valor
+            )
             etree.SubElement(grupo_ibs_cbs, "vIBS").text = "{:.2f}".format(
                 ibs_cbs_dados.ibs_uf.valor + ibs_cbs_dados.ibs_mun.valor
             )
@@ -1379,7 +1377,6 @@ class SerializacaoXML(Serializacao):
             # CBS
             grupo_cbs = etree.SubElement(grupo_ibs_cbs, "gCBS")
             etree.SubElement(grupo_cbs, "pCBS").text = "{:.2f}".format(ibs_cbs_dados.cbs.aliquota)
-            etree.SubElement(grupo_cbs, "vCBS").text = "{:.2f}".format(ibs_cbs_dados.cbs.valor)
             if ibs_cbs_dados.cbs.aliquota_diferimento and grupo_permitido("ind_gDif"):
                 grupo_dif_cbs = etree.SubElement(grupo_cbs, "gDif")
                 etree.SubElement(grupo_dif_cbs, "pDif").text = "{:.2f}".format(
@@ -1401,7 +1398,7 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(grupo_red_cbs, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs_dados.cbs.aliquota_efetiva
                 )
-
+            etree.SubElement(grupo_cbs, "vCBS").text = "{:.2f}".format(ibs_cbs_dados.cbs.valor)
         if (
             grupo_ibs_cbs is not None
             and ibs_cbs_dados.trib_reg
@@ -3555,7 +3552,6 @@ class SerializacaoCTE(Serializacao):
             # IBS UF
             grupo_uf = etree.SubElement(grupo_ibs_cbs, "gIBSUF")
             etree.SubElement(grupo_uf, "pIBSUF").text = "{:.2f}".format(ibs_cbs.ibs_uf.aliquota)
-            etree.SubElement(grupo_uf, "vIBSUF").text = "{:.2f}".format(ibs_cbs.ibs_uf.valor)
             if ibs_cbs.ibs_uf.aliquota_diferimento:
                 grupo_dif_uf = etree.SubElement(grupo_uf, "gDif")
                 etree.SubElement(grupo_dif_uf, "pDif").text = "{:.2f}".format(
@@ -3577,11 +3573,11 @@ class SerializacaoCTE(Serializacao):
                 etree.SubElement(grupo_red_uf, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs.ibs_uf.aliquota_efetiva
                 )
-
+            
+            etree.SubElement(grupo_uf, "vIBSUF").text = "{:.2f}".format(ibs_cbs.ibs_uf.valor)
             # IBS Mun
             grupo_mun = etree.SubElement(grupo_ibs_cbs, "gIBSMun")
             etree.SubElement(grupo_mun, "pIBSMun").text = "{:.2f}".format(ibs_cbs.ibs_mun.aliquota)
-            etree.SubElement(grupo_mun, "vIBSMun").text = "{:.2f}".format(ibs_cbs.ibs_mun.valor)
             if ibs_cbs.ibs_mun.aliquota_diferimento:
                 grupo_dif_mun = etree.SubElement(grupo_mun, "gDif")
                 etree.SubElement(grupo_dif_mun, "pDif").text = "{:.2f}".format(
@@ -3603,7 +3599,7 @@ class SerializacaoCTE(Serializacao):
                 etree.SubElement(grupo_red_mun, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs.ibs_mun.aliquota_efetiva
                 )
-
+            etree.SubElement(grupo_mun, "vIBSMun").text = "{:.2f}".format(ibs_cbs.ibs_mun.valor)
             etree.SubElement(grupo_ibs_cbs, "vIBS").text = "{:.2f}".format(
                 ibs_cbs.ibs_uf.valor + ibs_cbs.ibs_mun.valor
             )
@@ -3611,7 +3607,6 @@ class SerializacaoCTE(Serializacao):
             # CBS
             grupo_cbs = etree.SubElement(grupo_ibs_cbs, "gCBS")
             etree.SubElement(grupo_cbs, "pCBS").text = "{:.2f}".format(ibs_cbs.cbs.aliquota)
-            etree.SubElement(grupo_cbs, "vCBS").text = "{:.2f}".format(ibs_cbs.cbs.valor)
             if ibs_cbs.cbs.aliquota_diferimento:
                 grupo_dif_cbs = etree.SubElement(grupo_cbs, "gDif")
                 etree.SubElement(grupo_dif_cbs, "pDif").text = "{:.2f}".format(
@@ -3633,7 +3628,7 @@ class SerializacaoCTE(Serializacao):
                 etree.SubElement(grupo_red_cbs, "pAliqEfet").text = "{:.2f}".format(
                     ibs_cbs.cbs.aliquota_efetiva
                 )
-
+            etree.SubElement(grupo_cbs, "vCBS").text = "{:.2f}".format(ibs_cbs.cbs.valor)
         if ibs_cbs.trib_reg:
             # Tributação Regular
             grupo_trib_reg = etree.SubElement(grupo_ibs_cbs, "gTribRegular")
