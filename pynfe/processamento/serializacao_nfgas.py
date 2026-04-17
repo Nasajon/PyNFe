@@ -88,7 +88,6 @@ if TYPE_CHECKING:
 
 
 NFGAS_NAMESPACE = "http://www.portalfiscal.inf.br/nfgas"
-XMLDSIG_NAMESPACE = "http://www.w3.org/2000/09/xmldsig#"
 
 
 class SerializacaoNFGas:
@@ -130,9 +129,7 @@ class SerializacaoNFGas:
 
         if dh_evento is None:
             dh_evento = (
-                datetime.now(pytz.timezone("America/Sao_Paulo"))
-                .replace(microsecond=0)
-                .isoformat()
+                datetime.now(pytz.timezone("America/Sao_Paulo")).replace(microsecond=0).isoformat()
             )
 
         det_evento = Tevento.InfEvento.DetEvento(
@@ -190,14 +187,13 @@ class SerializacaoNFGas:
         if ns_map is None:
             ns_map = {
                 None: NFGAS_NAMESPACE,
-                "ds": XMLDSIG_NAMESPACE,
             }
         return self._serializer.render(payload, ns_map=ns_map)
 
     def _build_nfgas_from_nota(self, nota: NotaFiscalGas) -> Nfgas:
         if not nota.emitente or not nota.destinatario:
             raise ValueError("emitente e destinatario são obrigatórios para gerar NFGas.")
-        
+
         # Necessário chamar o id aqui para preencher o número aleatório e digito verificador, que são usados no ide
         id = nota.identificador_unico
 
@@ -230,9 +226,7 @@ class SerializacaoNFGas:
             inf_nfgas_supl=None,  # Suplementar pode ser adicionado posteriormente
         )
 
-    def _build_g_fat(
-        self, g_fat: Optional[NotaFiscalGasFatura]
-    ) -> Optional[Tnfgas.InfNfgas.GFat]:
+    def _build_g_fat(self, g_fat: Optional[NotaFiscalGasFatura]) -> Optional[Tnfgas.InfNfgas.GFat]:
         if g_fat is None:
             return None
         if isinstance(g_fat, Tnfgas.InfNfgas.GFat):
@@ -256,29 +250,27 @@ class SerializacaoNFGas:
 
         g_pix = None
         if g_fat.pix:
-            g_pix = Tnfgas.InfNfgas.GFat.GPix(
-                url_qrcode_pix=g_fat.pix.url_qrcode_pix
-            )
+            g_pix = Tnfgas.InfNfgas.GFat.GPix(url_qrcode_pix=g_fat.pix.url_qrcode_pix)
 
         return Tnfgas.InfNfgas.GFat(
             compet_fat=str(g_fat.competencia_faturamento),
             d_venc_fat=str(g_fat.data_vencimento),
-            d_apres_fat=str(g_fat.data_apresentacao)
-            if g_fat.data_apresentacao
-            else None,
+            d_apres_fat=str(g_fat.data_apresentacao) if g_fat.data_apresentacao else None,
             d_prox_leitura=str(g_fat.data_proxima_leitura),
             n_fat=str(g_fat.numero_fatura) if g_fat.numero_fatura else None,
             cod_barras=str(g_fat.codigo_barras),
             cod_deb_auto=str(g_fat.codigo_debito_automatico)
             if g_fat.codigo_debito_automatico
             else None,
-            cod_banco=str(g_fat.codigo_banco) if g_fat.codigo_banco and not g_fat.codigo_debito_automatico else None,
-            cod_agencia=str(g_fat.codigo_agencia) if g_fat.codigo_agencia and not g_fat.codigo_debito_automatico else None,
+            cod_banco=str(g_fat.codigo_banco)
+            if g_fat.codigo_banco and not g_fat.codigo_debito_automatico
+            else None,
+            cod_agencia=str(g_fat.codigo_agencia)
+            if g_fat.codigo_agencia and not g_fat.codigo_debito_automatico
+            else None,
             ender_corresp=ender_corresp,
             g_pix=g_pix,
-            inf_ad_fat=str(g_fat.informacoes_adicionais)
-            if g_fat.informacoes_adicionais
-            else None,
+            inf_ad_fat=str(g_fat.informacoes_adicionais) if g_fat.informacoes_adicionais else None,
         )
 
     def _build_g_agencia(
@@ -298,9 +290,7 @@ class SerializacaoNFGas:
                         compet_fat=str(consumo.competencia_faturamento),
                         u_med=self._enum_value(Tumed, str(consumo.unidade_medida)),
                         qtd_dias=str(consumo.quantidade_dias),
-                        med_diaria=str(consumo.media_diaria)
-                        if consumo.media_diaria
-                        else None,
+                        med_diaria=str(consumo.media_diaria) if consumo.media_diaria else None,
                         consumo=str(consumo.consumo) if consumo.consumo else None,
                         v_fat=str(consumo.valor_faturado),
                     )
@@ -347,14 +337,18 @@ class SerializacaoNFGas:
         if not nota.instalacao_id:
             raise ValueError("instalacao_id é obrigatório quando informado o grupo de instalação.")
         if not nota.instalacao_tipo:
-            raise ValueError("instalacao_tipo é obrigatório quando informado o grupo de instalação.")
+            raise ValueError(
+                "instalacao_tipo é obrigatório quando informado o grupo de instalação."
+            )
         if not nota.instalacao_classe_consumo:
             raise ValueError(
                 "instalacao_classe_consumo é obrigatório quando informado o grupo de instalação."
             )
 
         if (nota.instalacao_latitude_gps is None) != (nota.instalacao_longitude_gps is None):
-            raise ValueError("instalacao_latitude_gps e instalacao_longitude_gps devem ser informados juntos.")
+            raise ValueError(
+                "instalacao_latitude_gps e instalacao_longitude_gps devem ser informados juntos."
+            )
 
         return Tnfgas.InfNfgas.Instalacao(
             id_instalacao=str(nota.instalacao_id),
@@ -369,12 +363,8 @@ class SerializacaoNFGas:
             x_classe=str(nota.instalacao_classe_detalhe)
             if nota.instalacao_classe_detalhe
             else None,
-            lat_gps=str(nota.instalacao_latitude_gps)
-            if nota.instalacao_latitude_gps
-            else None,
-            long_gps=str(nota.instalacao_longitude_gps)
-            if nota.instalacao_longitude_gps
-            else None,
+            lat_gps=str(nota.instalacao_latitude_gps) if nota.instalacao_latitude_gps else None,
+            long_gps=str(nota.instalacao_longitude_gps) if nota.instalacao_longitude_gps else None,
             cod_roteiro_leitura=str(nota.instalacao_codigo_roteiro_leitura)
             if nota.instalacao_codigo_roteiro_leitura
             else None,
@@ -557,9 +547,7 @@ class SerializacaoNFGas:
                 )
             g_medicao = Tnfgas.InfNfgas.Det.GNormal.Prod.GMedicao(
                 n_med=str(item.g_medicao_n_med),
-                n_contrat=str(item.g_medicao_n_contrat)
-                if item.g_medicao_n_contrat
-                else None,
+                n_contrat=str(item.g_medicao_n_contrat) if item.g_medicao_n_contrat else None,
                 g_medida=g_medida,
                 tp_mot_nao_leitura=self._enum_value(
                     TmotNaoLeitura, str(item.g_medicao_tp_mot_nao_leitura)
@@ -591,9 +579,7 @@ class SerializacaoNFGas:
             n_item=n_item,
         )
 
-    def _build_imposto(
-        self, item: NotaFiscalGasItem
-    ) -> Tnfgas.InfNfgas.Det.GNormal.Imposto:
+    def _build_imposto(self, item: NotaFiscalGasItem) -> Tnfgas.InfNfgas.Det.GNormal.Imposto:
         data: Optional[NotaFiscalGasItemImposto] = item.imposto
         if data is None:
             return Tnfgas.InfNfgas.Det.GNormal.Imposto()
@@ -631,7 +617,11 @@ class SerializacaoNFGas:
         if ret_trib:
             imposto.ret_trib = ret_trib
 
-        tx_reg = self._build_tx_reg(data.taxa_regulatoria_valor, data.taxa_regulatoria_aliquota, data.taxa_regulatoria_base_calculo)
+        tx_reg = self._build_tx_reg(
+            data.taxa_regulatoria_valor,
+            data.taxa_regulatoria_aliquota,
+            data.taxa_regulatoria_base_calculo,
+        )
         if tx_reg:
             imposto.tx_reg = tx_reg
 
@@ -650,14 +640,10 @@ class SerializacaoNFGas:
         c_class_trib = data.classificacao
 
         indicadores_cst = IBSCBSIndicadores.obter_por_cst(str(cst))
-        indicadores_classtrib = IBSCBSIndicadores.obter_por_classificacao(
-            str(c_class_trib)
-        )
+        indicadores_classtrib = IBSCBSIndicadores.obter_por_classificacao(str(c_class_trib))
 
         def grupo_permitido(*chaves):
-            return IBSCBSIndicadores.grupo_permitido(
-                chaves, indicadores_cst, indicadores_classtrib
-            )
+            return IBSCBSIndicadores.grupo_permitido(chaves, indicadores_cst, indicadores_classtrib)
 
         permite_padrao = grupo_permitido("ind_gIBSCBS")
         permite_mono = grupo_permitido("ind_gIBSCBSMono")
@@ -871,9 +857,7 @@ class SerializacaoNFGas:
                     p_fcp=self._fmt_money(data.percentual_fcp)
                     if data.percentual_fcp is not None
                     else None,
-                    v_fcp=self._fmt_money(data.valor_fcp)
-                    if data.valor_fcp is not None
-                    else None,
+                    v_fcp=self._fmt_money(data.valor_fcp) if data.valor_fcp is not None else None,
                 ),
             }
 
@@ -912,9 +896,7 @@ class SerializacaoNFGas:
                     p_fcp=self._fmt_money(data.percentual_fcp)
                     if data.percentual_fcp is not None
                     else None,
-                    v_fcp=self._fmt_money(data.valor_fcp)
-                    if data.valor_fcp is not None
-                    else None,
+                    v_fcp=self._fmt_money(data.valor_fcp) if data.valor_fcp is not None else None,
                 ),
             }
 
@@ -1007,9 +989,7 @@ class SerializacaoNFGas:
                     p_fcp=self._fmt_money(data.percentual_fcp)
                     if data.percentual_fcp is not None
                     else None,
-                    v_fcp=self._fmt_money(data.valor_fcp)
-                    if data.valor_fcp is not None
-                    else None,
+                    v_fcp=self._fmt_money(data.valor_fcp) if data.valor_fcp is not None else None,
                     mod_bcst=self._enum_value(Icms70ModBcst, str(mod_bcst)),
                     p_mvast=self._fmt_money(data.percentual_mva_st)
                     if data.percentual_mva_st is not None
@@ -1035,9 +1015,7 @@ class SerializacaoNFGas:
                     mot_des_icms=self._build_motivo_deson(
                         data.motivo_desoneracao, Icms70MotDesIcms
                     ),
-                    ind_deduz_deson=self._build_ind_deduz_deson(
-                        data.ind_deduz_desoneracao
-                    ),
+                    ind_deduz_deson=self._build_ind_deduz_deson(data.ind_deduz_desoneracao),
                     v_icmsstdeson=self._fmt_money(data.valor_st_desonerado)
                     if data.valor_st_desonerado is not None
                     else None,
@@ -1056,12 +1034,8 @@ class SerializacaoNFGas:
                     v_bc=self._fmt_money(data.base_calculo)
                     if data.base_calculo is not None
                     else None,
-                    p_icms=self._fmt_money(data.aliquota)
-                    if data.aliquota is not None
-                    else None,
-                    v_icms=self._fmt_money(data.valor)
-                    if data.valor is not None
-                    else None,
+                    p_icms=self._fmt_money(data.aliquota) if data.aliquota is not None else None,
+                    v_icms=self._fmt_money(data.valor) if data.valor is not None else None,
                     v_icmsdeson=self._fmt_money(data.valor_desonerado)
                     if data.valor_desonerado is not None
                     else None,
@@ -1069,9 +1043,7 @@ class SerializacaoNFGas:
                     p_fcp=self._fmt_money(data.percentual_fcp)
                     if data.percentual_fcp is not None
                     else None,
-                    v_fcp=self._fmt_money(data.valor_fcp)
-                    if data.valor_fcp is not None
-                    else None,
+                    v_fcp=self._fmt_money(data.valor_fcp) if data.valor_fcp is not None else None,
                 ),
             }
 
@@ -1118,9 +1090,7 @@ class SerializacaoNFGas:
             v_cofins=self._fmt_money(data.valor),
         )
 
-    def _build_ret_trib(
-        self, data
-    ) -> Optional[Tnfgas.InfNfgas.Det.GNormal.Imposto.RetTrib]:
+    def _build_ret_trib(self, data) -> Optional[Tnfgas.InfNfgas.Det.GNormal.Imposto.RetTrib]:
         valores = (
             data.retencao_pis_valor,
             data.retencao_cofins_valor,
@@ -1145,7 +1115,7 @@ class SerializacaoNFGas:
         return Tnfgas.InfNfgas.Det.GNormal.Imposto.TxReg(
             v_taxa=self._fmt_money(valor),
             p_taxa=self._fmt_money(aliquota),
-            v_bc=self._fmt_money(base_calculo)
+            v_bc=self._fmt_money(base_calculo),
         )
 
     def _build_total(self, nota: NotaFiscalGas) -> Tnfgas.InfNfgas.Total:
@@ -1188,15 +1158,11 @@ class SerializacaoNFGas:
         )
         g_cbs = Tibscbstot.GCbs(
             v_dif=self._fmt_money(total.cbs_v_dif if total else None),
-            v_dev_trib=self._fmt_money(
-                total.cbs_v_dev_trib if total else None
-            ),
+            v_dev_trib=self._fmt_money(total.cbs_v_dev_trib if total else None),
             v_cbs=self._fmt_money(total.cbs_v_cbs if total else None),
         )
         ibscbs = Tibscbstot(
-            v_bcibscbs=self._fmt_money(
-                total.ibs_v_bcibscbs if total else None
-            ),
+            v_bcibscbs=self._fmt_money(total.ibs_v_bcibscbs if total else None),
             g_ibs=g_ibs,
             g_cbs=g_cbs,
         )
@@ -1208,9 +1174,7 @@ class SerializacaoNFGas:
             v_tot_dfe = v_nf
         else:
             v_tot_dfe = (
-                Decimal(str(v_nf or 0))
-                + Decimal(str(v_ibs or 0))
-                + Decimal(str(v_cbs or 0))
+                Decimal(str(v_nf or 0)) + Decimal(str(v_ibs or 0)) + Decimal(str(v_cbs or 0))
             )
 
         return Tnfgas.InfNfgas.Total(
@@ -1245,7 +1209,6 @@ class SerializacaoNFGas:
         if not isinstance(value, Decimal):
             value = Decimal(str(value))
         return f"{value:.4f}"
-
 
     def _enum_value(self, enum_cls, value):
         if isinstance(value, enum_cls):

@@ -82,7 +82,6 @@ if TYPE_CHECKING:
 
 
 NFAG_NAMESPACE = "http://www.portalfiscal.inf.br/nfag"
-XMLDSIG_NAMESPACE = "http://www.w3.org/2000/09/xmldsig#"
 
 
 class SerializacaoNFAg:
@@ -124,9 +123,7 @@ class SerializacaoNFAg:
 
         if dh_evento is None:
             dh_evento = (
-                datetime.now(pytz.timezone("America/Sao_Paulo"))
-                .replace(microsecond=0)
-                .isoformat()
+                datetime.now(pytz.timezone("America/Sao_Paulo")).replace(microsecond=0).isoformat()
             )
 
         det_evento = Tevento.InfEvento.DetEvento(
@@ -184,7 +181,6 @@ class SerializacaoNFAg:
         if ns_map is None:
             ns_map = {
                 None: NFAG_NAMESPACE,
-                "ds": XMLDSIG_NAMESPACE,
             }
         return self._serializer.render(payload, ns_map=ns_map)
 
@@ -193,7 +189,7 @@ class SerializacaoNFAg:
             raise ValueError("emitente e destinatario sao obrigatorios para gerar NFAg.")
 
         # Necessário chamar o id aqui para preencher o número aleatório e digito verificador, que são usados no ide
-        id=nota.identificador_unico
+        id = nota.identificador_unico
 
         det_list = self._build_det_list(nota)
         total = self._build_total(nota)
@@ -304,8 +300,12 @@ class SerializacaoNFAg:
             cod_deb_auto=str(g_fat.codigo_debito_automatico)
             if g_fat.codigo_debito_automatico
             else None,
-            cod_banco=str(g_fat.codigo_banco) if g_fat.codigo_banco and not g_fat.codigo_debito_automatico else None,
-            cod_agencia=str(g_fat.codigo_agencia) if g_fat.codigo_agencia and not g_fat.codigo_debito_automatico else None,
+            cod_banco=str(g_fat.codigo_banco)
+            if g_fat.codigo_banco and not g_fat.codigo_debito_automatico
+            else None,
+            cod_agencia=str(g_fat.codigo_agencia)
+            if g_fat.codigo_agencia and not g_fat.codigo_debito_automatico
+            else None,
             ender_corresp=ender_corresp,
             g_pix=g_pix,
         )
@@ -363,9 +363,7 @@ class SerializacaoNFAg:
             if g_agencia.economia_agua_acumulada
             else None,
             s_prestador=str(g_agencia.selo_prestador) if g_agencia.selo_prestador else None,
-            d_emiss_selo=str(g_agencia.data_emissao_selo)
-            if g_agencia.data_emissao_selo
-            else None,
+            d_emiss_selo=str(g_agencia.data_emissao_selo) if g_agencia.data_emissao_selo else None,
             s_regulador=str(g_agencia.selo_regulador) if g_agencia.selo_regulador else None,
             n_agencia_atend=str(g_agencia.nome_agencia_atendimento),
             ender_agencia_atend=str(g_agencia.endereco_agencia_atendimento),
@@ -581,9 +579,7 @@ class SerializacaoNFAg:
                     or item.medicao.valor_medicao_atual is not None
                 ):
                     g_medida = TmedidaAg(
-                        tp_gr_med=self._enum_value(
-                            TgrMedAg, str(item.medicao.tipo_grandeza_medida)
-                        )
+                        tp_gr_med=self._enum_value(TgrMedAg, str(item.medicao.tipo_grandeza_medida))
                         if item.medicao.tipo_grandeza_medida
                         else None,
                         u_med=self._enum_value(TumedAg, str(item.medicao.unidade_medida)),
@@ -606,9 +602,7 @@ class SerializacaoNFAg:
                 )
 
         prod = Tnfag.InfNfag.Det.Prod(
-            ind_origem_qtd=self._enum_value(
-                TorigemQtdAg, str(item.ind_origem_quantidade or "2")
-            ),
+            ind_origem_qtd=self._enum_value(TorigemQtdAg, str(item.ind_origem_quantidade or "2")),
             g_medicao=g_medicao,
             c_prod=str(item.codigo or "0"),
             x_prod=str(item.descricao or "Item"),
@@ -689,14 +683,10 @@ class SerializacaoNFAg:
         c_class_trib = data.classificacao
 
         indicadores_cst = IBSCBSIndicadores.obter_por_cst(str(cst))
-        indicadores_classtrib = IBSCBSIndicadores.obter_por_classificacao(
-            str(c_class_trib)
-        )
+        indicadores_classtrib = IBSCBSIndicadores.obter_por_classificacao(str(c_class_trib))
 
         def grupo_permitido(*chaves):
-            return IBSCBSIndicadores.grupo_permitido(
-                chaves, indicadores_cst, indicadores_classtrib
-            )
+            return IBSCBSIndicadores.grupo_permitido(chaves, indicadores_cst, indicadores_classtrib)
 
         if data.monofasico:
             raise ValueError("imposto.ibs_cbs.monofasico nao e suportado para NFAg.")
@@ -984,9 +974,7 @@ class SerializacaoNFAg:
             v_tot_dfe = v_nf
         else:
             v_tot_dfe = (
-                Decimal(str(v_nf or 0))
-                + Decimal(str(v_ibs or 0))
-                + Decimal(str(v_cbs or 0))
+                Decimal(str(v_nf or 0)) + Decimal(str(v_ibs or 0)) + Decimal(str(v_cbs or 0))
             )
 
         return Tnfag.InfNfag.Total(
