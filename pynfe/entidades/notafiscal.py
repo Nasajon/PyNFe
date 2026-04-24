@@ -502,10 +502,10 @@ class NotaFiscal(Entidade):
         self.totais_icms_cofins += obj.cofins_valor
         self.totais_icms_outras_despesas_acessorias += obj.outras_despesas_acessorias
         # - Valor Total do FCP (Fundo de Combate à Pobreza)
-        self.totais_fcp += obj.fcp_valor if obj.fcp_valor else Decimal("0.00")
-        self.totais_fcp_destino += obj.fcp_destino_valor if obj.fcp_destino_valor else Decimal("0.00")
-        self.totais_fcp_st += obj.fcp_st_valor if obj.fcp_st_valor else Decimal("0.00")
-        self.totais_fcp_st_ret += obj.fcp_st_ret_valor if obj.fcp_st_ret_valor else Decimal("0.00")
+        self.totais_fcp += obj.fcp_valor
+        self.totais_fcp_destino += obj.fcp_destino_valor
+        self.totais_fcp_st += obj.fcp_st_valor
+        self.totais_fcp_st_ret += obj.fcp_st_ret_valor
         self.totais_icms_inter_destino += obj.icms_inter_destino_valor
         self.totais_icms_inter_remetente += obj.icms_inter_remetente_valor
 
