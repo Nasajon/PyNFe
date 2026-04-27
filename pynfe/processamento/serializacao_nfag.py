@@ -371,26 +371,29 @@ class SerializacaoNFAg:
         )
 
     def _build_ligacao(self, nota: NotaFiscalAgua) -> Tnfag.InfNfag.Ligacao:
-        if isinstance(nota.ligacao_id, Tnfag.InfNfag.Ligacao):
-            return nota.ligacao_id
+        ligacao = nota.ligacao
+        if isinstance(ligacao, Tnfag.InfNfag.Ligacao):
+            return ligacao
 
-        if not nota.ligacao_id:
-            raise ValueError("ligacao_id e obrigatorio para gerar NFAg.")
-        if not nota.ligacao_tipo:
-            raise ValueError("ligacao_tipo e obrigatorio para gerar NFAg.")
-        if nota.ligacao_latitude_gps is None or nota.ligacao_longitude_gps is None:
-            raise ValueError("ligacao_latitude_gps e ligacao_longitude_gps sao obrigatorios.")
+        if not ligacao:
+            raise ValueError("ligacao e obrigatoria para gerar NFAg.")
+        if not ligacao.id:
+            raise ValueError("ligacao.id e obrigatorio para gerar NFAg.")
+        if not ligacao.tipo:
+            raise ValueError("ligacao.tipo e obrigatorio para gerar NFAg.")
+        if ligacao.latitude_gps is None or ligacao.longitude_gps is None:
+            raise ValueError("ligacao.latitude_gps e ligacao.longitude_gps sao obrigatorios.")
 
         return Tnfag.InfNfag.Ligacao(
-            id_ligacao=str(nota.ligacao_id),
-            id_cod_cliente=str(nota.ligacao_codigo_cliente)
-            if nota.ligacao_codigo_cliente
+            id_ligacao=str(ligacao.id),
+            id_cod_cliente=str(ligacao.codigo_cliente)
+            if ligacao.codigo_cliente
             else None,
-            tp_ligacao=self._enum_value(Tligacao, str(nota.ligacao_tipo)),
-            lat_gps=str(nota.ligacao_latitude_gps),
-            long_gps=str(nota.ligacao_longitude_gps),
-            cod_roteiro_leitura=str(nota.ligacao_codigo_roteiro_leitura)
-            if nota.ligacao_codigo_roteiro_leitura
+            tp_ligacao=self._enum_value(Tligacao, str(ligacao.tipo)),
+            lat_gps=str(ligacao.latitude_gps),
+            long_gps=str(ligacao.longitude_gps),
+            cod_roteiro_leitura=str(ligacao.codigo_roteiro_leitura)
+            if ligacao.codigo_roteiro_leitura
             else None,
         )
 

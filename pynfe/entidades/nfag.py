@@ -14,6 +14,15 @@ from .base import Entidade
 from .ibs_cbs import IBS_CBS
 
 
+class NotaFiscalAguaLigacao(Entidade):
+    id = str()
+    codigo_cliente = str()
+    tipo = str()
+    latitude_gps = str()
+    longitude_gps = str()
+    codigo_roteiro_leitura = str()
+
+
 class NotaFiscalAgua(Entidade):
     """
     Entidade para preenchimento dos dados da NFAg.
@@ -98,12 +107,7 @@ class NotaFiscalAgua(Entidade):
     compra_governo = None
 
     # Ligacao (obrigatorio)
-    ligacao_id = None
-    ligacao_codigo_cliente = None
-    ligacao_tipo = None
-    ligacao_latitude_gps = None
-    ligacao_longitude_gps = None
-    ligacao_codigo_roteiro_leitura = None
+    ligacao: Optional[NotaFiscalAguaLigacao] = None
 
     def __init__(self, *args, **kwargs):
         super(NotaFiscalAgua, self).__init__(*args, **kwargs)

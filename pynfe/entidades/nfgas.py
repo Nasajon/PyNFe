@@ -14,6 +14,18 @@ from .base import Entidade
 from .ibs_cbs import IBS_CBS
 
 
+class NotaFiscalGasInstalacao(Entidade):
+    id = str()
+    codigo_cliente = str()
+    tipo = str()
+    numero_contrato = str()
+    classe_consumo = str()
+    classe_detalhe = str()
+    latitude_gps = str()
+    longitude_gps = str()
+    codigo_roteiro_leitura = str()
+
+
 class NotaFiscalGas(Entidade):
     """
     Entidade para preenchimento dos dados da NFGas.
@@ -95,15 +107,7 @@ class NotaFiscalGas(Entidade):
     compra_governo = None
 
     # Instalação (opcional para tpFat=3)
-    instalacao_id = None
-    instalacao_codigo_cliente = None
-    instalacao_tipo = None
-    instalacao_numero_contrato = None
-    instalacao_classe_consumo = None
-    instalacao_classe_detalhe = None
-    instalacao_latitude_gps = None
-    instalacao_longitude_gps = None
-    instalacao_codigo_roteiro_leitura = None
+    instalacao: Optional[NotaFiscalGasInstalacao] = None
 
     def __init__(self, *args, **kwargs):
         super(NotaFiscalGas, self).__init__(*args, **kwargs)

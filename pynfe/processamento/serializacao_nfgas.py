@@ -320,53 +320,43 @@ class SerializacaoNFGas:
         )
 
     def _build_instalacao(self, nota: NotaFiscalGas) -> Optional[Tnfgas.InfNfgas.Instalacao]:
-        fields = (
-            nota.instalacao_id,
-            nota.instalacao_codigo_cliente,
-            nota.instalacao_tipo,
-            nota.instalacao_numero_contrato,
-            nota.instalacao_classe_consumo,
-            nota.instalacao_classe_detalhe,
-            nota.instalacao_latitude_gps,
-            nota.instalacao_longitude_gps,
-            nota.instalacao_codigo_roteiro_leitura,
-        )
-        if not any(field is not None for field in fields):
+        instalacao = nota.instalacao
+        if not instalacao:
             return None
 
-        if not nota.instalacao_id:
-            raise ValueError("instalacao_id é obrigatório quando informado o grupo de instalação.")
-        if not nota.instalacao_tipo:
+        if not instalacao.id:
+            raise ValueError("instalacao.id é obrigatório quando informado o grupo de instalação.")
+        if not instalacao.tipo:
             raise ValueError(
-                "instalacao_tipo é obrigatório quando informado o grupo de instalação."
+                "instalacao.tipo é obrigatório quando informado o grupo de instalação."
             )
-        if not nota.instalacao_classe_consumo:
+        if not instalacao.classe_consumo:
             raise ValueError(
-                "instalacao_classe_consumo é obrigatório quando informado o grupo de instalação."
+                "instalacao.classe_consumo é obrigatório quando informado o grupo de instalação."
             )
 
-        if (nota.instalacao_latitude_gps is None) != (nota.instalacao_longitude_gps is None):
+        if (instalacao.latitude_gps is None) != (instalacao.longitude_gps is None):
             raise ValueError(
-                "instalacao_latitude_gps e instalacao_longitude_gps devem ser informados juntos."
+                "instalacao.latitude_gps e instalacao.longitude_gps devem ser informados juntos."
             )
 
         return Tnfgas.InfNfgas.Instalacao(
-            id_instalacao=str(nota.instalacao_id),
-            id_cod_cliente=str(nota.instalacao_codigo_cliente)
-            if nota.instalacao_codigo_cliente
+            id_instalacao=str(instalacao.id),
+            id_cod_cliente=str(instalacao.codigo_cliente)
+            if instalacao.codigo_cliente
             else None,
-            tp_instalacao=self._enum_value(Tligacao, str(nota.instalacao_tipo)),
-            n_contrato=str(nota.instalacao_numero_contrato)
-            if nota.instalacao_numero_contrato
+            tp_instalacao=self._enum_value(Tligacao, str(instalacao.tipo)),
+            n_contrato=str(instalacao.numero_contrato)
+            if instalacao.numero_contrato
             else None,
-            tp_classe=self._enum_value(Tclasse, str(nota.instalacao_classe_consumo)),
-            x_classe=str(nota.instalacao_classe_detalhe)
-            if nota.instalacao_classe_detalhe
+            tp_classe=self._enum_value(Tclasse, str(instalacao.classe_consumo)),
+            x_classe=str(instalacao.classe_detalhe)
+            if instalacao.classe_detalhe
             else None,
-            lat_gps=str(nota.instalacao_latitude_gps) if nota.instalacao_latitude_gps else None,
-            long_gps=str(nota.instalacao_longitude_gps) if nota.instalacao_longitude_gps else None,
-            cod_roteiro_leitura=str(nota.instalacao_codigo_roteiro_leitura)
-            if nota.instalacao_codigo_roteiro_leitura
+            lat_gps=str(instalacao.latitude_gps) if instalacao.latitude_gps else None,
+            long_gps=str(instalacao.longitude_gps) if instalacao.longitude_gps else None,
+            cod_roteiro_leitura=str(instalacao.codigo_roteiro_leitura)
+            if instalacao.codigo_roteiro_leitura
             else None,
         )
 
