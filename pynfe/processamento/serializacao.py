@@ -13,7 +13,6 @@ from pynfe.entidades import Manifesto, NotaFiscal
 from pynfe.utils import (
     etree,
     obter_codigo_por_municipio,
-    obter_municipio_por_codigo,
     obter_pais_por_codigo,
     so_numeros,
 )
@@ -252,11 +251,10 @@ class SerializacaoXML(Serializacao):
         etree.SubElement(raiz, "nro").text = entrega_retirada.endereco_numero
         etree.SubElement(raiz, "xCpl").text = entrega_retirada.endereco_complemento
         etree.SubElement(raiz, "xBairro").text = entrega_retirada.endereco_bairro
-        etree.SubElement(raiz, "cMun").text = entrega_retirada.endereco_municipio
-        etree.SubElement(raiz, "xMun").text = obter_municipio_por_codigo(
-            entrega_retirada.endereco_municipio,
-            entrega_retirada.endereco_uf,
+        etree.SubElement(raiz, "cMun").text = obter_codigo_por_municipio(
+            entrega_retirada.endereco_municipio, entrega_retirada.endereco_uf
         )
+        etree.SubElement(raiz, "xMun").text = entrega_retirada.endereco_municipio
         etree.SubElement(raiz, "UF").text = entrega_retirada.endereco_uf
 
         if retorna_string:
