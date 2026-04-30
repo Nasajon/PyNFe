@@ -249,14 +249,21 @@ class SerializacaoXML(Serializacao):
         # Endereço
         etree.SubElement(raiz, "xLgr").text = entrega_retirada.endereco_logradouro
         etree.SubElement(raiz, "nro").text = entrega_retirada.endereco_numero
-        etree.SubElement(raiz, "xCpl").text = entrega_retirada.endereco_complemento
+        if entrega_retirada.endereco_complemento:
+            etree.SubElement(raiz, "xCpl").text = entrega_retirada.endereco_complemento
         etree.SubElement(raiz, "xBairro").text = entrega_retirada.endereco_bairro
         etree.SubElement(raiz, "cMun").text = obter_codigo_por_municipio(
             entrega_retirada.endereco_municipio, entrega_retirada.endereco_uf
         )
         etree.SubElement(raiz, "xMun").text = entrega_retirada.endereco_municipio
         etree.SubElement(raiz, "UF").text = entrega_retirada.endereco_uf
-
+        if entrega_retirada.endereco_cep:
+            etree.SubElement(raiz, "CEP").text = so_numeros(entrega_retirada.endereco_cep)
+        if entrega_retirada.endereco_pais:
+            etree.SubElement(raiz, "cPais").text = entrega_retirada.endereco_pais
+            etree.SubElement(raiz, "xPais").text = obter_pais_por_codigo(
+                entrega_retirada.endereco_pais
+            )
         if retorna_string:
             return etree.tostring(raiz, encoding="unicode", pretty_print=True)
         else:
