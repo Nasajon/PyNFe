@@ -413,9 +413,9 @@ class ComunicacaoSefaz(Comunicacao):
         xml = a1.assinar(raiz)
 
         # Monta XML para envio da requisição
-        xml = self._construir_xml_soap("NFeInutilizacao4", xml)
+        xml_envio = self._construir_xml_soap("NFeInutilizacao4", xml)
         # Faz request no Servidor da Sefaz e retorna resposta
-        return self._post(url, xml)
+        return self._post(url, xml_envio), xml
 
     def _get_url_an(self, consulta):
         # producao
