@@ -10,7 +10,13 @@ from pynfe.entidades.emitente import Emitente
 from pynfe.entidades.ibs_cbs import IBS_CBS
 from pynfe.entidades.ibs_cbs_nfse import IBS_CBS_NFSE
 from pynfe.entidades.servico import Servico
-from pynfe.utils import obter_codigo_por_municipio, so_numeros
+from pynfe.utils import (
+    calcular_dv_modulo11,
+    documento_eh_cpf,
+    normalizar_cnpj,
+    obter_codigo_por_municipio,
+    so_numeros,
+)
 from pynfe.utils.flags import CODIGOS_ESTADOS, NF_STATUS
 
 from .base import CampoDeprecated, Entidade
@@ -675,22 +681,7 @@ class NotaFiscal(Entidade):
                 f"Chave de acesso deve ter 43 caracteres antes de calcular o DV, chave: {key}"
             )
 
-        weights = [2, 3, 4, 5, 6, 7, 8, 9]
-        weights_size = len(weights)
-        key_numbers = [int(k) for k in key]
-        key_numbers.reverse()
-
-        key_sum = 0
-        for i, key_number in enumerate(key_numbers):
-            # cycle though weights
-            i = i % weights_size
-            key_sum += key_number * weights[i]
-
-        remainder = key_sum % 11
-        if remainder == 0 or remainder == 1:
-            self.dv_codigo_numerico_aleatorio = "0"
-            return "0"
-        self.dv_codigo_numerico_aleatorio = str(11 - remainder)
+        self.dv_codigo_numerico_aleatorio = calcular_dv_modulo11(key)
         return str(self.dv_codigo_numerico_aleatorio)
 
     @property
@@ -702,7 +693,7 @@ class NotaFiscal(Entidade):
             "uf": CODIGOS_ESTADOS[self.uf],
             "ano": self.data_emissao.strftime("%y"),
             "mes": self.data_emissao.strftime("%m"),
-            "cnpj": so_numeros(self.emitente.cnpj).zfill(14),
+            "cnpj": normalizar_cnpj(self.emitente.cnpj).zfill(14),
             "mod": self.modelo,
             "serie": str(self.serie).zfill(3),
             "nNF": str(self.numero_nf).zfill(9),
@@ -713,7 +704,7 @@ class NotaFiscal(Entidade):
             "uf": CODIGOS_ESTADOS[self.uf],
             "ano": self.data_emissao.strftime("%y"),
             "mes": self.data_emissao.strftime("%m"),
-            "cnpj": so_numeros(self.emitente.cnpj).zfill(14),
+            "cnpj": normalizar_cnpj(self.emitente.cnpj).zfill(14),
             "mod": self.modelo,
             "serie": str(self.serie).zfill(3),
             "nNF": str(self.numero_nf).zfill(9),
@@ -1411,8 +1402,12 @@ class NotaFiscalServico(Entidade):
     def identificador_unico_dps(self):
         return "DPS%(cMun)s%(tpIF)s%(cnpj)s%(serie)s%(nDPS)s" % {
             "cMun": obter_codigo_por_municipio(self.emitente.endereco_municipio, self.emitente.endereco_uf) if self.emitente.endereco_municipio else self.servico.codigo_municipio,
-            "tpIF": 2 if len(self.emitente.cnpj) == 14 else 1,
-            "cnpj": str(self.emitente.cnpj).zfill(14),
+            "tpIF": 1 if documento_eh_cpf(self.emitente.cnpj) else 2,
+            "cnpj": (
+                so_numeros(self.emitente.cnpj)
+                if documento_eh_cpf(self.emitente.cnpj)
+                else normalizar_cnpj(self.emitente.cnpj)
+            ).zfill(14),
             "serie": str(self.serie).zfill(5),
             "nDPS": str(self.numero).zfill(15)
         }

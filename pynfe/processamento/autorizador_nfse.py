@@ -4,11 +4,22 @@ from importlib import import_module
 import re
 from pynfe.entidades.evento import EventoNFSe, EventoNFSeCancelarNota
 from pynfe.entidades.notafiscal import NotaFiscalServico
-from pynfe.utils import obter_codigo_por_municipio
+from pynfe.utils import (
+    documento_eh_cpf,
+    normalizar_cnpj,
+    obter_codigo_por_municipio,
+    so_numeros,
+)
 
 # Type imports for autocomplete - these won't cause runtime conflicts
 # since they're only used for type hints
 from typing import TYPE_CHECKING, Any, Optional
+
+
+def _normalizar_cpf_cnpj(documento):
+    if documento_eh_cpf(documento):
+        return so_numeros(documento)
+    return normalizar_cnpj(documento)
 
 
 class InterfaceAutorizador:
@@ -49,12 +60,12 @@ class SerializacaoBetha(InterfaceAutorizador):
 
         # Prestador
         id_prestador = nfse_schema.tcIdentificacaoPrestador()
-        id_prestador.CpfCnpj = nfse.emitente.cnpj
+        id_prestador.CpfCnpj = _normalizar_cpf_cnpj(nfse.emitente.cnpj)
         id_prestador.InscricaoMunicipal = nfse.emitente.inscricao_municipal
 
         # Cliente
         id_tomador = nfse_schema.tcIdentificacaoTomador()
-        id_tomador.CpfCnpj = nfse.cliente.numero_documento
+        id_tomador.CpfCnpj = _normalizar_cpf_cnpj(nfse.cliente.numero_documento)
         if nfse.cliente.inscricao_municipal:
             id_tomador.InscricaoMunicipal = nfse.cliente.inscricao_municipal
 
@@ -112,7 +123,7 @@ class SerializacaoBetha(InterfaceAutorizador):
 
         # Prestador
         id_prestador = nfse_schema.tcIdentificacaoPrestador()
-        id_prestador.CpfCnpj = nfse.emitente.cnpj
+        id_prestador.CpfCnpj = _normalizar_cpf_cnpj(nfse.emitente.cnpj)
         id_prestador.InscricaoMunicipal = nfse.emitente.inscricao_municipal
 
         consulta = nfse_schema.ConsultarNfseRpsEnvio()
@@ -134,7 +145,7 @@ class SerializacaoBetha(InterfaceAutorizador):
 
         # Prestador
         id_prestador = nfse_schema.tcIdentificacaoPrestador()
-        id_prestador.CpfCnpj = emitente.cnpj
+        id_prestador.CpfCnpj = _normalizar_cpf_cnpj(emitente.cnpj)
         id_prestador.InscricaoMunicipal = emitente.inscricao_municipal
 
         consulta = nfse_schema.ConsultarNfseFaixaEnvio()
@@ -161,7 +172,7 @@ class SerializacaoBetha(InterfaceAutorizador):
         # id nfse
         id_nfse = nfse_schema.tcIdentificacaoNfse()
         id_nfse.Numero = nfse.numero
-        id_nfse.CpfCnpj = nfse.emitente.cnpj
+        id_nfse.CpfCnpj = _normalizar_cpf_cnpj(nfse.emitente.cnpj)
         id_nfse.InscricaoMunicipal = nfse.emitente.inscricao_municipal
         id_nfse.CodigoMunicipio = nfse.emitente.endereco_cod_municipio
 
@@ -199,12 +210,12 @@ class SerializacaoBetha(InterfaceAutorizador):
 
         # Prestador
         id_prestador = nfse_schema.tcIdentificacaoPrestador()
-        id_prestador.CpfCnpj = nfse.emitente.cnpj
+        id_prestador.CpfCnpj = _normalizar_cpf_cnpj(nfse.emitente.cnpj)
         id_prestador.InscricaoMunicipal = nfse.emitente.inscricao_municipal
 
         # Cliente
         id_tomador = nfse_schema.tcIdentificacaoTomador()
-        id_tomador.CpfCnpj = nfse.cliente.numero_documento
+        id_tomador.CpfCnpj = _normalizar_cpf_cnpj(nfse.cliente.numero_documento)
         if nfse.cliente.inscricao_municipal:
             id_tomador.InscricaoMunicipal = nfse.cliente.inscricao_municipal
 
@@ -248,7 +259,7 @@ class SerializacaoBetha(InterfaceAutorizador):
         lote = nfse_schema.tcLoteRps()
         lote.NumeroLote = 1
         lote.Id = 1
-        lote.CpfCnpj = nfse.emitente.cnpj
+        lote.CpfCnpj = _normalizar_cpf_cnpj(nfse.emitente.cnpj)
         lote.InscricaoMunicipal = nfse.emitente.inscricao_municipal
         lote.QuantidadeRps = 1
         if nfse.autorizador.upper() == "BETHA":
@@ -304,7 +315,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
 
         # Prestador
         id_prestador = _tipos.tcIdentificacaoPrestador()
-        id_prestador.Cnpj = emitente.cnpj
+        id_prestador.Cnpj = normalizar_cnpj(emitente.cnpj)
         id_prestador.InscricaoMunicipal = emitente.inscricao_municipal
 
         consulta = servico_consultar_nfse_rps_envio_v03.ConsultarNfseRpsEnvio()
@@ -316,7 +327,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
     def consultar_nfse(self, emitente, numero=None, inicio=None, fim=None):
         # Prestador
         id_prestador = _tipos.tcIdentificacaoPrestador()
-        id_prestador.Cnpj = emitente.cnpj
+        id_prestador.Cnpj = normalizar_cnpj(emitente.cnpj)
         id_prestador.InscricaoMunicipal = emitente.inscricao_municipal
 
         consulta = servico_consultar_nfse_envio_v03.ConsultarNfseEnvio()
@@ -335,7 +346,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
     def consultar_lote(self, emitente, numero):
         # Prestador
         id_prestador = _tipos.tcIdentificacaoPrestador()
-        id_prestador.Cnpj = emitente.cnpj
+        id_prestador.Cnpj = normalizar_cnpj(emitente.cnpj)
         id_prestador.InscricaoMunicipal = emitente.inscricao_municipal
 
         consulta = servico_consultar_lote_rps_envio_v03.ConsultarLoteRpsEnvio()
@@ -348,7 +359,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
         "Serializa lote de envio, baseado no servico_consultar_situacao_lote_rps_envio_v03.xsd"
         # Prestador
         id_prestador = _tipos.tcIdentificacaoPrestador()
-        id_prestador.Cnpj = emitente.cnpj
+        id_prestador.Cnpj = normalizar_cnpj(emitente.cnpj)
         id_prestador.InscricaoMunicipal = emitente.inscricao_municipal
 
         consulta = servico_consultar_situacao_lote_rps_envio_v03.ConsultarSituacaoLoteRpsEnvio()
@@ -420,7 +431,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
         endereco_tomador.Cep = nfse.cliente.endereco_cep
         # identificacao Tomador
         id_tomador = _tipos.tcIdentificacaoTomador()
-        id_tomador.CpfCnpj = nfse.cliente.numero_documento
+        id_tomador.CpfCnpj = _normalizar_cpf_cnpj(nfse.cliente.numero_documento)
         if nfse.cliente.inscricao_municipal:
             id_tomador.InscricaoMunicipal = nfse.cliente.inscricao_municipal
         # Tomador
@@ -438,7 +449,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
 
         # Prestador
         id_prestador = _tipos.tcIdentificacaoPrestador()
-        id_prestador.Cnpj = nfse.emitente.cnpj
+        id_prestador.Cnpj = normalizar_cnpj(nfse.emitente.cnpj)
         id_prestador.InscricaoMunicipal = nfse.emitente.inscricao_municipal
 
         # identificacao rps
@@ -486,7 +497,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
         lote = _tipos.tcLoteRps()
         lote.NumeroLote = 1
         lote.Id = 1
-        lote.Cnpj = nfse.emitente.cnpj
+        lote.Cnpj = normalizar_cnpj(nfse.emitente.cnpj)
         lote.InscricaoMunicipal = nfse.emitente.inscricao_municipal
         lote.QuantidadeRps = 1
         lote.ListaRps = BIND()
@@ -502,7 +513,7 @@ class SerializacaoGinfes(InterfaceAutorizador):
         # id nfse
         id_nfse = _tipos.tcIdentificacaoNfse()
         id_nfse.Numero = nfse.numero
-        id_nfse.Cnpj = nfse.emitente.cnpj
+        id_nfse.Cnpj = normalizar_cnpj(nfse.emitente.cnpj)
         id_nfse.InscricaoMunicipal = nfse.emitente.inscricao_municipal
         id_nfse.CodigoMunicipio = nfse.emitente.endereco_cod_municipio
 
@@ -530,7 +541,9 @@ class SerializacaoGinfes(InterfaceAutorizador):
         ns2 = "http://www.ginfes.com.br/tipos"
         raiz = etree.Element("{%s}CancelarNfseEnvio" % ns1, nsmap={"ns1": ns1, "ns2": ns2})
         prestador = etree.SubElement(raiz, "{%s}Prestador" % ns1)
-        etree.SubElement(prestador, "{%s}Cnpj" % ns2).text = nfse.emitente.cnpj
+        etree.SubElement(prestador, "{%s}Cnpj" % ns2).text = normalizar_cnpj(
+            nfse.emitente.cnpj
+        )
         etree.SubElement(
             prestador, "{%s}InscricaoMunicipal" % ns2
         ).text = nfse.emitente.inscricao_municipal
@@ -553,14 +566,43 @@ class SerializacaoNacional(InterfaceAutorizador):
     def _get_dps_schema(self) -> Any:
         """Get DPS schema with lazy loading and conflict resolution"""
         if self._dps_schema is None:
-            self._dps_schema = self._safe_import_dps()
+            self._dps_schema = self._permitir_cnpj_alfanumerico_schema(
+                self._safe_import_dps()
+            )
         return self._dps_schema
 
     def _get_evento_schema(self) -> Any:
         """Get evento schema with lazy loading and conflict resolution"""
         if self._evento_schema is None:
-            self._evento_schema = self._safe_import_evento()
+            self._evento_schema = self._permitir_cnpj_alfanumerico_schema(
+                self._safe_import_evento()
+            )
         return self._evento_schema
+
+    @staticmethod
+    def _permitir_cnpj_alfanumerico_schema(schema):
+        import pyxb.binding.facets
+
+        ajustes = {
+            "TSCNPJ": "[A-Z0-9]{12}[0-9]{2}",
+            "TSChaveNFe": "[0-9]{6}[A-Z0-9]{12}[0-9]{26}",
+        }
+        for nome_tipo, pattern_value in ajustes.items():
+            tipo = getattr(schema, nome_tipo, None)
+            marcador = f"_{nome_tipo}_alfanumerico"
+            if tipo is None or getattr(tipo, marcador, False):
+                continue
+
+            pattern = pyxb.binding.facets.CF_pattern()
+            pattern.addPattern(pattern=pattern_value)
+            tipo._CF_pattern = pattern
+            tipo._InitializeFacetMap(
+                tipo._CF_maxLength,
+                tipo._CF_pattern,
+                tipo._CF_whiteSpace,
+            )
+            setattr(tipo, marcador, True)
+        return schema
 
     def _safe_import_dps(self):
         """Safely import DPS schema handling PyXB conflicts"""
@@ -922,7 +964,7 @@ class SerializacaoNacional(InterfaceAutorizador):
         ) if nfse.emitente.endereco_municipio else nfse.servico.codigo_municipio
 
         prestador = nfse_nacional_schema.TCInfoPrestador()
-        prestador.CNPJ = nfse.emitente.cnpj
+        prestador.CNPJ = normalizar_cnpj(nfse.emitente.cnpj)
 
         if nfse.emitente.inscricao_municipal:
             prestador.IM = nfse.emitente.inscricao_municipal
@@ -954,9 +996,9 @@ class SerializacaoNacional(InterfaceAutorizador):
         if nfse.cliente:
             tomador = nfse_nacional_schema.TCInfoPessoa()
             if nfse.cliente.tipo_documento == "CPF":
-                tomador.CPF = nfse.cliente.numero_documento
+                tomador.CPF = so_numeros(nfse.cliente.numero_documento)
             else:
-                tomador.CNPJ = nfse.cliente.numero_documento
+                tomador.CNPJ = normalizar_cnpj(nfse.cliente.numero_documento)
             tomador.xNome = nfse.cliente.razao_social
 
             if nfse.cliente.inscricao_municipal:
@@ -1063,9 +1105,11 @@ class SerializacaoNacional(InterfaceAutorizador):
             if nfse.ibs_cbs.destinatario:
                 dest = nfse_nacional_schema.TCRTCInfoDest()
                 if nfse.ibs_cbs.destinatario.tipo_documento == "CPF":
-                    dest.CPF = nfse.ibs_cbs.destinatario.numero_documento
+                    dest.CPF = so_numeros(nfse.ibs_cbs.destinatario.numero_documento)
                 else:
-                    dest.CNPJ = nfse.ibs_cbs.destinatario.numero_documento
+                    dest.CNPJ = normalizar_cnpj(
+                        nfse.ibs_cbs.destinatario.numero_documento
+                    )
 
                 dest.xNome = nfse.ibs_cbs.destinatario.razao_social
 
@@ -1117,9 +1161,13 @@ class SerializacaoNacional(InterfaceAutorizador):
                     if documento.fornecedor:
                         fornecedor = nfse_nacional_schema.TCRTCListaDocFornec()
                         if documento.fornecedor.tipo_documento == "CPF":
-                            fornecedor.CPF = documento.fornecedor.numero_documento
+                            fornecedor.CPF = so_numeros(
+                                documento.fornecedor.numero_documento
+                            )
                         else:
-                            fornecedor.CNPJ = documento.fornecedor.numero_documento
+                            fornecedor.CNPJ = normalizar_cnpj(
+                                documento.fornecedor.numero_documento
+                            )
 
                         fornecedor.xNome = documento.fornecedor.razao_social
                         doc.fornec = fornecedor
@@ -1187,7 +1235,7 @@ class SerializacaoNacional(InterfaceAutorizador):
         inf_ped_registro = nfse_nacional_evento_schema.TCInfPedReg()
         inf_ped_registro.Id = evento.identificador
         inf_ped_registro.chNFSe = evento.chave
-        inf_ped_registro.CNPJAutor = evento.cnpj
+        inf_ped_registro.CNPJAutor = normalizar_cnpj(evento.cnpj)
         inf_ped_registro.dhEvento = evento.data_emissao.strftime("%Y-%m-%dT%H:%M:%S") + tz
         inf_ped_registro.tpAmb = evento.ambiente
         inf_ped_registro.verAplic = "1.00"

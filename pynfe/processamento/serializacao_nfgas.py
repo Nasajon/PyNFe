@@ -19,7 +19,7 @@ from pynfe.entidades.nfgas import (
     NotaFiscalGasItemPIS,
 )
 from pynfe.entidades.ibs_cbs import IBS_CBS
-from pynfe.utils import obter_codigo_por_municipio, so_numeros
+from pynfe.utils import normalizar_cnpj, obter_codigo_por_municipio, so_numeros
 from pynfe.utils.ibs_cbs_indicadores import IBSCBSIndicadores
 from pynfe.utils.flags import CODIGOS_ESTADOS
 
@@ -144,7 +144,7 @@ class SerializacaoNFGas:
         inf_evento = Tevento.InfEvento(
             c_orgao=TcorgaoIbge(CODIGOS_ESTADOS[uf.upper()]),
             tp_amb=Tamb.VALUE_2 if homologacao else Tamb.VALUE_1,
-            cnpj=cnpj,
+            cnpj=normalizar_cnpj(cnpj),
             ch_nfgas=chave,
             dh_evento=dh_evento,
             tp_evento=tp_evento,
@@ -411,7 +411,7 @@ class SerializacaoNFGas:
         )
 
         return Tnfgas.InfNfgas.Emit(
-            cnpj=so_numeros(emit.cnpj).zfill(14),
+            cnpj=normalizar_cnpj(emit.cnpj).zfill(14),
             ie=so_numeros(emit.inscricao_estadual),
             x_nome=emit.razao_social,
             x_fant=emit.nome_fantasia or None,
@@ -435,7 +435,7 @@ class SerializacaoNFGas:
 
         return Tnfgas.InfNfgas.Dest(
             x_nome=dest.razao_social,
-            cnpj=so_numeros(dest.numero_documento).zfill(14)
+            cnpj=normalizar_cnpj(dest.numero_documento).zfill(14)
             if dest.tipo_documento == "CNPJ"
             else None,
             cpf=so_numeros(dest.numero_documento).zfill(11)

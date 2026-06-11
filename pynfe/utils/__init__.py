@@ -2,6 +2,7 @@
 
 import codecs
 import os
+import re
 from unicodedata import normalize
 from signxml import XMLSigner
 from typing import Literal
@@ -27,6 +28,49 @@ def so_numeros(texto) -> str:
     :return: String somente com números
     """
     return "".join(filter(str.isdigit, str(texto)))
+
+
+def so_numeros_e_letras(texto) -> str:
+    """
+    Retorna o texto informado mas somente letras ASCII e numeros.
+
+    :param texto: String ou Inteiro a ser analisada
+    :return: String somente com letras maiusculas e numeros
+    """
+    if texto is None:
+        return ""
+    return re.sub(r"[^0-9A-Za-z]", "", str(texto)).upper()
+
+
+def normalizar_cnpj(texto) -> str:
+    return so_numeros_e_letras(texto)
+
+
+def documento_eh_cpf(texto) -> bool:
+    documento = so_numeros_e_letras(texto)
+    return documento.isdigit() and len(documento) == 11
+
+
+def _valor_caractere_dv(caractere: str) -> int:
+    caractere = str(caractere).upper()
+    if len(caractere) != 1 or not re.match(r"[0-9A-Z]", caractere):
+        raise ValueError(f"Caractere invalido para calculo do DV: {caractere}")
+    return ord(caractere) - 48
+
+
+def calcular_dv_modulo11(texto: str) -> str:
+    weights = [2, 3, 4, 5, 6, 7, 8, 9]
+    key_numbers = [_valor_caractere_dv(k) for k in so_numeros_e_letras(texto)]
+    key_numbers.reverse()
+
+    key_sum = 0
+    for i, key_number in enumerate(key_numbers):
+        key_sum += key_number * weights[i % len(weights)]
+
+    remainder = key_sum % 11
+    if remainder == 0 or remainder == 1:
+        return "0"
+    return str(11 - remainder)
 
 
 # @memoize

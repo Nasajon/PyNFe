@@ -7,7 +7,7 @@ from decimal import Decimal
 from pynfe import get_version
 from pynfe.entidades.cliente import Cliente
 from pynfe.entidades.emitente import Emitente
-from pynfe.utils import so_numeros
+from pynfe.utils import calcular_dv_modulo11, normalizar_cnpj
 from pynfe.utils.flags import CODIGOS_ESTADOS
 
 from .base import Entidade
@@ -131,21 +131,7 @@ class NotaFiscalGas(Entidade):
                 f"Chave de acesso deve ter 43 caracteres antes de calcular o DV, chave: {key}"
             )
 
-        weights = [2, 3, 4, 5, 6, 7, 8, 9]
-        weights_size = len(weights)
-        key_numbers = [int(k) for k in key]
-        key_numbers.reverse()
-
-        key_sum = 0
-        for i, key_number in enumerate(key_numbers):
-            i = i % weights_size
-            key_sum += key_number * weights[i]
-
-        remainder = key_sum % 11
-        if remainder == 0 or remainder == 1:
-            self.dv_codigo_numerico_aleatorio = "0"
-            return "0"
-        self.dv_codigo_numerico_aleatorio = str(11 - remainder)
+        self.dv_codigo_numerico_aleatorio = calcular_dv_modulo11(key)
         return str(self.dv_codigo_numerico_aleatorio)
 
     @property
@@ -154,7 +140,7 @@ class NotaFiscalGas(Entidade):
             "uf": CODIGOS_ESTADOS[self.uf],
             "ano": self.data_emissao.strftime("%y"),
             "mes": self.data_emissao.strftime("%m"),
-            "cnpj": so_numeros(self.emitente.cnpj).zfill(14),
+            "cnpj": normalizar_cnpj(self.emitente.cnpj).zfill(14),
             "mod": str(self.modelo).zfill(2),
             "serie": str(self.serie).zfill(3),
             "nNF": str(self.numero).zfill(9),
@@ -166,7 +152,7 @@ class NotaFiscalGas(Entidade):
             "uf": CODIGOS_ESTADOS[self.uf],
             "ano": self.data_emissao.strftime("%y"),
             "mes": self.data_emissao.strftime("%m"),
-            "cnpj": so_numeros(self.emitente.cnpj).zfill(14),
+            "cnpj": normalizar_cnpj(self.emitente.cnpj).zfill(14),
             "mod": str(self.modelo).zfill(2),
             "serie": str(self.serie).zfill(3),
             "nNF": str(self.numero).zfill(9),

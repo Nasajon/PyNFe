@@ -4,7 +4,11 @@
 import unittest
 
 from pynfe.utils import (
+    calcular_dv_modulo11,
+    documento_eh_cpf,
+    normalizar_cnpj,
     so_numeros,
+    so_numeros_e_letras,
     obter_pais_por_codigo,
     normalizar_municipio,
     obter_codigo_por_municipio,
@@ -34,6 +38,31 @@ class UtilsTestCase(unittest.TestCase):
 
     def test_so_numeros_somente_com_letras(self):
         self.assertEqual(so_numeros("aabbccdd"), "")
+
+    # so_numeros_e_letras
+    def test_so_numeros_e_letras_none(self):
+        self.assertEqual(so_numeros_e_letras(None), "")
+
+    def test_so_numeros_e_letras_cnpj_alfanumerico(self):
+        self.assertEqual(so_numeros_e_letras("12.ABC.345/01de-35"), "12ABC34501DE35")
+
+    # documento_eh_cpf
+    def test_documento_eh_cpf_numerico_11_digitos(self):
+        self.assertTrue(documento_eh_cpf("123.456.789-00"))
+
+    def test_documento_eh_cpf_cnpj_alfanumerico(self):
+        self.assertFalse(documento_eh_cpf("12.ABC.345/01DE-35"))
+
+    # normalizar_cnpj
+    def test_normalizar_cnpj_preserva_letras(self):
+        self.assertEqual(normalizar_cnpj("12.ABC.345/01de-35"), "12ABC34501DE35")
+
+    # calcular_dv_modulo11
+    def test_calcular_dv_modulo11_cnpj_alfanumerico_primeiro_dv(self):
+        self.assertEqual(calcular_dv_modulo11("12ABC34501DE"), "3")
+
+    def test_calcular_dv_modulo11_cnpj_alfanumerico_segundo_dv(self):
+        self.assertEqual(calcular_dv_modulo11("12ABC34501DE3"), "5")
 
     # obter_pais_por_codigo
     def test_obter_pais_por_codigo_brasil(self):

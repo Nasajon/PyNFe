@@ -7,7 +7,7 @@ import re
 import requests
 
 from pynfe.entidades.certificado import CertificadoA1
-from pynfe.utils import etree, so_numeros
+from pynfe.utils import documento_eh_cpf, etree, normalizar_cnpj, so_numeros
 from pynfe.utils.flags import (
     CODIGOS_ESTADOS,
     MODELO_MDFE,
@@ -219,9 +219,9 @@ class ComunicacaoSefaz(Comunicacao):
         if self.uf:
             etree.SubElement(raiz, "cUFAutor").text = CODIGOS_ESTADOS[self.uf.upper()]
         if cnpj:
-            etree.SubElement(raiz, "CNPJ").text = cnpj
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(cnpj)
         else:
-            etree.SubElement(raiz, "CPF").text = cpf
+            etree.SubElement(raiz, "CPF").text = so_numeros(cpf)
 
         if not chave and not consulta_nsu_especifico:
             distNSU = etree.SubElement(raiz, "distNSU")
@@ -290,7 +290,12 @@ class ComunicacaoSefaz(Comunicacao):
         etree.SubElement(info, "UF").text = uf.upper()
 
         # Monta tipo de documento CNPJ, CPF ou IE
-        etree.SubElement(info, tipo.upper()).text = documento
+        documento_consulta = documento
+        if tipo.upper() == "CNPJ":
+            documento_consulta = normalizar_cnpj(documento)
+        elif tipo.upper() == "CPF":
+            documento_consulta = so_numeros(documento)
+        etree.SubElement(info, tipo.upper()).text = documento_consulta
 
         # etree.SubElement(info, 'CPF').text = cpf
 
@@ -370,7 +375,7 @@ class ComunicacaoSefaz(Comunicacao):
         # Valores default
         ano = str(ano or datetime.date.today().year)[-2:]
         uf = CODIGOS_ESTADOS[self.uf.upper()]
-        cnpj = so_numeros(cnpj)
+        cnpj = so_numeros(cnpj) if documento_eh_cpf(cnpj) else normalizar_cnpj(cnpj)
 
         if len(cnpj) == 14:
             cnpjcpf_chaveacesso = cnpj
@@ -1048,10 +1053,10 @@ class ComunicacaoMDFe(Comunicacao):
         raiz = etree.Element("consMDFeNaoEnc", xmlns=NAMESPACE_MDFE, versao=self._versao)
         etree.SubElement(raiz, "tpAmb").text = str(self._ambiente)
         etree.SubElement(raiz, "xServ").text = "CONSULTAR NÃO ENCERRADOS"
-        if len(cpfcnpj) == 11:
-            etree.SubElement(raiz, "CPF").text = cpfcnpj.zfill(11)
+        if documento_eh_cpf(cpfcnpj):
+            etree.SubElement(raiz, "CPF").text = so_numeros(cpfcnpj).zfill(11)
         else:
-            etree.SubElement(raiz, "CNPJ").text = cpfcnpj.zfill(14)
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(cpfcnpj).zfill(14)
         # Monta XML para envio da requisição
         xml = self._construir_xml_soap("MDFeConsNaoEnc", raiz)
         return self._post(url, xml)
@@ -1306,9 +1311,9 @@ class ComunicacaoCTe(Comunicacao):
         if self.uf:
             etree.SubElement(raiz, "cUFAutor").text = CODIGOS_ESTADOS[self.uf.upper()]
         if cnpj:
-            etree.SubElement(raiz, "CNPJ").text = cnpj
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(cnpj)
         else:
-            etree.SubElement(raiz, "CPF").text = cpf
+            etree.SubElement(raiz, "CPF").text = so_numeros(cpf)
 
         if not chave and not consulta_nsu_especifico:
             distNSU = etree.SubElement(raiz, "distNSU")
@@ -1561,9 +1566,9 @@ class ComunicacaoNFGas(Comunicacao):
         if self.uf:
             etree.SubElement(raiz, "cUFAutor").text = CODIGOS_ESTADOS[self.uf.upper()]
         if cnpj:
-            etree.SubElement(raiz, "CNPJ").text = cnpj
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(cnpj)
         else:
-            etree.SubElement(raiz, "CPF").text = cpf
+            etree.SubElement(raiz, "CPF").text = so_numeros(cpf)
 
         if not chave and not consulta_nsu_especifico:
             distNSU = etree.SubElement(raiz, "distNSU")
@@ -1773,9 +1778,9 @@ class ComunicacaoNFAg(Comunicacao):
         if self.uf:
             etree.SubElement(raiz, "cUFAutor").text = CODIGOS_ESTADOS[self.uf.upper()]
         if cnpj:
-            etree.SubElement(raiz, "CNPJ").text = cnpj
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(cnpj)
         else:
-            etree.SubElement(raiz, "CPF").text = cpf
+            etree.SubElement(raiz, "CPF").text = so_numeros(cpf)
 
         if not chave and not consulta_nsu_especifico:
             distNSU = etree.SubElement(raiz, "distNSU")

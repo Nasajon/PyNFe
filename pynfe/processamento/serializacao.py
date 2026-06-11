@@ -11,7 +11,9 @@ from pynfe.entidades.evento import EventoCancelarNota
 import pynfe.utils.xml_writer as xmlw
 from pynfe.entidades import Manifesto, NotaFiscal
 from pynfe.utils import (
+    documento_eh_cpf,
     etree,
+    normalizar_cnpj,
     obter_codigo_por_municipio,
     obter_pais_por_codigo,
     so_numeros,
@@ -112,10 +114,10 @@ class SerializacaoXML(Serializacao):
         raiz = etree.Element(tag_raiz)
 
         # Dados do emitente
-        if len(so_numeros(emitente.cnpj)) == 11:
+        if documento_eh_cpf(emitente.cnpj):
             etree.SubElement(raiz, "CPF").text = so_numeros(emitente.cnpj)
         else:
-            etree.SubElement(raiz, "CNPJ").text = so_numeros(emitente.cnpj)
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(emitente.cnpj)
         etree.SubElement(raiz, "xNome").text = emitente.razao_social
         etree.SubElement(raiz, "xFant").text = emitente.nome_fantasia
         # Endereço
@@ -155,7 +157,12 @@ class SerializacaoXML(Serializacao):
         raiz = etree.Element(tag_raiz)
 
         # Dados do cliente (destinatário)
-        etree.SubElement(raiz, cliente.tipo_documento).text = so_numeros(cliente.numero_documento)
+        documento = (
+            so_numeros(cliente.numero_documento)
+            if cliente.tipo_documento == "CPF"
+            else normalizar_cnpj(cliente.numero_documento)
+        )
+        etree.SubElement(raiz, cliente.tipo_documento).text = documento
         if not self._so_cpf:
             if cliente.razao_social:
                 etree.SubElement(raiz, "xNome").text = cliente.razao_social
@@ -215,9 +222,12 @@ class SerializacaoXML(Serializacao):
 
         # Dados da transportadora
         if transportadora.numero_documento:
-            etree.SubElement(raiz, transportadora.tipo_documento.upper()).text = so_numeros(
-                transportadora.numero_documento
+            documento = (
+                so_numeros(transportadora.numero_documento)
+                if transportadora.tipo_documento.upper() == "CPF"
+                else normalizar_cnpj(transportadora.numero_documento)
             )
+            etree.SubElement(raiz, transportadora.tipo_documento.upper()).text = documento
         if transportadora.razao_social:
             etree.SubElement(raiz, "xNome").text = transportadora.razao_social
         if transportadora.inscricao_estadual:
@@ -242,9 +252,12 @@ class SerializacaoXML(Serializacao):
         raiz = etree.Element(tag_raiz)
 
         # Dados da entrega/retirada
-        etree.SubElement(raiz, entrega_retirada.tipo_documento).text = so_numeros(
-            entrega_retirada.numero_documento
+        documento = (
+            so_numeros(entrega_retirada.numero_documento)
+            if entrega_retirada.tipo_documento == "CPF"
+            else normalizar_cnpj(entrega_retirada.numero_documento)
         )
+        etree.SubElement(raiz, entrega_retirada.tipo_documento).text = documento
 
         # Endereço
         etree.SubElement(raiz, "xLgr").text = entrega_retirada.endereco_logradouro
@@ -274,10 +287,12 @@ class SerializacaoXML(Serializacao):
     ):
         raiz = etree.Element(tag_raiz)
 
-        if len(so_numeros(autorizados_baixar_xml.CPFCNPJ)) == 11:
+        if documento_eh_cpf(autorizados_baixar_xml.CPFCNPJ):
             etree.SubElement(raiz, "CPF").text = so_numeros(autorizados_baixar_xml.CPFCNPJ)
         else:
-            etree.SubElement(raiz, "CNPJ").text = so_numeros(autorizados_baixar_xml.CPFCNPJ)
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(
+                autorizados_baixar_xml.CPFCNPJ
+            )
 
         if retorna_string:
             return etree.tostring(raiz, encoding="unicode", pretty_print=True)
@@ -1666,7 +1681,9 @@ class SerializacaoXML(Serializacao):
                 etree.SubElement(di, "tpIntermedio").text = str(item_di.tipo_intermediacao)
                 # CNPJ
                 if item_di.cnpj_adquirente:
-                    etree.SubElement(di, "CNPJ").text = so_numeros(item_di.cnpj_adquirente)
+                    etree.SubElement(di, "CNPJ").text = normalizar_cnpj(
+                        item_di.cnpj_adquirente
+                    )
                 # UFTerceiro
                 if item_di.uf_terceiro:
                     etree.SubElement(di, "UFTerceiro").text = item_di.uf_terceiro
@@ -1691,7 +1708,7 @@ class SerializacaoXML(Serializacao):
         self, responsavel_tecnico, tag_raiz="infRespTec", retorna_string=True
     ):
         raiz = etree.Element(tag_raiz)
-        etree.SubElement(raiz, "CNPJ").text = responsavel_tecnico.cnpj
+        etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(responsavel_tecnico.cnpj)
         etree.SubElement(raiz, "xContato").text = responsavel_tecnico.contato
         etree.SubElement(raiz, "email").text = responsavel_tecnico.email
         etree.SubElement(raiz, "fone").text = responsavel_tecnico.fone
@@ -1750,7 +1767,7 @@ class SerializacaoXML(Serializacao):
                 if item.tp_integra:
                     card = etree.SubElement(det, "card")
                     xmlw.write_txt(card, "tpIntegra", item.tp_integra, True)
-                    xmlw.write_txt(card, "CNPJ", item.cnpj, False)
+                    xmlw.write_txt(card, "CNPJ", normalizar_cnpj(item.cnpj), False)
                     xmlw.write_txt(card, "tBand", item.t_band, False)
                     xmlw.write_txt(card, "cAut", item.c_aut, False)
                 pag.append(det)
@@ -1855,7 +1872,7 @@ class SerializacaoXML(Serializacao):
                         refNF = etree.SubElement(nfref, "refNF")
                         etree.SubElement(refNF, "cUF").text = CODIGOS_ESTADOS[refNFe.uf.upper()]
                         etree.SubElement(refNF, "AAMM").text = str(refNFe.mes_ano_emissao)
-                        etree.SubElement(refNF, "CNPJ").text = so_numeros(refNFe.cnpj)
+                        etree.SubElement(refNF, "CNPJ").text = normalizar_cnpj(refNFe.cnpj)
                         etree.SubElement(refNF, "mod").text = str(refNFe.modelo)  # 1 ou 2
                         etree.SubElement(refNF, "serie").text = str(refNFe.serie)
                         etree.SubElement(refNF, "nNF").text = str(refNFe.numero)
@@ -1864,10 +1881,12 @@ class SerializacaoXML(Serializacao):
                         refNFP = etree.SubElement(nfref, "refNFP")
                         etree.SubElement(refNFP, "cUF").text = CODIGOS_ESTADOS[refNFe.uf.upper()]
                         etree.SubElement(refNFP, "AAMM").text = str(refNFe.mes_ano_emissao)
-                        if len(so_numeros(refNFe.cnpj)) == 11:
+                        if documento_eh_cpf(refNFe.cnpj):
                             etree.SubElement(refNFP, "CPF").text = so_numeros(refNFe.cnpj)
                         else:
-                            etree.SubElement(refNFP, "CNPJ").text = so_numeros(refNFe.cnpj)
+                            etree.SubElement(refNFP, "CNPJ").text = normalizar_cnpj(
+                                refNFe.cnpj
+                            )
                         etree.SubElement(refNFP, "IE").text = so_numeros(refNFe.ie)
                         etree.SubElement(refNFP, "mod").text = "04"
                         etree.SubElement(refNFP, "serie").text = str(refNFe.serie)
@@ -2289,10 +2308,10 @@ class SerializacaoXML(Serializacao):
         e = etree.SubElement(raiz, "infEvento", Id=evento.identificador)
         etree.SubElement(e, "cOrgao").text = CODIGOS_ESTADOS[evento.uf.upper()]
         etree.SubElement(e, "tpAmb").text = str(self._ambiente)
-        if len(so_numeros(evento.cnpj)) == 11:
-            etree.SubElement(e, "CPF").text = evento.cnpj
+        if documento_eh_cpf(evento.cnpj):
+            etree.SubElement(e, "CPF").text = so_numeros(evento.cnpj)
         else:
-            etree.SubElement(e, "CNPJ").text = evento.cnpj
+            etree.SubElement(e, "CNPJ").text = normalizar_cnpj(evento.cnpj)
         etree.SubElement(e, "chNFe").text = evento.chave
         etree.SubElement(e, "dhEvento").text = (
             evento.data_emissao.strftime("%Y-%m-%dT%H:%M:%S") + tz
@@ -2323,10 +2342,10 @@ class SerializacaoXML(Serializacao):
         e = etree.SubElement(raiz, "infEvento", Id=evento.identificador)
         etree.SubElement(e, "cOrgao").text = CODIGOS_ESTADOS[evento.uf.upper()]
         etree.SubElement(e, "tpAmb").text = str(self._ambiente)
-        if len(so_numeros(evento.cnpj)) == 11:
-            etree.SubElement(e, "CPF").text = evento.cnpj
+        if documento_eh_cpf(evento.cnpj):
+            etree.SubElement(e, "CPF").text = so_numeros(evento.cnpj)
         else:
-            etree.SubElement(e, "CNPJ").text = evento.cnpj
+            etree.SubElement(e, "CNPJ").text = normalizar_cnpj(evento.cnpj)
         etree.SubElement(e, "chMDFe").text = evento.chave
         etree.SubElement(e, "dhEvento").text = (
             evento.data_emissao.strftime("%Y-%m-%dT%H:%M:%S") + tz
@@ -2375,10 +2394,12 @@ class SerializacaoXML(Serializacao):
             # Informações do pagamento
             infPag = etree.SubElement(pagamento, "infPag")
             etree.SubElement(infPag, "xNome").text = evento.nome_contratante
-            if len(evento.cpfcnpj_contratante) == 11:
-                etree.SubElement(infPag, "CPF").text = evento.cpfcnpj_contratante
+            if documento_eh_cpf(evento.cpfcnpj_contratante):
+                etree.SubElement(infPag, "CPF").text = so_numeros(evento.cpfcnpj_contratante)
             else:
-                etree.SubElement(infPag, "CNPJ").text = evento.cpfcnpj_contratante
+                etree.SubElement(infPag, "CNPJ").text = normalizar_cnpj(
+                    evento.cpfcnpj_contratante
+                )
 
             # Componentes de Pagamento do Frete
             Comp = etree.SubElement(infPag, "Comp")
@@ -2400,7 +2421,9 @@ class SerializacaoXML(Serializacao):
             # Informações bancárias
             infBanc = etree.SubElement(infPag, "infBanc")
             if evento.CNPJIPEF != "":
-                etree.SubElement(infBanc, "CNPJIPEF").text = evento.CNPJIPEF.zfill(14)
+                etree.SubElement(infBanc, "CNPJIPEF").text = normalizar_cnpj(
+                    evento.CNPJIPEF
+                ).zfill(14)
             else:
                 etree.SubElement(infBanc, "codBanco").text = evento.codBanco
                 etree.SubElement(infBanc, "codAgencia").text = evento.codAgencia
@@ -2762,10 +2785,10 @@ class SerializacaoMDFe(Serializacao):
         raiz = etree.Element(tag_raiz)
 
         # Dados do emitente
-        if len(so_numeros(emitente.cpfcnpj)) == 11:
+        if documento_eh_cpf(emitente.cpfcnpj):
             etree.SubElement(raiz, "CPF").text = so_numeros(emitente.cpfcnpj)
         else:
-            etree.SubElement(raiz, "CNPJ").text = so_numeros(emitente.cpfcnpj)
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(emitente.cpfcnpj)
         etree.SubElement(raiz, "IE").text = emitente.inscricao_estadual
         etree.SubElement(raiz, "xNome").text = emitente.razao_social
         if emitente.nome_fantasia:
@@ -2842,21 +2865,25 @@ class SerializacaoMDFe(Serializacao):
             for num, item in enumerate(modal_rodoviario.ciot):
                 infCIOT = etree.SubElement(infANTT, "infCIOT")
                 etree.SubElement(infCIOT, "CIOT").text = item.numero_ciot
-                if len(item.cpfcnpj) == 11:
-                    etree.SubElement(infCIOT, "CPF").text = item.cpfcnpj
-                elif len(item.cpfcnpj) == 14:
-                    etree.SubElement(infCIOT, "CNPJ").text = item.cpfcnpj
+                if documento_eh_cpf(item.cpfcnpj):
+                    etree.SubElement(infCIOT, "CPF").text = so_numeros(item.cpfcnpj)
+                elif len(normalizar_cnpj(item.cpfcnpj)) == 14:
+                    etree.SubElement(infCIOT, "CNPJ").text = normalizar_cnpj(item.cpfcnpj)
 
         # Vale Pedágio
         if modal_rodoviario.pedagio is not None:
             valePed = etree.SubElement(infANTT, "valePed")
             for num, item in enumerate(modal_rodoviario.pedagio):
                 disp = etree.SubElement(valePed, "disp")
-                etree.SubElement(disp, "CNPJForn").text = item.cnpj_fornecedor
-                if len(item.cpfcnpj_pagador) == 11:
-                    etree.SubElement(disp, "CPFPg").text = item.cpfcnpj_pagador
-                elif len(item.cpfcnpj_pagador) == 14:
-                    etree.SubElement(disp, "CNPJPg").text = item.cpfcnpj_pagador
+                etree.SubElement(disp, "CNPJForn").text = normalizar_cnpj(
+                    item.cnpj_fornecedor
+                )
+                if documento_eh_cpf(item.cpfcnpj_pagador):
+                    etree.SubElement(disp, "CPFPg").text = so_numeros(item.cpfcnpj_pagador)
+                elif len(normalizar_cnpj(item.cpfcnpj_pagador)) == 14:
+                    etree.SubElement(disp, "CNPJPg").text = normalizar_cnpj(
+                        item.cpfcnpj_pagador
+                    )
                 etree.SubElement(disp, "nCompra").text = item.numero_compra
                 etree.SubElement(disp, "vValePed").text = "{:.2f}".format(
                     item.valor_pedagio or 0
@@ -2867,10 +2894,12 @@ class SerializacaoMDFe(Serializacao):
             for num, item in enumerate(modal_rodoviario.contratante):
                 infContratante = etree.SubElement(infANTT, "infContratante")
                 etree.SubElement(infContratante, "xNome").text = item.nome
-                if len(item.cpfcnpj) == 11:
-                    etree.SubElement(infContratante, "CPF").text = item.cpfcnpj
-                elif len(item.cpfcnpj) == 14:
-                    etree.SubElement(infContratante, "CNPJ").text = item.cpfcnpj
+                if documento_eh_cpf(item.cpfcnpj):
+                    etree.SubElement(infContratante, "CPF").text = so_numeros(item.cpfcnpj)
+                elif len(normalizar_cnpj(item.cpfcnpj)) == 14:
+                    etree.SubElement(infContratante, "CNPJ").text = normalizar_cnpj(
+                        item.cpfcnpj
+                    )
 
                 # Contrato
                 if item.NroContrato:
@@ -2899,10 +2928,12 @@ class SerializacaoMDFe(Serializacao):
             if item.proprietario:
                 prop = etree.SubElement(veicTracao, "prop")
 
-                if len(item.proprietario.cpfcnpj) == 11:
-                    etree.SubElement(prop, "CPF").text = item.proprietario.cpfcnpj
-                elif len(item.proprietario.cpfcnpj) == 14:
-                    etree.SubElement(prop, "CNPJ").text = item.proprietario.cpfcnpj
+                if documento_eh_cpf(item.proprietario.cpfcnpj):
+                    etree.SubElement(prop, "CPF").text = so_numeros(item.proprietario.cpfcnpj)
+                elif len(normalizar_cnpj(item.proprietario.cpfcnpj)) == 14:
+                    etree.SubElement(prop, "CNPJ").text = normalizar_cnpj(
+                        item.proprietario.cpfcnpj
+                    )
 
                 if item.proprietario.rntrc:
                     etree.SubElement(prop, "RNTRC").text = item.proprietario.rntrc.zfill(8)
@@ -2947,10 +2978,14 @@ class SerializacaoMDFe(Serializacao):
                 if item_reboque.proprietario:
                     prop = etree.SubElement(veicReboque, "prop")
 
-                    if len(item_reboque.proprietario.cpfcnpj) == 11:
-                        etree.SubElement(prop, "CPF").text = item_reboque.proprietario.cpfcnpj
-                    elif len(item_reboque.proprietario.cpfcnpj) == 14:
-                        etree.SubElement(prop, "CNPJ").text = item_reboque.proprietario.cpfcnpj
+                    if documento_eh_cpf(item_reboque.proprietario.cpfcnpj):
+                        etree.SubElement(prop, "CPF").text = so_numeros(
+                            item_reboque.proprietario.cpfcnpj
+                        )
+                    elif len(normalizar_cnpj(item_reboque.proprietario.cpfcnpj)) == 14:
+                        etree.SubElement(prop, "CNPJ").text = normalizar_cnpj(
+                            item_reboque.proprietario.cpfcnpj
+                        )
 
                     if item_reboque.proprietario.rntrc:
                         etree.SubElement(
@@ -3005,11 +3040,11 @@ class SerializacaoMDFe(Serializacao):
 
         infResp = etree.SubElement(raiz, "infResp")
         etree.SubElement(infResp, "respSeg").text = seguradora.responsavel_seguro
-        etree.SubElement(infResp, "CNPJ").text = seguradora.cnpj_responsavel
+        etree.SubElement(infResp, "CNPJ").text = normalizar_cnpj(seguradora.cnpj_responsavel)
 
         infSeg = etree.SubElement(raiz, "infSeg")
         etree.SubElement(infSeg, "xSeg").text = seguradora.nome_seguradora
-        etree.SubElement(infSeg, "CNPJ").text = seguradora.cnpj_seguradora
+        etree.SubElement(infSeg, "CNPJ").text = normalizar_cnpj(seguradora.cnpj_seguradora)
 
         etree.SubElement(raiz, "nApol").text = seguradora.numero_apolice
 
@@ -3069,7 +3104,7 @@ class SerializacaoMDFe(Serializacao):
         self, responsavel_tecnico, tag_raiz="infRespTec", retorna_string=True
     ):
         raiz = etree.Element(tag_raiz)
-        etree.SubElement(raiz, "CNPJ").text = responsavel_tecnico.cnpj
+        etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(responsavel_tecnico.cnpj)
         etree.SubElement(raiz, "xContato").text = responsavel_tecnico.contato
         etree.SubElement(raiz, "email").text = responsavel_tecnico.email
         etree.SubElement(raiz, "fone").text = responsavel_tecnico.fone
@@ -3357,10 +3392,10 @@ class SerializacaoCTE(Serializacao):
         raiz = etree.Element(tag_raiz)
 
         # Dados do emitente
-        if len(so_numeros(emitente.cnpj)) == 11:
+        if documento_eh_cpf(emitente.cnpj):
             etree.SubElement(raiz, "CPF").text = so_numeros(emitente.cnpj)
         else:
-            etree.SubElement(raiz, "CNPJ").text = so_numeros(emitente.cnpj)
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(emitente.cnpj)
         etree.SubElement(raiz, "IE").text = emitente.inscricao_estadual
         etree.SubElement(raiz, "xNome").text = emitente.razao_social
         # Endereço
@@ -3391,10 +3426,10 @@ class SerializacaoCTE(Serializacao):
         raiz = etree.Element(tag_raiz)
 
         # Dados do emitente
-        if len(so_numeros(pessoa.documento)) == 11:
+        if documento_eh_cpf(pessoa.documento):
             etree.SubElement(raiz, "CPF").text = so_numeros(pessoa.documento)
         else:
-            etree.SubElement(raiz, "CNPJ").text = so_numeros(pessoa.documento)
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(pessoa.documento)
         if pessoa.inscricao_estadual:
             etree.SubElement(raiz, "IE").text = pessoa.inscricao_estadual
         etree.SubElement(raiz, "xNome").text = pessoa.razao_social
@@ -3424,10 +3459,10 @@ class SerializacaoCTE(Serializacao):
         raiz = etree.Element(tag_raiz)
 
         # Dados do cliente (destinatário)
-        if len(so_numeros(cliente.numero_documento)) == 11:
+        if documento_eh_cpf(cliente.numero_documento):
             etree.SubElement(raiz, "CPF").text = so_numeros(cliente.numero_documento)
         else:
-            etree.SubElement(raiz, "CNPJ").text = so_numeros(cliente.numero_documento)
+            etree.SubElement(raiz, "CNPJ").text = normalizar_cnpj(cliente.numero_documento)
         if cliente.inscricao_estadual:
             etree.SubElement(raiz, "IE").text = cliente.inscricao_estadual
         etree.SubElement(raiz, "xNome").text = cliente.razao_social
@@ -3731,10 +3766,10 @@ class SerializacaoCTE(Serializacao):
         e = etree.SubElement(raiz, "infEvento", Id=evento.identificador)
         etree.SubElement(e, "cOrgao").text = CODIGOS_ESTADOS[evento.uf.upper()]
         etree.SubElement(e, "tpAmb").text = str(self._ambiente)
-        if len(so_numeros(evento.cnpj)) == 11:
-            etree.SubElement(e, "CPF").text = evento.cnpj
+        if documento_eh_cpf(evento.cnpj):
+            etree.SubElement(e, "CPF").text = so_numeros(evento.cnpj)
         else:
-            etree.SubElement(e, "CNPJ").text = evento.cnpj
+            etree.SubElement(e, "CNPJ").text = normalizar_cnpj(evento.cnpj)
         etree.SubElement(e, "chCTe").text = evento.chave
         etree.SubElement(e, "dhEvento").text = (
             evento.data_emissao.strftime("%Y-%m-%dT%H:%M:%S") + tz
