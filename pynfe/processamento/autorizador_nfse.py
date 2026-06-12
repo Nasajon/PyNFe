@@ -593,14 +593,17 @@ class SerializacaoNacional(InterfaceAutorizador):
             if tipo is None or getattr(tipo, marcador, False):
                 continue
 
-            pattern = pyxb.binding.facets.CF_pattern()
-            pattern.addPattern(pattern=pattern_value)
+            facet_map = tipo._FacetMap()
+            pattern = facet_map.get(pyxb.binding.facets.CF_pattern)
+            if pattern is None:
+                pattern = getattr(tipo, "_CF_pattern", None)
+                if pattern is None:
+                    pattern = pyxb.binding.facets.CF_pattern()
+                facet_map[pyxb.binding.facets.CF_pattern] = pattern
+
             tipo._CF_pattern = pattern
-            tipo._InitializeFacetMap(
-                tipo._CF_maxLength,
-                tipo._CF_pattern,
-                tipo._CF_whiteSpace,
-            )
+            del pattern.patternElements()[:]
+            pattern.addPattern(pattern=pattern_value)
             setattr(tipo, marcador, True)
         return schema
 
