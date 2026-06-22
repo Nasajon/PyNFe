@@ -509,11 +509,11 @@ class NotaFiscal(Entidade):
         self.totais_icms_outras_despesas_acessorias += obj.outras_despesas_acessorias
         # - Valor Total do FCP (Fundo de Combate à Pobreza)
         self.totais_fcp += obj.fcp_valor
-        self.totais_fcp_destino += obj.fcp_destino_valor
+        self.totais_fcp_destino += obj.fcp_valor_uf_destino
         self.totais_fcp_st += obj.fcp_st_valor
         self.totais_fcp_st_ret += obj.fcp_st_ret_valor
-        self.totais_icms_inter_destino += obj.icms_inter_destino_valor
-        self.totais_icms_inter_remetente += obj.icms_inter_remetente_valor
+        self.totais_icms_inter_destino += obj.icms_valor_uf_destino
+        self.totais_icms_inter_remetente += obj.icms_valor_uf_remetente
 
         # - ICMS monofasico para combustiveis
         self.totais_icms_q_bc_mono += obj.icms_q_bc_mono
@@ -750,6 +750,21 @@ class NotaFiscalProduto(Entidade):
     campos_deprecados = [
         CampoDeprecated("fcp_percentual", "fcp_aliquota", "Consistencia de nomes"),
         CampoDeprecated("fcp_st_percentual", "fcp_st_aliquota", "Consistencia de nomes"),
+        CampoDeprecated(
+            "fcp_destino_valor",
+            "fcp_valor_uf_destino",
+            "Nome mais claro para o grupo ICMSUFDest",
+        ),
+        CampoDeprecated(
+            "icms_inter_destino_valor",
+            "icms_valor_uf_destino",
+            "Nome mais claro para o grupo ICMSUFDest",
+        ),
+        CampoDeprecated(
+            "icms_inter_remetente_valor",
+            "icms_valor_uf_remetente",
+            "Nome mais claro para o grupo ICMSUFDest",
+        ),
     ]
     # - Dados
     #  - Codigo (obrigatorio)
@@ -931,6 +946,17 @@ class NotaFiscalProduto(Entidade):
     fcp_st_base_calculo = Decimal()
     fcp_st_aliquota = Decimal()
     fcp_st_valor = Decimal()
+    # ICMSUFDest
+    icms_base_calculo_uf_destino = Decimal()
+    fcp_base_calculo_uf_destino = Decimal()
+    fcp_percentual_uf_destino = Decimal()
+    icms_aliquota_uf_destino = Decimal()
+    icms_aliquota_interestadual = Decimal()
+    icms_percentual_partilha_uf_destino = Decimal()
+    fcp_valor_uf_destino = Decimal()
+    icms_valor_uf_destino = Decimal()
+    icms_valor_uf_remetente = Decimal()
+
     fcp_destino_valor = Decimal()
 
     # FCP ST Retido

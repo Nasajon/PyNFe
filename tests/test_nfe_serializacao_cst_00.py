@@ -106,7 +106,7 @@ class SerializacaoNFeTestCase(unittest.TestCase):
             tipo_impressao_danfe=1,  # 1=DANFE normal
             forma_emissao="1",  # 1=Emissão normal (não em contingência);
             cliente_final=1,  # 0=Normal;1=Consumidor final;
-            indicador_destino=1,
+            indicador_destino=2,
             indicador_presencial=1,
             finalidade_emissao="1",  # 1=NF-e normal
             processo_emissao="0",  # 0=Emissão de NF-e com aplicativo do contribuinte;
@@ -149,6 +149,15 @@ class SerializacaoNFeTestCase(unittest.TestCase):
             informacoes_adicionais="Informações adicionais",
             ipi_valor_ipi_dev=Decimal("10.00"),
             pdevol=Decimal("1.00"),
+            icms_base_calculo_uf_destino=Decimal("117.00"),
+            fcp_base_calculo_uf_destino=Decimal("117.00"),
+            fcp_percentual_uf_destino=Decimal("2.00"),
+            icms_aliquota_uf_destino=Decimal("18.00"),
+            icms_aliquota_interestadual=Decimal("12.00"),
+            icms_percentual_partilha_uf_destino=Decimal("100.00"),
+            fcp_valor_uf_destino=Decimal("2.34"),
+            icms_valor_uf_destino=Decimal("7.02"),
+            icms_valor_uf_remetente=Decimal("1.23"),
         )
         
         self.notafiscal.adicionar_pagamento(t_pag="01", x_pag="Dinheiro", v_pag=127.00, ind_pag=0)
@@ -276,6 +285,52 @@ class SerializacaoNFeTestCase(unittest.TestCase):
         self.assertEqual(pFCP, None)
         self.assertEqual(vFCP, None)
 
+        vBCUFDest = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:vBCUFDest", namespaces=self.ns
+        )[0].text
+        vBCFCPUFDest = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:vBCFCPUFDest",
+            namespaces=self.ns,
+        )[0].text
+        pFCPUFDest = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:pFCPUFDest",
+            namespaces=self.ns,
+        )[0].text
+        pICMSUFDest = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:pICMSUFDest",
+            namespaces=self.ns,
+        )[0].text
+        pICMSInter = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:pICMSInter",
+            namespaces=self.ns,
+        )[0].text
+        pICMSInterPart = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:pICMSInterPart",
+            namespaces=self.ns,
+        )[0].text
+        vFCPUFDest = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:vFCPUFDest",
+            namespaces=self.ns,
+        )[0].text
+        vICMSUFDest = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:vICMSUFDest",
+            namespaces=self.ns,
+        )[0].text
+        vICMSUFRemet = self.xml_assinado.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest/ns:vICMSUFRemet",
+            namespaces=self.ns,
+        )[0].text
+
+        self.assertEqual(vBCUFDest, "117.00")
+        self.assertEqual(vBCFCPUFDest, "117.00")
+        self.assertEqual(pFCPUFDest, "2.00")
+        self.assertEqual(pICMSUFDest, "18.00")
+        self.assertEqual(pICMSInter, "12.00")
+        self.assertEqual(pICMSInterPart, "100.00")
+        self.assertEqual(vFCPUFDest, "2.34")
+        self.assertEqual(vICMSUFDest, "7.02")
+        self.assertEqual(vICMSUFRemet, "1.23")
+
         # PIS
         CST_PIS = self.xml_assinado.xpath(
             "//ns:det/ns:imposto/ns:PIS/ns:PISOutr/ns:CST", namespaces=self.ns
@@ -313,6 +368,15 @@ class SerializacaoNFeTestCase(unittest.TestCase):
         )[0].text
         vICMSDeson = self.xml_assinado.xpath(
             "//ns:total/ns:ICMSTot/ns:vICMSDeson", namespaces=self.ns
+        )[0].text
+        vFCPUFDest = self.xml_assinado.xpath(
+            "//ns:total/ns:ICMSTot/ns:vFCPUFDest", namespaces=self.ns
+        )[0].text
+        vICMSUFDest = self.xml_assinado.xpath(
+            "//ns:total/ns:ICMSTot/ns:vICMSUFDest", namespaces=self.ns
+        )[0].text
+        vICMSUFRemet = self.xml_assinado.xpath(
+            "//ns:total/ns:ICMSTot/ns:vICMSUFRemet", namespaces=self.ns
         )[0].text
         vFCP = self.xml_assinado.xpath(
             "//ns:total/ns:ICMSTot/ns:vFCP", namespaces=self.ns
@@ -369,6 +433,9 @@ class SerializacaoNFeTestCase(unittest.TestCase):
         self.assertEqual(vBC, "0.00")
         self.assertEqual(vICMS, "0.00")
         self.assertEqual(vICMSDeson, "0.00")
+        self.assertEqual(vFCPUFDest, "2.34")
+        self.assertEqual(vICMSUFDest, "7.02")
+        self.assertEqual(vICMSUFRemet, "1.23")
         self.assertEqual(vFCP, "0.00")
         self.assertEqual(vBCST, "0.00")
         self.assertEqual(vST, "0.00")
@@ -402,6 +469,32 @@ class SerializacaoNFeTestCase(unittest.TestCase):
 
         # Testa a validação do XML com os schemas XSD
         self.validacao_com_xsd_do_xml_gerado_sem_processar()
+
+    def test_nao_serializa_icms_uf_destino_quando_operacao_nao_for_interestadual(self):
+        self.emitente = self.preenche_emitente()
+        self.cliente = self.preenche_destinatario()
+        self.notafiscal = self.preenche_notafiscal_produto_cst00()
+        self.notafiscal.indicador_destino = 1
+
+        xml = self.serializa_nfe()
+
+        icms_uf_destino = xml.xpath(
+            "//ns:det/ns:imposto/ns:ICMSUFDest", namespaces=self.ns
+        )
+        total_fcp_uf_destino = xml.xpath(
+            "//ns:total/ns:ICMSTot/ns:vFCPUFDest", namespaces=self.ns
+        )
+        total_icms_uf_destino = xml.xpath(
+            "//ns:total/ns:ICMSTot/ns:vICMSUFDest", namespaces=self.ns
+        )
+        total_icms_uf_remetente = xml.xpath(
+            "//ns:total/ns:ICMSTot/ns:vICMSUFRemet", namespaces=self.ns
+        )
+
+        self.assertEqual(icms_uf_destino, [])
+        self.assertEqual(total_fcp_uf_destino, [])
+        self.assertEqual(total_icms_uf_destino, [])
+        self.assertEqual(total_icms_uf_remetente, [])
 
 
 if __name__ == "__main__":

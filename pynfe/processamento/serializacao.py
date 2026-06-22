@@ -300,7 +300,12 @@ class SerializacaoXML(Serializacao):
             return raiz
 
     def _serializar_produto_servico(
-        self, produto_servico, modelo, tag_raiz="det", retorna_string=True
+        self,
+        produto_servico,
+        modelo,
+        tag_raiz="det",
+        retorna_string=True,
+        serializar_icms_uf_destino=False,
     ):
         raiz = etree.Element(tag_raiz)
 
@@ -440,6 +445,11 @@ class SerializacaoXML(Serializacao):
         self._serializar_imposto_icms(
             produto_servico=produto_servico, tag_raiz=imposto, retorna_string=False
         )
+
+        if serializar_icms_uf_destino:
+            self._serializar_imposto_icms_uf_destino(
+                produto_servico=produto_servico, tag_raiz=imposto, retorna_string=False
+            )
 
         # IPI
         self._serializar_imposto_ipi(
@@ -1115,6 +1125,64 @@ class SerializacaoXML(Serializacao):
         else:
             raise NotImplementedError
 
+    def _serializar_imposto_icms_uf_destino(
+        self, produto_servico, tag_raiz="imposto", retorna_string=True
+    ):
+        campos_icms_uf_destino = (
+            "icms_base_calculo_uf_destino",
+            "fcp_base_calculo_uf_destino",
+            "fcp_percentual_uf_destino",
+            "icms_aliquota_uf_destino",
+            "icms_aliquota_interestadual",
+            "icms_percentual_partilha_uf_destino",
+            "fcp_valor_uf_destino",
+            "icms_valor_uf_destino",
+            "icms_valor_uf_remetente",
+        )
+        if not any(getattr(produto_servico, campo, None) for campo in campos_icms_uf_destino):
+            return None
+
+        icms_uf_destino = etree.SubElement(tag_raiz, "ICMSUFDest")
+        etree.SubElement(icms_uf_destino, "vBCUFDest").text = "{:.2f}".format(
+            produto_servico.icms_base_calculo_uf_destino or 0
+        )
+
+        if produto_servico.fcp_base_calculo_uf_destino:
+            etree.SubElement(icms_uf_destino, "vBCFCPUFDest").text = "{:.2f}".format(
+                produto_servico.fcp_base_calculo_uf_destino or 0
+            )
+
+        if produto_servico.fcp_percentual_uf_destino:
+            etree.SubElement(icms_uf_destino, "pFCPUFDest").text = "{:.2f}".format(
+                produto_servico.fcp_percentual_uf_destino or 0
+            )
+
+        etree.SubElement(icms_uf_destino, "pICMSUFDest").text = "{:.2f}".format(
+            produto_servico.icms_aliquota_uf_destino or 0
+        )
+        etree.SubElement(icms_uf_destino, "pICMSInter").text = "{:.2f}".format(
+            produto_servico.icms_aliquota_interestadual or 0
+        )
+        etree.SubElement(icms_uf_destino, "pICMSInterPart").text = "{:.2f}".format(
+            produto_servico.icms_percentual_partilha_uf_destino or 0
+        )
+
+        if produto_servico.fcp_valor_uf_destino:
+            etree.SubElement(icms_uf_destino, "vFCPUFDest").text = "{:.2f}".format(
+                produto_servico.fcp_valor_uf_destino or 0
+            )
+
+        etree.SubElement(icms_uf_destino, "vICMSUFDest").text = "{:.2f}".format(
+            produto_servico.icms_valor_uf_destino or 0
+        )
+        etree.SubElement(icms_uf_destino, "vICMSUFRemet").text = "{:.2f}".format(
+            produto_servico.icms_valor_uf_remetente or 0
+        )
+
+        if retorna_string:
+            return etree.tostring(icms_uf_destino, encoding="unicode", pretty_print=True)
+        return icms_uf_destino
+
     def _serializar_imposto_ipi(self, produto_servico, tag_raiz="imposto", retorna_string=True):
         ipint_lista = ("01", "02", "03", "04", "05", "51", "52", "53", "54", "55")
         if produto_servico.ipi_codigo_enquadramento in ipint_lista:
@@ -1780,6 +1848,21 @@ class SerializacaoXML(Serializacao):
         else:
             return pag
 
+    def _deve_serializar_icms_uf_destino(self, nota_fiscal):
+        def inteiro(valor):
+            try:
+                return int(valor or 0)
+            except (TypeError, ValueError):
+                return 0
+
+        cliente = getattr(nota_fiscal, "cliente", None)
+        return (
+            inteiro(nota_fiscal.modelo) == 55
+            and inteiro(nota_fiscal.indicador_destino) == 2
+            and inteiro(nota_fiscal.cliente_final) == 1
+            and inteiro(getattr(cliente, "indicador_ie", 0)) == 9
+        )
+
     def _serializar_nota_fiscal(self, nota_fiscal: NotaFiscal, tag_raiz="infNFe", retorna_string=True):
         raiz = etree.Element(tag_raiz, versao=self._versao)
 
@@ -1948,10 +2031,15 @@ class SerializacaoXML(Serializacao):
         for num, item in enumerate(nota_fiscal.autorizados_baixar_xml):
             raiz.append(self._serializar_autorizados_baixar_xml(item, retorna_string=False))
 
+        deve_serializar_icms_uf_destino = self._deve_serializar_icms_uf_destino(nota_fiscal)
+
         # Itens
         for num, item in enumerate(nota_fiscal.produtos_e_servicos):
             det = self._serializar_produto_servico(
-                item, modelo=nota_fiscal.modelo, retorna_string=False
+                item,
+                modelo=nota_fiscal.modelo,
+                retorna_string=False,
+                serializar_icms_uf_destino=deve_serializar_icms_uf_destino,
             )
             det.attrib["nItem"] = str(num + 1)
 
@@ -1967,17 +2055,17 @@ class SerializacaoXML(Serializacao):
         etree.SubElement(icms_total, "vICMSDeson").text = "{:.2f}".format(
             nota_fiscal.totais_icms_desonerado
         )  # Valor Total do ICMS desonerado
-        if nota_fiscal.totais_fcp_destino:
+        if deve_serializar_icms_uf_destino and nota_fiscal.totais_fcp_destino:
             etree.SubElement(icms_total, "vFCPUFDest").text = "{:.2f}".format(
                 nota_fiscal.totais_fcp_destino
             )
-        if nota_fiscal.totais_icms_inter_destino:
+        if deve_serializar_icms_uf_destino and nota_fiscal.totais_icms_inter_destino:
             etree.SubElement(icms_total, "vICMSUFDest").text = "{:.2f}".format(
                 nota_fiscal.totais_icms_inter_destino
             )
-        if nota_fiscal.totais_icms_inter_remetente:
+        if deve_serializar_icms_uf_destino and nota_fiscal.totais_icms_inter_remetente:
             etree.SubElement(icms_total, "vICMSUFRemet").text = "{:.2f}".format(
-                nota_fiscal.totais_icms_remetente
+                nota_fiscal.totais_icms_inter_remetente
             )
         etree.SubElement(icms_total, "vFCP").text = "{:.2f}".format(nota_fiscal.totais_fcp)
         etree.SubElement(icms_total, "vBCST").text = "{:.2f}".format(
